@@ -19,7 +19,8 @@ export default function Homepage() {
       <div className={styles.main_body}>
         <h1 className={styles.title}>BooleBots</h1>
         <Container>
-          <h1 className={styles.title}>BooleBots</h1>
+          <img src={require("../assets/booleBotsHome.png")} />
+          
           <section className={styles.homepageBtns}>
             <Link to="/about">
               <button className={styles.startBtn}>Start</button>
