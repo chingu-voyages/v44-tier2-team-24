@@ -10,13 +10,13 @@ export default function Homepage() {
       <div className={styles.main_body}>
         <h1 className={styles.title}>BooleBots</h1>
         <Container>
-          <h1 className={styles.title}>BooleBots</h1>
+          <img src={require("../assets/booleBotsHome.png")} />
+          
           <section className={styles.homepageBtns}>
-            <Link to='/about'>
+            <Link to="/about">
               <button className={styles.startBtn}>Start</button>
             </Link>
-            <button className={styles.instructionBtn}>How to play
-            </button>
+            <button className={styles.instructionBtn}>How to play</button>
           </section>
         </Container>
       </div>
