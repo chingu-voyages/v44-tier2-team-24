@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.footer {
+  background-color: #061d41;
+  /* height: 3em; */
+  height: 5%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer_link {
+  color: white;
+  text-decoration: none;
+}
