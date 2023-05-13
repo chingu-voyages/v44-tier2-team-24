@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+
+.title {
+  font-family: "Bungee Shade", cursive;
+}
+.main_body {
+  background-color: #d3f3ee;
+  height: 100vh;
+}
