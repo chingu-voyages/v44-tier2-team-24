@@ -4,9 +4,7 @@ import Container from "../Components/Layout/Container";
 
 export default function Homepage() {
   return (
-    <>
     <div className={styles.main_body}>
-      <h1 className={styles.title}>BooleBots</h1>
       <Container>
         <h1 className={styles.title}>BooleBots</h1>
         <section className={styles.homepageBtns}>
@@ -15,6 +13,5 @@ export default function Homepage() {
         </section>
       </Container>
     </div>
-</>
   );
 }
