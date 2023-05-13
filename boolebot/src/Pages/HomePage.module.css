@@ -1,9 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
-
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/*This is the main header in the Homepage*/
 .title {
   font-family: "Bungee Shade", cursive;
+  padding-top: 5em;
+  margin-bottom: 2em;
 }
 .main_body {
   background-color: #d3f3ee;
-  height: 100vh;
+  height: 95%;
+  /* min-height: 100vh; */
+}
+.homepageBtns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.startBtn,
+.instructionBtn {
+  margin-top: 2em;
+  background-color: #061d41;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  padding: 0.25em 1.5em;
+  border-radius: 10px;
+  /* text-decoration: none; */
 }

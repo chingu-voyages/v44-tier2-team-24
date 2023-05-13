@@ -7,6 +7,10 @@ export default function Homepage() {
     <div className={styles.main_body}>
       <Container>
         <h1 className={styles.title}>BooleBots</h1>
+        <section className={styles.homepageBtns}>
+          <button className={styles.startBtn}>Start</button>
+          <button className={styles.instructionBtn}>How to play</button>
+        </section>
       </Container>
     </div>
   );

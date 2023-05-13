@@ -5,7 +5,8 @@
 }
 .footer {
   background-color: #061d41;
-  height: 3em;
+  /* height: 3em; */
+  height: 5%;
   text-align: center;
   display: flex;
   align-items: center;
