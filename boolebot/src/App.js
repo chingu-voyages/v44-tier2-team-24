@@ -1,9 +1,10 @@
 import "./App.css";
+import Homepage from "./Pages/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <h2>Boole Bot</h2>
+      <Homepage />
     </div>
   );
 }
