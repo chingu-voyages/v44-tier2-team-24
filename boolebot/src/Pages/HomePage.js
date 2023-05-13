@@ -8,12 +8,11 @@ export default function Homepage() {
   return (
     <>
       <div className={styles.main_body}>
-        <h1 className={styles.title}>BooleBots</h1>
         <Container>
           <img src={require("../assets/booleBotsHome.png")} />
           
           <section className={styles.homepageBtns}>
-            <Link to="/about">
+            <Link to="/createBot">
               <button className={styles.startBtn}>Start</button>
             </Link>
             <button className={styles.instructionBtn}>How to play</button>
