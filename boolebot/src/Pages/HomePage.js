@@ -1,17 +1,14 @@
 import React from "react";
 import styles from "./HomePage.module.css";
 import Container from "../Components/Layout/Container";
-
 import Swal from "sweetalert2";
-
 import { Link } from "react-router-dom";
 
 export default function Homepage() {
   return (
     <>
       <div className={styles.main_body}>
-        {/* <h1 className={styles.title}>BooleBots</h1> */}
-
+        <h1 className={styles.title}>BooleBots</h1>
         <Container>
           <img src={require("../assets/booleBotsHome.png")} />
 
@@ -33,7 +30,6 @@ export default function Homepage() {
                 });
               }}
             >
-              {" "}
               How to play
             </button>
           </section>
