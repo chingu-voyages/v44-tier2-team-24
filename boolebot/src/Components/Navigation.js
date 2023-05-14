@@ -6,17 +6,16 @@ function Navigation() {
     return (
       <header>
         <nav>
-          <ul>
+            <Link to="/"><h1>BooleBots</h1></Link>
+           <ul>
             <li>
-                <h1>BooleBots</h1>
-            </li>
-            <li>
-              <Link to="/">Home</Link>
+              <Link to="/createBot">Create Bots</Link>
             </li>
             <li>
               <Link to="/about">About Us</Link>
             </li>
           </ul>
+          
         </nav>
       </header>
     );

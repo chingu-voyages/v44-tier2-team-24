@@ -3,6 +3,7 @@ import "./App.css";
 import Homepage from "./Pages/HomePage";
 import AboutUs from "./Pages/AboutUs";
 import RootLayout from "./Pages/Root";
+import BotsInfo from "./Pages/BotsInfo";
 
 const router = createBrowserRouter([
   //the following path is for the wrapper
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: "/", element: <Homepage /> },
+      { path: "/createBot", element: <BotsInfo /> },
       { path: "/about", element: <AboutUs /> },
     ],
   },

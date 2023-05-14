@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
-
+ ul {
+    display: flex;
+    justify-content: space-around;
+}
 header {
     background-color: #D3F3EE;
 }
