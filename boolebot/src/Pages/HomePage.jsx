@@ -9,7 +9,7 @@ export default function Homepage() {
     <>
       <div className={styles.main_body}>
         <Container>
-          <img src={require("../assets/booleBotsHome.png")} />
+          {/* <img src={require("../assets/booleBotsHome.png")} /> */}
 
           <section className={styles.homepageBtns}>
             <Link to="/createBot">
@@ -18,16 +18,10 @@ export default function Homepage() {
 
             <button
               className={styles.instructionBtn}
-              onClick={() => {
-                Swal.fire({
-                  title: "We will explain how to play the game",
-                  width: 600,
-                  padding: "3em",
-                  color: "#716add",
-                  background:
-                    "#fff url(https://sweetalert2.github.io/#iconsimages/trees.png)",
-                });
-              }}
+              // onClick={() => {
+               
+              //   console.log("testing")
+              // }}
             >
               How to play
             </button>
