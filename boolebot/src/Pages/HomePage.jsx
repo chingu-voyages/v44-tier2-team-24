@@ -18,10 +18,18 @@ export default function Homepage() {
 
             <button
               className={styles.instructionBtn}
-              // onClick={() => {
+              onClick={() => {
+               Swal.fire({
+                  title: "We will explain how to play the game",
+                  width: 600,
+                  padding: "3em",
+                  color: "#716add",
+                  background:
+                    "#fff url(https://sweetalert2.github.io/#iconsimages/trees.png)",
+                });
+
                
-              //   console.log("testing")
-              // }}
+              }}
             >
               How to play
             </button>
