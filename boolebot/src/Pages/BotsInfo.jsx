@@ -1,14 +1,15 @@
+// import "../../src/App.scss";
 export default function BotsInfo() {
   return (
 <>
 <h2>Create Bot</h2>
-<div >
-  <form>
+<div className="test">
+  <form >
     <fieldset >
       <legend>Customize Bots </legend>
       <label htmlFor="bot_name">
         Name your bot
-        <input type="text" id="bot_name" name="bot_name" />
+        <input type="text" id="bot_name" name="bot_name"/>
       </label>
       <label htmlFor="boole_value">
         Choose a Boolean Value
