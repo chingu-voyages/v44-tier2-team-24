@@ -1,3 +1,25 @@
 .test {
     background-color: yellow;
 }
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+
+}
+
+form {
+
+}
+
+label {
+    margin: 2px;
+}
+
+input {
+    margin-left: 10px;
+}
+
+select {
+    margin-left: 10px;
+}

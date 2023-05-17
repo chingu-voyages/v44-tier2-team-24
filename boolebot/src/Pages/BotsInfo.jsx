@@ -6,11 +6,13 @@ export default function BotsInfo() {
 <div className="test">
   <form >
     <fieldset >
-      <legend>Customize Bots </legend>
+      
       <label htmlFor="bot_name">
         Name your bot
+
         <input type="text" id="bot_name" name="bot_name"/>
       </label>
+      <div></div>
       <label htmlFor="boole_value">
         Choose a Boolean Value
         <select id="boole_value" name="boole_value">
