@@ -2,9 +2,9 @@ export default function BotsInfo() {
   return (
 <>
 <h2>Create Bot</h2>
-{/* <div className={styles.form_body}>
+<div >
   <form>
-    <fieldset className={styles.fieldset}>
+    <fieldset >
       <legend>Customize Bots </legend>
       <label htmlFor="bot_name">
         Name your bot
@@ -39,10 +39,10 @@ export default function BotsInfo() {
           <option value="west">WEST</option>
         </select>
       </label>
-      <button onClick={handleSubmit}>Submit</button>
+      <button >Submit</button>
     </fieldset>
   </form>
-</div> */}
+</div>
 </>
   )}
 
