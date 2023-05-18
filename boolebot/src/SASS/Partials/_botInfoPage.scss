@@ -22,7 +22,7 @@ fieldset {
 
 form {
     border: 1px solid #061d41;
-    width: 15%;
+    width: 20%;
     text-align: left;
     margin: 0 auto;
     font-family: 'Roboto Mono', monospace;
@@ -40,6 +40,38 @@ input {
 select {
     margin-left: 10px;
     padding: 5px 5px 5px 8px;
+}
+
+.createdBots {
+    display: flex;
+    border: 2px solid red;
+
+
+}
+
+.showBot {
+    border: 2px solid blue;
+    width: auto;
+    flex-wrap: no-wrap;
+    display:flex;
+    flex-direction: column;
+    padding: 10px;
+    img {
+        align-self: center;
+        width: 60%;
+        margin-bottom: 10px;
+    }
+
+    h3.title {
+        text-align: center;
+    }
+
+}
+
+.delete {
+    width: 80%;
+    align-self: center;
+    margin-top: 10px;
 }
 
 // button {

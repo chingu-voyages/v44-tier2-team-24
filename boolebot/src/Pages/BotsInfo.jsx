@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import singleBot from "../assets/bot.png";
 
 export default function BotsInfo() {
   const [botName, setBotName] = useState('');
@@ -42,9 +43,16 @@ export default function BotsInfo() {
       <h2>Create Bot</h2>
       <div className="createdBots">
         {createdBots.map((bot, index) => (
+          <div className="showBot" key={index}>
+          <img src={singleBot} alt="photo of a robot head"/>
           <div key={index}>
-          <h3 key={index}>{`${bot.name} - Value: ${bot.value}, Operator: ${bot.operator}, Speed: ${bot.speed}, Direction: ${bot.direction}`}</h3>
-          <button onClick={() => handleDelete(index)}>Delete</button>
+          <h3 className="title">{bot.name}</h3> 
+          <p>Value: {bot.value}</p> 
+          <p>Operator: {bot.operator}</p> 
+          <p>Speed: {bot.speed}</p> 
+          <p>Direction: {bot.direction}</p></div>
+          <button>Edit</button>
+          <button className="delete" onClick={() => handleDelete(index)}>Delete</button>
           </div>
         ))}
       </div>
