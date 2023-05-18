@@ -7,10 +7,11 @@ import botImage from "../assets/booleBotsHome.png";
 
 export default function Homepage() {
   return (
-    <>
+    
+    
       <div className={styles.main_body}>
-       
-        <img src={botImage}/>
+      <Container>
+       <div className={styles.img} ><img src={botImage} /></div> 
 
           <section className={styles.homepageBtns}>
             <Link to="/createBot">
@@ -35,8 +36,9 @@ export default function Homepage() {
               How to play
             </button>
           </section>
-       
+          </Container>
       </div>
-    </>
+     
+    
   );
 }
