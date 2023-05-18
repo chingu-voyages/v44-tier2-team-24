@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+.main {
+  background-color: #d3f3ee;
+}
+img {
+  width: 100%;
+}
+section {
+  padding: 3em 2em;
+  display: flex;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
+}
+section:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+.imgContainer {
+  width: 40%;
+}
+.content {
+  width: 50%;
+  padding: 0 1em 0 1em;
+  background-color: white;
+  border-radius: 5%;
+}
+.mainHeader {
+  text-align: center;
+}
