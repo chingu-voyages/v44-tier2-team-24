@@ -1,4 +1,4 @@
-import BotClass from "../components/BotClass";
+import BotClass from "../Components/Gameplay/BotClass";
 
 const checkCollision = (botsArr) => {
   // check over the current location of each robot

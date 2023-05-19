@@ -4,6 +4,7 @@ import Homepage from "./Pages/HomePage";
 import AboutUs from "./Pages/AboutUs";
 import RootLayout from "./Pages/Root";
 import BotsInfo from "./Pages/BotsInfo";
+import Arena from "./Components/Gameplay/Arena";
 
 const router = createBrowserRouter([
   //the following path is for the wrapper
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Homepage /> },
       { path: "/createBot", element: <BotsInfo /> },
       { path: "/about", element: <AboutUs /> },
+      { path: "/arena", element: <Arena /> },
     ],
   },
 ]);

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import BotClass from "./BotClass";
-import { checkCollision, handleCollision } from "../utils/collisionLogic.js";
-
+import { checkCollision, handleCollision } from "../../utils/collisionLogic";
+import useInterval from "../hooks/useInterval"
 // 1. Build the game arena.
 // 2. Add 1 robot to the board.
 // 3. Make 1 robot move in the assigned direction on click.
@@ -26,6 +26,11 @@ export default function Arena(props) {
     new BotClass(7, 3, numTilesPerSide, "bot2", "blue", 1),
     new BotClass(12, 3, numTilesPerSide, "bot3", "yellow", 1),
   ]);
+
+  useInterval(() => {
+    startBattle()
+    
+  }, isGameRunning ? 1000 : null);
 
   const arenaStyles = {
     gridTemplateColumns: `repeat(${numTilesPerSide}, 100px)`,
@@ -82,17 +87,6 @@ export default function Arena(props) {
     setLeaderboard(mergedObj);
   }, []);
 
-  useEffect(() => {
-    let gameInterval;
-
-    if (isGameRunning) {
-      gameInterval = setInterval(() => {
-        startBattle();
-      }, 1000);
-    }
-
-    return () => clearInterval(gameInterval);
-  }, [isGameRunning]);
 
   useEffect(() => {
     if (botsArr.length == 1) {
@@ -101,7 +95,7 @@ export default function Arena(props) {
   }, [botsArr]);
 
   function startGame() {
-    setIsGameRunning(true);
+    setIsGameRunning((prev) => prev ? false : true);
     // startBattle()
   }
 

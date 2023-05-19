@@ -1,4 +1,4 @@
-import generateRandomNumber from "../utils/randomNum";
+import generateRandomNumber from "../../utils/randomNum"
 
 //Basic bot class
 class BotClass {
