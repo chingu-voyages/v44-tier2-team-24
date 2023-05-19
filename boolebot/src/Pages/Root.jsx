@@ -1,15 +1,15 @@
-import { Outlet } from 'react-router-dom';
-import Navigation from '../Components/Navigation';
-import Footer from '../Components/Footer';
+import { Outlet } from "react-router-dom";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 function RootLayout() {
-    return (
-        <>
-            <Navigation />
-            <Outlet />
-            <Footer />
-        </>
-    )
+  return (
+    <>
+      <Navigation />
+      <Outlet />
+      <Footer />
+    </>
+  );
 }
 
 export default RootLayout;
