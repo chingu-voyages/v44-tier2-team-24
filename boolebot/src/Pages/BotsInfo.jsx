@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import singleBot from "../assets/bot.png";
+import { Link } from 'react-router-dom';
 
 export default function BotsInfo() {
   const [botName, setBotName] = useState('');
@@ -123,6 +124,7 @@ export default function BotsInfo() {
             <button type="submit">Submit</button>
           </fieldset>
         </form>
+       <Link to="/arena"><button >Battle Ground</button></Link> 
       </div>
     </>
   );

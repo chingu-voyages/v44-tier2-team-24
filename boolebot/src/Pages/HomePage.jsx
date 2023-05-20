@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HomePage.module.css";
-import Container from "../Components/Layout/Container";
+// import Container from "../Components/Layout/Container";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import botImage from "../assets/booleBotsHome.png";
@@ -10,8 +10,10 @@ export default function Homepage() {
     
     
       <div className={styles.main_body}>
-      <Container>
-       <div className={styles.img} ><img src={botImage} /></div> 
+        {/* Below this line is the bot image*/}
+       <div className={styles.imgWrapper} >
+        <img src={botImage} />
+        </div> 
 
           <section className={styles.homepageBtns}>
             <Link to="/createBot">
@@ -36,7 +38,7 @@ export default function Homepage() {
               How to play
             </button>
           </section>
-          </Container>
+          
       </div>
      
     
