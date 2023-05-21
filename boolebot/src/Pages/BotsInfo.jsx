@@ -73,6 +73,7 @@ export default function BotsInfo() {
             >
               <span className="arrow"></span>
             </button>
+            <button>Edit</button>
             <button className="delete" onClick={() => handleDelete(index)}>
               Delete
             </button>
@@ -105,7 +106,7 @@ export default function BotsInfo() {
                 <option value="0">0</option>
               </select>
             </label>
-            <label htmlFor="boole_op">
+            {/* <label htmlFor="boole_op">
               Choose Boolean Operator:
               <select
                 id="boole_op"
@@ -118,7 +119,7 @@ export default function BotsInfo() {
                 <option value="not">NOT</option>
                 <option value="nor">NOR</option>
               </select>
-            </label>
+            </label> */}
             <label htmlFor="bot_speed">
               Choose Speed:
               <input

@@ -3,6 +3,10 @@
 
 .test {
     background-color: #d3f3ee;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 }
 
 h2 {
@@ -32,7 +36,7 @@ form {
     border: 1px solid #061d41;
     width: fit-content;
     text-align: left;
-    margin: 0 auto;
+    margin: 2rem;
     padding: 2%;
     font-family: 'Roboto Mono', monospace;
     background-color: white;
@@ -42,7 +46,8 @@ form {
             margin-top: 6%;
             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
-
+        }
+}
 .test {
     background-color: #d3f3ee;
 }
@@ -73,8 +78,8 @@ fieldset {
 form {
     border: 1px solid #061d41;
     width: fit-content;
+    margin: 2rem;
     text-align: left;
-    margin: 0 auto;
     font-family: 'Roboto Mono', monospace;
     background-color: white;
         button {
@@ -100,40 +105,24 @@ select {
 
 .createdBots {
     display: flex;
-    border: 2px solid red;
+    // border: 2px solid red;
 
 
 }
 
-.showBot {
-    border: 2px solid blue;
-    width: auto;
-    flex-wrap: no-wrap;
-    display:flex;
-    flex-direction: column;
-    padding: 10px;
-    img {
-        align-self: center;
-        width: 60%;
-        margin-bottom: 10px;
-    }
 
-    h3.title {
-        text-align: center;
-    }
 
-}
 
 .delete {
     width: 80%;
     align-self: center;
     margin-top: 10px;
 }
-        }
-}
+        
+
 
 label {
-    margin: 2px;
+    margin: 0.5rem;
 }
 
 input {
@@ -162,7 +151,7 @@ select {
     padding: 10px;
     img {
         align-self: center;
-        width: 60%;
+        width: 55%;
         margin-bottom: 10px;
     }
 
@@ -178,7 +167,7 @@ select {
 }
 
 .delete {
-    width: 80%;
+    width: fit-content;
     align-self: center;
     margin-top: 10px;
 }
@@ -196,19 +185,20 @@ select {
 .expandButton .arrow {
     width: 0;
     height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid black;
+    margin-right: 0.6rem;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid black;
     transition: transform 0.3s;
 }
 
 .expandButton.expanded .arrow {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
 
-
-// button {
-//     width: 15%;
-//     align-self: center;
-//     padding: 4px;
-// }
+.titleArrow {
+    display: flex;
+        h3 {
+            padding: 0 1rem;
+        }
+}
