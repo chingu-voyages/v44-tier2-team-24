@@ -180,6 +180,11 @@ select {
     align-items: center;
     justify-content: flex-end;
     margin-left: auto;
+    margin-top: -13px;
+        /* Adjust this value as needed */
+        margin-right: 10px;
+        /* Adjust this value as needed */
+    margin-bottom: 15px;
 }
 
 .expandButton .arrow {
