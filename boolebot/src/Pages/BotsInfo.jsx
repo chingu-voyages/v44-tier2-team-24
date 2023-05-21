@@ -39,21 +39,43 @@ export default function BotsInfo() {
     );
   };
 
+  const [expandedBots, setExpandedBots] = useState([]);
+
+  const toggleBotExpansion = (index) => {
+    setExpandedBots((prevExpandedBots) => {
+      const newExpandedBots = [...prevExpandedBots];
+      newExpandedBots[index] = !newExpandedBots[index];
+      return newExpandedBots;
+    });
+  };
+
   return (
     <>
       <h2>Create Bot</h2>
       <div className="createdBots">
         {createdBots.map((bot, index) => (
           <div className="showBot" key={index}>
-          <img src={singleBot} alt="photo of a robot head"/>
-          <div key={index}>
-          <h3 className="title">{bot.name}</h3> 
-          <p>Value: {bot.value}</p> 
-          <p>Operator: {bot.operator}</p> 
-          <p>Speed: {bot.speed}</p> 
-          <p>Direction: {bot.direction}</p></div>
-          <button>Edit</button>
-          <button className="delete" onClick={() => handleDelete(index)}>Delete</button>
+            <img src={singleBot} alt="photo of a robot head" />
+            <div key={index}>
+              <h3 className="title">{bot.name}</h3>
+              {expandedBots[index] ? (
+                <>
+                  <p>Value: {bot.value}</p>
+                  <p>Operator: {bot.operator}</p>
+                  <p>Speed: {bot.speed}</p>
+                  <p>Direction: {bot.direction}</p>
+                </>
+              ) : null}
+            </div>
+            <button
+              className={`expandButton ${expandedBots[index] ? 'expanded' : ''}`}
+              onClick={() => toggleBotExpansion(index)}
+            >
+              <span className="arrow"></span>
+            </button>
+            <button className="delete" onClick={() => handleDelete(index)}>
+              Delete
+            </button>
           </div>
         ))}
       </div>
