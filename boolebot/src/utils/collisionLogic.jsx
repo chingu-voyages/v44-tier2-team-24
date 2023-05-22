@@ -12,6 +12,8 @@ const checkCollision = (botsArr) => {
   for (let i = 0; i < locationArr.length; i++) {
     for (let j = i + 1; j < locationArr.length; j++) {
       if (locationArr[i] === locationArr[j]) {
+
+        
         return true; // if any two numbers are the same, return
       }
     }
@@ -19,7 +21,7 @@ const checkCollision = (botsArr) => {
   return false;
 };
 
-const updateScore = (result, botOne, botTwo) => {
+const updateScore = (result, botOne, botTwo, loserBotArr) => {
   if (result) {
     // botOne.wins = botOne.wins + 1
     // botTwo.loses = botTwo.loses + 1
@@ -45,15 +47,20 @@ const updateScore = (result, botOne, botTwo) => {
       botTwo.wins,
       botTwo.loses + 1
     );
+    
+    if(!loserBotArr.includes(botTwoClone.name) && !loserBotArr.includes(botOneClone.name)){
+      return [botOneClone, botTwoClone];
+    }
 
-    return [botOneClone, botTwoClone];
+    return null
+
   } else {
     console.log("It's a a tie!");
     return;
   }
 };
 
-const handleCollision = (botsArr, operator, currBotName) => {
+const handleCollision = (botsArr, loserBotArr, operator, currBotName) => {
   console.log("COLLISION!!!!!!!!!!");
 
   const positionMap = new Map();
@@ -104,27 +111,29 @@ const handleCollision = (botsArr, operator, currBotName) => {
 
   console.log("THESE ARE THE BOTS THAT SHOULD BATTLE ", colidedBots);
 
+  
+
   // determine winer & loser
   // using AND
 
   switch (operator) {
     case "AND":
       const AND_Result = colidedBots[0].value && colidedBots[1].value;
-      return updateScore(AND_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(AND_Result, colidedBots[0], colidedBots[1], loserBotArr);
 
       // refactor the score-updating logic to use setter function instead of mutating array by reference
       break;
     case "OR":
       const OR_Result = colidedBots[0].value || colidedBots[1].value;
-      return updateScore(OR_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(OR_Result, colidedBots[0], colidedBots[1], loserBotArr);
       break;
     case "XOR":
       const XOR_Result = colidedBots[0].value ^ colidedBots[1].value;
-      return updateScore(XOR_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(XOR_Result, colidedBots[0], colidedBots[1], loserBotArr);
       break;
     case "NOR":
       const NOR_Result = !(colidedBots[0].value || colidedBots[1].value);
-      return updateScore(NOR_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(NOR_Result, colidedBots[0], colidedBots[1], loserBotArr);
       break;
   }
 };
