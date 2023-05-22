@@ -14,25 +14,25 @@ export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
   const [initialPosition, setInitialPosition] = useState([]);
   const [totalTileNum, setTotalTileNum] = useState(null);
-  const [numTilesPerSide, setNumTilesPerSide] = useState(4);
+  const [numTilesPerSide, setNumTilesPerSide] = useState(5);
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [operator, setOperator] = useState("AND");
   const [leaderboard, setLeaderboard] = useState({});
-  const [loserBotArr, setLoserBotArr] = useState([])
-
+  const [numOfDeadBots, setNumOfDeadBots] = useState(0);
+  
   //   position, direction, tile, name, colorClass, value
 
   const [botsArr, setBotsArr] = useState([
     new BotClass(1, 1, numTilesPerSide, "bot1", "red", 1),
     new BotClass(7, 2, numTilesPerSide, "bot2", "blue", 1),
     new BotClass(14, 3, numTilesPerSide, "bot3", "yellow", 1),
-    // new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
+    new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
   ]);
 
-  useInterval(() => {
-    startBattle()
+  // useInterval(() => {
+  //   startBattle()
     
-  }, isGameRunning ? 500 : null);
+  // }, isGameRunning ? 1000 : null);
 
   const arenaStyles = {
     gridTemplateColumns: `repeat(${numTilesPerSide}, 100px)`,
@@ -47,7 +47,7 @@ export default function Arena(props) {
     return (
       <div className="arena" style={arenaStyles}>
         {positions.map((tilePosition) => {
-          const robotIndex = botsArr.findIndex((bot) => !loserBotArr.includes(bot.name) && bot.position === tilePosition);
+          const robotIndex = botsArr.findIndex((bot) => bot.isAlive && bot.position === tilePosition);
           return renderTile(tilePosition, robotIndex);
         })}
       </div>
@@ -58,7 +58,7 @@ export default function Arena(props) {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
     let tileClass = ""
-    if(robot && !loserBotArr.includes(robot.name)){
+    if(robot && robot.isAlive){
       tileClass = `${robot.name} ${robot.colorClass}`
       
     }
@@ -91,16 +91,15 @@ export default function Arena(props) {
     setLeaderboard(mergedObj);
   }, []);
 
-
-  useEffect(() => {
-    if (loserBotArr.length === botsArr.length - 1) {
-      setIsGameRunning(false);
-    }
-  }, [botsArr]);
+  // useEffect(() => {
+  //   if (numOfDeadBots.length === botsArr.length - 1) {
+  //     setIsGameRunning(false);
+  //   }
+  // }, [botsArr, numOfDeadBots]);
 
   function startGame() {
-    setIsGameRunning((prev) => prev ? false : true);
-    // startBattle()
+    // setIsGameRunning((prev) => prev ? false : true);
+    startBattle()
   }
 
   function startBattle() {
@@ -115,12 +114,14 @@ export default function Arena(props) {
           bot.colorClass,
           bot.value,
           bot.wins,
-          bot.loses
+          bot.loses,
+          bot.isAlive
         )
     );
 
     console.log(newBotsArr);
     // console.log("BOTS ARRAY BEFORE", botsArr)
+
     newBotsArr.forEach((bot) => {
       //will hold a new copy of the bots array
 
@@ -132,17 +133,19 @@ export default function Arena(props) {
       //create a new object, with the same properties but new position
 
       if (checkCollision(newBotsArr)) {
-        const collidedBotsArr = handleCollision(newBotsArr, loserBotArr, operator, bot.name);
+        const collidedBotsArr = handleCollision(newBotsArr, operator, bot.name);
 
         console.log("Collided bots with updated score", collidedBotsArr);
         if (collidedBotsArr) {
-          setLoserBotArr(prev => {
+          setNumOfDeadBots( prev => prev + 1)
+
+          /* setLoserBotArr(prev => {
             const losingbotName = !prev.includes(collidedBotsArr[1].name)
             
             if(losingbotName){
               return [...prev, collidedBotsArr[1].name]
             } 
-          })
+          }) */
 
           setLeaderboard((prev) => {
             return {
@@ -162,20 +165,26 @@ export default function Arena(props) {
             if (bot.name === collidedBotsArr[0].name) {
               bot.wins = collidedBotsArr[0].wins;
               bot.loses = collidedBotsArr[0].loses;
+              bot.isAlive = collidedBotsArr[0].isAlive;
             } else if (bot.name === collidedBotsArr[1].name) {
               bot.wins = collidedBotsArr[1].wins;
               bot.loses = collidedBotsArr[1].loses;
+              bot.isAlive = collidedBotsArr[1].isAlive;
             }
           });
+
+          
+
         }
       }
 
-      let index = null;
-
+      
+      /* let index = null;
+      
       newBotsArr.forEach((bot, i) => {
         console.log("BOT LOSS", bot.loses);
 
-        if (!loserBotArr.includes(botsArr[i].name) && bot.loses !== 0) {
+        if (bot.isAlive && bot.loses !== 0) {
           index = i;
         }
       });
@@ -184,14 +193,16 @@ export default function Arena(props) {
 
       if(index) {
         setBotsArr(() => newBotsArr);
-      }
+        setNumOfDeadBots( prev => prev + 1)
+      } */
+
+      setBotsArr(() => newBotsArr);
     });
 
     // console.log("BOTS ARRAY after", botsArr)
   setBotsArr(() => newBotsArr);
   }
 
-  console.log(loserBotArr);
   return (
     <div>
       {renderArena()}

@@ -10,7 +10,8 @@ class BotClass {
     colorClass,
     value,
     wins = 0,
-    loses = 0
+    loses = 0,
+    isAlive = true,
   ) {
     this.position = position;
     this.direction = direction;
@@ -19,7 +20,9 @@ class BotClass {
     this.value = value;
     this.name = name;
     this.colorClass = colorClass;
-    (this.wins = wins), (this.loses = loses);
+    this.isAlive = isAlive
+    this.wins = wins, 
+    this.loses = loses;
   }
 
   printBotData() {
