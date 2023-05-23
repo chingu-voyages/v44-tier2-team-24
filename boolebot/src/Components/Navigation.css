@@ -2,12 +2,14 @@
 
 a {
   text-decoration: none;
+  color: white;
 }
 ul {
   display: flex;
   width: 100%;
   justify-content: flex-end;
   align-items: center;
+
   /* border: 1px solid blue; */
 }
 li {
@@ -29,4 +31,6 @@ nav {
 }
 header {
   margin-bottom: 1em;
+  background-color: #061d41;
+  padding: 0.5em 0;
 }

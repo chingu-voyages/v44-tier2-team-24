@@ -5,11 +5,13 @@ import Container from '../Components/Layout/Container';
 function RootLayout() {
     return (
         <> 
+         <Navigation />
         <Container>
-            <Navigation />
+           
             <Outlet />
-            <Footer />
+           
         </Container>
+        <Footer />
         </>
     )
 }
