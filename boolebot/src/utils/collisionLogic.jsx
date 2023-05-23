@@ -79,7 +79,6 @@ const handleCollision = (botsArr, operator, currBotName) => {
     case "AND":
       const AND_Result = colidedBots[0].value && colidedBots[1].value;
       return updateScore(AND_Result, colidedBots[0], colidedBots[1]);
-
       // refactor the score-updating logic to use setter function instead of mutating array by reference
       break;
     case "OR":
