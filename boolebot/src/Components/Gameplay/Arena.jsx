@@ -58,7 +58,7 @@ export default function Arena(props) {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
     let tileClass = ""
-    if(robot && robot.isAlive){
+    if(robot){
       tileClass = `${robot.name} ${robot.colorClass}`
       
     }
@@ -82,7 +82,7 @@ export default function Arena(props) {
         loses: prev.loses,
       };
       return {
-        [prev.name]: botObj,
+        [prev.colorClass]: botObj,
       };
     });
 
@@ -122,10 +122,9 @@ export default function Arena(props) {
     console.log(newBotsArr);
     // console.log("BOTS ARRAY BEFORE", botsArr)
 
-    newBotsArr.forEach((bot) => {
-      //will hold a new copy of the bots array
+    for(let i = 0; i < newBotsArr.length; i++){
+      newBotsArr[i].calcNextMove();
 
-      bot.calcNextMove();
       //map each old state
       //and if the name is not equal to bot.name
       //push bot that hans'nt been changed
@@ -133,75 +132,45 @@ export default function Arena(props) {
       //create a new object, with the same properties but new position
 
       if (checkCollision(newBotsArr)) {
-        const collidedBotsArr = handleCollision(newBotsArr, operator, bot.name);
+        const collidedBotsArr = handleCollision(newBotsArr, operator, newBotsArr[i].name);
 
         console.log("Collided bots with updated score", collidedBotsArr);
         if (collidedBotsArr) {
           setNumOfDeadBots( prev => prev + 1)
 
-          /* setLoserBotArr(prev => {
-            const losingbotName = !prev.includes(collidedBotsArr[1].name)
-            
-            if(losingbotName){
-              return [...prev, collidedBotsArr[1].name]
-            } 
-          }) */
-
           setLeaderboard((prev) => {
             return {
               ...prev,
-              [collidedBotsArr[0].name]: {
+              [collidedBotsArr[0].colorClass]: {
                 wins: collidedBotsArr[0].wins,
                 loses: collidedBotsArr[0].loses,
               },
-              [collidedBotsArr[1].name]: {
+              [collidedBotsArr[1].colorClass]: {
                 wins: collidedBotsArr[1].wins,
                 loses: collidedBotsArr[1].loses,
               },
             };
           });
-
-          newBotsArr.forEach((bot) => {
-            if (bot.name === collidedBotsArr[0].name) {
-              bot.wins = collidedBotsArr[0].wins;
-              bot.loses = collidedBotsArr[0].loses;
-              bot.isAlive = collidedBotsArr[0].isAlive;
-            } else if (bot.name === collidedBotsArr[1].name) {
-              bot.wins = collidedBotsArr[1].wins;
-              bot.loses = collidedBotsArr[1].loses;
-              bot.isAlive = collidedBotsArr[1].isAlive;
-            }
-          });
-
           
+          let winnerIndex = newBotsArr.findIndex( bot => bot.name === collidedBotsArr[0].name)
+          newBotsArr[winnerIndex].wins = collidedBotsArr[0].wins
+
+          //find bot's index location to delete
+          let loserIndex = newBotsArr.findIndex( bot => bot.name === collidedBotsArr[1].name)
+
+          //remove bot from array
+          newBotsArr.splice(loserIndex, 1);
+          i--
 
         }
       }
 
-      
-      /* let index = null;
-      
-      newBotsArr.forEach((bot, i) => {
-        console.log("BOT LOSS", bot.loses);
-
-        if (bot.isAlive && bot.loses !== 0) {
-          index = i;
-        }
-      });
-
-      console.log("INDEX", index);
-
-      if(index) {
-        setBotsArr(() => newBotsArr);
-        setNumOfDeadBots( prev => prev + 1)
-      } */
-
       setBotsArr(() => newBotsArr);
-    });
-
+    }    
     // console.log("BOTS ARRAY after", botsArr)
-  setBotsArr(() => newBotsArr);
+    setBotsArr(() => newBotsArr);
   }
+
 
   return (
     <div>

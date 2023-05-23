@@ -21,47 +21,6 @@ const checkCollision = (botsArr) => {
   return false;
 };
 
-const updateScore = (result, botOne, botTwo) => {
-  if (result) {
-    // botOne.wins = botOne.wins + 1
-    // botTwo.loses = botTwo.loses + 1
-
-    if(botOne.isAlive && botTwo.isAlive){
-      const botOneClone = new BotClass(
-        botOne.position,
-        botOne.direction,
-        botOne.tile,
-        botOne.name,
-        botOne.colorClass,
-        botOne.value,
-        botOne.wins + 1,
-        botOne.loses,
-        botOne.isAlive
-      );
-  
-      const botTwoClone = new BotClass(
-        botTwo.position,
-        botTwo.direction,
-        botTwo.tile,
-        botTwo.name,
-        botTwo.colorClass,
-        botTwo.value,
-        botTwo.wins,
-        botTwo.loses + 1,
-        false
-      );
-
-      return [botOneClone, botTwoClone];
-    }
-
-    return null
-
-  } else {
-    console.log("It's a a tie!");
-    return;
-  }
-};
-
 const handleCollision = (botsArr, operator, currBotName) => {
   console.log("COLLISION!!!!!!!!!!");
 
@@ -113,8 +72,6 @@ const handleCollision = (botsArr, operator, currBotName) => {
 
   console.log("THESE ARE THE BOTS THAT SHOULD BATTLE ", colidedBots);
 
-  
-
   // determine winer & loser
   // using AND
 
@@ -137,6 +94,42 @@ const handleCollision = (botsArr, operator, currBotName) => {
       const NOR_Result = !(colidedBots[0].value || colidedBots[1].value);
       return updateScore(NOR_Result, colidedBots[0], colidedBots[1]);
       break;
+  }
+};
+
+const updateScore = (result, botOne, botTwo) => {
+  if (result) {
+    // botOne.wins = botOne.wins + 1
+    // botTwo.loses = botTwo.loses + 1
+
+    const botOneClone = new BotClass(
+      botOne.position,
+      botOne.direction,
+      botOne.tile,
+      botOne.name,
+      botOne.colorClass,
+      botOne.value,
+      botOne.wins + 1,
+      botOne.loses,
+      botOne.isAlive
+    );
+
+    const botTwoClone = new BotClass(
+      botTwo.position,
+      botTwo.direction,
+      botTwo.tile,
+      botTwo.name,
+      botTwo.colorClass,
+      botTwo.value,
+      botTwo.wins,
+      botTwo.loses + 1,
+      false
+    );
+
+    return [botOneClone, botTwoClone];
+  } else {
+    console.log("It's a a tie!");
+    return;
   }
 };
 

@@ -54,9 +54,9 @@ class BotClass {
     }
 
     let randIndex = generateRandomNumber(validDirections.length);
-    console.log(`old direction ${this.printDirection()}`);
+
     this.direction = validDirections[randIndex - 1];
-    console.log(`New direction ${this.printDirection()}`);
+  
   }
 
   updateBotPosition(newPosition) {
