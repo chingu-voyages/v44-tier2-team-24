@@ -10,6 +10,8 @@ export default function BotsInfo() {
   const [botDirection, setBotDirection] = useState('north');
   const [createdBots, setCreatedBots] = useState([]);
 
+
+  //form event- submit
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -48,6 +50,9 @@ export default function BotsInfo() {
       return newExpandedBots;
     });
   };
+
+
+ 
 
   return (
     <>
@@ -91,6 +96,7 @@ export default function BotsInfo() {
                 name="bot_name"
                 value={botName}
                 onChange={(event) => setBotName(event.target.value)}
+                required
               />
             </label>
             <div></div>
@@ -101,6 +107,7 @@ export default function BotsInfo() {
                 name="boole_value"
                 value={booleanValue}
                 onChange={(event) => setBooleanValue(event.target.value)}
+                required
               >
                 <option value="1">1</option>
                 <option value="0">0</option>
@@ -129,6 +136,7 @@ export default function BotsInfo() {
                 max={100}
                 value={botSpeed}
                 onChange={(event) => setBotSpeed(event.target.value)}
+                required
               />
             </label>
             <label htmlFor="bot_direction">
@@ -137,6 +145,7 @@ export default function BotsInfo() {
                 id="bot_direction"
                 value={botDirection}
                 onChange={(event) => setBotDirection(event.target.value)}
+                required
               >
                 <option value="north">NORTH</option>
                 <option value="south">SOUTH</option>
@@ -149,6 +158,7 @@ export default function BotsInfo() {
         </form>
        <Link to="/arena"><button >Battle Ground</button></Link> 
       </div>
+      
     </>
   );
 }
