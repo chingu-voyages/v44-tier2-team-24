@@ -12,13 +12,12 @@ const checkCollision = (botsArr) => {
   for (let i = 0; i < locationArr.length; i++) {
     for (let j = i + 1; j < locationArr.length; j++) {
       if (locationArr[i] === locationArr[j]) {
-
-        
-        return true; // if any two numbers are the same, return
+        return locationArr[i];
+        // return true; // if any two numbers are the same, return
       }
     }
   }
-  return false;
+  return null;
 };
 
 const handleCollision = (botsArr, operator, currBotName) => {

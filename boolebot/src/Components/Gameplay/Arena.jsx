@@ -22,6 +22,7 @@ export default function Arena(props) {
   const [operator, setOperator] = useState("AND");
   const [leaderboard, setLeaderboard] = useState({});
   const [currBot, setCurrBot] = useState(0);
+  const [collisionLocation, setCollisionLocation] = useState(null)
 
   //   position, direction, tile, name, colorClass, value
 
@@ -66,12 +67,13 @@ export default function Arena(props) {
     if (robot) {
       tileClass = `${robot.name} ${robot.colorClass}`;
     }
-
+    
+    
     return (
       <div
         key={tilePosition + 1}
         data-position={tilePosition}
-        className={`tile ${tileClass}`}
+        className={`tile ${tileClass} ${tilePosition === collisionLocation ? "border" : ""}`}
       >
         {tilePosition}
       </div>
@@ -131,13 +133,18 @@ export default function Arena(props) {
 
     if (isGameRunning) {
       intervalId = setInterval(() => {
-        console.log("INSIDE THE USE TIMEOUT");
+        setCollisionLocation(() => null);
 
         const newBotsArr = createCopyBot(botsArr);
 
         newBotsArr[currBot].calcNextMove();
+        
+        const collisionLocation = checkCollision(newBotsArr);
 
-        if (checkCollision(newBotsArr)) {
+        if (collisionLocation) {
+          
+          setCollisionLocation(() => collisionLocation)
+          
           const collidedBotsArr = handleCollision(
             newBotsArr,
             operator,
@@ -170,6 +177,8 @@ export default function Arena(props) {
             );
             newBotsArr.splice(loserIndex, 1);
           }
+
+          
         }
 
         if (newBotsArr.length < botsArr.length) {
@@ -184,7 +193,7 @@ export default function Arena(props) {
         }
 
         setBotsArr(() => newBotsArr);
-      }, 300);
+      }, 700);
     }
 
     return () => clearInterval(intervalId);
