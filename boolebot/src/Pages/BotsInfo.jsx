@@ -2,54 +2,55 @@ import React, { useState } from 'react';
 import singleBot from "../assets/bot.png";
 import { Link } from 'react-router-dom';
 
-export default function BotsInfo() {
-  const [botName, setBotName] = useState('');
-  const [booleanValue, setBooleanValue] = useState('1');
-  const [booleanOperator, setBooleanOperator] = useState('and');
-  const [botSpeed, setBotSpeed] = useState(0);
-  const [botDirection, setBotDirection] = useState('north');
-  const [createdBots, setCreatedBots] = useState([]);
+export default function BotsInfo(props) {
+  // const [botName, setBotName] = useState('');
+  // const [booleanValue, setBooleanValue] = useState('1');
+  // const [booleanOperator, setBooleanOperator] = useState('and');
+  // const [botSpeed, setBotSpeed] = useState(0);
+  // const [botDirection, setBotDirection] = useState('north');
+  // const [createdBots, setCreatedBots] = useState([]);
 
 
-  //form event- submit
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // //form event- submit
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
 
-    // Create a new bot object
-    const newBot = {
-      name: botName,
-      value: booleanValue,
-      operator: booleanOperator,
-      speed: botSpeed,
-      direction: botDirection,
-    };
+  //   // Create a new bot object
+  //   const newBot = {
+  //     name: botName,
+  //     value: booleanValue,
+  //     operator: booleanOperator,
+  //     speed: botSpeed,
+  //     direction: botDirection,
+  //   };
 
-    // Add the new bot to the createdBots array
-    setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
+    // // Add the new bot to the createdBots array
+    // setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
 
-    // Clear the form fields
-    setBotName('');
-    setBooleanValue('1');
-    setBooleanOperator('and');
-    setBotSpeed(0);
-    setBotDirection('north');
-  };
+  //   // Clear the form fields
+  //   setBotName('');
+  //   setBooleanValue('1');
+  //   setBooleanOperator('and');
+  //   setBotSpeed(0);
+  //   setBotDirection('north');
+  // };
 
-  const handleDelete = (index) => {
-    setCreatedBots((prevCreatedBots) =>
-      prevCreatedBots.filter((_, i) => i !== index)
-    );
-  };
+  // const handleDelete = (index) => {
+  //   setCreatedBots((prevCreatedBots) =>
+  //     prevCreatedBots.filter((_, i) => i !== index)
+  //   );
+  // };
 
   const [expandedBots, setExpandedBots] = useState([]);
+  
 
-  const toggleBotExpansion = (index) => {
-    setExpandedBots((prevExpandedBots) => {
-      const newExpandedBots = [...prevExpandedBots];
-      newExpandedBots[index] = !newExpandedBots[index];
-      return newExpandedBots;
-    });
-  };
+  // const toggleBotExpansion = (index) => {
+  //   setExpandedBots((prevExpandedBots) => {
+  //     const newExpandedBots = [...prevExpandedBots];
+  //     newExpandedBots[index] = !newExpandedBots[index];
+  //     return newExpandedBots;
+  //   });
+  // };
 
 
  
@@ -58,7 +59,7 @@ export default function BotsInfo() {
     <>
       <h2>Create Bot</h2>
       <div className="createdBots">
-        {createdBots.map((bot, index) => (
+        {props.createdBots.map((bot, index) => (
           <div className="showBot" key={index}>
             <img src={singleBot} alt="photo of a robot head" />
             <div key={index}>
@@ -86,7 +87,7 @@ export default function BotsInfo() {
         ))}
       </div>
       <div className="test">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
           <fieldset>
             <label htmlFor="bot_name">
               Name your bot:
@@ -94,8 +95,8 @@ export default function BotsInfo() {
                 type="text"
                 id="bot_name"
                 name="bot_name"
-                value={botName}
-                onChange={(event) => setBotName(event.target.value)}
+                value={props.botName}
+                onChange={props.handleNameChange}
                 required
               />
             </label>
@@ -105,8 +106,8 @@ export default function BotsInfo() {
               <select
                 id="boole_value"
                 name="boole_value"
-                value={booleanValue}
-                onChange={(event) => setBooleanValue(event.target.value)}
+                value={props.booleanValue}
+                onChange={props.handleBoolValue}
                 required
               >
                 <option value="1">1</option>
@@ -134,8 +135,8 @@ export default function BotsInfo() {
                 type="range"
                 min={0}
                 max={100}
-                value={botSpeed}
-                onChange={(event) => setBotSpeed(event.target.value)}
+                value={props.botSpeed}
+                onChange={props.handleSpeedChange}
                 required
               />
             </label>
@@ -143,8 +144,8 @@ export default function BotsInfo() {
               Bot Direction:
               <select
                 id="bot_direction"
-                value={botDirection}
-                onChange={(event) => setBotDirection(event.target.value)}
+                value={props.botDirection}
+                onChange={props.handleDirectionChange}
                 required
               >
                 <option value="north">NORTH</option>
