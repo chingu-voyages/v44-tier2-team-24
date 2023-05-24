@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import singleBot from "../assets/bot.png";
 import { Link } from 'react-router-dom';
 
-export default function BotsInfo() {
+export default function BotsInfo(props) {
   const [botName, setBotName] = useState('');
   const [booleanValue, setBooleanValue] = useState('1');
   const [booleanOperator, setBooleanOperator] = useState('and');
   const [botSpeed, setBotSpeed] = useState(0);
   const [botDirection, setBotDirection] = useState('north');
-  const [createdBots, setCreatedBots] = useState([]);
+  const addbot = props.addBotToArray;
+  const createdBots = props.botsArray;
+  // const [createdBots, setCreatedBots] = useState([]);
 
 
   //form event- submit
@@ -23,9 +25,9 @@ export default function BotsInfo() {
       speed: botSpeed,
       direction: botDirection,
     };
-
+    addbot(newBot);
     // Add the new bot to the createdBots array
-    setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
+    // setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
 
     // Clear the form fields
     setBotName('');
@@ -35,11 +37,11 @@ export default function BotsInfo() {
     setBotDirection('north');
   };
 
-  const handleDelete = (index) => {
-    setCreatedBots((prevCreatedBots) =>
-      prevCreatedBots.filter((_, i) => i !== index)
-    );
-  };
+  // const handleDelete = (index) => {
+  //   setCreatedBots((prevCreatedBots) =>
+  //     prevCreatedBots.filter((_, i) => i !== index)
+  //   );
+  // };
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -79,7 +81,7 @@ export default function BotsInfo() {
               <span className="arrow"></span>
             </button>
             <button>Edit</button>
-            <button className="delete" onClick={() => handleDelete(index)}>
+            <button className="delete" onClick={() => props.deleteBotFromArray(index)}>
               Delete
             </button>
           </div>
