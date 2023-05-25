@@ -3,15 +3,32 @@ import singleBot from "../assets/bot.png";
 import { Link } from 'react-router-dom';
 
 export default function BotsInfo(props) {
-  const [botName, setBotName] = useState('');
-  const [booleanValue, setBooleanValue] = useState('1');
-  const [booleanOperator, setBooleanOperator] = useState('and');
-  const [botSpeed, setBotSpeed] = useState(0);
-  const [botDirection, setBotDirection] = useState('north');
+  // const [botName, setBotName] = useState('');
+  // const [booleanValue, setBooleanValue] = useState('1');
+  // const [booleanOperator, setBooleanOperator] = useState('and');
+  // const [botSpeed, setBotSpeed] = useState(0);
+  // const [botDirection, setBotDirection] = useState('north');
   const addbot = props.addBotToArray;
   const createdBots = props.botsArray;
   // const [createdBots, setCreatedBots] = useState([]);
+  
+  //Refactoring Form state management
+  const [formData, setFormData]= useState({
+    botName:"",
+    booleanValue:"",
+    botSpeed: "",
+    botDirection:""
+  })
 
+  // Generic change handler
+  function handleChange(e){
+    const changedField = e.target.name;
+    const newValue = e.target.value;
+    setFormData((currentData)=>{
+      currentData[changedField] = newValue;
+      return {...currentData};
+    })
+  }
 
   //form event- submit
   const handleSubmit = (event) => {
@@ -19,22 +36,22 @@ export default function BotsInfo(props) {
 
     // Create a new bot object
     const newBot = {
-      name: botName,
-      value: booleanValue,
-      operator: booleanOperator,
-      speed: botSpeed,
-      direction: botDirection,
+      name: formData.botName,
+      value: formData.booleanValue,
+      operator: formData.booleanOperator,
+      speed: formData.botSpeed,
+      direction: formData.botDirection,
     };
     addbot(newBot);
     // Add the new bot to the createdBots array
     // setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
 
     // Clear the form fields
-    setBotName('');
-    setBooleanValue('1');
-    setBooleanOperator('and');
-    setBotSpeed(0);
-    setBotDirection('north');
+    // setBotName('');
+    // setBooleanValue('1');
+    // setBooleanOperator('and');
+    // setBotSpeed(0);
+    // setBotDirection('north');
   };
 
   // const handleDelete = (index) => {
@@ -90,25 +107,25 @@ export default function BotsInfo(props) {
       <div className="test">
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <label htmlFor="bot_name">
+            <label htmlFor="botName">
               Name your bot:
               <input
                 type="text"
-                id="bot_name"
-                name="bot_name"
-                value={botName}
-                onChange={(event) => setBotName(event.target.value)}
+                id="botName"
+                name="botName"
+                value={formData.botName}
+                onChange={handleChange}
                 required
               />
             </label>
             <div></div>
-            <label htmlFor="boole_value">
+            <label htmlFor="booleanValue">
               Choose a Boolean Value:
               <select
-                id="boole_value"
-                name="boole_value"
-                value={booleanValue}
-                onChange={(event) => setBooleanValue(event.target.value)}
+                id="booleanValue"
+                name="booleanValue"
+                value={formData.booleanValue}
+                onChange={handleChange}
                 required
               >
                 <option value="1">1</option>
@@ -129,24 +146,26 @@ export default function BotsInfo(props) {
                 <option value="nor">NOR</option>
               </select>
             </label> */}
-            <label htmlFor="bot_speed">
+            <label htmlFor="botSpeed">
               Choose Speed:
               <input
-                id="bot_speed"
+                id="botSpeed"
                 type="range"
                 min={0}
                 max={100}
-                value={botSpeed}
-                onChange={(event) => setBotSpeed(event.target.value)}
+                name='botSpeed'
+                value={formData.botSpeed}
+                onChange={handleChange}
                 required
               />
             </label>
-            <label htmlFor="bot_direction">
+            <label htmlFor="botDirection">
               Bot Direction:
               <select
-                id="bot_direction"
-                value={botDirection}
-                onChange={(event) => setBotDirection(event.target.value)}
+                id="botDirection"
+                name='botDirection'
+                value={formData.botDirection}
+                onChange={handleChange}
                 required
               >
                 <option value="north">NORTH</option>
