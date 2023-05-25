@@ -23,11 +23,12 @@ export default function Arena(props) {
   const [leaderboard, setLeaderboard] = useState({});
   const [currBot, setCurrBot] = useState(0);
   const [collisionLocation, setCollisionLocation] = useState(null)
+  const [isCollision, setIsCollision] = useState(false)
 
   //   position, direction, tile, name, colorClass, value
 
   const [botsArr, setBotsArr] = useState([
-    new BotClass(1, 1, numTilesPerSide, "bot1", "red", 1),
+    new BotClass(1, 1, numTilesPerSide, "bot1", "orange", 1),
     new BotClass(7, 2, numTilesPerSide, "bot2", "blue", 1),
     new BotClass(14, 3, numTilesPerSide, "bot3", "yellow", 1),
     new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
@@ -67,15 +68,33 @@ export default function Arena(props) {
     if (robot) {
       tileClass = `${robot.name} ${robot.colorClass}`;
     }
+
+    let text = ''
+
+    if(botsArr.length === 1){
+      text = "WINNER!"
+    }
+    else if(tilePosition === collisionLocation){
+      text = "COLLISION!!!"
+    }
+    else if(robot){
+      text = robot.name
+    }
+    else{
+      text = tilePosition
+      
+    }
     
     
     return (
       <div
         key={tilePosition + 1}
         data-position={tilePosition}
-        className={`tile ${tileClass} ${tilePosition === collisionLocation ? "border" : ""}`}
+        className={`tile ${tileClass} ${
+          tilePosition === collisionLocation ? "border crashedText" : ""
+        }`}
       >
-        {tilePosition}
+        {text}
       </div>
     );
   };
@@ -132,68 +151,70 @@ export default function Arena(props) {
     let intervalId;
 
     if (isGameRunning) {
-      intervalId = setInterval(() => {
-        setCollisionLocation(() => null);
+      intervalId = setInterval(
+        () => {
+          setCollisionLocation(() => null);
 
-        const newBotsArr = createCopyBot(botsArr);
+          const newBotsArr = createCopyBot(botsArr);
 
-        newBotsArr[currBot].calcNextMove();
-        
-        const collisionLocation = checkCollision(newBotsArr);
+          newBotsArr[currBot].calcNextMove();
 
-        if (collisionLocation) {
-          
-          setCollisionLocation(() => collisionLocation)
-          
-          const collidedBotsArr = handleCollision(
-            newBotsArr,
-            operator,
-            newBotsArr[currBot].name
-          );
+          const collisionLocation = checkCollision(newBotsArr);
 
-          console.log("Collided bots with updated score", collidedBotsArr);
-          if (collidedBotsArr) {
-            setLeaderboard((prev) => {
-              return {
-                ...prev,
-                [collidedBotsArr[0].colorClass]: {
-                  wins: collidedBotsArr[0].wins,
-                  loses: collidedBotsArr[0].loses,
-                },
-                [collidedBotsArr[1].colorClass]: {
-                  wins: collidedBotsArr[1].wins,
-                  loses: collidedBotsArr[1].loses,
-                },
-              };
-            });
+          if (collisionLocation) {
+            setCollisionLocation(() => collisionLocation);
 
-            let winnerIndex = newBotsArr.findIndex(
-              (bot) => bot.name === collidedBotsArr[0].name
+            const collidedBotsArr = handleCollision(
+              newBotsArr,
+              operator,
+              newBotsArr[currBot].name
             );
-            newBotsArr[winnerIndex].wins = collidedBotsArr[0].wins;
 
-            let loserIndex = newBotsArr.findIndex(
-              (bot) => bot.name === collidedBotsArr[1].name
-            );
-            newBotsArr.splice(loserIndex, 1);
+            console.log("Collided bots with updated score", collidedBotsArr);
+            if (collidedBotsArr) {
+              setLeaderboard((prev) => {
+                return {
+                  ...prev,
+                  [collidedBotsArr[0].colorClass]: {
+                    wins: collidedBotsArr[0].wins,
+                    loses: collidedBotsArr[0].loses,
+                  },
+                  [collidedBotsArr[1].colorClass]: {
+                    wins: collidedBotsArr[1].wins,
+                    loses: collidedBotsArr[1].loses,
+                  },
+                };
+              });
+
+              let winnerIndex = newBotsArr.findIndex(
+                (bot) => bot.name === collidedBotsArr[0].name
+              );
+              newBotsArr[winnerIndex].wins = collidedBotsArr[0].wins;
+
+              let loserIndex = newBotsArr.findIndex(
+                (bot) => bot.name === collidedBotsArr[1].name
+              );
+              newBotsArr.splice(loserIndex, 1);
+            }
           }
 
-          
-        }
+          if (newBotsArr.length < botsArr.length) {
+            setCurrBot((prev) => {
+              if (prev === 0) {
+                return prev + 1;
+              }
+              return prev - 1;
+            });
+          } else {
+            setCurrBot((prev) =>
+              prev >= newBotsArr.length - 1 ? 0 : prev + 1
+            );
+          }
 
-        if (newBotsArr.length < botsArr.length) {
-          setCurrBot((prev) => {
-            if(prev === 0 ){
-              return prev + 1
-            }
-            return prev - 1
-          });
-        } else {
-          setCurrBot((prev) => (prev >= newBotsArr.length - 1 ? 0 : prev + 1));
-        }
-
-        setBotsArr(() => newBotsArr);
-      }, 700);
+          setBotsArr(() => newBotsArr);
+        },
+        collisionLocation ? 1400 : 700
+      );
     }
 
     return () => clearInterval(intervalId);

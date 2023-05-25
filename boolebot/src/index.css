@@ -28,6 +28,16 @@ code {
 
 .tile {
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  font-weight: bold;
+  
+}
+
+.crashedText{
+  color: red;
 }
 
 .cell {
@@ -38,8 +48,8 @@ code {
   background-color: tan;
 }
 
-.red {
-  background-color: red
+.orange {
+  background-color: orange
 }
 
 .blue {
@@ -60,5 +70,5 @@ button {
 }
 
 .border{
-  border: 10px solid red;
+  border: 10px solid aquamarine;
 }
