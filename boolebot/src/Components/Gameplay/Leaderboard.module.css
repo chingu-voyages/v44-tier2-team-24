@@ -1,5 +1,4 @@
-
-.battle_log{
+.leaderboard {
     display: flex;
     flex-direction: column;
     list-style-type: none;

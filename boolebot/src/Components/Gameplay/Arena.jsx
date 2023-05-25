@@ -6,6 +6,7 @@ import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
 import styles from "./Arena.module.css";
 import BattleLog from "./BattleLog";
+import Leaderboard from "./Leaderboard";
 
 // 1. Build the game arena.
 // 2. Add 1 robot to the board.
@@ -233,7 +234,10 @@ export default function Arena(props) {
           {isGameRunning ? "STOP" : "BATTLE"}
         </button>
       </div>
-      <BattleLog battleLog={battleLog}/>
+      <div>
+        <BattleLog battleLog={battleLog} />
+        <Leaderboard leaderboard={leaderboard} />
+      </div>
     </main>
   );
 }
