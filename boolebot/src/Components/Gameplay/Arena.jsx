@@ -4,6 +4,8 @@ import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
+import styles from "./Arena.module.css";
+import BattleLog from "./BattleLog";
 
 // 1. Build the game arena.
 // 2. Add 1 robot to the board.
@@ -24,7 +26,7 @@ export default function Arena(props) {
   const [currBot, setCurrBot] = useState(0);
   const [collisionLocation, setCollisionLocation] = useState(null)
   const [isCollision, setIsCollision] = useState(false)
-
+  const [battleLog, setBattleLog] = useState([])
   //   position, direction, tile, name, colorClass, value
 
   const [botsArr, setBotsArr] = useState([
@@ -172,6 +174,7 @@ export default function Arena(props) {
 
             console.log("Collided bots with updated score", collidedBotsArr);
             if (collidedBotsArr) {
+              setBattleLog((prev)=> ([...prev, `${collidedBotsArr[0].name} vs. ${collidedBotsArr[1].name}`]) )
               setLeaderboard((prev) => {
                 return {
                   ...prev,
@@ -221,176 +224,16 @@ export default function Arena(props) {
   }, [isGameRunning, currBot, botsArr, operator]);
 
 
-  // useTimeout(
-  //   () => {
-  //     console.log("INSIDE THE USE TIMEOUT ");
-
-  //     const newBotsArr = createCopyBot(botsArr);
-
-  //     newBotsArr[currBot].calcNextMove();
-
-
-  //     if (checkCollision(newBotsArr)) {
-  //       const collidedBotsArr = handleCollision(
-  //         newBotsArr,
-  //         operator,
-  //         newBotsArr[currBot].name
-  //       );
-
-  //       console.log("Collided bots with updated score", collidedBotsArr);
-  //       if (collidedBotsArr) {
-  //         setLeaderboard((prev) => {
-  //           return {
-  //             ...prev,
-  //             [collidedBotsArr[0].colorClass]: {
-  //               wins: collidedBotsArr[0].wins,
-  //               loses: collidedBotsArr[0].loses,
-  //             },
-  //             [collidedBotsArr[1].colorClass]: {
-  //               wins: collidedBotsArr[1].wins,
-  //               loses: collidedBotsArr[1].loses,
-  //             },
-  //           };
-  //         });
-
-  //         let winnerIndex = newBotsArr.findIndex(
-  //           (bot) => bot.name === collidedBotsArr[0].name
-  //         );
-  //         newBotsArr[winnerIndex].wins = collidedBotsArr[0].wins;
-
-  //         //find bot's index location to delete
-  //         let loserIndex = newBotsArr.findIndex(
-  //           (bot) => bot.name === collidedBotsArr[1].name
-  //         );
-
-  //         //remove bot from array
-  //         newBotsArr.splice(loserIndex, 1);
-  //       }
-  //     }
-
-  //     if(newBotsArr.length < botsArr.length){
-  //       setCurrBot((prev) => prev - 1)
-  //     }else{
-  //       setCurrBot((prev) => (prev >= newBotsArr.length - 1 ? 0 : prev + 1));
-  //     }
-      
-  //     setBotsArr(() => newBotsArr);
-
-    
-  //   },
-  //   isGameRunning ? 300 : null
-  // );
-
-  
-
-  // function startBattle() {
-  //   const newBotsArr = createCopyBot(botsArr);
-  //   let i = 0;
-
-  //   const executeNextIteration = () => {
-  //     if (i < newBotsArr.length) {
-  //       newBotsArr[i].calcNextMove();
-
-  //       if (checkCollision(newBotsArr)) {
-  //         const collidedBotsArr = handleCollision(
-  //           newBotsArr,
-  //           operator,
-  //           newBotsArr[i].name
-  //         );
-
-  //         console.log("Collided bots with updated score", collidedBotsArr);
-
-  //         if (collidedBotsArr) {
-  //           setLeaderboard((prev) => {
-  //             return {
-  //               ...prev,
-  //               [collidedBotsArr[0].colorClass]: {
-  //                 wins: collidedBotsArr[0].wins,
-  //                 loses: collidedBotsArr[0].loses,
-  //               },
-  //               [collidedBotsArr[1].colorClass]: {
-  //                 wins: collidedBotsArr[1].wins,
-  //                 loses: collidedBotsArr[1].loses,
-  //               },
-  //             };
-  //           });
-
-  //           let winnerIndex = newBotsArr.findIndex(
-  //             (bot) => bot.name === collidedBotsArr[0].name
-  //           );
-  //           newBotsArr[winnerIndex].wins = collidedBotsArr[0].wins;
-
-  //           let loserIndex = newBotsArr.findIndex(
-  //             (bot) => bot.name === collidedBotsArr[1].name
-  //           );
-  //           newBotsArr.splice(loserIndex, 1);
-  //           i--;
-  //         }
-  //       }
-
-  //       setBotsArr(() => newBotsArr);
-  //       i++;
-
-  //       setTimeout(executeNextIteration, 500); // Delay between iterations (1 second in this example)
-  //     }
-  //   };
-
-  //   executeNextIteration();
-  // }
-
-  // ///END OF CHATGPT SUGGESTION
-
-  // function startBattle() {
-
-  //   const newBotsArr = createCopyBot(botsArr)
-
-  //   for(let i = 0; i < newBotsArr.length; i++){
-  //     newBotsArr[i].calcNextMove();
-
-  //     if (checkCollision(newBotsArr)) {
-  //       const collidedBotsArr = handleCollision(newBotsArr, operator, newBotsArr[i].name);
-
-  //       console.log("Collided bots with updated score", collidedBotsArr);
-  //       if (collidedBotsArr) {
-  //         setLeaderboard((prev) => {
-  //           return {
-  //             ...prev,
-  //             [collidedBotsArr[0].colorClass]: {
-  //               wins: collidedBotsArr[0].wins,
-  //               loses: collidedBotsArr[0].loses,
-  //             },
-  //             [collidedBotsArr[1].colorClass]: {
-  //               wins: collidedBotsArr[1].wins,
-  //               loses: collidedBotsArr[1].loses,
-  //             },
-  //           };
-  //         });
-
-  //         let winnerIndex = newBotsArr.findIndex( bot => bot.name === collidedBotsArr[0].name)
-  //         newBotsArr[winnerIndex].wins = collidedBotsArr[0].wins
-
-  //         //find bot's index location to delete
-  //         let loserIndex = newBotsArr.findIndex( bot => bot.name === collidedBotsArr[1].name)
-
-  //         //remove bot from array
-  //         newBotsArr.splice(loserIndex, 1);
-  //         i--
-
-  //       }
-  //     }
-
-  //     setBotsArr(() => newBotsArr);
-  //   }
-  //   // console.log("BOTS ARRAY after", botsArr)
-  //   setBotsArr(() => newBotsArr);
-  // }
-
   return (
-    <div>
-      {renderArena()}
-      <button onClick={() => startGame()}>
-        {isGameRunning ? "STOP" : "BATTLE"}
-      </button>
-    </div>
+    <main className={styles.main_container}>
+      <div>
+        {renderArena()}
+
+        <button onClick={() => startGame()}>
+          {isGameRunning ? "STOP" : "BATTLE"}
+        </button>
+      </div>
+      <BattleLog battleLog={battleLog}/>
+    </main>
   );
 }

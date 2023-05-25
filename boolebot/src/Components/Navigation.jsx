@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import "./Navigation.css";
-
+import styles from './Navigation.module.css'
 
 function Navigation() {
     return (
       <header>
         <nav>
             <Link to="/"><h1>BooleBots</h1></Link>
-           <ul>
+           <ul className={styles.ul}>
             <li>
               <Link to="/createBot">Create Bots</Link>
             </li>
