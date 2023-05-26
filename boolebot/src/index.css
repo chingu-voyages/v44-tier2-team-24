@@ -12,3 +12,64 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+/* arena */
+.arena {
+  display: grid;
+}
+
+.tile {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  font-weight: bold;
+  
+}
+
+.crashedText{
+  color: red;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+.tan {
+  background-color: tan;
+}
+
+.orange {
+  background-color: orange
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+.border{
+  border: 10px solid aquamarine;
+}
