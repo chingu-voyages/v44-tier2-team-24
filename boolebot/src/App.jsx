@@ -4,12 +4,8 @@ import Homepage from "./Pages/HomePage";
 import AboutUs from "./Pages/AboutUs";
 import RootLayout from "./Pages/Root";
 import BotsInfo from "./Pages/BotsInfo";
-import Arena from "./Pages/Arena";
+import Arena from "./Components/Gameplay/Arena"
 import { useState } from "react";
-
-
-
-
 
 function App() {
 //creating botsArray to be passed on as props to child components

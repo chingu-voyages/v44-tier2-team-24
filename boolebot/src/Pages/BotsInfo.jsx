@@ -14,10 +14,15 @@ export default function BotsInfo(props) {
   
   //Refactoring Form state management
   const [formData, setFormData]= useState({
-    botName:"",
-    booleanValue:"",
-    botSpeed: "",
-    botDirection:""
+    position:1,
+    direction:"",
+    tile:"4",
+    name:"",
+    colorClass:"yellow",
+    value: 0,
+    wins:0,
+    loses: 0,
+    isAlive:true,
   })
 
   // Generic change handler
@@ -35,14 +40,23 @@ export default function BotsInfo(props) {
     event.preventDefault();
 
     // Create a new bot object
-    const newBot = {
-      name: formData.botName,
-      value: formData.booleanValue,
-      operator: formData.booleanOperator,
-      speed: formData.botSpeed,
-      direction: formData.botDirection,
-    };
-    addbot(newBot);
+
+    // new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
+    // const newBot = {
+    //   position: formData.position,
+    //   name: formData.name,
+    //   direction: formData.direction,
+    //   tile: formData.tile,
+    //   value: formData.value,
+    //   colorClass: formData.colorClass,
+    //   operator: formData.booleanOperator,
+    //   speed: formData.botSpeed,
+    //   wins:0,
+    //   loses:0,
+    //   isAlive: true
+    // };
+
+    addbot(formData);
     // Add the new bot to the createdBots array
     // setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
 
@@ -107,24 +121,24 @@ export default function BotsInfo(props) {
       <div className="test">
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <label htmlFor="botName">
+            <label htmlFor="name">
               Name your bot:
               <input
                 type="text"
-                id="botName"
-                name="botName"
-                value={formData.botName}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
             </label>
             <div></div>
-            <label htmlFor="booleanValue">
+            <label htmlFor="value">
               Choose a Boolean Value:
               <select
-                id="booleanValue"
-                name="booleanValue"
-                value={formData.booleanValue}
+                id="value"
+                name="value"
+                value={formData.value}
                 onChange={handleChange}
                 required
               >
@@ -159,19 +173,19 @@ export default function BotsInfo(props) {
                 required
               />
             </label>
-            <label htmlFor="botDirection">
+            <label htmlFor="direction">
               Bot Direction:
               <select
-                id="botDirection"
-                name='botDirection'
-                value={formData.botDirection}
+                id="direction"
+                name='direction'
+                value={formData.direction}
                 onChange={handleChange}
                 required
               >
-                <option value="north">NORTH</option>
-                <option value="south">SOUTH</option>
-                <option value="east">EAST</option>
-                <option value="west">WEST</option>
+                <option value="1">NORTH</option>
+                <option value="2">SOUTH</option>
+                <option value="4">EAST</option>
+                <option value="3">WEST</option>
               </select>
             </label>
             <button type="submit">Submit</button>

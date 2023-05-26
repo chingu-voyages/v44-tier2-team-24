@@ -30,12 +30,16 @@ export default function Arena(props) {
   const [battleLog, setBattleLog] = useState([])
   //   position, direction, tile, name, colorClass, value
 
-  const [botsArr, setBotsArr] = useState([
-    new BotClass(1, 1, numTilesPerSide, "bot1", "orange", 1),
-    new BotClass(7, 2, numTilesPerSide, "bot2", "blue", 1),
-    new BotClass(14, 3, numTilesPerSide, "bot3", "yellow", 1),
-    new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
-  ]);
+  const originalBotsArr = props.botsArray
+
+
+  const [botsArr, setBotsArr] = useState(originalBotsArr);
+    // new BotClass(1, 1, numTilesPerSide, "bot1", "orange", 1),
+    // new BotClass(7, 2, numTilesPerSide, "bot2", "blue", 1),
+    // new BotClass(14, 3, numTilesPerSide, "bot3", "yellow", 1),
+    // new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
+
+  console.log(botsArr)
 
   // useInterval(() => {
   //   startBattle()
