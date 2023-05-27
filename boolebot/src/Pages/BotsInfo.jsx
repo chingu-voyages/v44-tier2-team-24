@@ -185,7 +185,7 @@ export default function BotsInfo(props) {
               <input
                 id="botSpeed"
                 type="range"
-                min={0}
+                min={1}
                 max={100}
                 name='botSpeed'
                 value={formData.botSpeed}

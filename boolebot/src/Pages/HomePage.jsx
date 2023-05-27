@@ -16,7 +16,7 @@ export default function Homepage() {
         </div> 
 
           <section className={styles.homepageBtns}>
-            <Link to="/createBot">
+            <Link to="/arenaSettings">
               <button className={styles.startBtn}>Start</button>
             </Link>
 

@@ -3,6 +3,7 @@ import "./App.scss";
 import Homepage from "./Pages/HomePage";
 import AboutUs from "./Pages/AboutUs";
 import RootLayout from "./Pages/Root";
+import ArenaInfoPage from "./Pages/ArenaInfoPage";
 import BotsInfo from "./Pages/BotsInfo";
 import Arena from "./Components/Gameplay/Arena"
 import { useState } from "react";
@@ -28,6 +29,7 @@ const deleteBotFromArray = (index)=>{
       element: <RootLayout />,
       children: [
         { path: "/", element: <Homepage /> },
+        { path: "/arenaSettings", element: <ArenaInfoPage /> },
         { path: "/createBot", element: <BotsInfo addBotToArray={addBotToArray} deleteBotFromArray={deleteBotFromArray} botsArray={botsArray}/> },
         { path: "/about", element: <AboutUs /> },
         { path: "/arena", element: <Arena botsArray={botsArray} /> },
