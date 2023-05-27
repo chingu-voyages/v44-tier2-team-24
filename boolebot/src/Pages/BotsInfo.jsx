@@ -19,7 +19,7 @@ export default function BotsInfo(props) {
     tile:"4",
     name:"",
     colorClass:"yellow",
-    value: 0,
+    value: "",
     wins:0,
     loses: 0,
     isAlive:true,
@@ -39,6 +39,13 @@ export default function BotsInfo(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (createdBots.some((bot) => bot.name === formData.name)) {
+    // Display an error message or perform necessary actions
+    console.log("Bot with the same name already exists.");
+    isValid = false;
+  }
+
+
     // Create a new bot object
 
     // new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
@@ -57,6 +64,18 @@ export default function BotsInfo(props) {
     // };
 
     addbot(formData);
+
+    setFormData({
+    position: 1,
+    direction: "",
+    tile: "4",
+    name: "",
+    colorClass: "yellow",
+    value: "",
+    wins: 0,
+    loses: 0,
+    isAlive: true,
+  });
     // Add the new bot to the createdBots array
     // setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
 
@@ -142,6 +161,7 @@ export default function BotsInfo(props) {
                 onChange={handleChange}
                 required
               >
+                <option value="" disabled>Select a Value</option>
                 <option value="1">1</option>
                 <option value="0">0</option>
               </select>
@@ -182,6 +202,7 @@ export default function BotsInfo(props) {
                 onChange={handleChange}
                 required
               >
+                <option value="" disabled>Select a Direction</option>
                 <option value="1">NORTH</option>
                 <option value="2">SOUTH</option>
                 <option value="4">EAST</option>
