@@ -22,6 +22,17 @@ const deleteBotFromArray = (index)=>{
   prevBotsArray.filter((_,i)=> i !== index)
   )
 }
+
+//Creating an object to hold board control info
+const [boardControl, setBoardControl] = useState([]);
+
+
+//control handler
+function boardDataSubmission(newObj){
+  setBoardControl((prevObj)=> { return [...prevObj,newObj]})
+  console.log(boardControl)
+}
+
   const router = createBrowserRouter([
     //the following path is for the wrapper
     {
@@ -29,7 +40,7 @@ const deleteBotFromArray = (index)=>{
       element: <RootLayout />,
       children: [
         { path: "/", element: <Homepage /> },
-        { path: "/arenaSettings", element: <ArenaInfoPage /> },
+        { path: "/arenaSettings", element: <ArenaInfoPage boardDataSubmission={boardDataSubmission}/> },
         { path: "/createBot", element: <BotsInfo addBotToArray={addBotToArray} deleteBotFromArray={deleteBotFromArray} botsArray={botsArray}/> },
         { path: "/about", element: <AboutUs /> },
         { path: "/arena", element: <Arena botsArray={botsArray} /> },
