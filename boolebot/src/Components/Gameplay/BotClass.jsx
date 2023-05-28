@@ -14,11 +14,11 @@ class BotClass {
   ) {
     this.position = position;
     this.direction = direction;
-    this.value = value;
     this.name = name;
     this.colorClass = colorClass;
-
-    (this.wins = wins), (this.loses = loses);
+    this.value = value;
+    this.wins = wins,
+    this.loses = loses;
     /* 
       this.isAlive = isAlive
     */
@@ -43,11 +43,11 @@ class BotClass {
     }
   }
 
-  getNewDirection() {
+  getNewDirection(tileNum) {
     const validDirections = [];
 
     for (let i = 1; i <= 4; i++) {
-      if (this.isValidMove(i)) {
+      if (this.isValidMove(i, tileNum)) {
         validDirections.push(i);
       }
     }
@@ -86,6 +86,8 @@ class BotClass {
   }
 
   setNextDirection(tileNum) {
+    console.log("TINE NUM", tileNum)
+
     switch (this.direction) {
       case 1:
         if (this.position - tileNum < 1) {

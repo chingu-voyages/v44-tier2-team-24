@@ -15,7 +15,15 @@ export default function BotsInfo(props) {
   function handleChange(e) {
     const changedField = e.target.name;
     const newValue = e.target.value;
+
      setArenaData((prev) => {
+      
+        if(changedField === "tileNum"){
+          return {
+            ...prev, tileNum: Number(newValue)
+          }
+        }
+      
         prev[changedField] = newValue;
         return { ...prev };
       });
@@ -24,8 +32,6 @@ export default function BotsInfo(props) {
   //form event- submit
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    //add a function to passdown arenaData state to the actual arena
     
   }
 

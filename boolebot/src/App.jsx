@@ -83,7 +83,7 @@ const deleteBotFromArray = (index)=>{
         { path: "/about", element: <AboutUs /> },
         {
           path: "/arena",
-          element: <Arena botsArr={botsArr} arenaData={arenaData} />,
+          element: <Arena botsArr={botsArr} setBotsArr={setBotsArr} arenaData={arenaData} />,
         },
       ],
     },

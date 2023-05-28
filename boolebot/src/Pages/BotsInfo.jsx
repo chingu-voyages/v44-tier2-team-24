@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import singleBot from "../assets/bot.png";
 import { Link } from 'react-router-dom';
 import generateRandomNumber from '../utils/randomNum';
+import BotClass from '../Components/Gameplay/BotClass';
 
 export default function BotsInfo(props) {
   // const [botName, setBotName] = useState('');
@@ -22,10 +23,11 @@ export default function BotsInfo(props) {
     const changedField = e.target.name;
     const newValue = e.target.value;
 
-        setBotsData((currentData) => {
-          currentData[changedField] = newValue;
-          return { ...currentData };
-        })
+    setBotsData((currentData) => {
+      const newState = { ...currentData }
+        newState[changedField] = newValue;
+          return newState
+    })
 
   }
 
@@ -66,42 +68,43 @@ export default function BotsInfo(props) {
       return position
     }
 
-    let pos = occupiedPositions.length ? generateRandomNumber(tileNum * tileNum) : generateUniquePosition()
-    
-    console.log("POS", pos)
+    let pos = occupiedPositions.length
+      ? generateUniquePosition()
+      : generateRandomNumber(tileNum * tileNum); 
 
-    setBotsData(prev => {
-      return {
-        ...prev,
-        position: pos
-      };
-    })
-    
-    
+    setBotsArr((prev) => {
+      const newBot =  new BotClass(pos, generateRandomNumber(4), botsData.name, botsData.colorClass, Number(botsData.value) )
+      console.log("NEW BOT CREATED", newBot)
+
+      /* 
+      constructor(
+    position,
+    direction,
+    name,
+    colorClass,
+    value,
+    wins = 0,
+    loses = 0
+    // isAlive = true,
+  ) 
+      
+      */
+
+      const isUniqueBot = prev.some(
+        (bot) =>
+          bot.name === newBot.name ||
+          bot.colorClass === newBot.colorClass
+      );
+
+      if (!isUniqueBot) {
+        return [...prev, newBot];
+      } 
+
+      return prev
+    });    
+
   };
 
-  useEffect(() => {
-    console.log("BOT POSITION", botsData.position);
-
-    if (botsData.position) {
-      setBotsArr((prev) => {
-        console.log("SETTING BOT ARRAY");
-        const isUniqueBot = prev.some(
-          (bot) =>
-            bot.name === botsData.name ||
-            bot.colorClass === botsData.colorClass
-        );
-
-        if (!isUniqueBot) {
-          return [...prev, botsData];
-        } else {
-          return prev;
-        }
-      });
-    }
-  }, [botsData]);
-
-  console.log(botsData);
   
 
 
