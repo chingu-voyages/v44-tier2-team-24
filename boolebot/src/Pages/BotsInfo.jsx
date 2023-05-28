@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import singleBot from "../assets/bot.png";
 import { Link } from 'react-router-dom';
+import generateRandomNumber from '../utils/randomNum';
 
 export default function BotsInfo(props) {
   // const [botName, setBotName] = useState('');
@@ -8,71 +9,101 @@ export default function BotsInfo(props) {
   // const [booleanOperator, setBooleanOperator] = useState('and');
   // const [botSpeed, setBotSpeed] = useState(0);
   // const [botDirection, setBotDirection] = useState('north');
-  const addbot = props.addBotToArray;
-  const createdBots = props.botsArray;
+
+  const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
+  const tileNum = arenaData.tileNum
   // const [createdBots, setCreatedBots] = useState([]);
-  
+
   //Refactoring Form state management
-  const [formData, setFormData]= useState({
-    position:1,
-    direction:"",
-    tile:"4",
-    name:"",
-    colorClass:"yellow",
-    value: 0,
-    wins:0,
-    loses: 0,
-    isAlive:true,
-  })
+ 
 
   // Generic change handler
   function handleChange(e){
     const changedField = e.target.name;
     const newValue = e.target.value;
-    setFormData((currentData)=>{
-      currentData[changedField] = newValue;
-      return {...currentData};
-    })
+
+        setBotsData((currentData) => {
+          currentData[changedField] = newValue;
+          return { ...currentData };
+        })
+
   }
 
   //form event- submit
   const handleSubmit = (event) => {
+    console.log("SUBBITING BOTS INFO")
     event.preventDefault();
+    
+    let occupiedPositions = []
+    if(botsArr.length){
+      botsArr.forEach(bot => {
+        if(bot.position){
+            occupiedPositions.push(
+            bot.position,
+            bot.position + 1,
+            bot.position - 1,
+            bot.position + tileNum,
+            bot.position - tileNum
+          );
+        }
+      })
+    }
+    
 
-    // Create a new bot object
+    const generateUniquePosition = () =>{
+      //generate a number between 1 to tileNum** but not any num in the occupiedPosition arr
+      let isValid = false
+      let position;
+      
+      do{
+        position = generateRandomNumber(tileNum * tileNum)
 
-    // new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
-    // const newBot = {
-    //   position: formData.position,
-    //   name: formData.name,
-    //   direction: formData.direction,
-    //   tile: formData.tile,
-    //   value: formData.value,
-    //   colorClass: formData.colorClass,
-    //   operator: formData.booleanOperator,
-    //   speed: formData.botSpeed,
-    //   wins:0,
-    //   loses:0,
-    //   isAlive: true
-    // };
+        if(!occupiedPositions.includes(position)){
+          isValid = true
+        }
+        
+      }while(!isValid)
+      return position
+    }
 
-    addbot(formData);
-    // Add the new bot to the createdBots array
-    // setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
+    let pos = occupiedPositions.length ? generateRandomNumber(tileNum * tileNum) : generateUniquePosition()
+    
+    console.log("POS", pos)
 
-    // Clear the form fields
-    // setBotName('');
-    // setBooleanValue('1');
-    // setBooleanOperator('and');
-    // setBotSpeed(0);
-    // setBotDirection('north');
+    setBotsData(prev => {
+      return {
+        ...prev,
+        position: pos
+      };
+    })
+    
+    
   };
 
-  // const handleDelete = (index) => {
-  //   setCreatedBots((prevCreatedBots) =>
-  //     prevCreatedBots.filter((_, i) => i !== index)
-  //   );
-  // };
+  useEffect(() => {
+    console.log("BOT POSITION", botsData.position);
+
+    if (botsData.position) {
+      setBotsArr((prev) => {
+        console.log("SETTING BOT ARRAY");
+        const isUniqueBot = prev.some(
+          (bot) =>
+            bot.name === botsData.name ||
+            bot.colorClass === botsData.colorClass
+        );
+
+        if (!isUniqueBot) {
+          return [...prev, botsData];
+        } else {
+          return prev;
+        }
+      });
+    }
+  }, [botsData]);
+
+  console.log(botsData);
+  
+
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -85,13 +116,12 @@ export default function BotsInfo(props) {
   };
 
 
- 
 
   return (
     <>
       <h2>Create Bot</h2>
       <div className="createdBots">
-        {createdBots.map((bot, index) => (
+        {botsArr && botsArr.map((bot, index) => (
           <div className="showBot" key={index}>
             <img src={singleBot} alt="photo of a robot head" />
             <div key={index}>
@@ -106,18 +136,24 @@ export default function BotsInfo(props) {
               ) : null}
             </div>
             <button
-              className={`expandButton ${expandedBots[index] ? 'expanded' : ''}`}
+              className={`expandButton ${
+                expandedBots[index] ? "expanded" : ""
+              }`}
               onClick={() => toggleBotExpansion(index)}
             >
               <span className="arrow"></span>
             </button>
             <button>Edit</button>
-            <button className="delete" onClick={() => props.deleteBotFromArray(index)}>
+            <button
+              className="delete"
+              onClick={() => props.deleteBotFromArray(index)}
+            >
               Delete
             </button>
           </div>
         ))}
       </div>
+
       <div className="test">
         <form onSubmit={handleSubmit}>
           <fieldset>
@@ -127,7 +163,7 @@ export default function BotsInfo(props) {
                 type="text"
                 id="name"
                 name="name"
-                value={formData.name}
+                value={botsData.name}
                 onChange={handleChange}
                 required
               />
@@ -138,7 +174,7 @@ export default function BotsInfo(props) {
               <select
                 id="value"
                 name="value"
-                value={formData.value}
+                value={botsData.value}
                 onChange={handleChange}
                 required
               >
@@ -146,39 +182,23 @@ export default function BotsInfo(props) {
                 <option value="0">0</option>
               </select>
             </label>
-            {/* <label htmlFor="boole_op">
-              Choose Boolean Operator:
-              <select
-                id="boole_op"
-                name="boole_op"
-                value={booleanOperator}
-                onChange={(event) => setBooleanOperator(event.target.value)}
-              >
-                <option value="and">AND</option>
-                <option value="or">OR</option>
-                <option value="not">NOT</option>
-                <option value="nor">NOR</option>
-              </select>
-            </label> */}
-            <label htmlFor="botSpeed">
-              Choose Speed:
-              <input
-                id="botSpeed"
-                type="range"
-                min={0}
-                max={100}
-                name='botSpeed'
-                value={formData.botSpeed}
-                onChange={handleChange}
-                required
-              />
-            </label>
+
+            <label htmlFor="colorClass">Bot Color</label>
+            <input
+              type="color"
+              id="colorClass"
+              name="colorClass"
+              value={botsData.colorClass}
+              onChange={handleChange}
+              required
+            />
+
             <label htmlFor="direction">
               Bot Direction:
               <select
                 id="direction"
-                name='direction'
-                value={formData.direction}
+                name="direction"
+                value={botsData.direction}
                 onChange={handleChange}
                 required
               >
@@ -188,12 +208,13 @@ export default function BotsInfo(props) {
                 <option value="3">WEST</option>
               </select>
             </label>
-            <button type="submit">Submit</button>
+            <button type="submit">Add Bot</button>
           </fieldset>
         </form>
-       <Link to="/arena"><button >Battle Ground</button></Link> 
+        <Link to="/arena">
+          <button>Battle Ground</button>
+        </Link>
       </div>
-      
     </>
   );
 }

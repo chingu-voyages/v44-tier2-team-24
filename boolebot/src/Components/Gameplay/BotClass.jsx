@@ -5,24 +5,23 @@ class BotClass {
   constructor(
     position,
     direction,
-    tile,
     name,
     colorClass,
     value,
     wins = 0,
-    loses = 0,
-    isAlive = true,
+    loses = 0
+    // isAlive = true,
   ) {
     this.position = position;
     this.direction = direction;
-    this.tile = tile;
-    this.totalTiles = this.tile * this.tile;
     this.value = value;
     this.name = name;
     this.colorClass = colorClass;
-    this.isAlive = isAlive
-    this.wins = wins, 
-    this.loses = loses;
+
+    (this.wins = wins), (this.loses = loses);
+    /* 
+      this.isAlive = isAlive
+    */
   }
 
   printBotData() {
@@ -56,7 +55,6 @@ class BotClass {
     let randIndex = generateRandomNumber(validDirections.length);
 
     this.direction = validDirections[randIndex - 1];
-  
   }
 
   updateBotPosition(newPosition) {
@@ -68,7 +66,7 @@ class BotClass {
   }
 
   //will determine if the bots next movement is valid
-  isValidMove(direction) {
+  isValidMove(direction, tileNum) {
     /*
             1 is up
             2 is down
@@ -77,55 +75,55 @@ class BotClass {
         */
     switch (direction) {
       case 1:
-        return this.position - this.tile > 0;
+        return this.position - tileNum > 0;
       case 2:
-        return this.position + this.tile <= this.totalTiles;
+        return this.position + tileNum <= tileNum * tileNum;
       case 3:
-        return (this.position - 1) % this.tile != 0;
+        return (this.position - 1) % tileNum != 0;
       case 4:
-        return (this.position + 1) % this.tile != 1;
+        return (this.position + 1) % tileNum != 1;
     }
   }
 
-  setNextDirection() {
+  setNextDirection(tileNum) {
     switch (this.direction) {
       case 1:
-        if (this.position - this.tile < 1) {
+        if (this.position - tileNum < 1) {
           //find new direction and stop new direction is valid
           //once new direction s valid update the new bots direction
-          this.getNewDirection();
+          this.getNewDirection(tileNum);
         }
         break;
       case 2:
-        if (this.position + this.tile > this.totalTiles) {
-          this.getNewDirection();
+        if (this.position + tileNum > (tileNum * tileNum)) {
+          this.getNewDirection(tileNum);
         }
         break;
       case 3:
-        if ((this.position - 1) % this.tile == 0) {
-          this.getNewDirection();
+        if ((this.position - 1) % tileNum == 0) {
+          this.getNewDirection(tileNum);
         }
         break;
       case 4:
-        if ((this.position + 1) % this.tile == 1) {
-          this.getNewDirection();
+        if ((this.position + 1) % tileNum == 1) {
+          this.getNewDirection(tileNum);
         }
         break;
     }
   }
 
-  calcNextMove() {
+  calcNextMove(tileNum) {
     console.log(`Moving Bot : ${this.printBotData()}`);
 
-    this.setNextDirection();
+    this.setNextDirection(tileNum);
 
     switch (this.direction) {
       case 1:
-        this.updateBotPosition(this.position - this.tile);
+        this.updateBotPosition(this.position - tileNum);
         break;
 
       case 2:
-        this.updateBotPosition(this.position + this.tile);
+        this.updateBotPosition(this.position + tileNum);
         break;
 
       case 3:

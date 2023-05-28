@@ -20,26 +20,24 @@ export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
   const [initialPosition, setInitialPosition] = useState([]);
   const [totalTileNum, setTotalTileNum] = useState(null);
-  const [numTilesPerSide, setNumTilesPerSide] = useState(5);
+  
   const [isGameRunning, setIsGameRunning] = useState(false);
-  const [operator, setOperator] = useState("AND");
   const [leaderboard, setLeaderboard] = useState({});
   const [currBot, setCurrBot] = useState(0);
   const [collisionLocation, setCollisionLocation] = useState(null)
   const [isCollision, setIsCollision] = useState(false)
   const [battleLog, setBattleLog] = useState([])
-  //   position, direction, tile, name, colorClass, value
 
-  const originalBotsArr = props.botsArray
+  const { arenaData : {tileNum, speed, operator}, botsArr } = props
 
 
-  const [botsArr, setBotsArr] = useState(originalBotsArr);
+
     // new BotClass(1, 1, numTilesPerSide, "bot1", "orange", 1),
     // new BotClass(7, 2, numTilesPerSide, "bot2", "blue", 1),
     // new BotClass(14, 3, numTilesPerSide, "bot3", "yellow", 1),
     // new BotClass(25, 4, numTilesPerSide, "bot4", "green", 1),
 
-  console.log(botsArr)
+  console.log(botsArr, "PROPS", props)
 
   // useInterval(() => {
   //   startBattle()
@@ -47,20 +45,22 @@ export default function Arena(props) {
   // }, isGameRunning ? 1000 : null);
 
   const arenaStyles = {
-    gridTemplateColumns: `repeat(${numTilesPerSide}, 100px)`,
-    gridTemplateRows: `repeat(${numTilesPerSide}, 100px)`,
+    gridTemplateColumns: `repeat(${tileNum}, 100px)`,
+    gridTemplateRows: `repeat(${tileNum}, 100px)`,
   };
 
   const renderArena = () => {
+    
+
     const positions = Array.from(
-      { length: numTilesPerSide * numTilesPerSide },
+      { length: tileNum * tileNum },
       (_, i) => i + 1
     );
     return (
       <div className="arena" style={arenaStyles}>
         {positions.map((tilePosition) => {
           const robotIndex = botsArr.findIndex(
-            (bot) => bot.isAlive && bot.position === tilePosition
+            (bot) => bot.position === tilePosition
           );
           return renderTile(tilePosition, robotIndex);
         })}
@@ -71,9 +71,9 @@ export default function Arena(props) {
   const renderTile = (tilePosition, robotIndex) => {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
-    let tileClass = "";
+    let tileClass = {backgroundColor : ''};
     if (robot) {
-      tileClass = `${robot.name} ${robot.colorClass}`;
+      tileClass.backgroundColor = robot.colorClass
     }
 
     let text = ''
@@ -95,9 +95,10 @@ export default function Arena(props) {
     
     return (
       <div
+        style={tileClass}
         key={tilePosition + 1}
         data-position={tilePosition}
-        className={`tile ${tileClass} ${
+        className={`tile  ${
           tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
@@ -146,7 +147,7 @@ export default function Arena(props) {
           bot.value,
           bot.wins,
           bot.loses,
-          bot.isAlive
+          /* bot.isAlive */
         )
     );
     return newBotsArr;
@@ -164,7 +165,7 @@ export default function Arena(props) {
 
           const newBotsArr = createCopyBot(botsArr);
 
-          newBotsArr[currBot].calcNextMove();
+          newBotsArr[currBot].calcNextMove(tileNum);
 
           const collisionLocation = checkCollision(newBotsArr);
 
@@ -174,7 +175,7 @@ export default function Arena(props) {
             const collidedBotsArr = handleCollision(
               newBotsArr,
               operator,
-              newBotsArr[currBot].name
+              newBotsArr[currBot].name,
             );
 
             console.log("Collided bots with updated score", collidedBotsArr);
@@ -221,7 +222,7 @@ export default function Arena(props) {
 
           setBotsArr(() => newBotsArr);
         },
-        collisionLocation ? 1400 : 700
+        collisionLocation ? (speed + 1000) : speed
       );
     }
 
