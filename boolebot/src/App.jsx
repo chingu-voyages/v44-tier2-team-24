@@ -27,7 +27,7 @@ const deleteBotFromArray = (index)=>{
 const [boardControl, setBoardControl] = useState({});
 
 
-//control handler
+//control handler changed the state of the object and is called on form submit event form ArenaInfo page
 function boardDataSubmission(newObj){
   setBoardControl((prevObj)=> { return {...prevObj,newObj}})
   console.log(boardControl)
