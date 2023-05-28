@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 export default function ArenaSettings() {
 return (
@@ -23,8 +24,12 @@ return (
               </select>
             </label>
             
-            
+           
             <button type="submit">Submit</button>
+            <button onClick={(e)=>{
+              e.preventDefault();
+              Swal.fire('Know about the operators')
+            }} >Learn More</button>
           </fieldset>
         </form>
        <Link to="/createBot"><button >Create Your Bots</button></Link> 

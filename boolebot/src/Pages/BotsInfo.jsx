@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import singleBot from "../assets/bot.png";
+import Swal from "sweetalert2"; 
 import { Link } from 'react-router-dom';
 
 export default function BotsInfo(props) {
-  // const [botName, setBotName] = useState('');
-  // const [booleanValue, setBooleanValue] = useState('1');
-  // const [booleanOperator, setBooleanOperator] = useState('and');
-  // const [botSpeed, setBotSpeed] = useState(0);
-  // const [botDirection, setBotDirection] = useState('north');
   const addbot = props.addBotToArray;
   const createdBots = props.botsArray;
-  // const [createdBots, setCreatedBots] = useState([]);
+  const [isValid, setIsValid]= useState(true);
   
   //Refactoring Form state management
   const [formData, setFormData]= useState({
@@ -24,11 +20,26 @@ export default function BotsInfo(props) {
     loses: 0,
     isAlive:true,
   })
-
+  
   // Generic change handler
   function handleChange(e){
     const changedField = e.target.name;
     const newValue = e.target.value;
+    if(changedField === 'name'){
+      if (createdBots.some((bot) => bot.name === newValue)) {
+        // Display an error message or perform necessary actions
+        console.log("Bot with the same name already exists.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '* No Two Robots can have same names',
+          // footer: '<a href="">Why do I have this issue?</a>'
+        })
+        
+        setIsValid(false);
+      }
+      else{setIsValid(true)}
+    }
     setFormData((currentData)=>{
       currentData[changedField] = newValue;
       return {...currentData};
@@ -39,11 +50,11 @@ export default function BotsInfo(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (createdBots.some((bot) => bot.name === formData.name)) {
-    // Display an error message or perform necessary actions
-    console.log("Bot with the same name already exists.");
-    isValid = false;
-  }
+  //   if (createdBots.some((bot) => bot.name === formData.name)) {
+  //   // Display an error message or perform necessary actions
+  //   console.log("Bot with the same name already exists.");
+  //   setIsValid(false);
+  // }
 
 
     // Create a new bot object
@@ -76,22 +87,10 @@ export default function BotsInfo(props) {
     loses: 0,
     isAlive: true,
   });
-    // Add the new bot to the createdBots array
-    // setCreatedBots((prevCreatedBots) => [...prevCreatedBots, newBot]);
-
-    // Clear the form fields
-    // setBotName('');
-    // setBooleanValue('1');
-    // setBooleanOperator('and');
-    // setBotSpeed(0);
-    // setBotDirection('north');
+    
   };
 
-  // const handleDelete = (index) => {
-  //   setCreatedBots((prevCreatedBots) =>
-  //     prevCreatedBots.filter((_, i) => i !== index)
-  //   );
-  // };
+  
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -151,6 +150,11 @@ export default function BotsInfo(props) {
                 required
               />
             </label>
+            {!isValid? <p style={{color: "red" }}> * No Two Robots can have same names</p>   :""}
+            {/* {!isValid? (e)=>{
+
+              
+            }: ""} */}
             <div></div>
             <label htmlFor="value">
               Choose a Boolean Value:
@@ -166,20 +170,6 @@ export default function BotsInfo(props) {
                 <option value="0">0</option>
               </select>
             </label>
-            {/* <label htmlFor="boole_op">
-              Choose Boolean Operator:
-              <select
-                id="boole_op"
-                name="boole_op"
-                value={booleanOperator}
-                onChange={(event) => setBooleanOperator(event.target.value)}
-              >
-                <option value="and">AND</option>
-                <option value="or">OR</option>
-                <option value="not">NOT</option>
-                <option value="nor">NOR</option>
-              </select>
-            </label> */}
             <label htmlFor="botSpeed">
               Choose Speed:
               <input
