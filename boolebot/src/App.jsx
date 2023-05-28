@@ -24,12 +24,12 @@ const deleteBotFromArray = (index)=>{
 }
 
 //Creating an object to hold board control info
-const [boardControl, setBoardControl] = useState([]);
+const [boardControl, setBoardControl] = useState({});
 
 
 //control handler
 function boardDataSubmission(newObj){
-  setBoardControl((prevObj)=> { return [...prevObj,newObj]})
+  setBoardControl((prevObj)=> { return {...prevObj,newObj}})
   console.log(boardControl)
 }
 
