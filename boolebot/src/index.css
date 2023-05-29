@@ -30,11 +30,12 @@ code {
 .tile {
   border: 1px solid black;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
+  gap: 0.2em;
+  font-size: 1.2em;
   font-weight: bold;
-  
 }
 
 .crashedText{

@@ -9,6 +9,12 @@ export default function BotsInfo(props) {
 
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
+  const {direction, setDirection} = useState({
+    "1": "North",
+    "2": "South",
+    "3": "West",
+    "4": "East"
+  })
   // const [createdBots, setCreatedBots] = useState([]);
 
   //Refactoring Form state management
@@ -44,6 +50,10 @@ export default function BotsInfo(props) {
       if (changedField === "name" || changedField === "colorClass") {
         let isSameName = botsArr.some((bot) => bot.name === newValue)
         let isColorSame =  botsArr.some((bot) => bot.colorClass === newValue)
+        setIsValid({
+          name: isSameName,
+          color: isColorSame,
+        });
 
         if (isSameName || isColorSame) {
           // Display an error message or perform necessary actions
@@ -54,29 +64,14 @@ export default function BotsInfo(props) {
             text: `* No Two Robots can have same ${changedField === 'colorClass' ? 'color' : 'name'}`,
             // footer: '<a href="">Why do I have this issue?</a>'
           });
-
-          setIsValid({
-            name: isSameName,
-            color: isColorSame
-          });
+          
         } else {
-          setIsValid({
-            name: isSameName,
-            color: isColorSame
-          })
-
           let newState = { ...currentData, [changedField]: newValue };
-          console.log(
-            "NEW STATE",
-            newState,
-
-            "new value",
-            newValue
-          );
           return newState;
         }
-      }
 
+      }
+      
       return {...currentData, [changedField]: newValue}
 
   })
@@ -125,7 +120,7 @@ export default function BotsInfo(props) {
       : generateRandomNumber(tileNum * tileNum); 
 
     setBotsArr((prev) => {
-      const newBot =  new BotClass(pos, generateRandomNumber(4), botsData.name, botsData.colorClass, Number(botsData.value) )
+      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, botsData.colorClass, Number(botsData.value) )
       console.log("NEW BOT CREATED", newBot)
 
       const isUniqueBot = prev.some(
@@ -137,8 +132,10 @@ export default function BotsInfo(props) {
       if (!isUniqueBot) {
         return [...prev, newBot];
       } 
-
-      return prev
+      else{
+        return prev
+      }
+      
     });    
 
   };
@@ -164,16 +161,25 @@ export default function BotsInfo(props) {
       <div className="createdBots">
         {botsArr &&
           botsArr.map((bot, index) => (
-            <div className="showBot" key={index}>
+            <div className={`showBot ${bot.name}`} style={{backgroundColor: `${bot.colorClass}`}} key={index}>
               <img src={singleBot} alt="photo of a robot head" />
               <div key={index}>
                 <h3 className="title">{bot.name}</h3>
                 {expandedBots[index] ? (
                   <>
+                    <p>Position: {bot.position}</p>
+                    <p>
+                      Direction:{" "}
+                      {bot.direction === "1"
+                        ? "⬆️"
+                        : bot.direction === "2"
+                        ? "⬇️"
+                        : bot.direction === "3"
+                        ? "⬅️"
+                        : "➡️"}
+                    </p>
+                    <p>Color: {bot.colorClass}</p>
                     <p>Value: {bot.value}</p>
-                    <p>Operator: {bot.operator}</p>
-                    <p>Speed: {bot.speed}</p>
-                    <p>Direction: {bot.direction}</p>
                   </>
                 ) : null}
               </div>
@@ -271,7 +277,9 @@ export default function BotsInfo(props) {
                   Select a Direction
                 </option>
                 <option value="1">NORTH</option>
-                <option value="2">SOUTH</option>
+                <option defaultValue value="2">
+                  SOUTH
+                </option>
                 <option value="4">EAST</option>
                 <option value="3">WEST</option>
               </select>

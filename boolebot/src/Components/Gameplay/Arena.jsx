@@ -7,6 +7,7 @@ import useTimeout from "../hooks/useTimeout";
 import styles from "./Arena.module.css";
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
+import singleBot from "../../assets/bot.png"
 
 // 1. Build the game arena.
 // 2. Add 1 robot to the board.
@@ -91,6 +92,7 @@ export default function Arena(props) {
           tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
+        {robot ? <img src={singleBot} alt="photo of a robot head" />: ""}
         {text}
       </div>
     );
