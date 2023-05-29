@@ -3,6 +3,7 @@ import "./App.scss";
 import Homepage from "./Pages/HomePage";
 import AboutUs from "./Pages/AboutUs";
 import RootLayout from "./Pages/Root";
+import ArenaInfoPage from "./Pages/ArenaInfoPage";
 import BotsInfo from "./Pages/BotsInfo";
 import Arena from "./Components/Gameplay/Arena"
 import CreateArena from './Pages/CreateArena'
@@ -52,6 +53,16 @@ const deleteBotFromArray = (index)=>{
   )
 }
 
+//Creating an object to hold board control info
+const [boardControl, setBoardControl] = useState({});
+
+
+//control handler changed the state of the object and is called on form submit event form ArenaInfo page
+function boardDataSubmission(newObj){
+  setBoardControl((prevObj)=> { return {...prevObj,newObj}})
+  console.log(boardControl)
+}
+
 
   const router = createBrowserRouter([
     //the following path is for the wrapper
@@ -80,6 +91,7 @@ const deleteBotFromArray = (index)=>{
             />
           ),
         },
+        { path: "/arenaSettings", element: <ArenaInfoPage boardDataSubmission={boardDataSubmission}/> },
         { path: "/about", element: <AboutUs /> },
         {
           path: "/arena",

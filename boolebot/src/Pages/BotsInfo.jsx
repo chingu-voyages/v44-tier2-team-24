@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import singleBot from "../assets/bot.png";
+import Swal from "sweetalert2"; 
 import { Link } from 'react-router-dom';
 import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
 
 export default function BotsInfo(props) {
+
   // const [botName, setBotName] = useState('');
   // const [booleanValue, setBooleanValue] = useState('1');
   // const [booleanOperator, setBooleanOperator] = useState('and');
@@ -16,7 +18,23 @@ export default function BotsInfo(props) {
   // const [createdBots, setCreatedBots] = useState([]);
 
   //Refactoring Form state management
+  //Refactoring Form state management
+  const [formData, setFormData]= useState({
+    position:1,
+    direction:"",
+    tile:"4",
+    name:"",
+    colorClass:"yellow",
+    value: "",
+    wins:0,
+    loses: 0,
+    isAlive:true,
+  })
+  const addbot = props.addBotToArray;
+  const createdBots = props.botsArray;
+  const [isValid, setIsValid]= useState(true);
  
+
 
   // Generic change handler
   function handleChange(e){
@@ -24,12 +42,30 @@ export default function BotsInfo(props) {
     const newValue = e.target.value;
 
     setBotsData((currentData) => {
-      const newState = { ...currentData }
+      /* const newState = { ...currentData }
         newState[changedField] = newValue;
-          return newState
+          return newState */
+    if(changedField === 'name'){
+      if (createdBots.some((bot) => bot.name === newValue)) {
+        // Display an error message or perform necessary actions
+        console.log("Bot with the same name already exists.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '* No Two Robots can have same names',
+          // footer: '<a href="">Why do I have this issue?</a>'
+        })
+        
+        setIsValid(false);
+      }
+      else{setIsValid(true)}
+    }
+    setFormData((currentData)=>{
+      currentData[changedField] = newValue;
+      return {...currentData};
     })
 
-  }
+  })
 
   //form event- submit
   const handleSubmit = (event) => {
@@ -51,7 +87,6 @@ export default function BotsInfo(props) {
       })
     }
     
-
     const generateUniquePosition = () =>{
       //generate a number between 1 to tileNum** but not any num in the occupiedPosition arr
       let isValid = false
@@ -59,6 +94,7 @@ export default function BotsInfo(props) {
       
       do{
         position = generateRandomNumber(tileNum * tileNum)
+
 
         if(!occupiedPositions.includes(position)){
           isValid = true
@@ -68,6 +104,7 @@ export default function BotsInfo(props) {
       return position
     }
 
+
     let pos = occupiedPositions.length
       ? generateUniquePosition()
       : generateRandomNumber(tileNum * tileNum); 
@@ -75,20 +112,6 @@ export default function BotsInfo(props) {
     setBotsArr((prev) => {
       const newBot =  new BotClass(pos, generateRandomNumber(4), botsData.name, botsData.colorClass, Number(botsData.value) )
       console.log("NEW BOT CREATED", newBot)
-
-      /* 
-      constructor(
-    position,
-    direction,
-    name,
-    colorClass,
-    value,
-    wins = 0,
-    loses = 0
-    // isAlive = true,
-  ) 
-      
-      */
 
       const isUniqueBot = prev.some(
         (bot) =>
@@ -105,8 +128,21 @@ export default function BotsInfo(props) {
 
   };
 
-  
+    addbot(formData);
 
+    setFormData({
+      position: 1,
+      direction: "",
+      tile: "4",
+      name: "",
+      colorClass: "yellow",
+      value: "",
+      wins: 0,
+      loses: 0,
+      isAlive: true,
+    });
+    
+  };
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -171,6 +207,11 @@ export default function BotsInfo(props) {
                 required
               />
             </label>
+            {!isValid? <p style={{color: "red" }}> * No Two Robots can have same names</p>   :""}
+            {/* {!isValid? (e)=>{
+
+              
+            }: ""} */}
             <div></div>
             <label htmlFor="value">
               Choose a Boolean Value:
@@ -181,6 +222,7 @@ export default function BotsInfo(props) {
                 onChange={handleChange}
                 required
               >
+                <option value="" disabled>Select a Value</option>
                 <option value="1">1</option>
                 <option value="0">0</option>
               </select>
@@ -195,7 +237,19 @@ export default function BotsInfo(props) {
               onChange={handleChange}
               required
             />
-
+            <label htmlFor="botSpeed">
+              Choose Speed:
+              <input
+                id="botSpeed"
+                type="range"
+                min={1}
+                max={100}
+                name='botSpeed'
+                value={formData.botSpeed}
+                onChange={handleChange}
+                required
+              />
+            </label>
             <label htmlFor="direction">
               Bot Direction:
               <select
@@ -205,6 +259,7 @@ export default function BotsInfo(props) {
                 onChange={handleChange}
                 required
               >
+                <option value="" disabled>Select a Direction</option>
                 <option value="1">NORTH</option>
                 <option value="2">SOUTH</option>
                 <option value="4">EAST</option>
