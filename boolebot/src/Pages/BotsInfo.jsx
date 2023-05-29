@@ -7,32 +7,29 @@ import BotClass from '../Components/Gameplay/BotClass';
 
 export default function BotsInfo(props) {
 
-  // const [botName, setBotName] = useState('');
-  // const [booleanValue, setBooleanValue] = useState('1');
-  // const [booleanOperator, setBooleanOperator] = useState('and');
-  // const [botSpeed, setBotSpeed] = useState(0);
-  // const [botDirection, setBotDirection] = useState('north');
-
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
   // const [createdBots, setCreatedBots] = useState([]);
 
   //Refactoring Form state management
   //Refactoring Form state management
-  const [formData, setFormData]= useState({
-    position:1,
-    direction:"",
-    tile:"4",
-    name:"",
-    colorClass:"yellow",
-    value: "",
-    wins:0,
-    loses: 0,
-    isAlive:true,
-  })
-  const addbot = props.addBotToArray;
-  const createdBots = props.botsArray;
-  const [isValid, setIsValid]= useState(true);
+  // const [formData, setFormData]= useState({
+  //   position:1,
+  //   direction:"",
+  //   tile:"4",
+  //   name:"",
+  //   colorClass:"yellow",
+  //   value: "",
+  //   wins:0,
+  //   loses: 0,
+  //   isAlive:true,
+  // })
+  // const addbot = props.addBotToArray;
+  // const createdBots = props.botsArray;
+  const [isValid, setIsValid]= useState({
+    color: false,
+    name: false
+  });
  
 
 
@@ -41,31 +38,49 @@ export default function BotsInfo(props) {
     const changedField = e.target.name;
     const newValue = e.target.value;
 
+
     setBotsData((currentData) => {
-      /* const newState = { ...currentData }
-        newState[changedField] = newValue;
-          return newState */
-    if(changedField === 'name'){
-      if (createdBots.some((bot) => bot.name === newValue)) {
-        // Display an error message or perform necessary actions
-        console.log("Bot with the same name already exists.");
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: '* No Two Robots can have same names',
-          // footer: '<a href="">Why do I have this issue?</a>'
-        })
-        
-        setIsValid(false);
+   
+      if (changedField === "name" || changedField === "colorClass") {
+        let isSameName = botsArr.some((bot) => bot.name === newValue)
+        let isColorSame =  botsArr.some((bot) => bot.colorClass === newValue)
+
+        if (isSameName || isColorSame) {
+          // Display an error message or perform necessary actions
+
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `* No Two Robots can have same ${changedField === 'colorClass' ? 'color' : 'name'}`,
+            // footer: '<a href="">Why do I have this issue?</a>'
+          });
+
+          setIsValid({
+            name: isSameName,
+            color: isColorSame
+          });
+        } else {
+          setIsValid({
+            name: isSameName,
+            color: isColorSame
+          })
+
+          let newState = { ...currentData, [changedField]: newValue };
+          console.log(
+            "NEW STATE",
+            newState,
+
+            "new value",
+            newValue
+          );
+          return newState;
+        }
       }
-      else{setIsValid(true)}
-    }
-    setFormData((currentData)=>{
-      currentData[changedField] = newValue;
-      return {...currentData};
-    })
+
+      return {...currentData, [changedField]: newValue}
 
   })
+}
 
   //form event- submit
   const handleSubmit = (event) => {
@@ -128,21 +143,8 @@ export default function BotsInfo(props) {
 
   };
 
-    addbot(formData);
-
-    setFormData({
-      position: 1,
-      direction: "",
-      tile: "4",
-      name: "",
-      colorClass: "yellow",
-      value: "",
-      wins: 0,
-      loses: 0,
-      isAlive: true,
-    });
     
-  };
+  
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -160,37 +162,38 @@ export default function BotsInfo(props) {
     <>
       <h2>Create Bot</h2>
       <div className="createdBots">
-        {botsArr && botsArr.map((bot, index) => (
-          <div className="showBot" key={index}>
-            <img src={singleBot} alt="photo of a robot head" />
-            <div key={index}>
-              <h3 className="title">{bot.name}</h3>
-              {expandedBots[index] ? (
-                <>
-                  <p>Value: {bot.value}</p>
-                  <p>Operator: {bot.operator}</p>
-                  <p>Speed: {bot.speed}</p>
-                  <p>Direction: {bot.direction}</p>
-                </>
-              ) : null}
+        {botsArr &&
+          botsArr.map((bot, index) => (
+            <div className="showBot" key={index}>
+              <img src={singleBot} alt="photo of a robot head" />
+              <div key={index}>
+                <h3 className="title">{bot.name}</h3>
+                {expandedBots[index] ? (
+                  <>
+                    <p>Value: {bot.value}</p>
+                    <p>Operator: {bot.operator}</p>
+                    <p>Speed: {bot.speed}</p>
+                    <p>Direction: {bot.direction}</p>
+                  </>
+                ) : null}
+              </div>
+              <button
+                className={`expandButton ${
+                  expandedBots[index] ? "expanded" : ""
+                }`}
+                onClick={() => toggleBotExpansion(index)}
+              >
+                <span className="arrow"></span>
+              </button>
+              <button>Edit</button>
+              <button
+                className="delete"
+                onClick={() => props.deleteBotFromArray(index)}
+              >
+                Delete
+              </button>
             </div>
-            <button
-              className={`expandButton ${
-                expandedBots[index] ? "expanded" : ""
-              }`}
-              onClick={() => toggleBotExpansion(index)}
-            >
-              <span className="arrow"></span>
-            </button>
-            <button>Edit</button>
-            <button
-              className="delete"
-              onClick={() => props.deleteBotFromArray(index)}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+          ))}
       </div>
 
       <div className="test">
@@ -207,7 +210,14 @@ export default function BotsInfo(props) {
                 required
               />
             </label>
-            {!isValid? <p style={{color: "red" }}> * No Two Robots can have same names</p>   :""}
+            {isValid.name ? (
+              <p style={{ color: "red" }}>
+                {" "}
+                * No Two Robots can have same color
+              </p>
+            ) : (
+              ""
+            )}
             {/* {!isValid? (e)=>{
 
               
@@ -222,7 +232,9 @@ export default function BotsInfo(props) {
                 onChange={handleChange}
                 required
               >
-                <option value="" disabled>Select a Value</option>
+                <option value="" disabled>
+                  Select a Value
+                </option>
                 <option value="1">1</option>
                 <option value="0">0</option>
               </select>
@@ -237,19 +249,15 @@ export default function BotsInfo(props) {
               onChange={handleChange}
               required
             />
-            <label htmlFor="botSpeed">
-              Choose Speed:
-              <input
-                id="botSpeed"
-                type="range"
-                min={1}
-                max={100}
-                name='botSpeed'
-                value={formData.botSpeed}
-                onChange={handleChange}
-                required
-              />
-            </label>
+            {isValid.color ? (
+              <p style={{ color: "red" }}>
+                {" "}
+                * No Two Robots can have same color
+              </p>
+            ) : (
+              ""
+            )}
+
             <label htmlFor="direction">
               Bot Direction:
               <select
@@ -259,7 +267,9 @@ export default function BotsInfo(props) {
                 onChange={handleChange}
                 required
               >
-                <option value="" disabled>Select a Direction</option>
+                <option value="" disabled>
+                  Select a Direction
+                </option>
                 <option value="1">NORTH</option>
                 <option value="2">SOUTH</option>
                 <option value="4">EAST</option>

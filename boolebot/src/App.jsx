@@ -21,7 +21,7 @@ const [botsArr, setBotsArr] = useState([]);
 
 const [botsData, setBotsData] = useState({
   name: "",
-  colorClass: "",
+  colorClass: "#FFFFFF",
   value: 0,
   wins: 0,
   loses: 0,
