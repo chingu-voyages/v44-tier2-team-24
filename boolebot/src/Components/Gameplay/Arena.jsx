@@ -8,6 +8,7 @@ import styles from "./Arena.module.css";
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
 import singleBot from "../../assets/bot.png"
+import GameClock from "../GameClock";
 
 // 1. Build the game arena.
 // 2. Add 1 robot to the board.
@@ -235,10 +236,11 @@ export default function Arena(props) {
           {isGameRunning ? "STOP" : "BATTLE"}
         </button>
       </div>
-      <div>
+      <aside>
+        <GameClock isGameRunning={isGameRunning}/>
         <BattleLog battleLog={battleLog} />
         <Leaderboard leaderboard={leaderboard} />
-      </div>
+      </aside>
     </main>
   );
 }

@@ -10,7 +10,7 @@ ul {
   align-items: center;
   /* border: 1px solid blue; */
 }
-li {
+nav > ul > li {
   list-style: none;
   padding-right: 2em;
   font-weight: 600;
