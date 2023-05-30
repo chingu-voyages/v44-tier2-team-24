@@ -32,7 +32,6 @@ export default function Arena(props) {
 
   const { arenaData : {tileNum, speed, operator}, botsArr, setBotsArr } = props
 
-  console.log(botsArr, "PROPS", props)
 
 
   const arenaStyles = {
@@ -152,11 +151,11 @@ export default function Arena(props) {
       intervalId = setInterval(
         () => {
           setCollisionLocation(() => null);
-          console.log("CURRENT BOTS", botsArr)
+          // console.log("CURRENT BOTS", botsArr)
 
           const newBotsArr = createCopyBot();
 
-          console.log("COPY OF BOTS ARRAY", newBotsArr)
+          // console.log("COPY OF BOTS ARRAY", newBotsArr)
 
           newBotsArr[currBot].calcNextMove(tileNum);
 
@@ -172,7 +171,7 @@ export default function Arena(props) {
               setMessage
             );
 
-            console.log("Collided bots with updated score", collidedBotsArr);
+            // console.log("Collided bots with updated score", collidedBotsArr);
             if (collidedBotsArr) {
               setBattleLog((prev)=> ([...prev, `${collidedBotsArr[0].name} vs. ${collidedBotsArr[1].name}`]) )
               setLeaderboard((prev) => {
@@ -181,10 +180,12 @@ export default function Arena(props) {
                   [collidedBotsArr[0].name]: {
                     wins: collidedBotsArr[0].wins,
                     loses: collidedBotsArr[0].loses,
+                    
                   },
                   [collidedBotsArr[1].name]: {
                     wins: collidedBotsArr[1].wins,
                     loses: collidedBotsArr[1].loses,
+                    
                   },
                 };
               });
@@ -239,7 +240,7 @@ export default function Arena(props) {
       <aside>
         <GameClock isGameRunning={isGameRunning}/>
         <BattleLog battleLog={battleLog} />
-        <Leaderboard leaderboard={leaderboard} />
+        <Leaderboard leaderboard={leaderboard} botsArr={botsArr}/>
       </aside>
     </main>
   );
