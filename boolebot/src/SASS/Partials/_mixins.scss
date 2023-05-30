@@ -1,0 +1,11 @@
+//for any page that uses mixins add this import line @use './mixins' as *;
+
+@use "./variables" as *;
+
+@mixin heading($size-value) {
+    font-size: $size-value;
+    font-family: $ff;
+    font-weight: $fw-bold;
+    color: $med-purple;
+    text-transform: capitalize;
+}
