@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 
+//any page that uses variables as an import @use "./variables" as *;
+
 // Colours
 $white: #fcfcfc;
 $black: #000000;
