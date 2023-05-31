@@ -6,9 +6,9 @@ function RootLayout() {
     return (
         <> 
         <Navigation />
-            <Container>
+            {/* <Container> */}
                 <Outlet />
-            </Container>
+            {/* </Container> */}
         <Footer />
         </>
     )
