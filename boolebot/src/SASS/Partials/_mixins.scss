@@ -2,10 +2,23 @@
 
 @use "./variables" as *;
 
-@mixin heading($size-value) {
-    font-size: $size-value;
-    font-family: $ff;
-    font-weight: $fw-bold;
-    color: $med-purple;
-    text-transform: capitalize;
+// @mixin heading($size-value) {
+//     font-size: $size-value;
+//     font-family: $ff;
+//     font-weight: $fw-bold;
+//     color: $med-purple;
+//     text-transform: capitalize;
+// }
+
+@mixin button {
+    button {
+  background-color: $navy-blue;
+  color: $white;
+  font-weight: $fw-btn;
+  font-size: $fs-default;
+  padding: 0.25em 1.5em;
+  border-radius: 10px;
+  margin-top: 1.5em;
+}
+
 }
