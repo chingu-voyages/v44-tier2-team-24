@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./HomePage.module.css";
+// import styles from "./HomePage.module.css";
 // import Container from "../Components/Layout/Container";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -9,19 +9,19 @@ export default function Homepage() {
   return (
     
     
-      <div className={styles.main_body}>
+      <div className="main_body">
         {/* Below this line is the bot image*/}
-       <div className={styles.imgWrapper} >
+       <div className='imgWrapper' >
         <img src={botImage} />
         </div> 
 
-          <section className={styles.homepageBtns}>
+          <section className="homepageBtns">
             <Link to="/arenaSettings">
-              <button className={styles.startBtn}>Start</button>
+              <button className='startBtn'>Start</button>
             </Link>
 
             <button
-              className={styles.instructionBtn}
+              className='instructionBtn'
               onClick={() => {
                Swal.fire({
                   title: "We will explain how to play the game",
