@@ -3,6 +3,7 @@ import styles from './Navigation.module.css'
 
 function Navigation() {
     return (
+    
       <header>
         <nav>
             <Link to="/"><h1>BooleBots</h1></Link>
@@ -17,7 +18,9 @@ function Navigation() {
           
         </nav>
       </header>
+     
     );
+
 }
 
 export default Navigation;

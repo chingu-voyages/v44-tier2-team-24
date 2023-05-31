@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
 
 a {
   text-decoration: none;
@@ -8,7 +8,7 @@ ul {
   width: 100%;
   justify-content: flex-end;
   align-items: center;
-  /* border: 1px solid blue; */
+ 
 }
 li {
   list-style: none;
@@ -21,7 +21,7 @@ h1 {
   font-size: 30px;
   text-align: left;
   padding-left: 1em;
-  /* border: 1px solid red; */
+ 
 }
 
 nav {
@@ -29,4 +29,4 @@ nav {
 }
 header {
   margin-bottom: 1em;
-}
+} */
