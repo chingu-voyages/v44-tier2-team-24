@@ -13,7 +13,12 @@ export default function BotsInfo(props) {
     "1": "North",
     "2": "South",
     "3": "West",
-    "4": "East"
+    "4": "East",
+    "5": "NE",
+    "6": "NW",
+    "7": "SE",
+    "8": "SW"
+
   })
   // const [createdBots, setCreatedBots] = useState([]);
 
@@ -277,11 +282,13 @@ export default function BotsInfo(props) {
                   Select a Direction
                 </option>
                 <option value="1">NORTH</option>
-                <option defaultValue value="2">
-                  SOUTH
-                </option>
-                <option value="4">EAST</option>
+                <option defaultValue value="2">SOUTH</option>
                 <option value="3">WEST</option>
+                <option value="4">EAST</option>
+                <option value="5">NORTH EAST</option>
+                <option value="6">NORTH WEST</option>
+                <option value="7">SOUTH EAST</option>
+                <option value="8">SOUTH WEST</option>
               </select>
             </label>
             <button type="submit">Add Bot</button>

@@ -46,7 +46,7 @@ class BotClass {
   getNewDirection(tileNum) {
     const validDirections = [];
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 8; i++) {
       if (this.isValidMove(i, tileNum)) {
         validDirections.push(i);
       }
@@ -67,12 +67,7 @@ class BotClass {
 
   //will determine if the bots next movement is valid
   isValidMove(direction, tileNum) {
-    /*
-            1 is up
-            2 is down
-            3 is left 
-            4 is right
-        */
+
     switch (direction) {
       case 1:
         return this.position - tileNum > 0;
@@ -82,6 +77,14 @@ class BotClass {
         return (this.position - 1) % tileNum != 0;
       case 4:
         return (this.position + 1) % tileNum != 1;
+      case 5:
+        return this.position % tileNum !== 0 && this.position - (tileNum - 1) > 0
+      case 6:
+        return this.position % tileNum !== 1 && this.position - (tileNum + 1) > 0
+      case 7:
+        return this.position % tileNum !== 0 && this.position + (tileNum + 1) < tileNum * tileNum
+      case 8:
+        return this.position % tileNum !== 1 && this.position + (tileNum - 1) < tileNum * tileNum
     }
   }
 
@@ -106,13 +109,49 @@ class BotClass {
           this.getNewDirection(tileNum);
         }
         break;
+
       case 4:
         if ((this.position + 1) % tileNum == 1) {
           this.getNewDirection(tileNum);
         }
         break;
+
+      case 5:
+        if (this.position % tileNum === 0 || this.position - (tileNum - 1) <= 0) {
+          //find new direction and stop new direction is valid
+          //once new direction s valid update the new bots direction
+          this.getNewDirection(tileNum);
+        }
+        break;
+
+      case 6:
+        if (this.position % tileNum === 1 || this.position - (tileNum + 1) < 0) {
+          this.getNewDirection(tileNum);
+        }
+        break;
+
+      case 7:
+        if (this.position % tileNum === 0 || this.position + (tileNum + 1) > tileNum * tileNum) {
+          this.getNewDirection(tileNum);
+        }
+        break;
+
+      case 8:
+        if (this.position % tileNum === 1 || this.position + (tileNum - 1) > tileNum * tileNum) {
+          this.getNewDirection(tileNum);
+        }
+        break;
     }
   }
+
+      // "1": "North",
+    // "2": "South",
+    // "3": "West",
+    // "4": "East",
+    // "5": "NE",
+    // "6": "NW",
+    // "7": "SE",
+    // "8": "SW"
 
   calcNextMove(tileNum) {
     console.log(`Moving Bot : ${this.printBotData()}`);
@@ -131,8 +170,24 @@ class BotClass {
       case 3:
         this.updateBotPosition(this.position - 1);
         break;
+
       case 4:
         this.updateBotPosition(this.position + 1);
+        break;
+
+      case 5:
+        this.updateBotPosition(this.position - (tileNum - 1));
+        break;
+
+      case 6:
+        this.updateBotPosition(this.position - (tileNum + 1));
+        break;
+
+      case 7:
+        this.updateBotPosition(this.position + (tileNum + 1));
+        break;
+      case 8:
+        this.updateBotPosition(this.position + (tileNum - 1));
         break;
     }
 
