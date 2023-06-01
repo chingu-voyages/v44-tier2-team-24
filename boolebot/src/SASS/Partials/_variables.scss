@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 
 //any page that uses variables as an import @use "./variables" as *;
@@ -32,3 +35,7 @@ $mint-green: #d3f3ee;
 // Font Family
 // $ff: 'Quicksand', sans-serif;
 // $logoFont: 
+
+$Roboto: 'Roboto', sans-serif;
+$ff: 'Quicksand', sans-serif;
+$logoFont: "Bungee Shade", cursive;
