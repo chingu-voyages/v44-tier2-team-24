@@ -1,15 +1,17 @@
-import "../SASS/Partials/_sweetalertbutton.scss";
+import "../SASS/Partials/_sweetAlerts.scss";
 import Swal from 'sweetalert2';
 
 const sweetAlertMixin = Swal.mixin({
     width: 600,
   padding: '3em',
   color: '#061d41',
-  background: '#d3f3ee',
   confirmButtonColor: '#061d41',
   customClass: {
     confirmButton: 'swal2-confirm',
-  }
+    content: 'my-swal-font-size', // Apply the class to the content area
+    header: 'my-swal-header',
+  },
+  
 });
 
 export default sweetAlertMixin;
