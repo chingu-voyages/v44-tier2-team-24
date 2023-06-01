@@ -5,6 +5,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
+// Font Family
+$Roboto: 'Roboto', sans-serif;
+$ff: 'Quicksand', sans-serif;
+$logoFont: "Bungee Shade", cursive;
+
 //logo (h1)
 
 //a
@@ -21,19 +26,15 @@
 
 
 // Fonts Sizes
-// $fs-global: 62.5%;
-// $fs-3xl: 8rem;
-// $fs-2xl: 6rem;
-// $fs-xl: 4.5rem;
-// $fs-lrg: 3rem;
-// $fs-med: 2.2rem;
-// $fs-small: 1.8rem;
-// $fs-default: 1.0rem;
+$fs-global: 62.5%;
+$fs-3xl: 8rem;
+$fs-2xl: 6rem;
+$fs-xl: 4.5rem;
+$fs-lrg: 3rem;
+$fs-med: 2.2rem;
+$fs-small: 1.8rem;
+$fs-default: 1.0rem;
 
 // // Font Weights
 // $fw-default: 500;
 // $fw-btn: 600;
-
-// Font Family
-$ff: 'Quicksand', sans-serif;
-$logoFont: "Bungee Shade", cursive;
