@@ -10,9 +10,6 @@ export default function Homepage() {
   const showInstructions = () => {
     sweetAlertMixin.fire({
       title: 'BOOLBOTS',
-      // text: [
-      //   "1.  ", "2. ", 
-      // ].join("\n"),
       html: 
       `<p>Explore the fascinating world of boolean values through an entertaining game called Boolebots
       </p>
