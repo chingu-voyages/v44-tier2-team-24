@@ -10,7 +10,20 @@ export default function Homepage() {
   const showInstructions = () => {
     sweetAlertMixin.fire({
       title: 'BOOLBOTS',
-      text: "Explore the fascinating world of boolean values through an entertaining game called Boolebots. Select a board size, assemble your own army of bots, and witness the magic of boolean operators in action. Let's dive in and unravel the mysteries of these operators together!"
+      // text: [
+      //   "1.  ", "2. ", 
+      // ].join("\n"),
+      html: 
+      `<p>Explore the fascinating world of boolean values through an entertaining game called Boolebots
+      </p>
+      <ol>
+      <li>1. Select a board size</li>
+      <li>2. Assemble your own army of bots</li>
+      <li>3. Witness the magic of boolean operators in action. Let's dive in and unravel the mysteries of these operators together!
+      </li>
+      </ol>
+      `
+      
     });
   };
   useEffect(()=>{
