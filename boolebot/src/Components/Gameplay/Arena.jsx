@@ -92,7 +92,7 @@ export default function Arena(props) {
           tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
-        {robot ? <img src={singleBot} alt="photo of a robot head" />: ""}
+        {robot ? <img src={robot.botIcon} alt="photo of a robot head" />: ""}
         {text}
       </div>
     );
@@ -135,6 +135,7 @@ export default function Arena(props) {
           bot.name,
           bot.colorClass,
           bot.value,
+          bot.botIcon,
           bot.wins,
           bot.loses,
         )

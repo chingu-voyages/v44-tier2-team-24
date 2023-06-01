@@ -8,9 +8,9 @@ class BotClass {
     name,
     colorClass,
     value,
+    botIcon,
     wins = 0,
-    loses = 0
-    // isAlive = true,
+    loses = 0,
   ) {
     this.position = position;
     this.direction = direction;
@@ -19,9 +19,7 @@ class BotClass {
     this.value = value;
     this.wins = wins,
     this.loses = loses;
-    /* 
-      this.isAlive = isAlive
-    */
+    this.botIcon = botIcon
   }
 
   printBotData() {

@@ -9,6 +9,9 @@ import Arena from "./Components/Gameplay/Arena"
 import CreateArena from './Pages/CreateArena'
 import { useState, useEffect } from "react";
 
+import bot1 from './assets/bot1.svg'
+
+
 function App() {
 //creating botsArray to be passed on as props to child components
 const [arenaData, setArenaData] = useState({
@@ -26,7 +29,7 @@ const [botsData, setBotsData] = useState({
   wins: 0,
   loses: 0,
   direction: 2,
-  isAlive: true,
+  botIcon: bot1
 });
 
 // handler function to get arena info

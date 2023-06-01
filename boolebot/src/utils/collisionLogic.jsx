@@ -106,6 +106,7 @@ const updateScore = (result, botOne, botTwo, setMessage) => {
       botOne.name,
       botOne.colorClass,
       botOne.value,
+      botOne.botIcon,
       botOne.wins + 1,
       botOne.loses,
     );
@@ -116,6 +117,7 @@ const updateScore = (result, botOne, botTwo, setMessage) => {
       botTwo.name,
       botTwo.colorClass,
       botTwo.value,
+      botTwo.botIcon,
       botTwo.wins,
       botTwo.loses + 1,
     );
