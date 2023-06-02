@@ -1,0 +1,95 @@
+@use "./variables" as *;
+// @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+
+// a {
+//   text-decoration: none;
+//   color: $white;
+// }
+// a:hover {
+//   color: $white;
+// }
+// ul {
+//   display: flex;
+//   width: 100%;
+//   justify-content: flex-end;
+//   align-items: center;
+//   /* border: 1px solid blue; */
+// }
+// li {
+//   list-style: none;
+//   padding-right: 2em;
+//   font-weight: 600;
+// }
+
+// h1 {
+//   font-family: "Bungee Shade", cursive;
+//   font-size: 30px;
+//   text-align: left;
+//   padding-left: 1em;
+//   /* border: 1px solid red; */
+// }
+
+// nav {
+//   display: flex;
+// }
+// .tester {
+//   background-color: $navy-blue;
+// }
+// header {
+//   margin-bottom: 1em;
+//   // background-color: $navy-blue;
+//   width: 100%;
+//   margin: 0;
+
+// }
+
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+
+a {
+  text-decoration: none;
+  color: white;
+}
+ul {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+
+  /* border: 1px solid blue; */
+}
+li {
+  list-style: none;
+  padding-right: 2em;
+  font-weight: 600;
+}
+
+h1 {
+  font-family: "Bungee Shade", cursive;
+  font-size: 30px;
+  text-align: left;
+  padding-left: 1em;
+  /* border: 1px solid red; */
+}
+
+nav {
+  display: flex;
+  width: 100%;
+}
+header {
+  background-color: #061d41;
+    text-align: center;
+    position: fixed;
+    min-height: 2%;
+    top: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  min-height: 3%;
+  width: 100%;
+  margin-bottom: 1em;
+  background-color: #061d41;
+  padding: 0.5em 0;
+}

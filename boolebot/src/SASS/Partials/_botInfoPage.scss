@@ -1,5 +1,8 @@
+@use './mixins' as *;
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+
+
 
 .test {
     background-color: #d3f3ee;

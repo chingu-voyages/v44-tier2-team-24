@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .footer {
+    background-color: #061d41;
+    text-align: center;
+    position: fixed;
+    min-height: 5%;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+      justify-content: center;
+      margin-top: 1%;
+      padding-bottom: 1%;
+    }
+  }
+  .footer_link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.75em;
+    padding-top: 1%;
+  }
+
+  
+  
