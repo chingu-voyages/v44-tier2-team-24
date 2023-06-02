@@ -9,7 +9,7 @@ export default function Homepage() {
   // const [isLoading, setIsLoading] = useState(true);
   const showInstructions = () => {
     sweetAlertMixin.fire({
-      title: 'BOOLBOTS',
+      title: 'BOOLEBOTS',
       html: 
       `<p>Explore the fascinating world of boolean values through an entertaining game called Boolebots
       </p>
@@ -36,7 +36,7 @@ export default function Homepage() {
       </div>
 
       <section className="homepageBtns">
-        <Link to="/arenaSettings">
+        <Link to="/createArena">
           <button className="startBtn">Start</button>
         </Link>
 
