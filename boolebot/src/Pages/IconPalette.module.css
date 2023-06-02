@@ -1,0 +1,13 @@
+.iconContainer{
+    cursor: pointer;
+    
+}
+
+.iconContainer:hover{
+    cursor: pointer;
+}
+
+.iconContainer > img{
+    width: 35px;
+    flex-basis: 0;
+}
