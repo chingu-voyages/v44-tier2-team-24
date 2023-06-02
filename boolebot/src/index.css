@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #d3f3ee;
+  height: 100%;
 }
 
 code {
@@ -19,6 +20,7 @@ code {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  height: 100%;
 }
 
 
@@ -30,11 +32,12 @@ code {
 .tile {
   border: 1px solid black;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
+  gap: 0.2em;
+  font-size: 1.2em;
   font-weight: bold;
-  
 }
 
 .crashedText{

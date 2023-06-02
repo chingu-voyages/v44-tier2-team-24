@@ -10,7 +10,7 @@ ul {
   align-items: center;
  
 }
-li {
+nav > ul > li {
   list-style: none;
   padding-right: 2em;
   font-weight: 600;

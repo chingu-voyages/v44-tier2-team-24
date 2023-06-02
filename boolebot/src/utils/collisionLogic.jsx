@@ -20,7 +20,7 @@ const checkCollision = (botsArr) => {
   return null;
 };
 
-const handleCollision = (botsArr, operator, currBotName) => {
+const handleCollision = (botsArr, operator, currBotName, setMessage) => {
   console.log("COLLISION!!!!!!!!!!");
 
   const positionMap = new Map();
@@ -77,25 +77,25 @@ const handleCollision = (botsArr, operator, currBotName) => {
   switch (operator) {
     case "AND":
       const AND_Result = colidedBots[0].value && colidedBots[1].value;
-      return updateScore(AND_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(AND_Result, colidedBots[0], colidedBots[1], setMessage);
       // refactor the score-updating logic to use setter function instead of mutating array by reference
       break;
     case "OR":
       const OR_Result = colidedBots[0].value || colidedBots[1].value;
-      return updateScore(OR_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(OR_Result, colidedBots[0], colidedBots[1], setMessage);
       break;
     case "XOR":
       const XOR_Result = colidedBots[0].value ^ colidedBots[1].value;
-      return updateScore(XOR_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(XOR_Result, colidedBots[0], colidedBots[1]), setMessage;
       break;
     case "NOR":
       const NOR_Result = !(colidedBots[0].value || colidedBots[1].value);
-      return updateScore(NOR_Result, colidedBots[0], colidedBots[1]);
+      return updateScore(NOR_Result, colidedBots[0], colidedBots[1],setMessage);
       break;
   }
 };
 
-const updateScore = (result, botOne, botTwo) => {
+const updateScore = (result, botOne, botTwo, setMessage) => {
   if (result) {
     // botOne.wins = botOne.wins + 1
     // botTwo.loses = botTwo.loses + 1
@@ -103,30 +103,29 @@ const updateScore = (result, botOne, botTwo) => {
     const botOneClone = new BotClass(
       botOne.position,
       botOne.direction,
-      botOne.tile,
       botOne.name,
       botOne.colorClass,
       botOne.value,
+      botOne.botIcon,
       botOne.wins + 1,
       botOne.loses,
-      botOne.isAlive
     );
 
     const botTwoClone = new BotClass(
       botTwo.position,
       botTwo.direction,
-      botTwo.tile,
       botTwo.name,
       botTwo.colorClass,
       botTwo.value,
+      botTwo.botIcon,
       botTwo.wins,
       botTwo.loses + 1,
-      false
     );
 
+    setMessage("COLLISION!!!")
     return [botOneClone, botTwoClone];
   } else {
-    console.log("It's a a tie!");
+    setMessage("TIE!!!")
     return;
   }
 };
