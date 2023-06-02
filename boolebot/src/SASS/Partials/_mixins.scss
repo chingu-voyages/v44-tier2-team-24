@@ -22,10 +22,41 @@
 }
 
 }
-@mixin form {
-    font-size: $size-value;
-    font-family: $ff;
-    font-weight: $fw-bold;
-    color: $med-purple;
-    text-transform: capitalize;
+// @mixin form {
+//     font-size: $size-value;
+//     font-family: $ff;
+//     font-weight: $fw-bold;
+//     color: $med-purple;
+//     text-transform: capitalize;
+// }
+@mixin form{
+  border: 1px solid #061d41;
+    width: fit-content;
+    text-align: left;
+    margin: 2rem;
+    padding: 2%;
+    font-family: $Roboto;
+    background-color: $white;
+        button {
+            width: 20%;
+            align-self: center;
+            margin-top: 6%;
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+        }
+        label {
+            display: flex;
+            white-space: nowrap;
+            margin: 2px;
+        }
+    
+        
+        input {
+            margin-left: 10px;
+        }
+        
+        select {
+            margin-left: 10px;
+            padding: 5px 5px 5px 8px;
+        }
 }
