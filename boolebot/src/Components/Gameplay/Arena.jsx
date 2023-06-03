@@ -4,7 +4,7 @@ import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
-import styles from "./Arena.module.css";
+
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
 import singleBot from "../../assets/bot.png"

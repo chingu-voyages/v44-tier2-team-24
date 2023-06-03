@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './BattleLog.module.css'
 
 export default function BattleLog({battleLog}) {
 

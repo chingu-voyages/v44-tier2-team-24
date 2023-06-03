@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import styles from './Navigation.module.css'
 import sweetAlertMixin from "../Components/SweetAlertConfig";
 
 
@@ -66,7 +65,7 @@ function Navigation() {
       <header>
         <nav>
             <Link to="/"><h1>BooleBots</h1></Link>
-           <ul className={styles.ul}>
+           <ul className="ul">
             <li>
               <Link to="/createBot">Create Bots</Link>
             </li>

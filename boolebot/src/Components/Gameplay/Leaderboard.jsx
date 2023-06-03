@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import styles from './Leaderboard.module.css'
 export default function Leaderboard({leaderboard, botsArr}) {
 
 
