@@ -67,9 +67,9 @@ function Navigation() {
         <nav>
             <Link to="/"><h1>BooleBots</h1></Link>
            <ul className={styles.ul}>
-            <li>
+            {/* <li>
               <Link to="/createBot">Create Bots</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="#" onClick={()=>{
                 showInstructions()

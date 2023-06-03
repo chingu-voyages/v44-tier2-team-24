@@ -119,6 +119,17 @@ export default function BotsInfo(props) {
   const handleSubmit = (event) => {
     console.log("SUBBITING BOTS INFO")
     event.preventDefault();
+
+    setBotsData((prev)=>{
+      return {...prev, 
+        name: "",
+        // colorClass: "#FFFFF",
+        value: 0,
+        wins: 0,
+        loses: 0,
+        direction: 1,
+        botIcon: bot1}
+    })
     
     let occupiedPositions = []
     if(botsArr.length){
@@ -297,7 +308,7 @@ export default function BotsInfo(props) {
               </select>
             </label>
 
-            <label htmlFor="colorClass">Bot Color</label>
+            {/* <label htmlFor="colorClass">Bot Color</label>
             <input
               type="color"
               id="colorClass"
@@ -313,7 +324,7 @@ export default function BotsInfo(props) {
               </p>
             ) : (
               ""
-            )}
+            )} */}
 
             <label htmlFor="icons">Bot Icon</label>
             <IconPalette id="icons" iconPalette={iconPalette} setBotsData={setBotsData} iconSelected={iconSelected} setIconSelected={setIconSelected} />
