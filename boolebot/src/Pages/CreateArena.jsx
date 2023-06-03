@@ -9,13 +9,13 @@ export default function BotsInfo(props) {
   // const [botSpeed, setBotSpeed] = useState(0);
   // const [botDirection, setBotDirection] = useState('north');
   const {arenaData, setArenaData} = props
- 
+  
   
   // Generic change handler
   function handleChange(e) {
     const changedField = e.target.name;
     const newValue = e.target.value;
-
+    
      setArenaData((prev) => {
       
         if(changedField === "tileNum"){
@@ -47,8 +47,6 @@ export default function BotsInfo(props) {
 
   return (
     <>
-      <h2>Create Arena</h2>
-
       <div className="arena-input-form">
         <form onSubmit={handleSubmit}>
           <div>

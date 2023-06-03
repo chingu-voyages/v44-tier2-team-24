@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import styles from './Navigation.module.css'
 import sweetAlertMixin from "../Components/SweetAlertConfig";
 
@@ -61,6 +62,12 @@ function Navigation() {
       
     });
   };
+  const location = useLocation();
+  function routeToInstruction(){
+    if (location.pathname === "/createArena" && confirm("Are you sure you want to leave this page?")){
+      showInstructions()
+    }
+  }
     return (
     
       <header>
@@ -68,13 +75,13 @@ function Navigation() {
             <Link to="/"><h1>BooleBots</h1></Link>
            <ul className={styles.ul}>
             {/* <li>
-              <Link to="/createBot">Create Bots</Link>
+              <Link to="/createArena">Game Config</Link>
             </li> */}
             <li>
               <Link to="#" onClick={()=>{
-                showInstructions()
-               
-              }}>How to play</Link>
+               showInstructions()
+              }}
+            > Game Instructions</Link>
             </li>
             <li>
               <Link to="/about">About Us</Link>

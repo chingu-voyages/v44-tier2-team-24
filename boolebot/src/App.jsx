@@ -50,6 +50,9 @@ const getArenaInfo = (newArenaInfo)=>{
 //    }
 // }
 
+// This is an array of the current route/location
+const routeLocation = ['/createArena', '/createBot'];
+
 // Handler function to delete bots from the array
 const deleteBotFromArray = (index)=>{
   setBotsArr((prevBotsArr)=>

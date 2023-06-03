@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import { Link } from "react-router-dom";
 import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
@@ -21,7 +22,6 @@ import GameClock from "../GameClock";
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
   const [initialPosition, setInitialPosition] = useState([]);
-  
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [leaderboard, setLeaderboard] = useState({});
   const [currBot, setCurrBot] = useState(0);
@@ -234,9 +234,11 @@ export default function Arena(props) {
       <div>
         {renderArena()}
 
-        <button onClick={() => startGame()}>
+        
+        {botsArr.length === 1? <Link to="/createArena"><button>START OVER</button></Link> : <button onClick={() => startGame()}>
           {isGameRunning ? "STOP" : "BATTLE"}
-        </button>
+        </button>}
+          
       </div>
       <aside>
         <GameClock isGameRunning={isGameRunning}/>

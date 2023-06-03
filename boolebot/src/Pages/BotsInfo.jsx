@@ -93,17 +93,25 @@ export default function BotsInfo(props) {
           color: isColorSame,
         });
 
-        if (isSameName || isColorSame) {
+        if (isSameName ) {
           // Display an error message or perform necessary actions
 
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: `* No Two Robots can have same ${changedField === 'colorClass' ? 'color' : 'name'}`,
-            // footer: '<a href="">Why do I have this issue?</a>'
+            text: `* Each Bots should have unique names}`,
+            
           });
           
-        } else {
+        } else if(isColorSame){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `Duplicate name detected!`,
+            
+          });
+        }
+         else {
           let newState = { ...currentData, [changedField]: newValue };
           return newState;
         }
@@ -253,7 +261,7 @@ export default function BotsInfo(props) {
               >
                 <span className="arrow"></span>
               </button>
-              <button>Edit</button>
+              {/* <button>Edit</button> */}
               <button
                 className="delete"
                 onClick={() => props.deleteBotFromArray(index)}
@@ -281,15 +289,12 @@ export default function BotsInfo(props) {
             {isValid.name ? (
               <p style={{ color: "red" }}>
                 {" "}
-                * No Two Robots can have same color
+                * Each Bots should have a unique name
               </p>
             ) : (
               ""
             )}
-            {/* {!isValid? (e)=>{
-
-              
-            }: ""} */}
+            
             <div></div>
             <label htmlFor="value">
               Choose a Boolean Value:
@@ -308,7 +313,7 @@ export default function BotsInfo(props) {
               </select>
             </label>
 
-            {/* <label htmlFor="colorClass">Bot Color</label>
+            <label htmlFor="colorClass">Bot Color</label>
             <input
               type="color"
               id="colorClass"
@@ -324,7 +329,7 @@ export default function BotsInfo(props) {
               </p>
             ) : (
               ""
-            )} */}
+            )}
 
             <label htmlFor="icons">Bot Icon</label>
             <IconPalette id="icons" iconPalette={iconPalette} setBotsData={setBotsData} iconSelected={iconSelected} setIconSelected={setIconSelected} />
