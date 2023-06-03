@@ -11,14 +11,15 @@ export default function Homepage() {
     sweetAlertMixin.fire({
       title: 'BOOLEBOTS',
       html: 
-      `<p>Explore the fascinating world of boolean values through an entertaining game called Boolebots
+      `<p className="alert">Explore the fascinating world of boolean values through an entertaining game called Boolebots
       </p>
       <ol>
       <li>1. Select a board size</li>
       <li>2. Assemble your own army of bots</li>
-      <li>3. Witness the magic of boolean operators in action. Let's dive in and unravel the mysteries of these operators together!
-      </li>
+      <li>3. Witness the magic of boolean operators in action.</li> 
       </ol>
+      <p className="alert">Let's dive in and unravel the mysteries of these operators together!<p>
+      
       `
       
     });

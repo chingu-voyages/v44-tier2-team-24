@@ -45,7 +45,7 @@ export default function Leaderboard({leaderboard, botsArr}) {
   return (
     <div>
         <h3>Leaderboard</h3>
-        <ul className={styles.leaderboard}>
+        <ul className="leaderboard">
             {leaderboardEl}   
           
         </ul>

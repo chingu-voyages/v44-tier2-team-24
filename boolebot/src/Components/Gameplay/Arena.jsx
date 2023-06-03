@@ -230,7 +230,7 @@ export default function Arena(props) {
 
 
   return (
-    <main className={styles.main_container}>
+    <main className="main_container">
       <div>
         {renderArena()}
 

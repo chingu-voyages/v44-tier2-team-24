@@ -7,7 +7,7 @@ export default function BattleLog({battleLog}) {
   return (
     <div>
         <h3>BattleLog</h3>
-        <ul className={styles.battle_log}>
+        <ul className="battle_log">
             {battleRecord}
         </ul> 
     </div>
