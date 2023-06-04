@@ -66,7 +66,7 @@ function Navigation() {
       <header>
         <nav>
             <Link to="/"><h1>BooleBots</h1></Link>
-           <ul className={styles.ul}>
+           <ul>
             {/* <li>
               <Link to="/createArena">Game Config</Link>
             </li> */}
