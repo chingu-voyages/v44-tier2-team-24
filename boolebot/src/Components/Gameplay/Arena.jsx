@@ -62,10 +62,7 @@ export default function Arena(props) {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
     let tileClass = {backgroundColor : ''};
-    if (robot) {
-      tileClass.backgroundColor = robot.colorClass
-    }
-
+    
     let text = ''
 
     if(botsArr.length === 1){
@@ -133,7 +130,6 @@ export default function Arena(props) {
           bot.position,
           bot.direction,
           bot.name,
-          bot.colorClass,
           bot.value,
           bot.botIcon,
           bot.wins,

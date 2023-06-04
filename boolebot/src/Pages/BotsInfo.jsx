@@ -9,7 +9,7 @@ import IconPalette from './IconPalette'
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
 import bot3 from '../assets/bot3.svg'
-import bot4 from '../assets/bot4.svg'
+import bot4 from '../assets/bot4.svg' 
 import bot5 from '../assets/bot5.svg'
 import bot6 from '../assets/bot6.svg'
 import bot7 from '../assets/bot7.svg'
@@ -71,7 +71,6 @@ export default function BotsInfo(props) {
 
 
   const [isValid, setIsValid]= useState({
-    color: false,
     name: false
   });
  
@@ -85,12 +84,10 @@ export default function BotsInfo(props) {
 
     setBotsData((currentData) => {
    
-      if (changedField === "name" || changedField === "colorClass") {
+      if (changedField === "name" ) {
         let isSameName = botsArr.some((bot) => bot.name === newValue)
-        let isColorSame =  botsArr.some((bot) => bot.colorClass === newValue)
         setIsValid({
           name: isSameName,
-          color: isColorSame,
         });
 
         if (isSameName ) {
@@ -103,13 +100,6 @@ export default function BotsInfo(props) {
             
           });
           
-        } else if(isColorSame){
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: `Duplicate name detected!`,
-            
-          });
         }
          else {
           let newState = { ...currentData, [changedField]: newValue };
@@ -131,7 +121,6 @@ export default function BotsInfo(props) {
     setBotsData((prev)=>{
       return {...prev, 
         name: "",
-        // colorClass: "#FFFFF",
         value: 0,
         wins: 0,
         loses: 0,
@@ -177,13 +166,12 @@ export default function BotsInfo(props) {
       : generateRandomNumber(tileNum * tileNum); 
 
     setBotsArr((prev) => {
-      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, botsData.colorClass, Number(botsData.value), botsData.botIcon )
+      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
       console.log("NEW BOT CREATED", newBot)
 
       const isUniqueBot = prev.some(
         (bot) =>
-          bot.name === newBot.name ||
-          bot.colorClass === newBot.colorClass
+          bot.name === newBot.name 
       );
 
       if (!isUniqueBot) {
@@ -194,6 +182,19 @@ export default function BotsInfo(props) {
           return newIconPallet
         })
 
+        setIconSelected( prev => {
+          const newIndex = iconPalette.findIndex( icon => !icon.isSelected )
+
+          setBotsData( prev => {
+            return { 
+              ...prev,
+              botIcon: iconPalette[newIndex].url
+            }
+          })
+
+          return newIndex
+        })
+
         return [...prev, newBot];
       } 
       else{
@@ -201,6 +202,7 @@ export default function BotsInfo(props) {
       }
       
     });  
+    
     
 
 
@@ -229,7 +231,6 @@ export default function BotsInfo(props) {
           botsArr.map((bot, index) => (
             <div
               className={`showBot ${bot.name}`}
-              style={{ backgroundColor: `${bot.colorClass}` }}
               key={index}
             >
               <img src={bot.botIcon} style={{width:"5em"}} alt="photo of a robot head" />
@@ -248,7 +249,6 @@ export default function BotsInfo(props) {
                         ? "⬅️"
                         : "➡️"}
                     </p>
-                    <p>Color: {bot.colorClass}</p>
                     <p>Value: {bot.value}</p>
                   </>
                 ) : null}
@@ -312,24 +312,6 @@ export default function BotsInfo(props) {
                 <option value="0">0</option>
               </select>
             </label>
-
-            <label htmlFor="colorClass">Bot Color</label>
-            <input
-              type="color"
-              id="colorClass"
-              name="colorClass"
-              value={botsData.colorClass}
-              onChange={handleChange}
-              required
-            />
-            {isValid.color ? (
-              <p style={{ color: "red" }}>
-                {" "}
-                * No Two Robots can have same color
-              </p>
-            ) : (
-              ""
-            )}
 
             <label htmlFor="icons">Bot Icon</label>
             <IconPalette id="icons" iconPalette={iconPalette} setBotsData={setBotsData} iconSelected={iconSelected} setIconSelected={setIconSelected} />
