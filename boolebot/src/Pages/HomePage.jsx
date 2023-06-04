@@ -24,9 +24,9 @@ export default function Homepage() {
       
     });
   };
-  useEffect(()=>{
-    showInstructions();
-  }, [])
+  // useEffect(()=>{
+  //   showInstructions();
+  // }, [])
   
 
   return (
@@ -41,10 +41,10 @@ export default function Homepage() {
           <button className="startBtn">Start</button>
         </Link>
 
-        {/* Use the showInstructions function as the click event handler
+        {/* Use the showInstructions function as the click event handler */}
         <button className="instructionBtn" onClick={showInstructions}>
           How to play
-        </button> */}
+        </button>
       </section>
     </div>
   );

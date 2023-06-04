@@ -93,17 +93,25 @@ export default function BotsInfo(props) {
           color: isColorSame,
         });
 
-        if (isSameName || isColorSame) {
+        if (isSameName ) {
           // Display an error message or perform necessary actions
 
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: `* No Two Robots can have same ${changedField === 'colorClass' ? 'color' : 'name'}`,
-            // footer: '<a href="">Why do I have this issue?</a>'
+            text: `* Each Bots should have unique names}`,
+            
           });
           
-        } else {
+        } else if(isColorSame){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `Duplicate name detected!`,
+            
+          });
+        }
+         else {
           let newState = { ...currentData, [changedField]: newValue };
           return newState;
         }
@@ -119,6 +127,17 @@ export default function BotsInfo(props) {
   const handleSubmit = (event) => {
     console.log("SUBBITING BOTS INFO")
     event.preventDefault();
+
+    setBotsData((prev)=>{
+      return {...prev, 
+        name: "",
+        // colorClass: "#FFFFF",
+        value: 0,
+        wins: 0,
+        loses: 0,
+        direction: 1,
+        botIcon: bot1}
+    })
     
     let occupiedPositions = []
     if(botsArr.length){
@@ -242,7 +261,7 @@ export default function BotsInfo(props) {
               >
                 <span className="arrow"></span>
               </button>
-              <button>Edit</button>
+              {/* <button>Edit</button> */}
               <button
                 className="delete"
                 onClick={() => props.deleteBotFromArray(index)}
@@ -270,15 +289,12 @@ export default function BotsInfo(props) {
             {isValid.name ? (
               <p style={{ color: "red" }}>
                 {" "}
-                * No Two Robots can have same color
+                * Each Bots should have a unique name
               </p>
             ) : (
               ""
             )}
-            {/* {!isValid? (e)=>{
-
-              
-            }: ""} */}
+            
             <div></div>
             <label htmlFor="value">
               Choose a Boolean Value:
