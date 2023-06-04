@@ -5,6 +5,7 @@ import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
+import BotRoaster from "./BotRoaster";
 
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
@@ -228,6 +229,7 @@ export default function Arena(props) {
   return (
     <main className="main_container">
       <div>
+      <BotRoaster botsArr={botsArr} />
         {renderArena()}
 
         
@@ -237,6 +239,7 @@ export default function Arena(props) {
           
       </div>
       <aside>
+        
         <GameClock isGameRunning={isGameRunning}/>
         <BattleLog battleLog={battleLog} />
         <Leaderboard leaderboard={leaderboard} botsArr={botsArr}/>

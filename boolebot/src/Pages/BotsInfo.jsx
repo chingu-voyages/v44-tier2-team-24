@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
 import IconPalette from './IconPalette'
+import BotRoaster from '../Components/Gameplay/BotRoaster';
 
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
@@ -226,60 +227,8 @@ export default function BotsInfo(props) {
   return (
     <>
       <h2>Create Bot</h2>
-      <div className="createdBots">
-        {botsArr &&
-          botsArr.map((bot, index) => (
-            <div
-              className={`showBot ${bot.name}`}
-              key={index}
-            >
-              <img src={bot.botIcon} style={{width:"5em"}} alt="photo of a robot head" />
-              <div key={index}>
-                <h3 className="title">{bot.name}</h3>
-                {expandedBots[index] ? (
-                  <>
-                    <p>Position: {bot.position}</p>
-                    <p>
-                      Direction:{" "}
-                      {bot.direction === "1"
-                        ? "⬆️"
-                        : bot.direction === "2"
-                        ? "⬇️"
-                        : bot.direction === "3"
-                        ? "⬅️"
-                        : "➡️"}
-                    </p>
-                    <p>Value: {bot.value}</p>
-                  </>
-                ) : null}
-              </div>
-              <button
-                className={`expandButton ${
-                  expandedBots[index] ? "expanded" : ""
-                }`}
-                onClick={() => toggleBotExpansion(index)}
-              >
-                <span className="arrow"></span>
-              </button>
-              {/* <button>Edit</button> */}
-              <button
-                className="delete"
-                onClick={() => {
-                  props.deleteBotFromArray(index)
-
-                  setIconPalette(prev => {
-                    const newIconState = [...prev]
-
-                    newIconState[index].isSelected = false
-                    return newIconState
-                  })
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-      </div>
+      
+     <BotRoaster botsArr={botsArr}/>
 
       <div className="test">
         <form onSubmit={handleSubmit}>
