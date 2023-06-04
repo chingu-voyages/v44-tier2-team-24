@@ -171,7 +171,12 @@ export default function Arena(props) {
 
             // console.log("Collided bots with updated score", collidedBotsArr);
             if (collidedBotsArr) {
-              setBattleLog((prev)=> ([...prev, `${collidedBotsArr[0].name} vs. ${collidedBotsArr[1].name}`]) )
+              setBattleLog((prev)=> ([...prev, 
+                <div>
+                 {`${collidedBotsArr[0].name} (👑) vs. ${collidedBotsArr[1].name} (😭)`}
+                 
+                </div>
+              ]) )
               setLeaderboard((prev) => {
                 return {
                   ...prev,
