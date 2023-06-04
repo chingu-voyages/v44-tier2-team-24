@@ -1,4 +1,4 @@
-.main_container{
+.main_container {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -9,13 +9,13 @@ img {
     width: 70%;
 }
 
-aside{
-    display:flex;
+aside {
+    display: flex;
     flex-direction: column;
-    gap:10em;
+    gap: 10em;
 }
 
-aside > div{
+aside>div {
     flex-grow: 1;
     display: flex;
     flex-direction: column;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import styles from './IconPalette.module.css'
+
 
 export default function IconPalette({iconPalette, setBotsData, iconSelected, setIconSelected }) {
     
@@ -21,7 +21,7 @@ export default function IconPalette({iconPalette, setBotsData, iconSelected, set
 
     const iconEl = iconPalette.map((icon, i) => {
         return (
-          <div onClick={(e)=> handleClick(e)} onChange={onChangeValue} key={i} className={styles.iconContainer}>
+          <div onClick={(e)=> handleClick(e)} onChange={onChangeValue} key={i} className="iconContainer">
             <input type="radio" value={i} name={`bot${i}`} readOnly checked={iconSelected == i } disabled={icon.isSelected} />
             <img src={icon.url} alt={`bot icon ${i}`}/>
            
