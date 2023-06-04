@@ -5,6 +5,7 @@ import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
+import BotRoaster from "./BotRoaster";
 
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
@@ -62,10 +63,7 @@ export default function Arena(props) {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
     let tileClass = {backgroundColor : ''};
-    if (robot) {
-      tileClass.backgroundColor = robot.colorClass
-    }
-
+    
     let text = ''
 
     if(botsArr.length === 1){
@@ -92,7 +90,7 @@ export default function Arena(props) {
           tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
-        {robot ? <img src={singleBot} alt="photo of a robot head" />: ""}
+        {robot ? <img src={robot.botIcon} alt="photo of a robot head" />: ""}
         {text}
       </div>
     );
@@ -133,8 +131,8 @@ export default function Arena(props) {
           bot.position,
           bot.direction,
           bot.name,
-          bot.colorClass,
           bot.value,
+          bot.botIcon,
           bot.wins,
           bot.loses,
         )
@@ -173,7 +171,12 @@ export default function Arena(props) {
 
             // console.log("Collided bots with updated score", collidedBotsArr);
             if (collidedBotsArr) {
-              setBattleLog((prev)=> ([...prev, `${collidedBotsArr[0].name} vs. ${collidedBotsArr[1].name}`]) )
+              setBattleLog((prev)=> ([...prev, 
+                <div>
+                 {`${collidedBotsArr[0].name} (👑) vs. ${collidedBotsArr[1].name} (😭)`}
+                 
+                </div>
+              ]) )
               setLeaderboard((prev) => {
                 return {
                   ...prev,
@@ -231,6 +234,7 @@ export default function Arena(props) {
   return (
     <main className="main_container">
       <div>
+      <BotRoaster botsArr={botsArr} />
         {renderArena()}
 
         
@@ -240,6 +244,7 @@ export default function Arena(props) {
           
       </div>
       <aside>
+        
         <GameClock isGameRunning={isGameRunning}/>
         <BattleLog battleLog={battleLog} />
         <Leaderboard leaderboard={leaderboard} botsArr={botsArr}/>

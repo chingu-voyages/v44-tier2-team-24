@@ -18,7 +18,7 @@ export default function Homepage() {
       <li>2. Assemble your own army of bots</li>
       <li>3. Witness the magic of boolean operators in action.</li> 
       </ol>
-      <p className="alert">Let's dive in and unravel the mysteries of these operators together!!<p>
+      <p className="alert">Let's dive in and unravel the mysteries of these operators together!<p>
       
       `
       

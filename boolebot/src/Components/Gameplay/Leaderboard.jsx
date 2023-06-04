@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import '../../Sass/Partials/_leaderBoard.scss'
+
 export default function Leaderboard({leaderboard, botsArr}) {
 
 
@@ -14,7 +16,7 @@ export default function Leaderboard({leaderboard, botsArr}) {
             key={key}
             className={
               winningScore && value.wins === winningScore && value.loses === 0
-                ? styles.winning
+                ? "winning"
                 : ""
             }
           >
