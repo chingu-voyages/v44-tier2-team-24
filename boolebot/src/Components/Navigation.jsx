@@ -60,12 +60,7 @@ function Navigation() {
       
     });
   };
-  const location = useLocation();
-  function routeToInstruction(){
-    if (location.pathname === "/createArena" && confirm("Are you sure you want to leave this page?")){
-      showInstructions()
-    }
-  }
+  
     return (
     
       <header>
