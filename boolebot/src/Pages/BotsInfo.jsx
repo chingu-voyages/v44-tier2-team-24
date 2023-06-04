@@ -6,6 +6,7 @@ import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
 import IconPalette from './IconPalette'
 import BotRoaster from '../Components/Gameplay/BotRoaster';
+import useAutoFocus from '../Components/hooks/useAutoFocus';
 
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
@@ -18,7 +19,8 @@ import bot8 from '../assets/bot8.svg'
 
 export default function BotsInfo(props) {
 
-  const inputRef = useRef(null)
+  
+
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
   const {direction, setDirection} = useState({
@@ -32,6 +34,8 @@ export default function BotsInfo(props) {
     "8": "SW"
 
   })
+
+  const inputAutoFocus = useAutoFocus(botsArr);
 
   const [iconPalette, setIconPalette] = useState([
     {
@@ -236,7 +240,8 @@ export default function BotsInfo(props) {
             <label htmlFor="name">
               Name your bot:
               <input
-                ref={inputRef}
+  
+                ref={inputAutoFocus}
                 type="text"
                 id="name"
                 name="name"
