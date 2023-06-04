@@ -2,16 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
-
-
-.test {
-    // background-color: #d3f3ee;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-}
-
 h2 {
     text-align: center;
     font-family: 'Roboto Mono', monospace;
@@ -25,55 +15,16 @@ fieldset {
     justify-content: center;
     align-items: left;
     border: none;
-    
-    // flex-wrap: wrap;
-    
 }
 
 form {
-    @include form
-    
-//     border: 1px solid #061d41;
-//     width: fit-content;
-//     text-align: left;
-//     margin: 2rem;
-//     padding: 2%;
-//     font-family: 'Roboto Mono', monospace;
-//     background-color: white;
-//         button {
-//             width: 20%;
-//             align-self: center;
-//             margin-top: 6%;
-//             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
-//         }
-//         label {
-//             display: flex;
-//             white-space: nowrap;
-//             margin: 2px;
-//         }
-    
-        
-//         input {
-//             margin-left: 10px;
-//         }
-        
-//         select {
-//             margin-left: 10px;
-//             padding: 5px 5px 5px 8px;
-//         }
+    @include form    
 }
 
 
 .createdBots {
     display: flex;
-    // border: 2px solid red;
-
-
 }
-
-
-
 
 .delete {
     width: 80%;
@@ -82,7 +33,6 @@ form {
 }
 
 .showBot {
-    // 
     width: fit-content;
     align-items: center;
     flex-wrap: no-wrap;
@@ -121,9 +71,7 @@ form {
     justify-content: flex-end;
     margin-left: auto;
     margin-top: -13px;
-        /* Adjust this value as needed */
         margin-right: 10px;
-        /* Adjust this value as needed */
     margin-bottom: 15px;
 }
 

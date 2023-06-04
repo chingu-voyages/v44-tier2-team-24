@@ -6,7 +6,6 @@ class BotClass {
     position,
     direction,
     name,
-    colorClass,
     value,
     wins = 0,
     loses = 0
@@ -15,7 +14,6 @@ class BotClass {
     this.position = position;
     this.direction = direction;
     this.name = name;
-    this.colorClass = colorClass;
     this.value = value;
     this.wins = wins,
     this.loses = loses;
