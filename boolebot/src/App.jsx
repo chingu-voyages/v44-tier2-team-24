@@ -9,9 +9,6 @@ import Arena from "./Components/Gameplay/Arena"
 import CreateArena from './Pages/CreateArena'
 import { useState, useEffect } from "react";
 
-import bot1 from './assets/bot1.svg'
-
-
 function App() {
 //creating botsArray to be passed on as props to child components
 const [arenaData, setArenaData] = useState({
@@ -24,11 +21,12 @@ const [botsArr, setBotsArr] = useState([]);
 
 const [botsData, setBotsData] = useState({
   name: "",
-  colorClass: "#FFFFF",
+  // colorClass: "#FFFFF",
   value: 0,
   wins: 0,
   loses: 0,
-  direction: 2,
+
+  direction: 1,
   botIcon: bot1
 });
 
@@ -49,6 +47,9 @@ const getArenaInfo = (newArenaInfo)=>{
 //      setBotsArr((prev) => [...prev, botsData]);
 //    }
 // }
+
+// This is an array of the current route/location
+const routeLocation = ['/createArena', '/createBot'];
 
 // Handler function to delete bots from the array
 const deleteBotFromArray = (index)=>{

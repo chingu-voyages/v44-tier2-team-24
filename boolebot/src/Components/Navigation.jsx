@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import styles from './Navigation.module.css'
 import sweetAlertMixin from "../Components/SweetAlertConfig";
 
 
@@ -61,20 +60,21 @@ function Navigation() {
       
     });
   };
+  
     return (
     
       <header>
         <nav>
             <Link to="/"><h1>BooleBots</h1></Link>
-           <ul className={styles.ul}>
-            <li>
-              <Link to="/createBot">Create Bots</Link>
-            </li>
+           <ul>
+            {/* <li>
+              <Link to="/createArena">Game Config</Link>
+            </li> */}
             <li>
               <Link to="#" onClick={()=>{
-                showInstructions()
-               
-              }}>How to play</Link>
+               showInstructions()
+              }}
+            > Game Instructions</Link>
             </li>
             <li>
               <Link to="/about">About Us</Link>

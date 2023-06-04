@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import { Link } from "react-router-dom";
 import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
-import styles from "./Arena.module.css";
+
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
 import singleBot from "../../assets/bot.png"
@@ -21,7 +22,6 @@ import GameClock from "../GameClock";
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
   const [initialPosition, setInitialPosition] = useState([]);
-  
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [leaderboard, setLeaderboard] = useState({});
   const [currBot, setCurrBot] = useState(0);
@@ -92,7 +92,7 @@ export default function Arena(props) {
           tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
-        {robot ? <img src={robot.botIcon} alt="photo of a robot head" />: ""}
+        {robot ? <img src={singleBot} alt="photo of a robot head" />: ""}
         {text}
       </div>
     );
@@ -135,7 +135,6 @@ export default function Arena(props) {
           bot.name,
           bot.colorClass,
           bot.value,
-          bot.botIcon,
           bot.wins,
           bot.loses,
         )
@@ -230,13 +229,15 @@ export default function Arena(props) {
 
 
   return (
-    <main className={styles.main_container}>
+    <main className="main_container">
       <div>
         {renderArena()}
 
-        <button onClick={() => startGame()}>
+        
+        {botsArr.length === 1? <Link to="/createArena"><button>START OVER</button></Link> : <button onClick={() => startGame()}>
           {isGameRunning ? "STOP" : "BATTLE"}
-        </button>
+        </button>}
+          
       </div>
       <aside>
         <GameClock isGameRunning={isGameRunning}/>
