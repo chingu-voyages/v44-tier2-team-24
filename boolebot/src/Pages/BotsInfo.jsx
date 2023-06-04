@@ -1,25 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import singleBot from "../assets/bot.png";
 import Swal from "sweetalert2"; 
 import { Link } from 'react-router-dom';
 import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
-import IconPalette from './IconPalette'
-import BotRoaster from '../Components/Gameplay/BotRoaster';
-import useAutoFocus from '../Components/hooks/useAutoFocus';
-
-import bot1 from '../assets/bot1.svg'
-import bot2 from '../assets/bot2.svg'
-import bot3 from '../assets/bot3.svg'
-import bot4 from '../assets/bot4.svg' 
-import bot5 from '../assets/bot5.svg'
-import bot6 from '../assets/bot6.svg'
-import bot7 from '../assets/bot7.svg'
-import bot8 from '../assets/bot8.svg'
 
 export default function BotsInfo(props) {
-
-  
 
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
@@ -36,48 +22,23 @@ export default function BotsInfo(props) {
   })
   // const [createdBots, setCreatedBots] = useState([]);
 
-  const inputAutoFocus = useAutoFocus(botsArr);
-
-  const [iconPalette, setIconPalette] = useState([
-    {
-      url: bot1,
-      isSelected: false
-    },
-    
-    {
-      url: bot2,
-      isSelected: false
-    },
-    {
-      url: bot3,
-      isSelected: false
-    },
-    {
-      url: bot4,
-      isSelected: false
-    },
-    {
-      url: bot5,
-      isSelected: false
-    },
-    {
-      url: bot6,
-      isSelected: false
-    },
-    {
-      url: bot7,
-      isSelected: false
-    },
-    {
-      url: bot8,
-      isSelected: false
-    },
-  ])
-
-  const [iconSelected, setIconSelected] = useState(0);
-
-
+  //Refactoring Form state management
+  //Refactoring Form state management
+  // const [formData, setFormData]= useState({
+  //   position:1,
+  //   direction:"",
+  //   tile:"4",
+  //   name:"",
+  //   colorClass:"yellow",
+  //   value: "",
+  //   wins:0,
+  //   loses: 0,
+  //   isAlive:true,
+  // })
+  // const addbot = props.addBotToArray;
+  // const createdBots = props.botsArray;
   const [isValid, setIsValid]= useState({
+    color: false,
     name: false
   });
  
@@ -91,10 +52,12 @@ export default function BotsInfo(props) {
 
     setBotsData((currentData) => {
    
-      if (changedField === "name" ) {
+      if (changedField === "name" || changedField === "colorClass") {
         let isSameName = botsArr.some((bot) => bot.name === newValue)
+        let isColorSame =  botsArr.some((bot) => bot.colorClass === newValue)
         setIsValid({
           name: isSameName,
+          color: isColorSame,
         });
 
         if (isSameName ) {
@@ -107,6 +70,13 @@ export default function BotsInfo(props) {
             
           });
           
+        } else if(isColorSame){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `Duplicate name detected!`,
+            
+          });
         }
          else {
           let newState = { ...currentData, [changedField]: newValue };
@@ -128,6 +98,7 @@ export default function BotsInfo(props) {
     setBotsData((prev)=>{
       return {...prev, 
         name: "",
+        // colorClass: "#FFFFF",
         value: 0,
         wins: 0,
         loses: 0,
@@ -173,49 +144,28 @@ export default function BotsInfo(props) {
       : generateRandomNumber(tileNum * tileNum); 
 
     setBotsArr((prev) => {
-      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
+      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, botsData.colorClass, Number(botsData.value) )
       console.log("NEW BOT CREATED", newBot)
 
       const isUniqueBot = prev.some(
         (bot) =>
-          bot.name === newBot.name 
+          bot.name === newBot.name ||
+          bot.colorClass === newBot.colorClass
       );
 
       if (!isUniqueBot) {
-        setIconPalette(prev => {
-          const newIconPallet = [...prev]
-
-          newIconPallet[iconSelected].isSelected = true
-          return newIconPallet
-        })
-
-        setIconSelected( prev => {
-          const newIndex = iconPalette.findIndex( icon => !icon.isSelected )
-  
-          if(newIndex !== -1){
-            setBotsData( prev => {
-              return { 
-                ...prev,
-                botIcon: iconPalette[newIndex].url
-              }
-            })
-          }
-
-          return newIndex
-        })
-
         return [...prev, newBot];
       } 
       else{
         return prev
       }
       
-    });  
-    
-    
-
+    });    
 
   };
+
+    
+  
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -232,8 +182,49 @@ export default function BotsInfo(props) {
   return (
     <>
       <h2>Create Bot</h2>
-      
-     <BotRoaster botsArr={botsArr}/>
+      <div className="createdBots">
+        {botsArr &&
+          botsArr.map((bot, index) => (
+            <div className={`showBot ${bot.name}`} style={{backgroundColor: `${bot.colorClass}`}} key={index}>
+              <img src={singleBot} alt="photo of a robot head" />
+              <div key={index}>
+                <h3 className="title">{bot.name}</h3>
+                {expandedBots[index] ? (
+                  <>
+                    <p>Position: {bot.position}</p>
+                    <p>
+                      Direction:{" "}
+                      {bot.direction === "1"
+                        ? "⬆️"
+                        : bot.direction === "2"
+                        ? "⬇️"
+                        : bot.direction === "3"
+                        ? "⬅️"
+                        : "➡️"}
+                    </p>
+                    <p>Color: {bot.colorClass}</p>
+                    <p>Value: {bot.value}</p>
+                  </>
+                ) : null}
+              </div>
+              <button
+                className={`expandButton ${
+                  expandedBots[index] ? "expanded" : ""
+                }`}
+                onClick={() => toggleBotExpansion(index)}
+              >
+                <span className="arrow"></span>
+              </button>
+              {/* <button>Edit</button> */}
+              <button
+                className="delete"
+                onClick={() => props.deleteBotFromArray(index)}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+      </div>
 
       <div className="test">
         <form onSubmit={handleSubmit}>
@@ -241,8 +232,6 @@ export default function BotsInfo(props) {
             <label htmlFor="name">
               Name your bot:
               <input
-  
-                ref={inputAutoFocus}
                 type="text"
                 id="name"
                 name="name"
@@ -278,8 +267,23 @@ export default function BotsInfo(props) {
               </select>
             </label>
 
-            <label htmlFor="icons">Bot Icon</label>
-            <IconPalette id="icons" iconPalette={iconPalette} setBotsData={setBotsData} iconSelected={iconSelected} setIconSelected={setIconSelected} />
+            <label htmlFor="colorClass">Bot Color</label>
+            <input
+              type="color"
+              id="colorClass"
+              name="colorClass"
+              value={botsData.colorClass}
+              onChange={handleChange}
+              required
+            />
+            {isValid.color ? (
+              <p style={{ color: "red" }}>
+                {" "}
+                * No Two Robots can have same color
+              </p>
+            ) : (
+              ""
+            )}
 
             <label htmlFor="direction">
               Bot Direction:
