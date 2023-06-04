@@ -21,12 +21,13 @@ const [botsArr, setBotsArr] = useState([]);
 
 const [botsData, setBotsData] = useState({
   name: "",
-  colorClass: "#FFFFF",
+  // colorClass: "#FFFFF",
   value: 0,
   wins: 0,
   loses: 0,
-  direction: 2,
-  isAlive: true,
+
+  direction: 1,
+  botIcon: bot1
 });
 
 // handler function to get arena info
@@ -46,6 +47,9 @@ const getArenaInfo = (newArenaInfo)=>{
 //      setBotsArr((prev) => [...prev, botsData]);
 //    }
 // }
+
+// This is an array of the current route/location
+const routeLocation = ['/createArena', '/createBot'];
 
 // Handler function to delete bots from the array
 const deleteBotFromArray = (index)=>{
