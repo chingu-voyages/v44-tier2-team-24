@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import singleBot from "../assets/bot.png";
 import Swal from "sweetalert2"; 
 import { Link } from 'react-router-dom';
@@ -17,6 +17,7 @@ import bot8 from '../assets/bot8.svg'
 
 export default function BotsInfo(props) {
 
+  const inputRef = useRef(null)
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
   const {direction, setDirection} = useState({
@@ -184,13 +185,15 @@ export default function BotsInfo(props) {
 
         setIconSelected( prev => {
           const newIndex = iconPalette.findIndex( icon => !icon.isSelected )
-
-          setBotsData( prev => {
-            return { 
-              ...prev,
-              botIcon: iconPalette[newIndex].url
-            }
-          })
+  
+          if(newIndex !== -1){
+            setBotsData( prev => {
+              return { 
+                ...prev,
+                botIcon: iconPalette[newIndex].url
+              }
+            })
+          }
 
           return newIndex
         })
@@ -207,9 +210,6 @@ export default function BotsInfo(props) {
 
 
   };
-
-    
-  
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -264,7 +264,16 @@ export default function BotsInfo(props) {
               {/* <button>Edit</button> */}
               <button
                 className="delete"
-                onClick={() => props.deleteBotFromArray(index)}
+                onClick={() => {
+                  props.deleteBotFromArray(index)
+
+                  setIconPalette(prev => {
+                    const newIconState = [...prev]
+
+                    newIconState[index].isSelected = false
+                    return newIconState
+                  })
+                }}
               >
                 Delete
               </button>
@@ -278,6 +287,7 @@ export default function BotsInfo(props) {
             <label htmlFor="name">
               Name your bot:
               <input
+                ref={inputRef}
                 type="text"
                 id="name"
                 name="name"
