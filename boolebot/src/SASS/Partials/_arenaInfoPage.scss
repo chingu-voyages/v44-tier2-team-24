@@ -1,1 +1,15 @@
 @use "./mixins" as *;
+
+.arenaControls{
+    height: 85vh;
+}
+.arena-input-form{
+   margin: 0 auto;
+//    border: 1px solid red;
+   display: flex;
+   justify-content: center;
+   padding: 10em;
+   margin-bottom: auto;
+
+    
+}

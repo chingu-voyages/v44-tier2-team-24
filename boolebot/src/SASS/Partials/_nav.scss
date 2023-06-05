@@ -44,7 +44,11 @@
 // }
 
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
-
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 a {
   text-decoration: none;
   color: white;
@@ -76,20 +80,17 @@ nav {
   width: 100%;
 }
 header {
+  margin: 0 auto;
   background-color: #061d41;
-    text-align: center;
-    position: fixed;
-    min-height: 2%;
-    top: 0;
-    right: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
+  text-align: center;
+  min-height: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 3%;
   width: 100%;
-  margin-bottom: 1em;
   background-color: #061d41;
   padding: 0.5em 0;
+  
 }

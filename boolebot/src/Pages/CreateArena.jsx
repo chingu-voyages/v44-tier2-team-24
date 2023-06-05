@@ -46,7 +46,7 @@ export default function BotsInfo(props) {
   };
 
   return (
-    <>
+    <div className="arenaControls">
       <div className="arena-input-form">
         <form onSubmit={handleSubmit}>
           <div>
@@ -107,6 +107,6 @@ export default function BotsInfo(props) {
         </form>
         
       </div>
-    </>
+    </div>
   );
 }
