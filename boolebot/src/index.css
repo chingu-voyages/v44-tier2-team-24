@@ -14,15 +14,13 @@ code {
     monospace;
 }
 
-
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
   height: 100%;
 }
-
 
 /* arena */
 .arena {
@@ -40,7 +38,7 @@ code {
   font-weight: bold;
 }
 
-.crashedText{
+.crashedText {
   color: red;
 }
 
@@ -53,7 +51,7 @@ code {
 }
 
 .orange {
-  background-color: orange
+  background-color: orange;
 }
 
 .blue {
@@ -68,11 +66,10 @@ code {
   background-color: green;
 }
 
-
 button {
   cursor: pointer;
 }
 
-.border{
+.border {
   border: 10px solid aquamarine;
 }
