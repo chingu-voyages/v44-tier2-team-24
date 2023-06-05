@@ -4,30 +4,43 @@
   margin: 0;
   padding: 0;
 }
-/*This is the main header in the Homepage*/
-.title {
-  font-family: "Bungee Shade", cursive;
-  padding-top: 5em;
-  margin-bottom: 2em;
-}
+
 .main_body {
   background-color: #d3f3ee;
-  height: 95%;
-  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  img{
+    width: 100%;
+  }
 }
+.imgWrapper {
+  
+  width: 35%;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
 .homepageBtns {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0;
+  padding: 1.5em 0;
 }
 .startBtn,
 .instructionBtn {
-  margin-top: 2em;
   background-color: #061d41;
   color: white;
   font-weight: 600;
   font-size: 1em;
-  padding: 0.25em 1.5em;
+  padding: 0.5em 1.75em;
   border-radius: 10px;
+  margin-bottom: .8em;
+  border: none;
   /* text-decoration: none; */
+}
+
+li{
+  text-align: left;
 }

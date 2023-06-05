@@ -1,42 +1,51 @@
-import React from "react";
-import styles from "./HomePage.module.css";
-import Container from "../Components/Layout/Container";
+import React, {useEffect} from "react";
 import Swal from "sweetalert2";
+import sweetAlertMixin from "../Components/SweetAlertConfig";
 import { Link } from "react-router-dom";
 import botImage from "../assets/booleBotsHome.png";
 
+
 export default function Homepage() {
+  // const [isLoading, setIsLoading] = useState(true);
+  const showInstructions = () => {
+    sweetAlertMixin.fire({
+      title: 'BOOLEBOTS',
+      html: 
+      `<p className="alert">Explore the fascinating world of boolean values through an entertaining game called Boolebots
+      </p>
+      <ol>
+      <li>1. Select a board size</li>
+      <li>2. Assemble your own army of bots</li>
+      <li>3. Witness the magic of boolean operators in action.</li> 
+      </ol>
+      <p className="alert">Let's dive in and unravel the mysteries of these operators together!<p>
+      
+      `
+      
+    });
+  };
+  // useEffect(()=>{
+  //   showInstructions();
+  // }, [])
+  
+
   return (
-    <>
-      <div className={styles.main_body}>
-       
-        <img src={botImage}/>
-
-          <section className={styles.homepageBtns}>
-            <Link to="/createBot">
-              <button className={styles.startBtn}>Start</button>
-            </Link>
-
-            <button
-              className={styles.instructionBtn}
-              onClick={() => {
-               Swal.fire({
-                  title: "We will explain how to play the game",
-                  width: 600,
-                  padding: "3em",
-                  color: "#716add",
-                  background:
-                    "#fff url(https://sweetalert2.github.io/#iconsimages/trees.png)",
-                });
-
-               
-              }}
-            >
-              How to play
-            </button>
-          </section>
-       
+    <div className="main_body">
+      {/* Below this line is the bot image*/}
+      <div className="imgWrapper">
+        <img src={botImage} alt="Bot" />
       </div>
-    </>
+
+      <section className="homepageBtns">
+        <Link to="/createArena">
+          <button className="startBtn">Start</button>
+        </Link>
+
+        {/* Use the showInstructions function as the click event handler */}
+        <button className="instructionBtn" onClick={showInstructions}>
+          How to play
+        </button>
+      </section>
+    </div>
   );
 }
