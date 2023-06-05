@@ -73,7 +73,7 @@ export default function BotsInfo(props) {
                 id="tileNum"
                 type="range"
                 min={3}
-                max={10}
+                max={8}
                 step={1}
                 value={arenaData.tileNum}
                 name="tileNum"

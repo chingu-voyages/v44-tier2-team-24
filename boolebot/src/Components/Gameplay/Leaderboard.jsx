@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../../Sass/Partials/_leaderBoard.scss'
+import { Link, redirect } from "react-router-dom";
 
-export default function Leaderboard({leaderboard, botsArr}) {
+export default function Leaderboard({leaderboard, botsArr, setBotsArr}) {
 
 
     const [winningBot, setWinningBot] = useState({})
@@ -44,6 +45,10 @@ export default function Leaderboard({leaderboard, botsArr}) {
         }
     }, [botsArr, leaderboard])
   
+
+  function restartGame() {
+    setBotsArr([])
+  }
   return (
     <div>
         <h3>Leaderboard</h3>
@@ -51,6 +56,9 @@ export default function Leaderboard({leaderboard, botsArr}) {
             {leaderboardEl}   
           
         </ul>
+        <Link to='/'> 
+          <button onClick={()=>{restartGame()}}>Restart From Scratch</button>
+        </Link>
     </div>
   )
 }

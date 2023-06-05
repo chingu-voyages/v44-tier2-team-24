@@ -6,7 +6,7 @@ import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
 import BotRoaster from "./BotRoaster";
-
+import ArenaSetting from "./ArenaSetting";
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
 import singleBot from "../../assets/bot.png"
@@ -230,7 +230,7 @@ export default function Arena(props) {
     return () => clearInterval(intervalId);
   }, [isGameRunning, currBot, botsArr, operator]);
 
-
+  console.log(operator)
   return (
     <main className="main_container">
       <div>
@@ -244,10 +244,12 @@ export default function Arena(props) {
           
       </div>
       <aside>
-        
+        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator}/>
         <GameClock isGameRunning={isGameRunning}/>
         <BattleLog battleLog={battleLog} />
-        <Leaderboard leaderboard={leaderboard} botsArr={botsArr}/>
+        <Leaderboard leaderboard={leaderboard} 
+                    setBotsArr={setBotsArr}
+                    botsArr={botsArr}/>
       </aside>
     </main>
   );

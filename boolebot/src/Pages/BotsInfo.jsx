@@ -20,7 +20,7 @@ import bot8 from '../assets/bot8.svg'
 export default function BotsInfo(props) {
 
   
-
+  const [isBotsArrayFull, setIsBotsArrayFull] = useState(false)
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
   const {direction, setDirection} = useState({
@@ -135,15 +135,73 @@ export default function BotsInfo(props) {
     })
     
     let occupiedPositions = []
+
     if(botsArr.length){
       botsArr.forEach(bot => {
         if(bot.position){
+            const invalidPosition = []
+
+            if (bot.position > 0 && bot.position <= tileNum * tileNum){
+               if (!invalidPosition.includes(bot.position) && !occupiedPositions.includes(bot.position)){
+                invalidPosition.push(bot.position)
+               }
+            }
+
+            if (bot.position - tileNum > 0) {
+                if (!invalidPosition.includes(bot.position - tileNum) && !occupiedPositions.includes(bot.position - tileNum))
+                  {
+                    invalidPosition.push(bot.position - tileNum)
+                  }
+              }
+
+            if(bot.position + tileNum <= tileNum * tileNum){
+              if(!invalidPosition.includes(bot.position + tileNum) && !occupiedPositions.includes(bot.position + tileNum) ){
+                invalidPosition.push(bot.position + tileNum)
+              }
+            }
+
+            if((bot.position - 1) % tileNum != 0){
+              if(!invalidPosition.includes(bot.position - 1) && !occupiedPositions.includes(bot.position - 1)){
+                invalidPosition.push(bot.position - 1)
+              }
+            }
+
+            if((bot.position + 1) % tileNum != 1){
+              if(!invalidPosition.includes(bot.position + 1) && !occupiedPositions.includes(bot.position + 1)){
+                invalidPosition.push(bot.position + 1)
+              }
+            }
+
+            if(bot.position % tileNum !== 0 && bot.position - (tileNum - 1) > 0){
+              if(!invalidPosition.includes(bot.position - (tileNum - 1))  && !occupiedPositions.includes(bot.position - (tileNum - 1))){
+                invalidPosition.push(bot.position - (tileNum - 1) )
+              }
+            }
+
+            if(bot.position % tileNum !== 1 && bot.position - (tileNum + 1) > 0){
+              if(!invalidPosition.includes(bot.position - (tileNum + 1))  && !occupiedPositions.includes(bot.position - (tileNum + 1))){
+                invalidPosition.push(bot.position - (tileNum + 1))
+
+              }
+            }
+
+            if(bot.position % tileNum !== 0 && bot.position + (tileNum + 1) < tileNum * tileNum){
+              if(!invalidPosition.includes(bot.position + (tileNum + 1))  && !occupiedPositions.includes(bot.position + (tileNum + 1)))
+              {
+                invalidPosition.push(bot.position + (tileNum + 1))
+
+              }
+            }
+
+            if(bot.position % tileNum !== 1 && bot.position + (tileNum - 1) < tileNum * tileNum){
+              if(!invalidPosition.includes(bot.position + (tileNum - 1))  && !occupiedPositions.includes(bot.position + (tileNum - 1))){
+                
+                invalidPosition.push(bot.position + (tileNum - 1))
+            }
+
+          }
             occupiedPositions.push(
-            bot.position,
-            bot.position + 1,
-            bot.position - 1,
-            bot.position + tileNum,
-            bot.position - tileNum
+            ...invalidPosition
           );
         }
       })
@@ -153,6 +211,11 @@ export default function BotsInfo(props) {
       //generate a number between 1 to tileNum** but not any num in the occupiedPosition arr
       let isValid = false
       let position;
+    
+      
+      if(occupiedPositions.length >= tileNum * tileNum){
+        return -1
+      }
       
       do{
         position = generateRandomNumber(tileNum * tileNum)
@@ -160,6 +223,7 @@ export default function BotsInfo(props) {
 
         if(!occupiedPositions.includes(position)){
           isValid = true
+          occupiedPositions.push(position)
         }
         
       }while(!isValid)
@@ -171,6 +235,20 @@ export default function BotsInfo(props) {
       ? generateUniquePosition()
       : generateRandomNumber(tileNum * tileNum); 
 
+      console.log("POSITION ", pos)
+    
+    if(pos === -1){
+      setIsBotsArrayFull(true)
+
+      Swal.fire({
+        icon: "error",
+        title: "Reached full arena capacity ",
+        text: `Can't add more bots to the arena`,
+      });
+
+    }
+    else{
+    
     setBotsArr((prev) => {
       const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
       console.log("NEW BOT CREATED", newBot)
@@ -210,10 +288,7 @@ export default function BotsInfo(props) {
       }
       
     });  
-    
-    
-
-
+    }
   };
 
   const [expandedBots, setExpandedBots] = useState([]);
@@ -304,11 +379,12 @@ export default function BotsInfo(props) {
                 <option value="8">SOUTH WEST</option>
               </select>
             </label>
-            <button type="submit">Add Bot</button>
+            <button disabled={isBotsArrayFull} type="submit">Add Bot</button>
+          
           </fieldset>
         </form>
         <Link to="/arena">
-          <button>Battle Ground</button>
+          <button disabled={botsArr.length <= 1}>Battle Ground</button>
         </Link>
       </div>
     </>
