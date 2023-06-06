@@ -20,7 +20,8 @@ code {
   /* padding: 2rem; */
   /* background-color: #d3f3ee; */
   text-align: center;
-  height: 100%;
+  height: auto;
+  position: relative;
 }
 
 /* arena */

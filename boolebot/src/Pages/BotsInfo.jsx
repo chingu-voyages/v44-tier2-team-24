@@ -229,7 +229,7 @@ export default function BotsInfo(props) {
 
 
   return (
-    <>
+    <div className='botInfo_page'>
       <h2>Create Bot</h2>
       
      <BotRoaster botsArr={botsArr}/>
@@ -314,6 +314,6 @@ export default function BotsInfo(props) {
           <button>Battle Ground</button>
         </Link>
       </div>
-    </>
+    </div>
   );
 }
