@@ -96,7 +96,7 @@ const Hamburger = () => {
         </nav>
         <div className={menuClass}>
           <Link className="menu-link" onClick={showInstructions}>Game Instructions</Link>
-          <Link className="menu-link" to={`/AboutUs`} element={<AboutUs />} onClick={closeMenu}>About Us</Link>
+          <Link className="menu-link" to={"/about"} element={<AboutUs />} onClick={closeMenu}>About Us</Link>
         </div>
       </div>
     </div>
