@@ -94,7 +94,7 @@ export default function Arena(props) {
         key={tilePosition + 1}
         data-position={tilePosition}
         className={`tile  ${
-          tilePosition === collisionLocation  ? "border crashedText" : ""
+          tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
         {robot ? <img src={robot.botIcon} alt="photo of a robot head" />: ""}
@@ -123,6 +123,7 @@ export default function Arena(props) {
   useEffect(() => {
     if (botsArr.length === 1) {
       setIsGameRunning(false);
+
     }
   }, [botsArr]);
 
@@ -252,8 +253,9 @@ export default function Arena(props) {
         running: false,
       };
     });
-    renderArena()
+    setCollisionLocation(null)
   }
+  
 
   return (
     <main className="main_container">
