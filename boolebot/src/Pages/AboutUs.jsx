@@ -101,6 +101,14 @@ export default function AboutUs() {
         >
           <i className="fa fa-linkedin"></i>
         </a>
+        <a
+          className='footer_link'
+          href="https://suchetamukherjee.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-briefcase"></i>
+        </a>
             
           
           </div>

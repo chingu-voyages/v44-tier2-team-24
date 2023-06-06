@@ -19,7 +19,7 @@
     padding: 3em 1em;
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     // border: 1px solid red;  
   }
   section:nth-child(odd) {
@@ -52,5 +52,10 @@
   .icons {
     i {
       color: $navy-blue;
+      padding: .5em;
     }
+    // border: 1px solid red;
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: center;
   }
