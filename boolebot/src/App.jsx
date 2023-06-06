@@ -29,7 +29,6 @@ const [botsData, setBotsData] = useState({
   value: 0,
   wins: 0,
   loses: 0,
-
   direction: 1,
   botIcon: bot1
 });
