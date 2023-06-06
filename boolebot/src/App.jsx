@@ -10,7 +10,6 @@ import CreateArena from './Pages/CreateArena';
 import { useState, useEffect } from "react";
 import bot1 from './assets/bot1.svg'
 
-import bot1 from "./assets/bot1.svg";
 import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
