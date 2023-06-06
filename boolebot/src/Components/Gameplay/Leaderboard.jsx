@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../../Sass/Partials/_leaderBoard.scss'
+import '../../SASS/Partials/_leaderBoard.scss'
 import { Link, redirect } from "react-router-dom";
 
 export default function Leaderboard(props) {
