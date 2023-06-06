@@ -6,7 +6,10 @@ function RootLayout() {
     return (
         <div className='main_content'> 
         <Navigation />
+        <Container>
         <Outlet />
+        </Container>
+        
         <Footer />
         </div>
     )
