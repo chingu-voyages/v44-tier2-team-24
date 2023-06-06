@@ -5,18 +5,31 @@
 
 
 .test {
-    // background-color: #d3f3ee;
+    background-color: #d3f3ee;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 3em 0;
+        // border: 1px solid red;  
+        button{
+            background-color: #061d41;
+            color: white;
+            font-weight: 600;
+            font-size: 1em;
+            padding: 0.5em 1.5em;
+            border-radius: 10px;
+            margin-bottom: .8em;
+            border: none;
+            width: fit-content;
+        }
 }
 
 h2 {
     text-align: center;
     font-family: 'Roboto Mono', monospace;
     background-color: #d3f3ee;
-    margin-top: 2.5%;
+   
 }
 
 fieldset {
@@ -33,35 +46,6 @@ fieldset {
 form {
     @include form
     
-//     border: 1px solid #061d41;
-//     width: fit-content;
-//     text-align: left;
-//     margin: 2rem;
-//     padding: 2%;
-//     font-family: 'Roboto Mono', monospace;
-//     background-color: white;
-//         button {
-//             width: 20%;
-//             align-self: center;
-//             margin-top: 6%;
-//             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
-//         }
-//         label {
-//             display: flex;
-//             white-space: nowrap;
-//             margin: 2px;
-//         }
-    
-        
-//         input {
-//             margin-left: 10px;
-//         }
-        
-//         select {
-//             margin-left: 10px;
-//             padding: 5px 5px 5px 8px;
-//         }
 }
 
 
