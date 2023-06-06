@@ -1,12 +1,33 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom"; 
 import sweetAlertMixin from "../Components/SweetAlertConfig";
+import AboutUs from "../Pages/AboutUs";
 
+const Hamburger = () => {
+  //to change burger classes
+  const [burgerClass, setBurgerClass] = useState("burger-bar unclicked")
+  const [menuClass, setMenuClass] = useState("menu hidden")
+  const [isMenuClicked, setIsMenuClicked] = useState(false)
+  //toggle burger menu change
+  const updateMenu = () => {
+    if (!isMenuClicked) {
+      setBurgerClass("burger-bar clicked");
+      setMenuClass("menu visible");
+    } else {
+      setBurgerClass("burger-bar unclicked");
+      setMenuClass("menu hidden");
+    }
+    setIsMenuClicked(!isMenuClicked);
+  };
+  const closeMenu = () => {
+    setBurgerClass("burger-bar unclicked");
+    setMenuClass("menu hidden");
+    setIsMenuClicked(false);
+  };
 
-function Navigation() {
   const showInstructions = () => {
     sweetAlertMixin.fire({
-      
-      html: `
+            html: `
       <h3>Instructions</h3>
       <p>
       Boole Bots is a game that is not only fun, but also an aid in helping to understand basic Boolean logic. This game has an arena of game tiles in which your bots move at random speeds and trajectories. The Bots are assigned boolean values of 0 or 1 and a boolean operations - AND, OR, NOR, NOT ,can be assigned to the arena itself.
@@ -55,37 +76,32 @@ function Navigation() {
               <p> When either Bot 1 or Bot 2 (or both) has a boolean value of 1 (true), the result is 0. This leads to a tie.</p>
             </section>
             <p>
-              `
-      
-      
+            `,
+
     });
+    closeMenu();
   };
-  
-    return (
-    
-      <header>
-        <nav>
-            <Link to="/"><h1>BooleBots</h1></Link>
-           <ul className="nav-links">
-            {/* <li>
-              <Link to="/createArena">Game Config</Link>
-            </li> */}
-            <li>
-              <Link to="#" onClick={()=>{
-               showInstructions()
-              }}
-            > Game Instructions</Link>
-            </li>
-            <li>
-              <Link to="/about">About Us</Link>
-            </li>
-          </ul>
-          
+  return (
+    <div className="hamburger-nav">
+      <h1>
+        <Link className="h1-link menu-link-ham" to={`/`}> Hello </Link>
+      </h1>
+      <div className="burger-container">
+        <nav className="burger-nav">
+          <button className="burger-menu" onClick={updateMenu}>
+            <div className={burgerClass}></div>
+            <div className={burgerClass}></div>
+            <div className={burgerClass}></div>
+          </button>
         </nav>
-      </header>
-     
-    );
-
+        <div className={menuClass}>
+          <Link className="menu-link" onClick={showInstructions}>Game Instructions</Link>
+          <Link className="menu-link" to={`/AboutUs`} element={<AboutUs />} onClick={closeMenu}>About Us</Link>
+        </div>
+      </div>
+    </div>
+  )
 }
+export default Hamburger;
 
-export default Navigation;
+
