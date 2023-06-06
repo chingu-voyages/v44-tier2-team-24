@@ -11,6 +11,7 @@ import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
 import singleBot from "../../assets/bot.png"
 import GameClock from "../GameClock";
+import PlayFromScratchBtn from "./PlayFromScratchBtn";
 
 // 1. Build the game arena.
 // 2. Add 1 robot to the board.
@@ -251,6 +252,7 @@ export default function Arena(props) {
         running: false,
       };
     });
+    renderArena()
   }
 
   return (
@@ -285,6 +287,7 @@ export default function Arena(props) {
           setBotsArr={setBotsArr}
           botsArr={botsArr}
         />
+        <PlayFromScratchBtn setBotsArr={setBotsArr}/>
       </aside>
     </main>
   );

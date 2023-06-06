@@ -50,26 +50,10 @@ export default function Leaderboard(props) {
     }, [botsArr, leaderboard])
   
 
-  function restartGame() {
-    setBotsArr([])
-  }
-
-
   return (
     <div>
       <h3>Leaderboard</h3>
       <ul className="leaderboard">{leaderboardEl}</ul>
-      <Link to="/">
-        <div>
-          <button
-            onClick={() => {
-              restartGame();
-            }}
-          >
-            Play From Scratch
-          </button>
-        </div>
-      </Link>
     </div>
   );
 }
