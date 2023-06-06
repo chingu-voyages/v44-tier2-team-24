@@ -2,14 +2,7 @@ import { useState, useEffect} from 'react'
 
 export default function GameClock(props) {
 
-  const { isGameRunning } = props
-
-  const [timer, setTimer] = useState({
-    min: 0,
-    sec: 0, 
-    running: false
-  })
-
+  const { isGameRunning, timer, setTimer } = props
 
   function incrementTime(){
     setTimer(prev => {
@@ -33,9 +26,8 @@ export default function GameClock(props) {
 
   return (
     <div>
-        <span>Time Elapsed: </span>
-        <br />
-        <h2>{timer.min}:{timer.sec}</h2>
+        <h4>Time Elapsed: </h4>
+        <h2>{timer.min <= 9 ? `0${timer.min}` : timer.sec }:{timer.sec <= 9 ? `0${timer.sec}` : timer.sec }</h2>
     </div>
   )
 }

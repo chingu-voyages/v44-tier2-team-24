@@ -1,1 +1,14 @@
 @use "./mixins" as *;
+
+
+.arena-input-form{
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+
+}
+.createArena{
+    background-color: #d3f3ee;
+    padding: 5em 0;
+   
+}
