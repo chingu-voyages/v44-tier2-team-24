@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function PlayFromScratchBtn({setBotsArray}) {
+export default function PlayFromScratchBtn({setBotsArr}) {
     
   function restartGame() {
     setBotsArr([]);

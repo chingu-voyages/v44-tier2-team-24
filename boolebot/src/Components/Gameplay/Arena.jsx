@@ -13,13 +13,6 @@ import singleBot from "../../assets/bot.png"
 import GameClock from "../GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 
-// 1. Build the game arena.
-// 2. Add 1 robot to the board.
-// 3. Make 1 robot move in the assigned direction on click.
-// 4. Make 1 robot change to a valid direction when it hits a wall.
-// 5. Make the robot move automatically.
-// 6. Add more than 1 robot to the board.
-// 7. Add basic collision logic.
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);

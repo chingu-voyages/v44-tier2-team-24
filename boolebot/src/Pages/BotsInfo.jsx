@@ -82,19 +82,29 @@ export default function BotsInfo(props) {
  
 
 
-  // Generic change handler
-  function handleChange(e){
+// Generic change handler
+function handleChange(e){
     const changedField = e.target.name;
     const newValue = e.target.value;
 
+
+    setIsValid(prev => {
+      let isSameName = botsArr.some((bot) => bot.name === newValue)
+
+      if (changedField === "name" ){
+        return {
+          name: isSameName,
+        }
+      }
+      return prev
+    }
+    );
 
     setBotsData((currentData) => {
    
       if (changedField === "name" ) {
         let isSameName = botsArr.some((bot) => bot.name === newValue)
-        setIsValid({
-          name: isSameName,
-        });
+        
 
         if (isSameName ) {
           // Display an error message or perform necessary actions
@@ -139,70 +149,67 @@ export default function BotsInfo(props) {
     if(botsArr.length){
       botsArr.forEach(bot => {
         if(bot.position){
-            const invalidPosition = []
 
             if (bot.position > 0 && bot.position <= tileNum * tileNum){
-               if (!invalidPosition.includes(bot.position) && !occupiedPositions.includes(bot.position)){
-                invalidPosition.push(bot.position)
+               if (!occupiedPositions.includes(bot.position)){
+                occupiedPositions.push(bot.position)
                }
             }
 
             if (bot.position - tileNum > 0) {
-                if (!invalidPosition.includes(bot.position - tileNum) && !occupiedPositions.includes(bot.position - tileNum))
+                if (!occupiedPositions.includes(bot.position - tileNum))
                   {
-                    invalidPosition.push(bot.position - tileNum)
+                    occupiedPositions.push(bot.position - tileNum)
                   }
               }
 
             if(bot.position + tileNum <= tileNum * tileNum){
-              if(!invalidPosition.includes(bot.position + tileNum) && !occupiedPositions.includes(bot.position + tileNum) ){
-                invalidPosition.push(bot.position + tileNum)
+              if(!occupiedPositions.includes(bot.position + tileNum) ){
+                occupiedPositions.push(bot.position + tileNum)
               }
             }
 
             if((bot.position - 1) % tileNum != 0){
-              if(!invalidPosition.includes(bot.position - 1) && !occupiedPositions.includes(bot.position - 1)){
-                invalidPosition.push(bot.position - 1)
+              if(!occupiedPositions.includes(bot.position - 1)){
+                occupiedPositions.push(bot.position - 1)
               }
             }
 
             if((bot.position + 1) % tileNum != 1){
-              if(!invalidPosition.includes(bot.position + 1) && !occupiedPositions.includes(bot.position + 1)){
-                invalidPosition.push(bot.position + 1)
+              if(!occupiedPositions.includes(bot.position + 1)){
+                occupiedPositions.push(bot.position + 1)
               }
             }
 
             if(bot.position % tileNum !== 0 && bot.position - (tileNum - 1) > 0){
-              if(!invalidPosition.includes(bot.position - (tileNum - 1))  && !occupiedPositions.includes(bot.position - (tileNum - 1))){
-                invalidPosition.push(bot.position - (tileNum - 1) )
+              if(!occupiedPositions.includes(bot.position - (tileNum - 1))){
+                occupiedPositions.push(bot.position - (tileNum - 1) )
               }
             }
 
             if(bot.position % tileNum !== 1 && bot.position - (tileNum + 1) > 0){
-              if(!invalidPosition.includes(bot.position - (tileNum + 1))  && !occupiedPositions.includes(bot.position - (tileNum + 1))){
-                invalidPosition.push(bot.position - (tileNum + 1))
+              if(!occupiedPositions.includes(bot.position - (tileNum + 1))){
+                occupiedPositions.push(bot.position - (tileNum + 1));
 
               }
             }
 
             if(bot.position % tileNum !== 0 && bot.position + (tileNum + 1) < tileNum * tileNum){
-              if(!invalidPosition.includes(bot.position + (tileNum + 1))  && !occupiedPositions.includes(bot.position + (tileNum + 1)))
+              if(!occupiedPositions.includes(bot.position + (tileNum + 1)))
               {
-                invalidPosition.push(bot.position + (tileNum + 1))
+                occupiedPositions.push(bot.position + (tileNum + 1))
 
               }
             }
 
             if(bot.position % tileNum !== 1 && bot.position + (tileNum - 1) < tileNum * tileNum){
-              if(!invalidPosition.includes(bot.position + (tileNum - 1))  && !occupiedPositions.includes(bot.position + (tileNum - 1))){
+              if(!occupiedPositions.includes(bot.position + (tileNum - 1))){
                 
-                invalidPosition.push(bot.position + (tileNum - 1))
+                occupiedPositions.push(bot.position + (tileNum - 1));
             }
 
           }
-            occupiedPositions.push(
-            ...invalidPosition
-          );
+          
         }
       })
     }
@@ -306,8 +313,8 @@ export default function BotsInfo(props) {
   return (
     <>
       <h2>Create Bot</h2>
-      
-     <BotRoaster botsArr={botsArr}/>
+
+      <BotRoaster botsArr={botsArr} />
 
       <div className="test">
         <form onSubmit={handleSubmit}>
@@ -315,7 +322,7 @@ export default function BotsInfo(props) {
             <label htmlFor="name">
               Name your bot:
               <input
-  
+                placeholder=' Name your robot'
                 ref={inputAutoFocus}
                 type="text"
                 id="name"
@@ -333,7 +340,7 @@ export default function BotsInfo(props) {
             ) : (
               ""
             )}
-            
+
             <div></div>
             <label htmlFor="value">
               Choose a Boolean Value:
@@ -353,7 +360,13 @@ export default function BotsInfo(props) {
             </label>
 
             <label htmlFor="icons">Bot Icon</label>
-            <IconPalette id="icons" iconPalette={iconPalette} setBotsData={setBotsData} iconSelected={iconSelected} setIconSelected={setIconSelected} />
+            <IconPalette
+              id="icons"
+              iconPalette={iconPalette}
+              setBotsData={setBotsData}
+              iconSelected={iconSelected}
+              setIconSelected={setIconSelected}
+            />
 
             <label htmlFor="direction">
               Bot Direction:
@@ -367,20 +380,19 @@ export default function BotsInfo(props) {
                 <option value="" disabled>
                   Select a Direction
                 </option>
-                <option value="1">NORTH</option>
-                <option defaultValue value="2">
-                  SOUTH
-                </option>
-                <option value="3">WEST</option>
-                <option value="4">EAST</option>
-                <option value="5">NORTH EAST</option>
-                <option value="6">NORTH WEST</option>
-                <option value="7">SOUTH EAST</option>
-                <option value="8">SOUTH WEST</option>
+                <option value="1">↑</option>
+                <option value="2">↓</option>
+                <option value="3">←</option>
+                <option value="4">→</option>
+                <option value="5">↗</option>
+                <option value="6">↖</option>
+                <option value="7">↘</option>
+                <option value="8">↙</option>
               </select>
             </label>
-            <button disabled={isBotsArrayFull} type="submit">Add Bot</button>
-          
+            <button disabled={isBotsArrayFull} type="submit">
+              Add Bot
+            </button>
           </fieldset>
         </form>
         <Link to="/arena">

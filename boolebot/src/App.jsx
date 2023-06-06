@@ -35,18 +35,6 @@ const getArenaInfo = (newArenaInfo)=>{
   setArenaData(newArenaInfo);
 }
 
-//Handler function to add bots to the aray
-// const addBotToArray = (bot)=>{
-//   console.log(bot)
-//    const isUniqueBot = botsArr.some(
-//      (bot) =>
-//        bot.name === botsData.name || bot.colorClass === botsData.colorClass
-//    );
-//    if (!isUniqueBot) {
-//     console.log("UNIQUE BOT", bot)
-//      setBotsArr((prev) => [...prev, botsData]);
-//    }
-// }
 
 // This is an array of the current route/location
 const routeLocation = ['/createArena', '/createBot'];
