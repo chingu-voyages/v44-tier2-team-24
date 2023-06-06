@@ -22,7 +22,7 @@
     }
     .footer_ul{
       justify-content: center;
-      width: 60%;
+      width: 30%;
       padding-bottom: .25em;
       display: flex;
       justify-content: space-evenly;
@@ -33,7 +33,7 @@
         color: white;
         text-decoration: none;
         font-weight: 600;
-        padding: .25em .4em;
+        padding: .25em 0;
         // background-color: black;
         border-radius: 100%;
       }
