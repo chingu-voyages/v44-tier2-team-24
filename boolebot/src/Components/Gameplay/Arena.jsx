@@ -31,7 +31,13 @@ export default function Arena(props) {
   const [battleLog, setBattleLog] = useState([])
   const [message, setMessage] = useState(null)
 
-  const { arenaData : {tileNum, speed, operator}, botsArr, setBotsArr } = props
+  const [timer, setTimer] = useState({
+    min: 0,
+    sec: 0,
+    running: false,
+  });
+
+  const { arenaData : {tileNum, speed, operator}, botsArr, setBotsArr, setSavedState ,savedState } = props
 
 
 
@@ -87,7 +93,7 @@ export default function Arena(props) {
         key={tilePosition + 1}
         data-position={tilePosition}
         className={`tile  ${
-          tilePosition === collisionLocation ? "border crashedText" : ""
+          tilePosition === collisionLocation  ? "border crashedText" : ""
         }`}
       >
         {robot ? <img src={robot.botIcon} alt="photo of a robot head" />: ""}
@@ -120,6 +126,8 @@ export default function Arena(props) {
   }, [botsArr]);
 
   function startGame() {
+    setSavedState(prev => createCopyBot() )
+
     setIsGameRunning((prev) => (prev ? false : true));
     
   }
@@ -230,26 +238,53 @@ export default function Arena(props) {
     return () => clearInterval(intervalId);
   }, [isGameRunning, currBot, botsArr, operator]);
 
-  console.log(operator)
+
+  
+  function playAgain() {
+    setBotsArr((prev) => savedState);
+    setBattleLog([]);
+    setLeaderboard({});
+    setTimer((prev) => {
+      return {
+        min: 0,
+        sec: 0,
+        running: false,
+      };
+    });
+  }
+
   return (
     <main className="main_container">
       <div>
-      <BotRoaster botsArr={botsArr} />
+        <BotRoaster botsArr={botsArr} />
         {renderArena()}
 
-        
-        {botsArr.length === 1? <Link to="/createArena"><button>START OVER</button></Link> : <button onClick={() => startGame()}>
-          {isGameRunning ? "STOP" : "BATTLE"}
-        </button>}
+        {botsArr.length === 1 ? (
+          <div>
+            <button onClick={()=>{playAgain()}}>Play Again</button>
+          </div>
           
+        ) : (
+          <button onClick={() => startGame()}>
+            {isGameRunning ? "STOP" : "BATTLE"}
+          </button>
+        )}
       </div>
       <aside>
-        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator}/>
-        <GameClock isGameRunning={isGameRunning}/>
+        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
+        <GameClock
+          isGameRunning={isGameRunning}
+          timer={timer}
+          setTimer={setTimer}
+        />
         <BattleLog battleLog={battleLog} />
-        <Leaderboard leaderboard={leaderboard} 
-                    setBotsArr={setBotsArr}
-                    botsArr={botsArr}/>
+        <Leaderboard
+          leaderboard={leaderboard}
+          setTimer={setTimer}
+          setLeaderboard={setLeaderboard}
+          setBotsArr={setBotsArr}
+          botsArr={botsArr}
+        />
       </aside>
     </main>
   );

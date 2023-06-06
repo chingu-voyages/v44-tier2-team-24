@@ -17,6 +17,7 @@ const [arenaData, setArenaData] = useState({
   speed: 500,
   operator: "AND",
 });
+const [savedState, setSavedState] = useState([])
 
 const [botsArr, setBotsArr] = useState([]);
 
@@ -99,7 +100,7 @@ function boardDataSubmission(newObj){
         { path: "/about", element: <AboutUs /> },
         {
           path: "/arena",
-          element: <Arena botsArr={botsArr} setBotsArr={setBotsArr} arenaData={arenaData} />,
+          element: <Arena savedState={savedState} setSavedState={setSavedState} botsArr={botsArr} setBotsArr={setBotsArr} arenaData={arenaData}  />,
         },
       ],
     },
