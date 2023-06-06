@@ -361,6 +361,9 @@ export default function BotsInfo(props) {
             <button type="submit">Add Bot</button>
           </fieldset>
         </form>
+        <Link to="/createArena">
+        <button>Back</button>
+        </Link>
         <Link to="/arena">
           <button>Battle Ground</button>
         </Link>
