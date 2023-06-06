@@ -7,19 +7,19 @@ export default function Footer() {
   return (
     <div className='footer'>
    
-        <Link
+        <a
           className='footer_link'
-          href="https://github.com/chingu-voyages/v44-tier2-team-24/tree/main"
+          href="https://github.com/chingu-voyages/v44-tier2-team-24/"
           target="_blank"
           rel="noreferrer"
         >
           <i className="fa fa-github"></i>
-        </Link>
+        </a>
         <ul>
-          <li><Link to="/">Hector</Link></li>
-          <li><Link to="/">Jack</Link></li>
-          <li><Link to="/">Libby</Link></li>
-          <li><Link to="/">Sucheta</Link></li>
+          <li><Link to="https://github.com/hectorgarcia07">Hector</Link></li>
+          <li><Link to="https://github.com/jackli921">Jack</Link></li>
+          <li><Link to="https://github.com/libbyreeves">Libby</Link></li>
+          <li><Link to="https://github.com/sucheta90">Sucheta</Link></li>
         </ul>
        
     </div>

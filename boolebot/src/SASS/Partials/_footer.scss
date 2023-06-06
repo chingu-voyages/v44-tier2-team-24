@@ -4,20 +4,26 @@
     padding: 0;
   }
   .footer {
-    margin: 0 auto;
+//     margin: 0 auto;
     background-color: #061d41;
     text-align: center;
+    // position: fixed;
+    min-height: 5%;
+    
+    // bottom: 0;
+    // right: 0;
+
     min-height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 1%;
-    padding-bottom: 1%;
+   
     ul {
-      justify-content: center;
-      padding: 0.5em 0;
+       justify-content: center;
+      margin-top: 1%;
+      padding-bottom: 1%;
     }
   }
   .footer_link {

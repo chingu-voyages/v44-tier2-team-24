@@ -14,18 +14,54 @@ export default function AboutUs() {
           <p>
           Jack is a self-taught full-stack Developer. Ex-Fukuoka JET (CIR - ALT) turned Web Dev. After being fascinated by Japan, teaching himself Japanese, and working in Japan for the past decade, Jack found an new direction in Web Dev, so he's now teaching himself programming languages. 
           </p>
-          <p><Link to='https://jack-codes.netlify.app/' target="_blank" className="important_Links">Portfolio Website</Link></p>
-          <p><Link to='https://github.com/jackli921' target="_blank" className="important_Links">GitHub</Link></p>
+          <div className="icons">
+            <a
+          className='footer_link'
+          href="https://www.linkedin.com/in/jackli0707/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-linkedin"></i>
+        </a>
+            <a
+          className='footer_link'
+          href="https://jack-codes.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-briefcase"></i>
+        </a>
+          
+          </div>
         </div>
       </section>
       <section>
         {/* Libby's Info*/}
-      <div className="imgContainer"><img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/></div>
+      <div className="imgContainer"><img src="/images/Elizabeth.jpg"/></div>
 
       <div className="content">
           <h4>Elizabeth Reeves</h4>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus eveniet sequi pariatur tempora accusantium, impedit culpa veniam velit cum voluptate error ducimus vero totam laborum temporibus, nisi aliquid, perspiciatis corporis?</p>
-        </div>      
+        <p>Elizabeth is a Toronto-based front-end web developer. After taking an introductory course to web development, she made the switch into tech from her previous profession in science education. From there, she discovered a passion for web accessibility and creating unique web experiences for all users. In her non-coding time, you can find Elizabeth crocheting on her Twitch channel.</p>
+        <div className="icons">
+            <a
+          className='footer_link'
+          href="https://www.linkedin.com/in/elizabeth-reeves-web-developer/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-linkedin"></i>
+        </a>
+            <a
+          className='footer_link'
+          href="https://elizabeth-reeves.ca"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-briefcase"></i>
+        </a>
+          
+          </div>
+         </div>      
       </section>
       <section>
         {/* Hector's Info*/}
@@ -34,8 +70,20 @@ export default function AboutUs() {
       <div className="content">
         <h4>Hector Garcia</h4>
         <p>Hector recently graduated with a BS in Computer Science at The University of Texas Rio Grande Valley. He enjoy learning new things related to software development and looking for new opportunities to enhance his skills. He is passionate about building responsive and user-friendly interfaces that help shape the evolving digital world. </p>
+        
        
-          <p><Link to='https://github.com/hectorgarcia07' target="_blank" className="important_Links">GitHub</Link></p>
+          <div className="icons">
+            <a
+          className='footer_link'
+          href="https://www.linkedin.com/in/hectorgarcia01/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-linkedin"></i>
+        </a>
+            
+          
+          </div>
         </div>        
         </section>
       <section>
@@ -44,7 +92,26 @@ export default function AboutUs() {
       <div className="content">
           <h4>Sucheta Mukherjee</h4>
           <p>Sucheta is an enthusiastic self-taught Frontend Developer with a strong passion for designing user-friendly, scalable, and easily maintainable websites. Having recently made the decision to transition her career into the technology field, she has been actively expanding her skill set, constantly evolving and staying up to date with the latest techniques in the industry.</p>
-          <p><Link to='https://github.com/sucheta90' target="_blank" className="important_Links">GitHub</Link></p>
+          <div className="icons">
+            <a
+          className='footer_link'
+          href="https://www.linkedin.com/in/sucheta-mukherjee-07347b88/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-linkedin"></i>
+        </a>
+        <a
+          className='footer_link'
+          href="https://suchetamukherjee.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-briefcase"></i>
+        </a>
+            
+          
+          </div>
         </div>      
         </section>
     </div>
