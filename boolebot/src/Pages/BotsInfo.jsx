@@ -311,7 +311,7 @@ function handleChange(e){
 
 
   return (
-    <>
+    <div className='botInfo_page'>
       <h2>Create Bot</h2>
 
       <BotRoaster botsArr={botsArr} />
@@ -402,6 +402,6 @@ function handleChange(e){
           <button disabled={botsArr.length <= 1}>Battle Ground</button>
         </Link>
       </div>
-    </>
+    </div>
   );
 }
