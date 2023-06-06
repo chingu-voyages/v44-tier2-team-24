@@ -9,11 +9,18 @@
   background-color: #d3f3ee;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 80%;
   .imgWrapper {
-    /* border: 1px solid blue; */
+    
     width: 50%;
     margin: 0 auto;
-    margin-top: 4em;
+    margin-top: 2em;
+
+    img{
+      width: 100%;
+    }
   }
 
   li{
@@ -42,7 +49,9 @@
   }
     
   }
-
+  // border: 1px solid blue;
+  
+}
 
 
 

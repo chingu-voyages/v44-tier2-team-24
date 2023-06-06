@@ -47,7 +47,7 @@ export default function BotsInfo(props) {
 
   return (
 
-    <>
+  <div className="createArena">
     <h2>Board Controls</h2>
 
     <div className="arenaControls">
@@ -114,5 +114,8 @@ export default function BotsInfo(props) {
         
       </div>
     </div>
-  );
+    </div>
+  )
+  
+ 
 }
