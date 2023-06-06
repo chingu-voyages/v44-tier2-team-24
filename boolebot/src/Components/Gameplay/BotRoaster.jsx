@@ -17,21 +17,22 @@ export default function BotRoaster({botsArr}) {
               <p>
                 Direction:{` `}
                 {bot.direction === 1
-                  ? "Up"
+                  ? "↑"
                   : bot.direction === 2
-                  ? "Down"
+                  ? "↓"
                   : bot.direction === 3
-                  ? "Left"
+                  ? "←"
                   : bot.direction === 4
-                  ? "Right"
+                  ? "→"
                   : bot.direction === 5
-                  ? "NE"
+                  ? "↗️"
                   : bot.direction === 6
-                  ? "NW"
+                  ? "↖️"
                   : bot.direction === 7
-                  ? "SE"
+                  ? "↘️"
                   : bot.direction === 8
-                  ? "SW" :""}
+                  ? "↙️"
+                  : ""}
               </p>
               <p>Value: {bot.value}</p>
             </div>
