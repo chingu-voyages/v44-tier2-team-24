@@ -46,8 +46,14 @@ export default function BotsInfo(props) {
   };
 
   return (
-    <>
+
+  <div className="createArena">
+    <h2>Board Controls</h2>
+
+    <div className="arenaControls">
+
       <div className="arena-input-form">
+        
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="speed">
@@ -107,6 +113,9 @@ export default function BotsInfo(props) {
         </form>
         
       </div>
-    </>
-  );
+    </div>
+    </div>
+  )
+  
+ 
 }
