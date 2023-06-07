@@ -18,7 +18,7 @@ export default function IconPalette({iconPalette, setBotsData, iconSelected, set
     }
 
 
-
+ 
     const iconEl = iconPalette.map((icon, i) => {
         return (
           <div onClick={(e)=> handleClick(e)} onChange={onChangeValue} key={i} className="iconContainer">
@@ -29,7 +29,7 @@ export default function IconPalette({iconPalette, setBotsData, iconSelected, set
         );
     })
 
-    console.log("PATHS IMG", iconPalette)
+
 
 
   return <div style={{ display: "flex", gap: "10px", width: "400px"}}>{iconEl}</div>;

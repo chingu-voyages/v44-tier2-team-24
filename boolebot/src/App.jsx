@@ -6,11 +6,11 @@ import RootLayout from "./Pages/Root";
 import ArenaInfoPage from "./Pages/ArenaInfoPage";
 import BotsInfo from "./Pages/BotsInfo";
 import Arena from "./Components/Gameplay/Arena"
-import CreateArena from './Pages/CreateArena'
+import CreateArena from './Pages/CreateArena';
 import { useState, useEffect } from "react";
-
 import bot1 from './assets/bot1.svg'
 
+import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
 //creating botsArray to be passed on as props to child components
@@ -19,6 +19,7 @@ const [arenaData, setArenaData] = useState({
   speed: 500,
   operator: "AND",
 });
+const [savedState, setSavedState] = useState([])
 
 const [botsArr, setBotsArr] = useState([]);
 
@@ -37,18 +38,6 @@ const getArenaInfo = (newArenaInfo)=>{
   setArenaData(newArenaInfo);
 }
 
-//Handler function to add bots to the aray
-// const addBotToArray = (bot)=>{
-//   console.log(bot)
-//    const isUniqueBot = botsArr.some(
-//      (bot) =>
-//        bot.name === botsData.name || bot.colorClass === botsData.colorClass
-//    );
-//    if (!isUniqueBot) {
-//     console.log("UNIQUE BOT", bot)
-//      setBotsArr((prev) => [...prev, botsData]);
-//    }
-// }
 
 // This is an array of the current route/location
 const routeLocation = ['/createArena', '/createBot'];
@@ -75,6 +64,7 @@ function boardDataSubmission(newObj){
     //the following path is for the wrapper
     {
       path: "/",
+      errorElement:<ErrorPage/>,
       element: <RootLayout />,
       children: [
         { path: "/", element: <Homepage /> },
@@ -94,7 +84,7 @@ function boardDataSubmission(newObj){
               arenaData={arenaData}
               deleteBotFromArray={deleteBotFromArray}
               botsArr={botsArr}
-              setBotsArr={setBotsArr}
+                setBotsArr={setBotsArr}
             />
           ),
         },
@@ -102,7 +92,7 @@ function boardDataSubmission(newObj){
         { path: "/about", element: <AboutUs /> },
         {
           path: "/arena",
-          element: <Arena botsArr={botsArr} setBotsArr={setBotsArr} arenaData={arenaData} />,
+          element: <Arena savedState={savedState} setSavedState={setSavedState} botsArr={botsArr} setBotsArr={setBotsArr} arenaData={arenaData}  />,
         },
       ],
     },

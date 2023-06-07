@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
-export default function Leaderboard({leaderboard, botsArr}) {
+import '../../SASS/Partials/_leaderBoard.scss'
+import { Link, redirect } from "react-router-dom";
 
+export default function Leaderboard(props) {
+  const {leaderboard, 
+         botsArr, 
+         setBotsArr, 
+         setBattleLog, 
+         } = props
 
     const [winningBot, setWinningBot] = useState({})
     const [winningScore, setWinningScore] = useState(null)
@@ -14,7 +21,7 @@ export default function Leaderboard({leaderboard, botsArr}) {
             key={key}
             className={
               winningScore && value.wins === winningScore && value.loses === 0
-                ? styles.winning
+                ? "winning"
                 : ""
             }
           >
@@ -42,13 +49,11 @@ export default function Leaderboard({leaderboard, botsArr}) {
         }
     }, [botsArr, leaderboard])
   
+
   return (
     <div>
-        <h3>Leaderboard</h3>
-        <ul className="leaderboard">
-            {leaderboardEl}   
-          
-        </ul>
+      <h3>Leaderboard</h3>
+      <ul className="leaderboard">{leaderboardEl}</ul>
     </div>
-  )
+  );
 }

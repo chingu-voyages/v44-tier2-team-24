@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import singleBot from "../assets/bot.png";
 import Swal from "sweetalert2"; 
 import { Link } from 'react-router-dom';
 import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
 import IconPalette from './IconPalette'
+import BotRoaster from '../Components/Gameplay/BotRoaster';
+import useAutoFocus from '../Components/hooks/useAutoFocus';
 
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
 import bot3 from '../assets/bot3.svg'
-import bot4 from '../assets/bot4.svg'
+import bot4 from '../assets/bot4.svg' 
 import bot5 from '../assets/bot5.svg'
 import bot6 from '../assets/bot6.svg'
 import bot7 from '../assets/bot7.svg'
@@ -17,6 +19,8 @@ import bot8 from '../assets/bot8.svg'
 
 export default function BotsInfo(props) {
 
+  
+  const [isBotsArrayFull, setIsBotsArrayFull] = useState(false)
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
   const {direction, setDirection} = useState({
@@ -30,6 +34,8 @@ export default function BotsInfo(props) {
     "8": "SW"
 
   })
+
+  const inputAutoFocus = useAutoFocus(botsArr);
 
   const [iconPalette, setIconPalette] = useState([
     {
@@ -71,27 +77,34 @@ export default function BotsInfo(props) {
 
 
   const [isValid, setIsValid]= useState({
-    color: false,
     name: false
   });
  
 
 
-  // Generic change handler
-  function handleChange(e){
+// Generic change handler
+function handleChange(e){
     const changedField = e.target.name;
     const newValue = e.target.value;
 
 
+    setIsValid(prev => {
+      let isSameName = botsArr.some((bot) => bot.name === newValue)
+
+      if (changedField === "name" ){
+        return {
+          name: isSameName,
+        }
+      }
+      return prev
+    }
+    );
+
     setBotsData((currentData) => {
    
-      if (changedField === "name" || changedField === "colorClass") {
+      if (changedField === "name" ) {
         let isSameName = botsArr.some((bot) => bot.name === newValue)
-        let isColorSame =  botsArr.some((bot) => bot.colorClass === newValue)
-        setIsValid({
-          name: isSameName,
-          color: isColorSame,
-        });
+        
 
         if (isSameName ) {
           // Display an error message or perform necessary actions
@@ -103,13 +116,6 @@ export default function BotsInfo(props) {
             
           });
           
-        } else if(isColorSame){
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: `Duplicate name detected!`,
-            
-          });
         }
          else {
           let newState = { ...currentData, [changedField]: newValue };
@@ -131,7 +137,6 @@ export default function BotsInfo(props) {
     setBotsData((prev)=>{
       return {...prev, 
         name: "",
-        // colorClass: "#FFFFF",
         value: 0,
         wins: 0,
         loses: 0,
@@ -140,16 +145,71 @@ export default function BotsInfo(props) {
     })
     
     let occupiedPositions = []
+
     if(botsArr.length){
       botsArr.forEach(bot => {
         if(bot.position){
-            occupiedPositions.push(
-            bot.position,
-            bot.position + 1,
-            bot.position - 1,
-            bot.position + tileNum,
-            bot.position - tileNum
-          );
+
+            if (bot.position > 0 && bot.position <= tileNum * tileNum){
+               if (!occupiedPositions.includes(bot.position)){
+                occupiedPositions.push(bot.position)
+               }
+            }
+
+            if (bot.position - tileNum > 0) {
+                if (!occupiedPositions.includes(bot.position - tileNum))
+                  {
+                    occupiedPositions.push(bot.position - tileNum)
+                  }
+              }
+
+            if(bot.position + tileNum <= tileNum * tileNum){
+              if(!occupiedPositions.includes(bot.position + tileNum) ){
+                occupiedPositions.push(bot.position + tileNum)
+              }
+            }
+
+            if((bot.position - 1) % tileNum != 0){
+              if(!occupiedPositions.includes(bot.position - 1)){
+                occupiedPositions.push(bot.position - 1)
+              }
+            }
+
+            if((bot.position + 1) % tileNum != 1){
+              if(!occupiedPositions.includes(bot.position + 1)){
+                occupiedPositions.push(bot.position + 1)
+              }
+            }
+
+            if(bot.position % tileNum !== 0 && bot.position - (tileNum - 1) > 0){
+              if(!occupiedPositions.includes(bot.position - (tileNum - 1))){
+                occupiedPositions.push(bot.position - (tileNum - 1) )
+              }
+            }
+
+            if(bot.position % tileNum !== 1 && bot.position - (tileNum + 1) > 0){
+              if(!occupiedPositions.includes(bot.position - (tileNum + 1))){
+                occupiedPositions.push(bot.position - (tileNum + 1));
+
+              }
+            }
+
+            if(bot.position % tileNum !== 0 && bot.position + (tileNum + 1) < tileNum * tileNum){
+              if(!occupiedPositions.includes(bot.position + (tileNum + 1)))
+              {
+                occupiedPositions.push(bot.position + (tileNum + 1))
+
+              }
+            }
+
+            if(bot.position % tileNum !== 1 && bot.position + (tileNum - 1) < tileNum * tileNum){
+              if(!occupiedPositions.includes(bot.position + (tileNum - 1))){
+                
+                occupiedPositions.push(bot.position + (tileNum - 1));
+            }
+
+          }
+          
         }
       })
     }
@@ -158,6 +218,11 @@ export default function BotsInfo(props) {
       //generate a number between 1 to tileNum** but not any num in the occupiedPosition arr
       let isValid = false
       let position;
+    
+      
+      if(occupiedPositions.length >= tileNum * tileNum){
+        return -1
+      }
       
       do{
         position = generateRandomNumber(tileNum * tileNum)
@@ -165,6 +230,7 @@ export default function BotsInfo(props) {
 
         if(!occupiedPositions.includes(position)){
           isValid = true
+          occupiedPositions.push(position)
         }
         
       }while(!isValid)
@@ -176,14 +242,27 @@ export default function BotsInfo(props) {
       ? generateUniquePosition()
       : generateRandomNumber(tileNum * tileNum); 
 
+      console.log("POSITION ", pos)
+    
+    if(pos === -1){
+      setIsBotsArrayFull(true)
+
+      Swal.fire({
+        icon: "error",
+        title: "Reached full arena capacity ",
+        text: `Can't add more bots to the arena`,
+      });
+
+    }
+    else{
+    
     setBotsArr((prev) => {
-      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, botsData.colorClass, Number(botsData.value), botsData.botIcon )
+      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
       console.log("NEW BOT CREATED", newBot)
 
       const isUniqueBot = prev.some(
         (bot) =>
-          bot.name === newBot.name ||
-          bot.colorClass === newBot.colorClass
+          bot.name === newBot.name 
       );
 
       if (!isUniqueBot) {
@@ -194,6 +273,21 @@ export default function BotsInfo(props) {
           return newIconPallet
         })
 
+        setIconSelected( prev => {
+          const newIndex = iconPalette.findIndex( icon => !icon.isSelected )
+  
+          if(newIndex !== -1){
+            setBotsData( prev => {
+              return { 
+                ...prev,
+                botIcon: iconPalette[newIndex].url
+              }
+            })
+          }
+
+          return newIndex
+        })
+
         return [...prev, newBot];
       } 
       else{
@@ -201,13 +295,8 @@ export default function BotsInfo(props) {
       }
       
     });  
-    
-
-
+    }
   };
-
-    
-  
 
   const [expandedBots, setExpandedBots] = useState([]);
 
@@ -222,55 +311,10 @@ export default function BotsInfo(props) {
 
 
   return (
-    <>
+    <div className='botInfo_page'>
       <h2>Create Bot</h2>
-      <div className="createdBots">
-        {botsArr &&
-          botsArr.map((bot, index) => (
-            <div
-              className={`showBot ${bot.name}`}
-              style={{ backgroundColor: `${bot.colorClass}` }}
-              key={index}
-            >
-              <img src={bot.botIcon} style={{width:"5em"}} alt="photo of a robot head" />
-              <div key={index}>
-                <h3 className="title">{bot.name}</h3>
-                {expandedBots[index] ? (
-                  <>
-                    <p>Position: {bot.position}</p>
-                    <p>
-                      Direction:{" "}
-                      {bot.direction === "1"
-                        ? "⬆️"
-                        : bot.direction === "2"
-                        ? "⬇️"
-                        : bot.direction === "3"
-                        ? "⬅️"
-                        : "➡️"}
-                    </p>
-                    <p>Color: {bot.colorClass}</p>
-                    <p>Value: {bot.value}</p>
-                  </>
-                ) : null}
-              </div>
-              <button
-                className={`expandButton ${
-                  expandedBots[index] ? "expanded" : ""
-                }`}
-                onClick={() => toggleBotExpansion(index)}
-              >
-                <span className="arrow"></span>
-              </button>
-              {/* <button>Edit</button> */}
-              <button
-                className="delete"
-                onClick={() => props.deleteBotFromArray(index)}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-      </div>
+
+      <BotRoaster botsArr={botsArr} />
 
       <div className="test">
         <form onSubmit={handleSubmit}>
@@ -278,6 +322,8 @@ export default function BotsInfo(props) {
             <label htmlFor="name">
               Name your bot:
               <input
+                placeholder=' Name your robot'
+                ref={inputAutoFocus}
                 type="text"
                 id="name"
                 name="name"
@@ -294,7 +340,7 @@ export default function BotsInfo(props) {
             ) : (
               ""
             )}
-            
+
             <div></div>
             <label htmlFor="value">
               Choose a Boolean Value:
@@ -313,26 +359,14 @@ export default function BotsInfo(props) {
               </select>
             </label>
 
-            <label htmlFor="colorClass">Bot Color</label>
-            <input
-              type="color"
-              id="colorClass"
-              name="colorClass"
-              value={botsData.colorClass}
-              onChange={handleChange}
-              required
-            />
-            {isValid.color ? (
-              <p style={{ color: "red" }}>
-                {" "}
-                * No Two Robots can have same color
-              </p>
-            ) : (
-              ""
-            )}
-
             <label htmlFor="icons">Bot Icon</label>
-            <IconPalette id="icons" iconPalette={iconPalette} setBotsData={setBotsData} iconSelected={iconSelected} setIconSelected={setIconSelected} />
+            <IconPalette
+              id="icons"
+              iconPalette={iconPalette}
+              setBotsData={setBotsData}
+              iconSelected={iconSelected}
+              setIconSelected={setIconSelected}
+            />
 
             <label htmlFor="direction">
               Bot Direction:
@@ -346,25 +380,28 @@ export default function BotsInfo(props) {
                 <option value="" disabled>
                   Select a Direction
                 </option>
-                <option value="1">NORTH</option>
-                <option defaultValue value="2">
-                  SOUTH
-                </option>
-                <option value="3">WEST</option>
-                <option value="4">EAST</option>
-                <option value="5">NORTH EAST</option>
-                <option value="6">NORTH WEST</option>
-                <option value="7">SOUTH EAST</option>
-                <option value="8">SOUTH WEST</option>
+                <option value="1">↑</option>
+                <option value="2">↓</option>
+                <option value="3">←</option>
+                <option value="4">→</option>
+                <option value="5">↗</option>
+                <option value="6">↖</option>
+                <option value="7">↘</option>
+                <option value="8">↙</option>
               </select>
             </label>
-            <button type="submit">Add Bot</button>
+            <button disabled={isBotsArrayFull} type="submit">
+              Add Bot
+            </button>
           </fieldset>
         </form>
+        <Link to="/createArena">
+        <button>Back</button>
+        </Link>
         <Link to="/arena">
-          <button>Battle Ground</button>
+          <button disabled={botsArr.length <= 1}>Battle Ground</button>
         </Link>
       </div>
-    </>
+    </div>
   );
 }

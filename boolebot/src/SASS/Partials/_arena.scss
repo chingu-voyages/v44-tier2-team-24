@@ -1,8 +1,11 @@
 .main_container {
+    margin-top: 2em;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
+    height: 85vh;
+    background-color: #d3f3ee;
+    padding: 3em 0;
 }
 
 img {
@@ -12,7 +15,7 @@ img {
 aside {
     display: flex;
     flex-direction: column;
-    gap: 10em;
+    gap: 5em;
 }
 
 aside>div {

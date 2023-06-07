@@ -5,19 +5,14 @@ import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
 import useInterval from "../hooks/useInterval";
 import useTimeout from "../hooks/useTimeout";
-
+import BotRoaster from "./BotRoaster";
+import ArenaSetting from "./ArenaSetting";
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
 import singleBot from "../../assets/bot.png"
 import GameClock from "../GameClock";
+import PlayFromScratchBtn from "./PlayFromScratchBtn";
 
-// 1. Build the game arena.
-// 2. Add 1 robot to the board.
-// 3. Make 1 robot move in the assigned direction on click.
-// 4. Make 1 robot change to a valid direction when it hits a wall.
-// 5. Make the robot move automatically.
-// 6. Add more than 1 robot to the board.
-// 7. Add basic collision logic.
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
@@ -30,7 +25,13 @@ export default function Arena(props) {
   const [battleLog, setBattleLog] = useState([])
   const [message, setMessage] = useState(null)
 
-  const { arenaData : {tileNum, speed, operator}, botsArr, setBotsArr } = props
+  const [timer, setTimer] = useState({
+    min: 0,
+    sec: 0,
+    running: false,
+  });
+
+  const { arenaData : {tileNum, speed, operator}, botsArr, setBotsArr, setSavedState ,savedState } = props
 
 
 
@@ -62,10 +63,7 @@ export default function Arena(props) {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
     let tileClass = {backgroundColor : ''};
-    if (robot) {
-      tileClass.backgroundColor = robot.colorClass
-    }
-
+    
     let text = ''
 
     if(botsArr.length === 1){
@@ -118,10 +116,13 @@ export default function Arena(props) {
   useEffect(() => {
     if (botsArr.length === 1) {
       setIsGameRunning(false);
+
     }
   }, [botsArr]);
 
   function startGame() {
+    setSavedState(prev => createCopyBot() )
+
     setIsGameRunning((prev) => (prev ? false : true));
     
   }
@@ -133,7 +134,6 @@ export default function Arena(props) {
           bot.position,
           bot.direction,
           bot.name,
-          bot.colorClass,
           bot.value,
           bot.botIcon,
           bot.wins,
@@ -174,7 +174,12 @@ export default function Arena(props) {
 
             // console.log("Collided bots with updated score", collidedBotsArr);
             if (collidedBotsArr) {
-              setBattleLog((prev)=> ([...prev, `${collidedBotsArr[0].name} vs. ${collidedBotsArr[1].name}`]) )
+              setBattleLog((prev)=> ([...prev, 
+                <div>
+                 {`${collidedBotsArr[0].name} (👑) vs. ${collidedBotsArr[1].name} (😭)`}
+                 
+                </div>
+              ]) )
               setLeaderboard((prev) => {
                 return {
                   ...prev,
@@ -229,21 +234,55 @@ export default function Arena(props) {
   }, [isGameRunning, currBot, botsArr, operator]);
 
 
+  
+  function playAgain() {
+    setBotsArr((prev) => savedState);
+    setBattleLog([]);
+    setLeaderboard({});
+    setTimer((prev) => {
+      return {
+        min: 0,
+        sec: 0,
+        running: false,
+      };
+    });
+    setCollisionLocation(null)
+  }
+  
+
   return (
     <main className="main_container">
       <div>
+        <BotRoaster botsArr={botsArr} />
         {renderArena()}
 
-        
-        {botsArr.length === 1? <Link to="/createArena"><button>START OVER</button></Link> : <button onClick={() => startGame()}>
-          {isGameRunning ? "STOP" : "BATTLE"}
-        </button>}
+        {botsArr.length === 1 ? (
+          <div>
+            <button onClick={()=>{playAgain()}}>Play Again</button>
+          </div>
           
+        ) : (
+          <button onClick={() => startGame()}>
+            {isGameRunning ? "STOP" : "BATTLE"}
+          </button>
+        )}
       </div>
       <aside>
-        <GameClock isGameRunning={isGameRunning}/>
+        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
+        <GameClock
+          isGameRunning={isGameRunning}
+          timer={timer}
+          setTimer={setTimer}
+        />
         <BattleLog battleLog={battleLog} />
-        <Leaderboard leaderboard={leaderboard} botsArr={botsArr}/>
+        <Leaderboard
+          leaderboard={leaderboard}
+          setTimer={setTimer}
+          setLeaderboard={setLeaderboard}
+          setBotsArr={setBotsArr}
+          botsArr={botsArr}
+        />
+        <PlayFromScratchBtn setBotsArr={setBotsArr}/>
       </aside>
     </main>
   );
