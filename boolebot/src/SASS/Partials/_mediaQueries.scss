@@ -1,3 +1,18 @@
+//Landscape phone to portrait tablet 
+@media (max-width: 768px) {
+   .main_body{
+    .imgWrapper{
+        width: 30%;
+    }
+    .homepageBtns{
+        transform: scale(.8);
+    }
+
+   }
+}
+
+
+
 @media (max-width: 428px) {
     .nav-links {
         display: none;
