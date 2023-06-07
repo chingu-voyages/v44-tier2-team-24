@@ -5,9 +5,10 @@
   }
   .footer {
     margin: 0 auto;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    align-self: flex-end;
+    // position: absolute;
+    // left: 0;
+    // bottom: 0px;
     background-color: #061d41;
     text-align: center;
     min-height: 5%;

@@ -3,15 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 .botInfo_page{
-
-    padding: 4em 0;
+    height: 86vh;
+    // padding: 3em 0 0 0;
 .test {
     background-color: #d3f3ee;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 3em 0;
+        // padding: 3em 0;
         // border: 1px solid red;  
         button{
             background-color: #061d41;
@@ -51,10 +51,10 @@ form {
 
 
 .createdBots {
+    width: 80%;
+    margin: 0 auto;
     display: flex;
-    // border: 2px solid red;
-
-
+    // border: 1px solid #061d41;
 }
 
 
@@ -68,21 +68,29 @@ form {
 
 .showBot {
     // 
-    width: fit-content;
+    // border: 1px solid red;
+    width: 15%;
     align-items: center;
     flex-wrap: no-wrap;
     display:flex;
     flex-direction: column;
-    padding: 10px;
-    img {
-        align-self: center;
-        width: 55%;
-        margin-bottom: 10px;
-    }
-
+    padding: 0;
+    
     h3.title {
         text-align: center;
     }
+    .botIcon_wrapper{
+        width:20%;
+        img {
+            align-self: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    .botIcon_details{
+        width: 60%;
+    }
+
 
 }
 

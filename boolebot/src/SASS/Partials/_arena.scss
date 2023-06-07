@@ -1,22 +1,116 @@
+
 .main_container {
-    margin-top: 2em;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    height: 85vh;
+    justify-content: space-evenly;
     background-color: #d3f3ee;
-    padding: 3em 0;
+    height: 86vh;
+
+    .game_board{
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+        justify-content: space-evenly;
+        height: 85vh;
+        width: 50vw;
+        position: relative;
+        .createdBots {
+            position: absolute;
+            top:0;
+            align-self: center;
+            height:15%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            // border: 1px solid #061d41;
+            .showBot {
+                width: 15%;
+                display:flex;
+                align-items: center;
+                flex-direction: column;
+                
+                
+                h3.title {
+                    text-align: center;
+                }
+                .botIcon_wrapper{
+                    width:20%;
+                    img {
+                        align-self: center;
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                }
+                .botIcon_details{
+                    width: fit-content;
+                    font-size: .8em;
+                }
+                
+        }
+        }
+        .arena{
+            display: grid;
+            position: absolute;
+            top: 18%;
+            left:15%;
+            // align-self: center;
+            right: auto;
+        }
+        .btn{
+            background-color: #061d41;
+            color: white;
+            font-weight: 600;
+            font-size: 1em;
+            padding: 0.5em 1.5em;
+            border-radius: 10px;
+            // margin-bottom: 1em;
+            border: none;
+            width: fit-content;
+            position: absolute;
+            bottom: 0;
+            align-self: center ;
+
+        }
+        
+    }
+
+    .status_info{
+        // border: 1px solid blue;
+        width: 40vw;
+        height: 85vh;
+        padding-top: 2em;
+
+        button{
+            background-color: #061d41;
+            color: white;
+            font-weight: 600;
+            font-size: 1em;
+            padding: 0.5em 1.5em;
+            border-radius: 10px;
+            border: none;
+            width: fit-content;
+            align-self: center ;
+            justify-self: flex-end;
+
+        }
+    }
+    
 }
 
+
 img {
-    width: 70%;
+    width: 50%;
 }
 
 aside {
     display: flex;
     flex-direction: column;
     gap: 5em;
+    width: 40%;
 }
+
 
 aside>div {
     flex-grow: 1;

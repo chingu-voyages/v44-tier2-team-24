@@ -5,8 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #d3f3ee;
-  height: 100vh;
+  height: 100%;
 }
 
 code {
@@ -20,8 +19,8 @@ code {
   /* padding: 2rem; */
   /* background-color: #d3f3ee; */
   text-align: center;
-  height: auto;
-  position: relative;
+  height: 100%;
+  /* position: relative; */
 }
 
 /* arena */

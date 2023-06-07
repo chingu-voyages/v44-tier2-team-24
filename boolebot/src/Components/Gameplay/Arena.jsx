@@ -36,8 +36,8 @@ export default function Arena(props) {
 
 
   const arenaStyles = {
-    gridTemplateColumns: `repeat(${tileNum}, 100px)`,
-    gridTemplateRows: `repeat(${tileNum}, 100px)`,
+  gridTemplateColumns: `repeat(${tileNum}, 4em)`, /*changed grid size*/
+    gridTemplateRows: `repeat(${tileNum}, 4em)`,
   };
 
   const renderArena = () => {
@@ -252,22 +252,23 @@ export default function Arena(props) {
 
   return (
     <main className="main_container">
-      <div>
+      <div className="game_board">
         <BotRoaster botsArr={botsArr} />
-        {renderArena()}
+        <div className="arena">{renderArena()}</div>
 
         {botsArr.length === 1 ? (
           <div>
-            <button onClick={()=>{playAgain()}}>Play Again</button>
+            <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
           </div>
           
         ) : (
-          <button onClick={() => startGame()}>
+          
+          <button onClick={() => startGame()} className="btn">
             {isGameRunning ? "STOP" : "BATTLE"}
           </button>
         )}
       </div>
-      <aside>
+      <aside className="status_info">
         <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
         <GameClock
           isGameRunning={isGameRunning}
@@ -282,7 +283,7 @@ export default function Arena(props) {
           setBotsArr={setBotsArr}
           botsArr={botsArr}
         />
-        <PlayFromScratchBtn setBotsArr={setBotsArr}/>
+       <PlayFromScratchBtn setBotsArr={setBotsArr}/>
       </aside>
     </main>
   );
