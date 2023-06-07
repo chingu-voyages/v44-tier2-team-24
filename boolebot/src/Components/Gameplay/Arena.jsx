@@ -252,9 +252,9 @@ export default function Arena(props) {
 
   return (
     <main className="main_container">
-      <div>
+      <div className="game_board">
         <BotRoaster botsArr={botsArr} />
-        {renderArena()}
+        <div className="arena">{renderArena()}</div>
 
         {botsArr.length === 1 ? (
           <div>
@@ -267,7 +267,7 @@ export default function Arena(props) {
           </button>
         )}
       </div>
-      <aside>
+      <aside className="status_info">
         <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
         <GameClock
           isGameRunning={isGameRunning}

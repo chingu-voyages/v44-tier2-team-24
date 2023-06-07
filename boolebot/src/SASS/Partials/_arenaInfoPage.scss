@@ -4,11 +4,28 @@
 .arena-input-form{
     display: flex;
     justify-content: center;
-    padding: 2em 0;
+    position:absolute;
+    top: 25%;
+    bottom: 40%;
+    left:25%;
+    right:25%;
 
+    form{
+        @include form
+    }
+    .next_btn{
+        margin: 0 auto;
+    }
 }
 .createArena{
     background-color: #d3f3ee;
-    padding: 5em 0;
+    // padding: 5em 0 0 0;
+h2{
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    right:25%;
+}
+   
    
 }

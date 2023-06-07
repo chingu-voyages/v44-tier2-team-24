@@ -1,12 +1,63 @@
 .main_container {
-    margin-top: 2em;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    height: 85vh;
+    justify-content: space-evenly;
     background-color: #d3f3ee;
-    padding: 3em 0;
+    // padding: 3em 0;
+
+    .game_board{
+        border: 1px solid red;
+        display: flex;
+        width: 60%;
+        height:100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        // padding: 3em 0;
+
+        .createdBots {
+            width: 50%;
+            margin: 0 auto;
+            display: flex;
+            // border: 1px solid #061d41;
+            .showBot {
+                // 
+                // border: 1px solid red;
+                width: 15%;
+                align-items: center;
+                flex-wrap: no-wrap;
+                display:flex;
+                flex-direction: column;
+                padding: 0;
+                
+                h3.title {
+                    text-align: center;
+                }
+                .botIcon_wrapper{
+                    width:20%;
+                    img {
+                        align-self: center;
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                }
+                .botIcon_details{
+                    width: fit-content;
+                }
+        }
+        }
+
+        .arena{
+            transform: scale(.8);
+        }
+    }
+
+    .status_info{
+        border: 1px solid blue;
+    }
+    
 }
+
 
 img {
     width: 70%;
@@ -17,6 +68,7 @@ aside {
     flex-direction: column;
     gap: 5em;
 }
+
 
 aside>div {
     flex-grow: 1;

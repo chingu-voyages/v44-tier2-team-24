@@ -6,12 +6,14 @@ export default function BotRoaster({botsArr}) {
       {botsArr &&
         botsArr.map((bot, index) => (
           <div className={`showBot ${bot.name}`} key={index}>
-            <img
-              src={bot.botIcon}
-              style={{ width: "5em" }}
-              alt="photo of a robot head"
+            <div className='botIcon_wrapper'>
+              <img
+                src={bot.botIcon}
+                // style={{ width: "100%" }}
+                alt="photo of a robot head"
             />
-            <div key={index}>
+            </div>
+            <div key={index} className='botIcon_details'>
               <h3 className="title">{bot.name}</h3>
               <p>Position: {bot.position}</p>
               <p>
