@@ -31,7 +31,8 @@ export default function BotsInfo(props) {
   } = props;
   
   const tileNum = arenaData.tileNum
-  const {direction, setDirection} = useState({
+  
+  const [direction, setDirection] = useState({
     "1": "North",
     "2": "South",
     "3": "West",
@@ -81,9 +82,9 @@ export default function BotsInfo(props) {
     },
   ])
   
-    const updateIconPalette = (selectedIcon) =>{
-      setIconPalette(selectedIcon);
-    }
+  const updateIconPalette = (selectedIcon) =>{
+    setIconPalette(selectedIcon);
+  }
 
   const [iconSelected, setIconSelected] = useState(0);
 
@@ -281,7 +282,7 @@ function handleChange(e){
 
       const isUniqueBot = botsArrCopy.some(
         (bot) =>
-          bot.name === newBot.name 
+          bot.name === newBot.name
       );
 
       if (!isUniqueBot) {
