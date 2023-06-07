@@ -12,6 +12,30 @@ a {
   color: white;
 }
 
+ul {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+  padding-right: 2em;
+  font-weight: 600;
+}
+
+h1 {
+  font-family: "Bungee Shade", cursive;
+  font-size: 30px;
+  text-align: left;
+  padding-left: 1em;
+}
+
+nav {
+  display: flex;
+  width:
+
 header {
   margin: 0 auto;
   position: absolute;
