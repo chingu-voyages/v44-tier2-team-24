@@ -5,6 +5,7 @@ import AboutUs from "../Pages/AboutUs";
 
 const Hamburger = () => {
   //to change burger classes
+
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked")
   const [menuClass, setMenuClass] = useState("menu hidden")
   const [isMenuClicked, setIsMenuClicked] = useState(false)
@@ -83,9 +84,7 @@ const Hamburger = () => {
   };
   return (
     <div className="hamburger-nav">
-      <h1>
-        <Link className="h1-link menu-link-ham" to={`/`}> Hello </Link>
-      </h1>
+      
       <div className="burger-container">
         <nav className="burger-nav">
           <button className="burger-menu" onClick={updateMenu}>
@@ -95,7 +94,7 @@ const Hamburger = () => {
           </button>
         </nav>
         <div className={menuClass}>
-          <Link className="menu-link" onClick={showInstructions}>Game Instructions</Link>
+          <a className="menu-link" onClick={showInstructions}>Game Instructions</a>
           <Link className="menu-link" to={"/about"} element={<AboutUs />} onClick={closeMenu}>About Us</Link>
         </div>
       </div>
