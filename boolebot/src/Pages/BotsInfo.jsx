@@ -19,7 +19,14 @@ import bot8 from '../assets/bot8.svg'
 
 export default function BotsInfo(props) {
 
-  
+  const handleDeleteBot = (index) => {
+    setBotsArr((prev) => {
+      const newBotsArr = [...prev];
+      newBotsArr.splice(index, 1);
+      return newBotsArr;
+    });
+  };
+
   const [isBotsArrayFull, setIsBotsArrayFull] = useState(false)
   const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
   const tileNum = arenaData.tileNum
@@ -314,7 +321,7 @@ function handleChange(e){
     <div className='botInfo_page'>
       <h2>Create Bot</h2>
 
-      <BotRoaster botsArr={botsArr} />
+      <BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} />
 
       <div className="test">
         <form onSubmit={handleSubmit}>
