@@ -7,6 +7,7 @@ import BotClass from '../Components/Gameplay/BotClass';
 import IconPalette from './IconPalette'
 import BotRoaster from '../Components/Gameplay/BotRoaster';
 import useAutoFocus from '../Components/hooks/useAutoFocus';
+import makeCopyBotsArr from '../utils/makeCopyBotsArr';
 
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
@@ -21,7 +22,14 @@ export default function BotsInfo(props) {
 
   
   const [isBotsArrayFull, setIsBotsArrayFull] = useState(false)
-  const { botsData, setBotsData, botsArr, arenaData, setBotsArr } = props;
+  const {
+    botsData,
+    updateBotsData,
+    botsArr,
+    arenaData,
+    updateBotsArr,
+  } = props;
+  
   const tileNum = arenaData.tileNum
   const {direction, setDirection} = useState({
     "1": "North",
@@ -72,8 +80,16 @@ export default function BotsInfo(props) {
       isSelected: false
     },
   ])
+  
+    const updateIconPalette = (selectedIcon) =>{
+      setIconPalette(selectedIcon);
+    }
 
   const [iconSelected, setIconSelected] = useState(0);
+
+    const updateIconSelected = (newSelectedIcon) =>{
+      setIconSelected(newSelectedIcon)
+    }
 
 
   const [isValid, setIsValid]= useState({
@@ -100,33 +116,34 @@ function handleChange(e){
     }
     );
 
-    setBotsData((currentData) => {
-   
-      if (changedField === "name" ) {
-        let isSameName = botsArr.some((bot) => bot.name === newValue)
-        
 
-        if (isSameName ) {
-          // Display an error message or perform necessary actions
+    let botsDataCopy = {...botsData}
 
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: `* Each Bots should have unique names}`,
-            
-          });
-          
-        }
-         else {
-          let newState = { ...currentData, [changedField]: newValue };
-          return newState;
-        }
-
-      }
+    if (changedField === "name" ) {
+      let isSameName = botsArr.some((bot) => bot.name === newValue)
       
-      return {...currentData, [changedField]: newValue}
 
-  })
+      if (isSameName ) {
+        // Display an error message or perform necessary actions
+
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `* Each Bots should have unique names}`,
+          
+        });
+        
+      }
+       else {
+        let newState = { ...botsDataCopy, [changedField]: newValue };
+        updateBotsData(newState)
+      }
+
+    }
+    else{
+      updateBotsData({...botsDataCopy, [changedField]: newValue})
+
+    }
 }
 
   //form event- submit
@@ -134,15 +151,16 @@ function handleChange(e){
     console.log("SUBBITING BOTS INFO")
     event.preventDefault();
 
-    setBotsData((prev)=>{
-      return {...prev, 
-        name: "",
-        value: 0,
-        wins: 0,
-        loses: 0,
-        direction: 1,
-        botIcon: bot1}
+    updateBotsData({
+      name: "",
+      value: 0,
+      wins: 0,
+      loses: 0,
+      direction: 1,
+      botIcon: bot1
     })
+
+
     
     let occupiedPositions = []
 
@@ -255,12 +273,13 @@ function handleChange(e){
 
     }
     else{
-    
-    setBotsArr((prev) => {
+      
+      let botsArrCopy = makeCopyBotsArr(botsArr)
+          
       const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
       console.log("NEW BOT CREATED", newBot)
 
-      const isUniqueBot = prev.some(
+      const isUniqueBot = botsArrCopy.some(
         (bot) =>
           bot.name === newBot.name 
       );
@@ -277,41 +296,24 @@ function handleChange(e){
           const newIndex = iconPalette.findIndex( icon => !icon.isSelected )
   
           if(newIndex !== -1){
-            setBotsData( prev => {
-              return { 
-                ...prev,
-                botIcon: iconPalette[newIndex].url
-              }
-            })
+            let botsDataCopy = {...botsData}
+            updateBotsData({...botsDataCopy, botIcon: iconPalette[newIndex].url})
           }
 
           return newIndex
         })
 
-        return [...prev, newBot];
+        updateBotsArr([...botsArrCopy, newBot])
       } 
       else{
-        return prev
+        updateBotsArr(botsArrCopy)
       }
       
-    });  
     }
   };
 
-  const [expandedBots, setExpandedBots] = useState([]);
-
-  const toggleBotExpansion = (index) => {
-    setExpandedBots((prevExpandedBots) => {
-      const newExpandedBots = [...prevExpandedBots];
-      newExpandedBots[index] = !newExpandedBots[index];
-      return newExpandedBots;
-    });
-  };
-
-
-
   return (
-    <div className='botInfo_page'>
+    <div className="botInfo_page">
       <h2>Create Bot</h2>
 
       <BotRoaster botsArr={botsArr} />
@@ -322,7 +324,7 @@ function handleChange(e){
             <label htmlFor="name">
               Name your bot:
               <input
-                placeholder=' Name your robot'
+                placeholder=" Name your robot"
                 ref={inputAutoFocus}
                 type="text"
                 id="name"
@@ -363,9 +365,11 @@ function handleChange(e){
             <IconPalette
               id="icons"
               iconPalette={iconPalette}
-              setBotsData={setBotsData}
+              botsData={botsData}
+              updateBotsData={updateBotsData}
               iconSelected={iconSelected}
-              setIconSelected={setIconSelected}
+      
+              updateIconSelected={updateIconSelected}
             />
 
             <label htmlFor="direction">
@@ -396,7 +400,7 @@ function handleChange(e){
           </fieldset>
         </form>
         <Link to="/createArena">
-        <button>Back</button>
+          <button>Back</button>
         </Link>
         <Link to="/arena">
           <button disabled={botsArr.length <= 1}>Battle Ground</button>
