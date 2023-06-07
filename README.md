@@ -2,7 +2,7 @@
 
 # BooleBots 
 BooleBots is an engaging app that combines gameplay with basic Boolean logic.
-[Link to live site](https://boolebots-dev.netlify.app/)
+[Live Site](https://boolebots-dev.netlify.app/)
 
 
 A collaborative app built remotely organized by [Chingus](https://jack-codes.netlify.app/)
