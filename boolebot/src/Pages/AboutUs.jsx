@@ -6,7 +6,7 @@ export default function AboutUs() {
     <div className="main">
       <h1 className="mainHeader">About Us</h1>
       
-      <section>
+      <section className="creator_section">
         {/* Jack's Info*/}
        <div className="imgContainer"><img src="/images/Jack.jpeg"/></div> 
         <div className="content">
@@ -35,7 +35,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="creator_section">
         {/* Libby's Info*/}
       <div className="imgContainer"><img src="/images/Elizabeth.jpg"/></div>
 
@@ -63,7 +63,7 @@ export default function AboutUs() {
           </div>
          </div>      
       </section>
-      <section>
+      <section className="creator_section">
         {/* Hector's Info*/}
       <div className="imgContainer"><img src="/images/Hector.jpeg"/></div> 
 
@@ -86,7 +86,7 @@ export default function AboutUs() {
           </div>
         </div>        
         </section>
-      <section>
+      <section className="creator_section">
         {/* Sucheta's Info*/}
       <div className="imgContainer"><img src="/images/Sucheta.jpg"/></div>
       <div className="content">

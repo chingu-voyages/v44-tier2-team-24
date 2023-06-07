@@ -12,34 +12,12 @@ a {
   color: white;
 }
 
-ul {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-li {
-  list-style: none;
-  padding-right: 2em;
-  font-weight: 600;
-}
-
-h1 {
-  font-family: "Bungee Shade", cursive;
-  font-size: 30px;
-  text-align: left;
-  padding-left: 1em;
-}
-
-nav {
-  display: flex;
-}
-
 header {
+  align-self: flex-start;
   margin: 0 auto;
-  position: absolute;
-  top: 0;
+  // position: absolute;
+  // top: 0;
+  // left:0;
   background-color: #061d41;
   text-align: center;
   min-height: 2%;

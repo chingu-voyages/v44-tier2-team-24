@@ -1,17 +1,23 @@
 @use "./variables" as *;
 
 * {
+    
     box-sizing: border-box;
+    padding: 0;
+   margin: 0;
     font-family: $Roboto;
   }
   .main {
     background-color: #d3f3ee;
-    padding: 3em 0 7em 0;
+    // position: relative;
+    // top: 5%;
+    // bottom: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    scroll-behavior: auto;
+    // height: 100%;
     
 
     .mainHeader {
@@ -19,7 +25,7 @@
       font-family: $Roboto;
       margin-top: 3%;
     }
-    section {
+    .creator_section {
       padding: 3em 1em;
       display: flex;
       justify-content: space-evenly;
@@ -61,9 +67,9 @@
         }
       }
     }
-    section:nth-child(odd) {
-      flex-direction: row-reverse;
-    }
+    // .creator_section:nth-child(odd) {
+    //   flex-direction: row-reverse;
+    // }
   }
   
   

@@ -5,7 +5,8 @@ import Hamburger from '../Components/Hamburger';
 import Container from '../Components/Layout/Container';
 function RootLayout() {
     return (
-        <div className='main_content'> 
+        
+        <div className='project'>
         <Navigation />
 
         <Hamburger />
@@ -15,6 +16,7 @@ function RootLayout() {
 
         <Footer />
         </div>
+        
     )
 }
 

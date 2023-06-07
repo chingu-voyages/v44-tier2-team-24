@@ -107,7 +107,7 @@ export default function BotsInfo(props) {
             </label>
           </div>
           
-          <Link to="/createBot">
+          <Link to="/createBot" className="next_btn">
             <button type="submit">Next</button>
           </Link>
         </form>
