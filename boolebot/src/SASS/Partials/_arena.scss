@@ -3,32 +3,31 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: #d3f3ee;
-    // padding: 3em 0;
+    padding-top: 5em;
+    
 
     .game_board{
         border: 1px solid red;
         display: flex;
-        width: 60%;
-        height:100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        // padding: 3em 0;
+        // flex-direction: column;
+        align-items:flex-start;
+        justify-content: space-evenly;
+        padding: 0 3em;
 
         .createdBots {
-            width: 50%;
-            margin: 0 auto;
+            width: 60%;
+            // margin: 0 auto;
             display: flex;
-            // border: 1px solid #061d41;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            border: 1px solid #061d41;
             .showBot {
-                // 
-                // border: 1px solid red;
-                width: 15%;
-                align-items: center;
-                flex-wrap: no-wrap;
+                width: 20%;
                 display:flex;
+                align-items: center;
                 flex-direction: column;
-                padding: 0;
+                
                 
                 h3.title {
                     text-align: center;
@@ -43,13 +42,12 @@
                 }
                 .botIcon_details{
                     width: fit-content;
+                    font-size: .8em;
                 }
         }
         }
 
-        .arena{
-            transform: scale(.8);
-        }
+        
     }
 
     .status_info{
@@ -60,13 +58,14 @@
 
 
 img {
-    width: 70%;
+    width: 50%;
 }
 
 aside {
     display: flex;
     flex-direction: column;
     gap: 5em;
+    width: 40%;
 }
 
 
