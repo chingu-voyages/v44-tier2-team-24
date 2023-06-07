@@ -2,11 +2,10 @@
 
 # BooleBots 
 BooleBots is an engaging app that combines gameplay with basic Boolean logic.
+(Boolebot is a Tier-2 [Chingus](https://jack-codes.netlify.app/) Project)
 [Live Site](https://boolebots-dev.netlify.app/)
 
-
-A collaborative app built remotely organized by [Chingus](https://jack-codes.netlify.app/)
-
+A collaborative app built remotely by:
 - Run Qi (Jack) Li | [Github](https://github.com/jackli921) | [Portfolio](https://freemark.dev/)
 - Elizabeth Reeves | [Github](https://github.com/libbyreeves) | [Portfolio](https://elizabeth-reeves.ca/)
 - Hector Garcia | [Github](https://github.com/hectorgarcia07) | [LinkedIn](https://www.linkedin.com/in/hectorgarcia01/)
