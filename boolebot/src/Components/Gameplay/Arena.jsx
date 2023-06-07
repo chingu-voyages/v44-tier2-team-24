@@ -258,11 +258,12 @@ export default function Arena(props) {
 
         {botsArr.length === 1 ? (
           <div>
-            <button onClick={()=>{playAgain()}}>Play Again</button>
+            <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
           </div>
           
         ) : (
-          <button onClick={() => startGame()}>
+          
+          <button onClick={() => startGame()} className="btn">
             {isGameRunning ? "STOP" : "BATTLE"}
           </button>
         )}
@@ -282,7 +283,7 @@ export default function Arena(props) {
           setBotsArr={setBotsArr}
           botsArr={botsArr}
         />
-        <PlayFromScratchBtn setBotsArr={setBotsArr}/>
+       <PlayFromScratchBtn setBotsArr={setBotsArr}/>
       </aside>
     </main>
   );

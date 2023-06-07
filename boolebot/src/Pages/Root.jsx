@@ -6,7 +6,7 @@ import Container from '../Components/Layout/Container';
 function RootLayout() {
     return (
         
-        <>
+        <div className='project'>
         <Navigation />
 
         <Hamburger />
@@ -15,7 +15,7 @@ function RootLayout() {
             {/* </Container> */}
 
         <Footer />
-        </>
+        </div>
         
     )
 }
