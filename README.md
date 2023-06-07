@@ -36,10 +36,14 @@ Boole Bots is a game that is not only fun, but also an aid in helping to underst
 - Vite
 - Sweet Alert
 
-## Packages Installed
+## Dependencies
 - [Sweet Alert](https://sweetalert2.github.io/)
-- [React Progress Bar](https://www.npmjs.com/package/@ramonak/react-progress-bar)
 - [Sass](https://www.npmjs.com/package/sass)
+- [react](https://www.npmjs.com/package/react)  
+- [react-dom](https://www.npmjs.com/package/react-dom)
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form)
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- [web-vitals](https://www.npmjs.com/package/web-vitals)
 
 
 ## Image Asset Credits
