@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import singleBot from "../assets/bot.png";
 import Swal from "sweetalert2"; 
 import { Link } from 'react-router-dom';
@@ -18,6 +19,9 @@ import bot7 from '../assets/bot7.svg'
 import bot8 from '../assets/bot8.svg'
 
 export default function BotsInfo(props) {
+  
+  const location = useLocation();
+
 
   const handleDeleteBot = (index) => {
     setBotsArr((prev) => {
@@ -321,7 +325,7 @@ function handleChange(e){
     <div className='botInfo_page'>
       <h2>Create Bot</h2>
 
-      <BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} />
+      <BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} currentLocation = {location.pathname}  />
 
       <div className="test">
         <form onSubmit={handleSubmit}>

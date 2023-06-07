@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BotRoaster({ botsArr, handleDeleteBot }) {
+export default function BotRoaster({ botsArr, handleDeleteBot, currentLocation }) {
   const handleDelete = (botName) => {
     handleDeleteBot(botName);
   };
@@ -39,7 +39,7 @@ export default function BotRoaster({ botsArr, handleDeleteBot }) {
                   : ''}
               </p>
               <p>Value: {bot.value}</p>
-              <button onClick={() => handleDelete(bot.name)}>Delete</button>
+             {currentLocation === '/createBot'? <button onClick={() => handleDelete(bot.name)}>Delete</button> : null }
             </div>
           </div>
         ))}
