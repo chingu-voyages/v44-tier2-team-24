@@ -32,7 +32,7 @@ Boole Bots is a game that is not only fun, but also an aid in helping to underst
 - User can restart a game 
 
 
-## Built With 
+## Technologies
 - React.js
 - Git/Github
 - SASS
