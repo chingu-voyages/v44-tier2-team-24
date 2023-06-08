@@ -10,7 +10,7 @@ import ArenaSetting from "./ArenaSetting";
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
 import singleBot from "../../assets/bot.png";
-import GameClock from "../GameClock";
+import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
 
@@ -30,7 +30,6 @@ export default function Arena(props) {
     sec: 0,
     running: false,
   });
-
   const {
     arenaData: { tileNum, speed, operator },
     botsArr,
@@ -245,7 +244,6 @@ export default function Arena(props) {
         <BattleLog battleLog={battleLog} />
         <Leaderboard
           leaderboard={leaderboard}
-          setTimer={setTimer}
           setLeaderboard={setLeaderboard}
           botsArr={botsArr}
         />
