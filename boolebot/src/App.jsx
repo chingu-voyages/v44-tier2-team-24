@@ -60,23 +60,11 @@ const updateArenaData = newState => {
 const routeLocation = ['/createArena', '/createBot'];
 
 // Handler function to delete bots from the array
-const deleteBotFromArray = (index)=>{
+const deleteBotFromArray = (name)=>{
   setBotsArr((prevBotsArr)=>
-  prevBotsArr.filter((_,i)=> i !== index)
+  prevBotsArr.filter((bot,i)=> bot.name !== name)
   )
 }
-
-//Creating an object to hold board control info
-const [boardControl, setBoardControl] = useState({});
-
-
-//control handler changed the state of the object and is called on form submit event form ArenaInfo page
-function boardDataSubmission(newObj){
-  setBoardControl((prevObj)=> { return {...prevObj,newObj}})
-  console.log(boardControl)
-}
-
-
   const router = createBrowserRouter([
     //the following path is for the wrapper
     {
@@ -103,10 +91,6 @@ function boardDataSubmission(newObj){
               updateBotsArr={updateBotsArr}
             />
           ),
-        },
-        {
-          path: "/arenaSettings",
-          element: <ArenaInfoPage boardDataSubmission={boardDataSubmission} />,
         },
         { path: "/about", element: <AboutUs /> },
         {

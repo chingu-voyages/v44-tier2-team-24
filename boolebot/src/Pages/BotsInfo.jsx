@@ -9,6 +9,8 @@ import IconPalette from './IconPalette'
 import BotRoaster from '../Components/Gameplay/BotRoaster';
 import useAutoFocus from '../Components/hooks/useAutoFocus';
 import makeCopyBotsArr from '../utils/makeCopyBotsArr';
+import getOccupiedPos from '../utils/getOccupiedPos';
+import generateUniquePos from '../utils/generateUniquePos';
 
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
@@ -20,18 +22,7 @@ import bot7 from '../assets/bot7.svg'
 import bot8 from '../assets/bot8.svg'
 
 export default function BotsInfo(props) {
-  
   const location = useLocation();
-
-
-  const handleDeleteBot = (index) => {
-    setBotsArr((prev) => {
-      const newBotsArr = [...prev];
-      newBotsArr.splice(index, 1);
-      return newBotsArr;
-    });
-  };
-
   const [isBotsArrayFull, setIsBotsArrayFull] = useState(false)
   const {
     botsData,
@@ -39,10 +30,9 @@ export default function BotsInfo(props) {
     botsArr,
     arenaData,
     updateBotsArr,
+    deleteBotFromArray
   } = props;
-  
   const tileNum = arenaData.tileNum
-  
   const [direction, setDirection] = useState({
     "1": "North",
     "2": "South",
@@ -54,9 +44,7 @@ export default function BotsInfo(props) {
     "8": "SW"
 
   })
-
   const inputAutoFocus = useAutoFocus(botsArr);
-
   const [iconPalette, setIconPalette] = useState([
     {
       url: bot1,
@@ -92,75 +80,45 @@ export default function BotsInfo(props) {
       isSelected: false
     },
   ])
-  
-  const updateIconPalette = (selectedIcon) =>{
-    setIconPalette(selectedIcon);
-  }
-
   const [iconSelected, setIconSelected] = useState(0);
-
-    const updateIconSelected = (newSelectedIcon) =>{
-      setIconSelected(newSelectedIcon)
-    }
-
-
   const [isValid, setIsValid]= useState({
     name: false
   });
- 
-
+  const updateIconPalette = (selectedIcon) =>{
+    setIconPalette(selectedIcon);
+  }
+  const updateIconSelected = (newSelectedIcon) =>{
+    setIconSelected(newSelectedIcon)
+  }
 
 // Generic change handler
 function handleChange(e){
     const changedField = e.target.name;
     const newValue = e.target.value;
-
-
-    setIsValid(prev => {
-      let isSameName = botsArr.some((bot) => bot.name === newValue)
-
-      if (changedField === "name" ){
-        return {
-          name: isSameName,
-        }
-      }
-      return prev
-    }
-    );
-
-
     let botsDataCopy = {...botsData}
+    let isSameName = botsArr.some((bot) => bot.name === newValue)
 
-    if (changedField === "name" ) {
-      let isSameName = botsArr.some((bot) => bot.name === newValue)
-      
+    if (changedField === "name" && isSameName ) {
+      setIsValid( prev => {
+        return { name: isSameName}
+      })
 
-      if (isSameName ) {
-        // Display an error message or perform necessary actions
-
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `* Each Bots should have unique names}`,
-          
-        });
+      // Display an error message or perform necessary actions
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `* Each Bots should have unique names}`,
         
-      }
-       else {
-        let newState = { ...botsDataCopy, [changedField]: newValue };
-        updateBotsData(newState)
-      }
+      });
 
     }
     else{
       updateBotsData({...botsDataCopy, [changedField]: newValue})
-
     }
 }
 
   //form event- submit
   const handleSubmit = (event) => {
-    console.log("SUBBITING BOTS INFO")
     event.preventDefault();
 
     updateBotsData({
@@ -171,108 +129,12 @@ function handleChange(e){
       direction: 1,
       botIcon: bot1
     })
-
-
     
-    let occupiedPositions = []
-
-    if(botsArr.length){
-      botsArr.forEach(bot => {
-        if(bot.position){
-
-            if (bot.position > 0 && bot.position <= tileNum * tileNum){
-               if (!occupiedPositions.includes(bot.position)){
-                occupiedPositions.push(bot.position)
-               }
-            }
-
-            if (bot.position - tileNum > 0) {
-                if (!occupiedPositions.includes(bot.position - tileNum))
-                  {
-                    occupiedPositions.push(bot.position - tileNum)
-                  }
-              }
-
-            if(bot.position + tileNum <= tileNum * tileNum){
-              if(!occupiedPositions.includes(bot.position + tileNum) ){
-                occupiedPositions.push(bot.position + tileNum)
-              }
-            }
-
-            if((bot.position - 1) % tileNum != 0){
-              if(!occupiedPositions.includes(bot.position - 1)){
-                occupiedPositions.push(bot.position - 1)
-              }
-            }
-
-            if((bot.position + 1) % tileNum != 1){
-              if(!occupiedPositions.includes(bot.position + 1)){
-                occupiedPositions.push(bot.position + 1)
-              }
-            }
-
-            if(bot.position % tileNum !== 0 && bot.position - (tileNum - 1) > 0){
-              if(!occupiedPositions.includes(bot.position - (tileNum - 1))){
-                occupiedPositions.push(bot.position - (tileNum - 1) )
-              }
-            }
-
-            if(bot.position % tileNum !== 1 && bot.position - (tileNum + 1) > 0){
-              if(!occupiedPositions.includes(bot.position - (tileNum + 1))){
-                occupiedPositions.push(bot.position - (tileNum + 1));
-
-              }
-            }
-
-            if(bot.position % tileNum !== 0 && bot.position + (tileNum + 1) < tileNum * tileNum){
-              if(!occupiedPositions.includes(bot.position + (tileNum + 1)))
-              {
-                occupiedPositions.push(bot.position + (tileNum + 1))
-
-              }
-            }
-
-            if(bot.position % tileNum !== 1 && bot.position + (tileNum - 1) < tileNum * tileNum){
-              if(!occupiedPositions.includes(bot.position + (tileNum - 1))){
-                
-                occupiedPositions.push(bot.position + (tileNum - 1));
-            }
-
-          }
-          
-        }
-      })
-    }
-    
-    const generateUniquePosition = () =>{
-      //generate a number between 1 to tileNum** but not any num in the occupiedPosition arr
-      let isValid = false
-      let position;
-    
-      
-      if(occupiedPositions.length >= tileNum * tileNum){
-        return -1
-      }
-      
-      do{
-        position = generateRandomNumber(tileNum * tileNum)
-
-
-        if(!occupiedPositions.includes(position)){
-          isValid = true
-          occupiedPositions.push(position)
-        }
-        
-      }while(!isValid)
-      return position
-    }
-
-
+    let occupiedPositions = getOccupiedPos(botsArr, tileNum)
     let pos = occupiedPositions.length
-      ? generateUniquePosition()
+      ? generateUniquePos(occupiedPositions, tileNum)
       : generateRandomNumber(tileNum * tileNum); 
 
-      console.log("POSITION ", pos)
     
     if(pos === -1){
       setIsBotsArrayFull(true)
@@ -285,18 +147,14 @@ function handleChange(e){
 
     }
     else{
-      
       let botsArrCopy = makeCopyBotsArr(botsArr)
-          
       const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
-      console.log("NEW BOT CREATED", newBot)
-
-      const isUniqueBot = botsArrCopy.some(
+      const duplicateBot = botsArrCopy.some(
         (bot) =>
           bot.name === newBot.name
       );
 
-      if (!isUniqueBot) {
+      if (!duplicateBot) {
         setIconPalette(prev => {
           const newIconPallet = [...prev]
 
@@ -316,11 +174,7 @@ function handleChange(e){
         })
 
         updateBotsArr([...botsArrCopy, newBot])
-      } 
-      else{
-        updateBotsArr(botsArrCopy)
       }
-      
     }
   };
 
@@ -328,7 +182,7 @@ function handleChange(e){
     <div className="botInfo_page">
       <h2>Create Bot</h2>
 
-      <BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} currentLocation = {location.pathname}  />
+      <BotRoaster botsArr={botsArr} deleteBotFromArray={deleteBotFromArray} currentLocation = {location.pathname} iconPalette={iconPalette} updateIconPalette={updateIconPalette} />
 
       <div className="test">
         <form onSubmit={handleSubmit}>

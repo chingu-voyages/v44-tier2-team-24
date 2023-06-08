@@ -56,7 +56,7 @@ export default function Arena(props) {
             (bot) => bot.position === tilePosition
           );
           return renderTile(tilePosition, robotIndex);
-        })}
+        })} 
       </div>
     );
   };

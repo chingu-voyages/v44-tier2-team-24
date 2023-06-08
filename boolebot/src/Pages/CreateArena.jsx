@@ -3,13 +3,7 @@ import singleBot from "../assets/bot.png";
 import { Link } from "react-router-dom";
 
 export default function BotsInfo(props) {
-  // const [botName, setBotName] = useState('');
-  // const [booleanValue, setBooleanValue] = useState('1');
-  // const [booleanOperator, setBooleanOperator] = useState('and');
-  // const [botSpeed, setBotSpeed] = useState(0);
-  // const [botDirection, setBotDirection] = useState('north');
   const {arenaData, updateArenaData} = props
-  
   
   // Generic change handler
   function handleChange(e) {
@@ -117,6 +111,4 @@ export default function BotsInfo(props) {
     </div>
     </div>
   )
-  
- 
 }
