@@ -7,9 +7,6 @@ export default function BotRoaster({ botsArr, deleteBotFromArray, currentLocatio
     
     let index = botsArr.findIndex(bot => bot.name === botName)
     let iconPaletteIndex = iconPalette.findIndex( icon => icon.url === botsArr[index].botIcon)
-
-    console.log(botsArr, index)
-    console.log(iconPalette, iconPaletteIndex)
     iconPaletteCopy[iconPaletteIndex].isSelected = false
 
     updateIconPalette(iconPaletteCopy)

@@ -131,11 +131,7 @@ export default function Arena(props) {
       intervalId = setInterval(
         () => {
           setCollisionLocation(() => null);
-          // console.log("CURRENT BOTS", botsArr)
-
           const newBotsArr = makeCopyBotsArr(botsArr);
-
-          // console.log("COPY OF BOTS ARRAY", newBotsArr)
 
           newBotsArr[currBot].calcNextMove(tileNum);
 
@@ -151,7 +147,6 @@ export default function Arena(props) {
               setMessage
             );
 
-            // console.log("Collided bots with updated score", collidedBotsArr);
             if (collidedBotsArr) {
               setBattleLog((prev) => [
                 ...prev,

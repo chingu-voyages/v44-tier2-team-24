@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 
-
 export default function IconPalette({
   iconPalette,
   botsData,
@@ -9,40 +8,33 @@ export default function IconPalette({
   iconSelected,
   updateIconSelected, 
 }) {
-  function handleClick() {
-    console.log("Icon Clicked!");
-  }
 
   function onChangeValue(event) {
-    updateIconSelected(event.target.value)
+    updateIconSelected(Number(event.target.value))
 
     let botsDataCopy = { ...botsData };
+
     updateBotsData({
       ...botsDataCopy,
       botIcon: iconPalette[Number(event.target.value)].url,
     });
-
-    console.log(event.target.value);
   }
 
   const iconEl = iconPalette.map((icon, i) => {
     return (
-      <div
-        onClick={(e) => handleClick(e)}
-        onChange={onChangeValue}
-        key={i}
-        className="iconContainer"
-      >
+      <label htmlFor={`bot${i}`} key={i} className="iconContainer" onChange={(e) => onChangeValue(e)}>
         <input
           type="radio"
           value={i}
-          name={`bot${i}`}
+          id={`bot${i}`}
+          name="bot"
           readOnly
-          checked={iconSelected == i}
+          checked={iconSelected === i}
           disabled={icon.isSelected}
+          
         />
         <img src={icon.url} alt={`bot icon ${i}`} />
-      </div>
+      </label>
     );
   });
 
