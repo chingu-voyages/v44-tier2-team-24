@@ -123,7 +123,7 @@ function handleChange(e){
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: `* Each Bots should have unique names}`,
+            text: `* Each Bots should have unique names`,
             
           });
           
@@ -325,7 +325,7 @@ function handleChange(e){
     <div className='botInfo_page'>
       <h2>Create Bot</h2>
 
-      <BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} currentLocation = {location.pathname}  />
+     <BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} currentLocation = {location.pathname}  />
 
       <div className="test">
         <form onSubmit={handleSubmit}>

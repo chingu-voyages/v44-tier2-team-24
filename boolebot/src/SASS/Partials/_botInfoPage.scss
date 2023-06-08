@@ -4,15 +4,17 @@
 
 .botInfo_page{
     height: 86vh;
+    display: flex;
+    flex-direction: column;
     // padding: 3em 0 0 0;
 .test {
+    align-self: center;
     background-color: #d3f3ee;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        // padding: 3em 0;
-        // border: 1px solid red;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+        
         button{
             background-color: #061d41;
             color: white;
@@ -27,6 +29,7 @@
 }
 
 h2 {
+    align-self: center;
     text-align: center;
     font-family: 'Roboto Mono', monospace;
     background-color: #d3f3ee;
@@ -49,13 +52,41 @@ form {
     
 }
 
-
 .createdBots {
-    width: 80%;
-    margin: 0 auto;
+    align-self: center;
+    height:fit-content;
     display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
     // border: 1px solid #061d41;
+    .showBot {
+        width: 5em;
+        height: fit-content;
+        display:flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        
+        
+        h3.title {
+            text-align: center;
+        }
+        .botIcon_wrapper{
+            width:2em;
+            img {
+                align-self: center;
+                max-width: 100%;
+                // margin-bottom: 10px;
+            }
+        }
+        .botIcon_details{
+            width: fit-content;
+            font-size: .8em;
+        }
+        
+    }
 }
+
 
 
 
@@ -66,33 +97,6 @@ form {
     margin-top: 10px;
 }
 
-.showBot {
-    // 
-    // border: 1px solid red;
-    width: 15%;
-    align-items: center;
-    flex-wrap: no-wrap;
-    display:flex;
-    flex-direction: column;
-    padding: 0;
-    
-    h3.title {
-        text-align: center;
-    }
-    .botIcon_wrapper{
-        width:20%;
-        img {
-            align-self: center;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    }
-    .botIcon_details{
-        width: 60%;
-    }
-
-
-}
 
 .botDetails {
     display: flex;
@@ -112,7 +116,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    brgin-left: auto;
+    margin-left: auto;
     margin-top: -13px;
         /* Adjust this value as needed */
         margin-right: 10px;

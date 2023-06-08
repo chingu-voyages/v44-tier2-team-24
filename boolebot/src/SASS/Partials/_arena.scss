@@ -1,4 +1,4 @@
-
+@use './mixins' as *;
 .main_container {
     display: flex;
     align-items: center;
@@ -15,18 +15,18 @@
         height: 85vh;
         width: 50vw;
         position: relative;
+        
         .createdBots {
             position: absolute;
-            top:0;
-            align-self: center;
-            height:15%;
+            top:1%;
+            height:fit-content;
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: space-evenly;
             // border: 1px solid #061d41;
             .showBot {
-                width: 15%;
+                width:5em;
                 display:flex;
                 align-items: center;
                 flex-direction: column;
@@ -36,11 +36,11 @@
                     text-align: center;
                 }
                 .botIcon_wrapper{
-                    width:20%;
+                    width:2em;
                     img {
                         align-self: center;
-                        width: 100%;
-                        margin-bottom: 10px;
+                        max-width: 100%;
+                        // margin-bottom: 10px;
                     }
                 }
                 .botIcon_details{
@@ -48,8 +48,9 @@
                     font-size: .8em;
                 }
                 
+            }
         }
-        }
+        
         .arena{
             display: grid;
             position: absolute;
@@ -99,10 +100,10 @@
     
 }
 
-
 img {
-    width: 50%;
-}
+       max-width: 100%;
+    }
+
 
 aside {
     display: flex;
