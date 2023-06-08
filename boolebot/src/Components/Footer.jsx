@@ -16,10 +16,14 @@ export default function Footer() {
           <i className="fa fa-github"></i>
         </a>
         <ul className="footer_ul">
-          <li className="github_link_personal"><Link to="https://github.com/hectorgarcia07">Hector</Link></li>
-          <li className="github_link_personal"><Link to="https://github.com/jackli921">Jack</Link></li>
-          <li className="github_link_personal"><Link to="https://github.com/libbyreeves">Libby</Link></li>
-          <li className="github_link_personal"><Link to="https://github.com/sucheta90">Sucheta</Link></li>
+          <li className="github_link_personal"><Link to="https://github.com/hectorgarcia07" target="_blank"
+          rel="noreferrer">Hector</Link></li>
+          <li className="github_link_personal"><Link to="https://github.com/jackli921" target="_blank"
+          rel="noreferrer">Jack</Link></li>
+          <li className="github_link_personal"><Link to="https://github.com/libbyreeves" target="_blank"
+          rel="noreferrer">Libby</Link></li>
+          <li className="github_link_personal"><Link to="https://github.com/sucheta90" target="_blank"
+          rel="noreferrer">Sucheta</Link></li>
         </ul>
        
     </div>
