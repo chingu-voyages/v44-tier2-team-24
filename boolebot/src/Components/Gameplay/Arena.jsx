@@ -90,7 +90,7 @@ export default function Arena(props) {
           tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
-        {robot ? <img src={robot.botIcon} alt="photo of a robot head" />: ""}
+        {robot ? <img src={robot.botIcon} alt="photo of a robot head" style={{width:"50%"}} />: ""}
         {text}
       </div>
     );

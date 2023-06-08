@@ -12,14 +12,14 @@
     justify-content: space-evenly;
     width: 100%;
     padding: 1em 0;
-    
+    height: 100%;
   .imgWrapper {
     width: 40%;
     margin: 0 auto;
     
 
     img{
-      width: 100%;
+      max-width: 100%;
     }
   }
 
