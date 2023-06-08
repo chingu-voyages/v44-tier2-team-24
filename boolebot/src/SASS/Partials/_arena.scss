@@ -1,3 +1,4 @@
+@use './mixins' as *;
 
 .main_container {
     display: flex;
@@ -7,27 +8,29 @@
     height: 90vh;
 
     .game_board{
-        // border: 1px solid red;
+        // border: 1px solid blue;
+        height: auto;
         display: flex;
         flex-direction: column;
-        align-items:flex-start;
         justify-content: space-evenly;
-        height: 85vh;
-        width: 50vw;
-        position: relative;
+        // height: 85vh;
+        // width: 50vw;
+        
+        
+        .bots_display{
+            width: 100%;
+            margin-bottom: 2em;
         .createdBots {
-            position: absolute;
-            top:0;
-            align-self: center;
-            height:15%;
+            
+            // height:fit-content;
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             // justify-content: space-evenly;
             // border: 1px solid #061d41;
             .showBot {
-                border: 1px solid #061d41;
-                width: fit-content;
+                width:5em;
+                display:flex;
                 align-items: center;
                 display:flex;
                 flex-direction: column;
@@ -39,11 +42,11 @@
                     text-align: center;
                 }
                 .botIcon_wrapper{
-                    width:20%;
+                    width:2em;
                     img {
                         align-self: center;
                         max-width: 100%;
-                       
+                        // margin-bottom: 10px;
                     }
                 }
                 .botIcon_details{
@@ -51,15 +54,14 @@
                     font-size: .8em;
                 }
                 
+            }
         }
-        }
+    }
+        
         .arena{
             display: grid;
-            position: absolute;
-            top: 18%;
-            left:15%;
-            // align-self: center;
-            right: auto;
+            margin-bottom: 1em ;
+            align-self: center;
         }
         .btn{
             background-color: #061d41;
@@ -71,8 +73,6 @@
             // margin-bottom: 1em;
             border: none;
             width: fit-content;
-            position: absolute;
-            bottom: 0;
             align-self: center ;
 
         }
@@ -81,9 +81,9 @@
 
     .status_info{
         // border: 1px solid blue;
-        width: 40vw;
-        height: 85vh;
-        padding-top: 2em;
+        // width: 40vw;
+        // height: 85vh;
+        // padding-top: 2em;
 
         button{
             background-color: #061d41;
@@ -102,10 +102,10 @@
     
 }
 
-
 img {
-    width: 50%;
-}
+       max-width: 100%;
+    }
+
 
 aside {
     display: flex;
@@ -123,3 +123,58 @@ aside>div {
     align-items: center;
     height: 100%;
 }
+
+//copied from index.css
+
+/* arena */
+.arena {
+    display: grid;
+  }
+  
+  .tile {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2em;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .crashedText {
+    color: red;
+  }
+  
+  .cell {
+    border: 1px solid black;
+  }
+  
+  .tan {
+    background-color: tan;
+  }
+  
+  .orange {
+    background-color: orange;
+  }
+  
+  .blue {
+    background-color: blue;
+  }
+  
+  .yellow {
+    background-color: yellow;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  .border {
+    border: 10px solid aquamarine;
+  }
+  
