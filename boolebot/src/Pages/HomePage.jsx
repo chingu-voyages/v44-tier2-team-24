@@ -33,7 +33,7 @@ export default function Homepage() {
     <div className="main_body">
       {/* Below this line is the bot image*/}
       <div className="imgWrapper">
-        <img src={botImage} alt="Bot" />
+        <img src={botImage} alt="Bot" className="bot_image" />
       </div>
 
       <section className="homepageBtns">

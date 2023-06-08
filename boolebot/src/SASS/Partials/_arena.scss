@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: #d3f3ee;
-    height: 86vh;
+    height: 90vh;
 
     .game_board{
         // border: 1px solid red;
@@ -23,13 +23,16 @@
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            justify-content: space-evenly;
+            // justify-content: space-evenly;
             // border: 1px solid #061d41;
             .showBot {
-                width: 15%;
-                display:flex;
+                border: 1px solid #061d41;
+                width: fit-content;
                 align-items: center;
+                display:flex;
                 flex-direction: column;
+                align-items: center;
+                
                 
                 
                 h3.title {
@@ -39,8 +42,8 @@
                     width:20%;
                     img {
                         align-self: center;
-                        width: 100%;
-                        margin-bottom: 10px;
+                        max-width: 100%;
+                       
                     }
                 }
                 .botIcon_details{

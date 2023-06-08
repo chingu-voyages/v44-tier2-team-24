@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 .botInfo_page{
-    height: 86vh;
+    height: 90vh;
     // padding: 3em 0 0 0;
 .test {
     background-color: #d3f3ee;
@@ -67,9 +67,8 @@ form {
 }
 
 .showBot {
-    // 
-    // border: 1px solid red;
-    width: 15%;
+    border: 1px solid #061d41;
+    width: fit-content;
     align-items: center;
     flex-wrap: no-wrap;
     display:flex;
@@ -80,15 +79,15 @@ form {
         text-align: center;
     }
     .botIcon_wrapper{
-        width:20%;
+        width:50%;
         img {
             align-self: center;
-            width: 100%;
-            margin-bottom: 10px;
+            max-width: 100%;
+            
         }
     }
     .botIcon_details{
-        width: 60%;
+        width: 40%;
     }
 
 
