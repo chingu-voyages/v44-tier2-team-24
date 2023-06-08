@@ -14,6 +14,7 @@ export default function PlayFromScratchBtn({updateBotsArr}) {
             onClick={() => {
               restartGame();
             }}
+          
           >
             Play From Scratch
           </button>
