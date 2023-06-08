@@ -253,7 +253,7 @@ export default function Arena(props) {
   return (
     <main className="main_container">
       <div className="game_board">
-        <BotRoaster botsArr={botsArr} />
+       <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
         <div className="arena">{renderArena()}</div>
 
         {botsArr.length === 1 ? (
