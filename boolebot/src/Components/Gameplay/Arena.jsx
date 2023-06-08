@@ -88,7 +88,7 @@ export default function Arena(props) {
           tilePosition === collisionLocation ? "border crashedText" : ""
         }`}
       >
-        {robot ? <img src={robot.botIcon} alt="photo of a robot head" />: ""}
+        {robot ? <img src={robot.botIcon} alt="photo of a robot head" style={{width:"50%"}} />: ""}
         {text}
       </div>
     );
@@ -251,7 +251,7 @@ export default function Arena(props) {
   return (
     <main className="main_container">
       <div className="game_board">
-        <BotRoaster botsArr={botsArr} />
+       <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
         <div className="arena">{renderArena()}</div>
 
         {botsArr.length === 1 ? (
