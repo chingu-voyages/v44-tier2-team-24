@@ -25,7 +25,7 @@ export default function GameClock(props) {
 
 
   return (
-    <div>
+    <div className="gameClock">
         <h4>Time Elapsed: </h4>
         <h2>{timer.min <= 9 ? `0${timer.min}` : timer.sec }:{timer.sec <= 9 ? `0${timer.sec}` : timer.sec }</h2>
     </div>

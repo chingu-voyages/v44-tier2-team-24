@@ -61,24 +61,22 @@ export default function Arena(props) {
 
   const renderTile = (tilePosition, robotIndex) => {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
+    const isBotPosition = robot && robot.position === tilePosition;
 
     let tileClass = {backgroundColor : ''};
     
     let text = ''
 
-    if(botsArr.length === 1){
+    if(botsArr.length === 1 && isBotPosition){
       text = "WINNER!"
     }
     else if(tilePosition === collisionLocation){
-      text = message
+      text = message;
     }
     else if(robot){
       text = robot.name
     }
-    else{
-      text = tilePosition
-      
-    }
+    
     
     
     return (

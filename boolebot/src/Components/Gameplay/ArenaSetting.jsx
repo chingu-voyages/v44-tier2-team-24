@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ArenaSetting({ tileNum, speed, operator }) {
   return (
-    <div>
+    <div className="arenaSettings">
       <h3>Arena Setting</h3>
       <p>Gird Size: <strong>{tileNum}x{tileNum}</strong> </p>
       <p>Operator: <strong>{operator}</strong></p>
