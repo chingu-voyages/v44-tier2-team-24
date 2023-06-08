@@ -6,16 +6,18 @@
 }
 
 .main_body {
-  background-color: #d3f3ee;
+    background-color: #d3f3ee;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 100%;
     padding: 1em 0;
-    height: 100%;
+  
   .imgWrapper {
-    width: 40%;
+    // width: 40%;
     margin: 0 auto;
+    align-self: center;
+    display: flex;
+    align-items: center;
     
 
     img{
@@ -27,6 +29,7 @@
     text-align: left;
   }
   .homepageBtns {
+    align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
