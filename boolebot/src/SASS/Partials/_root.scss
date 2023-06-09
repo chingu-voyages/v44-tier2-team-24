@@ -1,8 +1,10 @@
 .project{
     position:relative; 
-    min-height: 100%; 
-    width: 100%; 
+    width:100vw;
+    height:auto;
+    min-height: 100vh;
     display:flex; 
     flex-Direction:column; 
     background-color:#d3f3ee;
+    
 }

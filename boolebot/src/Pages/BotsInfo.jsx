@@ -325,7 +325,7 @@ function handleChange(e){
     <div className='botInfo_page'>
       <h2>Create Bot</h2>
 
-     <BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} currentLocation = {location.pathname}  />
+    <div className='bots_display'><BotRoaster botsArr={botsArr} handleDeleteBot={handleDeleteBot} currentLocation = {location.pathname}  /></div>
 
       <div className="test">
         <form onSubmit={handleSubmit}>

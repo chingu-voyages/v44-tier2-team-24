@@ -4,9 +4,7 @@
 .arena-input-form{
     display: flex;
     justify-content: center;
-    height: 100%;
-    margin-top: 1.6em;
-    padding: 3em 0;
+    height: auto;
 
     form{
         @include form
@@ -16,12 +14,12 @@
     }
 }
 .createArena{
+    // margin-top: 1.5em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3em 0;
     background-color: #d3f3ee;
-    height: 90vh;
+    // height: 80vh;
 
    
    
