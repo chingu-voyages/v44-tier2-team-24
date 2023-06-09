@@ -3,30 +3,25 @@ import singleBot from "../assets/bot.png";
 import { Link } from "react-router-dom";
 
 export default function BotsInfo(props) {
-  // const [botName, setBotName] = useState('');
-  // const [booleanValue, setBooleanValue] = useState('1');
-  // const [booleanOperator, setBooleanOperator] = useState('and');
-  // const [botSpeed, setBotSpeed] = useState(0);
-  // const [botDirection, setBotDirection] = useState('north');
-  const {arenaData, setArenaData} = props
-  
+  const {arenaData, updateArenaData} = props
   
   // Generic change handler
   function handleChange(e) {
     const changedField = e.target.name;
     const newValue = e.target.value;
-    
-     setArenaData((prev) => {
-      
-        if(changedField === "tileNum"){
-          return {
-            ...prev, tileNum: Number(newValue)
-          }
-        }
-      
-        prev[changedField] = newValue;
-        return { ...prev };
-      });
+
+    let arenaDataCopy = {...arenaData}
+
+    if(changedField === "tileNum"){
+      updateArenaData({
+        ...arenaDataCopy, tileNum: Number(newValue)
+      })
+
+    }
+    else{
+      arenaDataCopy[changedField] = newValue;
+      updateArenaData({...arenaDataCopy})
+    }
   }
 
   //form event- submit
@@ -116,6 +111,4 @@ export default function BotsInfo(props) {
     </div>
     </div>
   )
-  
- 
 }

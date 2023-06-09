@@ -1,36 +1,44 @@
 import React, { useState } from 'react';
 
 
+export default function IconPalette({
+  iconPalette,
+  botsData,
+  updateBotsData,
+  iconSelected,
+  updateIconSelected, 
+}) {
 
-export default function IconPalette({iconPalette, setBotsData, iconSelected, setIconSelected }) {
-    
-    function handleClick(){
-        console.log("Icon Clicked!")
-    }
+  function onChangeValue(event) {
+    updateIconSelected(Number(event.target.value))
 
-    function onChangeValue(event) {
-        setIconSelected(event.target.value);
+    let botsDataCopy = { ...botsData };
 
-        setBotsData(prev => {
-            return {...prev, botIcon: iconPalette[Number(event.target.value)].url}
-        })
-        console.log(event.target.value);
-    }
+    updateBotsData({
+      ...botsDataCopy,
+      botIcon: iconPalette[Number(event.target.value)].url,
+    });
+  }
 
+  const iconEl = iconPalette.map((icon, i) => {
+    return (
+      <label htmlFor={`bot${i}`} key={i} className="iconContainer" onChange={(e) => onChangeValue(e)}>
+        <input
+          type="radio"
+          value={i}
+          id={`bot${i}`}
+          name="bot"
+          readOnly
+          checked={iconSelected === i}
+          disabled={icon.isSelected}
+          
+        />
+        <img src={icon.url} alt={`bot icon ${i}`} />
+      </label>
+    );
+  });
 
- 
-    const iconEl = iconPalette.map((icon, i) => {
-        return (
-          <div onClick={(e)=> handleClick(e)} onChange={onChangeValue} key={i} className="iconContainer">
-            <input type="radio" value={i} name={`bot${i}`} readOnly checked={iconSelected == i } disabled={icon.isSelected} />
-            <img src={icon.url} alt={`bot icon ${i}`}/>
-           
-          </div>
-        );
-    })
-
-
-
-
-  return <div style={{ display: "flex", gap: "10px", width: "400px"}}>{iconEl}</div>;
+  return (
+    <div style={{ display: "flex", gap: "10px", width: "400px" }}>{iconEl}</div>
+  );
 }
