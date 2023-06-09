@@ -13,33 +13,32 @@ a {
 }
 
 header {
-  align-self: flex-start;
+  // align-self: flex-start;
   margin: 0 auto;
-  // position: absolute;
-  // top: 0;
-  // left:0;
+  margin-bottom: auto;
   background-color: #061d41;
   text-align: center;
-  min-height: 2%;
+  // min-height: 2%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
   min-height: 3%;
-  width: 100%;
-  background-color: #061d41;
   padding: 0.5em 0;
 
   nav {
     display: flex;
-    width: 100%;
+    width:100%;
+    margin:0 auto;
+    max-width: 1200px;
+    
 
     h1 {
       font-family: "Bungee Shade", cursive;
       font-size: 30px;
       text-align: left;
       padding-left: 1em;
-      /* border: 1px solid red; */
+      
     }
 
     ul {

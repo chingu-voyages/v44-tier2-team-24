@@ -1,4 +1,99 @@
+@media (max-width: 980px) {
+    .main_body{
+        .imgWrapper{
+            padding: 2em;
+
+        }
+        .homepageBtns{
+            transform: scale(.8);
+        }
+    
+    }
+    .createArena {
+        padding: 1.2em 0;
+        background-color: #d3f3ee;
+        // height: 78vh;
+    }
+    .botInfo_page{
+        // height:78vh;
+
+        button{
+            transform: scale(.8);
+            margin-bottom: .2em;
+        }
+        form{
+            transform: scale(.8);
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        .showBot{
+            transform: scale(.8);
+        }
+    }
+
+
+} 
+
+
+
+
+
+//Landscape phone to portrait tablet 
+@media (max-width: 768px) {
+   .main_body{
+    .imgWrapper{
+        // width: 30%;
+        padding: 2em;
+    }
+    .homepageBtns{
+        transform: scale(.8);
+    }
+
+   }
+   .botInfo_page{
+    display: unset;
+    .bots_display{
+        display: unset;
+        width: auto;
+        margin: 0 auto;
+    }
+    form{
+        transform: scale(.7);
+    }
+}
+
+   .main{
+    .creator_section{
+        flex-direction: column;
+        align-items: center;
+        .imgContainer{
+            width: 80%;
+        }
+        .content{
+            width: 80%;
+            margin-top: 1em;
+            text-align: center;
+            padding: 0.4em 0.8em;
+        }
+    }
+   }
+}
+
+
+
 @media (max-width: 428px) {
+    .arena-input-form{
+        display: flex;
+        justify-content: center;
+        height: auto;
+        width: 95vw;
+    }
+    
+
+    form{
+        margin: 0;
+
+    }
     .nav-links {
         display: none;
     }

@@ -1,9 +1,11 @@
 import React from "react";
+import Container from "../Components/Layout/Container";
 import { Link } from "react-router-dom";
 
 export default function AboutUs() {
   return (
     <div className="main">
+      <Container>
       <h1 className="mainHeader">About Us</h1>
       
       <section className="creator_section">
@@ -114,6 +116,7 @@ export default function AboutUs() {
           </div>
         </div>      
         </section>
+        </Container>
     </div>
   );
 }

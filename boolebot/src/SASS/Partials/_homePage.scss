@@ -13,8 +13,8 @@
     padding: 1em 0;
   
   .imgWrapper {
-    // width: 40%;
-    margin: 0 auto;
+    width: auto;
+    margin: auto;
     align-self: center;
     display: flex;
     align-items: center;
@@ -48,11 +48,10 @@
     margin-bottom: .5em;
     border: none;
     width: fit-content;
-    /* text-decoration: none; */
+    
   }
     
   }
-  // border: 1px solid blue;
   
 }
 

@@ -4,10 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 .botInfo_page{
-    height: 86vh;
     display: flex;
     flex-direction: column;
-    // padding: 3em 0 0 0;
+    align-items: center;
+    height: auto;
+    // border: 1px solid red;
+    
 .test {
     align-self: center;
     background-color: #d3f3ee;
@@ -30,11 +32,9 @@
 }
 
 h2 {
-    align-self: center;
+    align-self: flex-start;
     text-align: center;
     font-family: 'Roboto Mono', monospace;
-    background-color: #d3f3ee;
-   
 }
 
 fieldset {
@@ -52,41 +52,48 @@ form {
     @include form
     
 }
-
-.createdBots {
-    align-self: center;
-    height:fit-content;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    // border: 1px solid #061d41;
-    .showBot {
-        width: 5em;
-        height: fit-content;
-        display:flex;
-        justify-content: space-evenly;
+.bots_display{
+    width: 80%;
+    margin: 0 auto;
+    // margin-bottom: 2em;
+    
+    .createdBots {
+        align-self: center;
+        height:fit-content;
+        display: flex;
         align-items: center;
-        flex-direction: column;
-        
-        
-        h3.title {
-            text-align: center;
-        }
-        .botIcon_wrapper{
-            width:2em;
-            img {
-                align-self: center;
-                max-width: 100%;
-                // margin-bottom: 10px;
+        flex-wrap: wrap;
+        // border: 1px solid #061d41;
+        .showBot {
+            width: 5em;
+            height: fit-content;
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            
+            
+            h3.title {
+                text-align: center;
             }
+            .botIcon_wrapper{
+                width:2em;
+                img {
+                    align-self: center;
+                    max-width: 100%;
+                    // margin-bottom: 10px;
+                }
+            }
+            .botIcon_details{
+                width: fit-content;
+                font-size: .8em;
+            }
+            
         }
-        .botIcon_details{
-            width: fit-content;
-            font-size: .8em;
-        }
-        
     }
-}
+}    
+
+
 
 
 
