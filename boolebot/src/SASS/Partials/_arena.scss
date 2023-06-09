@@ -1,180 +1,189 @@
 @use './mixins' as *;
 
 .main_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #d3f3ee;
+  height: 86vh;
+
+  .game_board {
+    // border: 1px solid blue;
+    height: auto;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-evenly;
-    background-color: #d3f3ee;
-    // height: 90vh;
+    // height: 85vh;
+    // width: 50vw;
 
-    .game_board{
-        // border: 1px solid blue;
-        height: auto;
+
+    .bots_display {
+      width: 100%;
+      margin-bottom: 2em;
+
+      .createdBots {
+
+        // height:fit-content;
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
         justify-content: space-evenly;
-        // height: 85vh;
-        // width: 50vw;
-        
-        
-        .bots_display{
-            width: 100%;
-            margin-bottom: 2em;
-        .createdBots {
-            
-            // height:fit-content;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            // justify-content: space-evenly;
-            // border: 1px solid #061d41;
-            .showBot {
-                width:5em;
-                display:flex;
-                align-items: center;
-                display:flex;
-                flex-direction: column;
-                align-items: center;
-                
-                
-                
-                h3.title {
-                    text-align: center;
-                }
-                .botIcon_wrapper{
-                    width:2em;
-                    img {
-                        align-self: center;
-                        max-width: 100%;
-                        // margin-bottom: 10px;
-                    }
-                }
-                .botIcon_details{
-                    width: fit-content;
-                    font-size: .8em;
-                }
-                
+
+        // border: 1px solid #061d41;
+        .showBot {
+          width: 5em;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+
+
+          h3.title {
+            text-align: center;
+          }
+
+          .botIcon_wrapper {
+            width: 2em;
+
+            img {
+              align-self: center;
+              max-width: 100%;
+              // margin-bottom: 10px;
             }
-        }
-    }
-        
-        .arena{
-            display: grid;
-            margin-bottom: 1em ;
-            align-self: center;
-        }
-        .btn{
-            background-color: #061d41;
-            color: white;
-            font-weight: 600;
-            font-size: 1em;
-            padding: 0.5em 1.5em;
-            border-radius: 10px;
-            // margin-bottom: 1em;
-            border: none;
+          }
+
+          .botIcon_details {
             width: fit-content;
-            align-self: center ;
+            font-size: .8em;
+          }
 
         }
-        
+      }
     }
 
-    .status_info{
-        // border: 1px solid blue;
-        // width: 40vw;
-        // height: 85vh;
-        // padding-top: 2em;
-
-        button{
-            background-color: #061d41;
-            color: white;
-            font-weight: 600;
-            font-size: 1em;
-            padding: 0.5em 1.5em;
-            border-radius: 10px;
-            border: none;
-            width: fit-content;
-            align-self: center ;
-            justify-self: flex-end;
-
-        }
+    .arena {
+      display: grid;
+      margin-bottom: 1em;
+      align-self: center;
     }
-    
+
+    .btn {
+      background-color: #061d41;
+      color: white;
+      font-weight: 600;
+      font-size: 1em;
+      padding: 0.5em 1.5em;
+      border-radius: 10px;
+      // margin-bottom: 1em;
+      border: none;
+      width: fit-content;
+      align-self: center;
+
+    }
+
+  }
+
+  .status_info {
+    // border: 1px solid blue;
+    // width: 40vw;
+    // height: 85vh;
+    // padding-top: 2em;
+
+    button {
+      background-color: #061d41;
+      color: white;
+      font-weight: 600;
+      font-size: 1em;
+      padding: 0.5em 1.5em;
+      border-radius: 10px;
+      border: none;
+      width: fit-content;
+      align-self: center;
+      justify-self: flex-end;
+
+    }
+  }
+
 }
 
 img {
-       max-width: 100%;
-    }
+  max-width: 100%;
+}
 
+.GameClock {
+  flex-direction: row;
+  width: fit-content;
+}
 
 aside {
-    display: flex;
-    flex-direction: column;
-    gap: 5em;
-    width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  width: 40%;
 }
 
 
 aside>div {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
+
+
 
 //copied from index.css
 
 /* arena */
 .arena {
-    display: grid;
-  }
-  
-  .tile {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.2em;
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  
-  .crashedText {
-    color: red;
-  }
-  
-  .cell {
-    border: 1px solid black;
-  }
-  
-  .tan {
-    background-color: tan;
-  }
-  
-  .orange {
-    background-color: orange;
-  }
-  
-  .blue {
-    background-color: blue;
-  }
-  
-  .yellow {
-    background-color: yellow;
-  }
-  
-  .green {
-    background-color: green;
-  }
-  
-  button {
-    cursor: pointer;
-  }
-  
-  .border {
-    border: 10px solid aquamarine;
-  }
-  
+  display: grid;
+}
+
+.tile {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.crashedText {
+  color: red;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+.tan {
+  background-color: tan;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+button {
+  cursor: pointer;
+}
+
+.border {
+  border: 10px solid aquamarine;
+}
+
