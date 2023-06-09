@@ -13,6 +13,8 @@ import singleBot from "../../assets/bot.png";
 import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
+import Swal from "sweetalert2"; 
+import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch.mp3"
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
@@ -39,8 +41,9 @@ export default function Arena(props) {
   } = props;
 
   const arenaStyles = {
-  gridTemplateColumns: `repeat(${tileNum}, 4em)`, /*changed grid size*/
-    gridTemplateRows: `repeat(${tileNum}, 4em)`,
+  gridTemplateColumns: `repeat(${tileNum}, 3.5em)`, /*changed grid size*/
+    gridTemplateRows: `repeat(${tileNum}, 3.5em)`,
+    gridGap:`1em`
   };
 
   const renderArena = () => {
@@ -61,27 +64,18 @@ export default function Arena(props) {
   };
 
   const renderTile = (tilePosition, robotIndex) => {
-  const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
+    const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
-  let tileClass = { backgroundColor: "" };
+    let tileClass = { backgroundColor: "" };
 
-  let text = "";
+    let text = "";
 
-  if (botsArr.length === 1) {
-    if (robot && robot.wins > 0) {
-      tileClass.backgroundColor = "green"; // Change background color of the winning robot's tile
+    if (botsArr.length === 1) {
       text = "WINNER!";
+    } else if (tilePosition === collisionLocation) {
+      text = message;
     }
-  } else if (tilePosition === collisionLocation) {
-    text = message;
-  } else if (robot) {
-    text = robot.name;
-  }
-    // else if (robot) {
-    //   text = robot.name;
-    // } else {
-    //   text = tilePosition;
-    // }
+
 
     return (
       <div
@@ -115,19 +109,58 @@ export default function Arena(props) {
     setLeaderboard(mergedObj);
   }, []);
 
+
   useEffect(() => {
     if (botsArr.length === 1) {
       setIsGameRunning(false);
     }
   }, [botsArr]);
 
+  function checkIsAlwaysTie(){
+    // if all bots have 0, operation: AND, = TIE
+    // if all bots have 0, operation: OR,  = TIE
+    // if all bots have 0, operation: XOR, = TIE
+    // if all bots have 1, operator: NOR, = TIE
+
+    const containAllZeros = botsArr.every(bot => bot.value === 0)
+    const containAllOnes = botsArr.every(bot => bot.value === 1)
+
+    const tieOperators = ((operator === "AND") ||(operator === "OR") || (operator === "XOR") )
+
+    if((tieOperators && containAllZeros )){
+        const message = ""
+        Swal.fire({
+          icon: "info",
+          title: "The current setup will result in an infinite tie ",
+          text: `Reason: 0 ${operator} 0 will always produce a 0`
+        });
+    }
+    else if (containAllOnes && (operator==="NOR")) {
+        Swal.fire({
+          icon: "info",
+          title:
+            "The current bot values and boolean operator will result in an infinite tie",
+          text: `Reason: 1 NOR 1 will always produce a 0`,
+        });
+    }
+    
+    
+  }
+
+  useEffect(() => {
+    checkIsAlwaysTie()
+  },[])
+
   function startGame() {
     saveInitialGameState(() => makeCopyBotsArr(botsArr));
-
     setIsGameRunning((prev) => (prev ? false : true));
   }
 
   ///ChatGPT suggestion
+
+  function callSound(sound){
+    return new Audio(sound).play()
+  }
 
   useEffect(() => {
     let intervalId;
@@ -143,8 +176,10 @@ export default function Arena(props) {
           const collisionLocation = checkCollision(newBotsArr);
 
           if (collisionLocation) {
+            callSound(IndianaJonesPunch);
+            
             setCollisionLocation(() => collisionLocation);
-
+            
             const collidedBotsArr = handleCollision(
               newBotsArr,
               operator,
@@ -201,7 +236,7 @@ export default function Arena(props) {
           }
 
           updateBotsArr(newBotsArr);
-        },
+        }, 
         collisionLocation ? (4000 - speed) + 1000 : 4000 - speed
       );
     }
@@ -227,36 +262,33 @@ export default function Arena(props) {
     <main className="main_container">
       <div className="game_board">
        <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
-        <div className="arenaWrapper">{renderArena()}</div>
-        <div className="GameClock">
+        <div className="arena">{renderArena()}</div>
+
+        {botsArr.length === 1 ? (
+          <div>
+            <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
+          </div>
+        ) : (
+          
+          <button onClick={() => startGame()} className="btn">
+            {isGameRunning ? "STOP" : "BATTLE"}
+          </button>
+        )}
+      </div>
+      <aside className="status_info">
+        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
         <GameClock
           isGameRunning={isGameRunning}
           timer={timer}
           setTimer={setTimer}
         />
-</div>
-    <div>
-        {botsArr.length === 1 ? (
-          <div>
-            <button onClick={()=>{playAgain()}} className="btn">Restart</button>
-          </div>
-        ) : (
-          
-          <button onClick={() => startGame()} className="btn">
-            {isGameRunning ? "PAUSE" : "BATTLE"}
-          </button>
-        )}
-        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
-        </div>
-      </div>
-      <aside className="status_info">
-<ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
         <BattleLog battleLog={battleLog} />
         <Leaderboard
           leaderboard={leaderboard}
           setLeaderboard={setLeaderboard}
           botsArr={botsArr}
         />
+        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
       </aside>
     </main>
   );

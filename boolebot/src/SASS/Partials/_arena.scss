@@ -28,6 +28,8 @@
         align-items: center;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        gap: 1em;
+        
 
         // border: 1px solid #061d41;
         .showBot {
@@ -42,7 +44,7 @@
           }
 
           .botIcon_wrapper {
-            width: 2em;
+            width: 4em;
 
             img {
               align-self: center;
@@ -146,8 +148,7 @@ aside>div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.2em;
-  font-size: 1.2em;
+  font-size: 0.8em;
   font-weight: bold;
 }
 
@@ -183,7 +184,4 @@ button {
   cursor: pointer;
 }
 
-.border {
-  border: 10px solid aquamarine;
-}
 

@@ -196,6 +196,7 @@ function handleChange(e){
                 name="name"
                 value={botsData.name}
                 onChange={handleChange}
+                maxLength={10}
                 required
               />
             </label>

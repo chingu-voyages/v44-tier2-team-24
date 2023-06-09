@@ -39,6 +39,6 @@ export default function IconPalette({
   });
 
   return (
-    <div style={{ display: "flex", gap: "10px", width: "400px" }}>{iconEl}</div>
+    <div style={{ display: "flex", alignItems:"flex-start", gap: "10px", width: "400px" }}>{iconEl}</div>
   );
 }
