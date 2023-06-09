@@ -1,5 +1,6 @@
 @use "./variables" as *;
 
+
 .arenaSettings {
     background-color: white;
     width: fit-content;
@@ -18,10 +19,21 @@
     border: solid 2px $navy-blue;
 }
 
-.gameClock {
+.GameClock {
     background-color: white;
     width: fit-content;
     border: solid 2px $navy-blue;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+    
+
+    h4 {
+        background-color: $navy-blue;
+        padding: 2%;
+        color: white;
+        text-align: center;
+    }
 }
 
 .arena {
