@@ -71,6 +71,9 @@
 
 
 @media (max-width: 428px) {
+    form{
+        margin: 0;
+    }
     .nav-links {
         display: none;
     }

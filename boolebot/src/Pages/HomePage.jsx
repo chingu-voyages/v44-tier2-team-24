@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import Swal from "sweetalert2";
+import Container from "../Components/Layout/Container"
 import sweetAlertMixin from "../Components/SweetAlertConfig";
 import { Link } from "react-router-dom";
 import botImage from "../assets/booleBotsHome.png";
@@ -31,6 +32,7 @@ export default function Homepage() {
 
   return (
     <div className="main_body">
+      <Container>
       {/* Below this line is the bot image*/}
       <div className="imgWrapper">
         <img src={botImage} alt="Bot" className="bot_image" />
@@ -46,6 +48,7 @@ export default function Homepage() {
           How to play
         </button>
       </section>
+      </Container>
     </div>
   );
 }

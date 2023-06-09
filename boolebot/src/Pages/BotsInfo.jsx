@@ -20,6 +20,7 @@ import bot5 from '../assets/bot5.svg'
 import bot6 from '../assets/bot6.svg'
 import bot7 from '../assets/bot7.svg'
 import bot8 from '../assets/bot8.svg'
+import Container from '../Components/Layout/Container';
 
 export default function BotsInfo(props) {
   const location = useLocation();
@@ -180,9 +181,10 @@ function handleChange(e){
 
   return (
     <div className="botInfo_page">
+      <Container>
       <h2>Create Bot</h2>
 
-      <BotRoaster botsArr={botsArr} deleteBotFromArray={deleteBotFromArray} currentLocation = {location.pathname} iconPalette={iconPalette} updateIconPalette={updateIconPalette} />
+     <div className='bots_display'><BotRoaster botsArr={botsArr} deleteBotFromArray={deleteBotFromArray} currentLocation = {location.pathname} iconPalette={iconPalette} updateIconPalette={updateIconPalette} /></div>
 
       <div className="test">
         <form onSubmit={handleSubmit}>
@@ -272,6 +274,7 @@ function handleChange(e){
           <button disabled={botsArr.length <= 1}>Battle Ground</button>
         </Link>
       </div>
+      </Container>
     </div>
   );
 }
