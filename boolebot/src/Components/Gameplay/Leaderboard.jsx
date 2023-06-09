@@ -51,7 +51,7 @@ export default function Leaderboard(props) {
   
 
   return (
-    <div>
+    <div className="leaderBoard">
       <h3>Leaderboard</h3>
       <ul className="leaderboard">{leaderboardEl}</ul>
     </div>
