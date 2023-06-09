@@ -13,6 +13,7 @@ import singleBot from "../../assets/bot.png";
 import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
+import Container from "../Layout/Container";
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
@@ -225,6 +226,7 @@ export default function Arena(props) {
 
   return (
     <main className="main_container">
+ 
       <div className="game_board">
        <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
         <div className="arenaWrapper">{renderArena()}</div>
@@ -258,6 +260,7 @@ export default function Arena(props) {
           botsArr={botsArr}
         />
       </aside>
+      
     </main>
   );
 }
