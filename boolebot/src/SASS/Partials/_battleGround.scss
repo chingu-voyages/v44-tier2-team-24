@@ -1,0 +1,33 @@
+@use "./variables" as *;
+
+.arenaSettings {
+    background-color: white;
+    width: fit-content;
+    border: solid 2px $navy-blue;
+}
+
+.battleLog {
+    background-color: white;
+    width: 40%;
+    border: solid 2px $navy-blue;
+}
+
+.leaderBoard {
+    background-color: white;
+    width: 40%;
+    border: solid 2px $navy-blue;
+}
+
+.gameClock {
+    background-color: white;
+    width: fit-content;
+    border: solid 2px $navy-blue;
+}
+
+.arena {
+    border: solid 2px black;
+
+    .tile {
+        background-color: #D3D3D3;
+    }
+}

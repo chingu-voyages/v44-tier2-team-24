@@ -61,21 +61,27 @@ export default function Arena(props) {
   };
 
   const renderTile = (tilePosition, robotIndex) => {
-    const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
+  const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
-    let tileClass = { backgroundColor: "" };
+  let tileClass = { backgroundColor: "" };
 
-    let text = "";
+  let text = "";
 
-    if (botsArr.length === 1) {
+  if (botsArr.length === 1) {
+    if (robot && robot.wins > 0) {
+      tileClass.backgroundColor = "green"; // Change background color of the winning robot's tile
       text = "WINNER!";
-    } else if (tilePosition === collisionLocation) {
-      text = message;
-    } else if (robot) {
-      text = robot.name;
-    } else {
-      text = tilePosition;
     }
+  } else if (tilePosition === collisionLocation) {
+    text = message;
+  } else if (robot) {
+    text = robot.name;
+  }
+    // else if (robot) {
+    //   text = robot.name;
+    // } else {
+    //   text = tilePosition;
+    // }
 
     return (
       <div
@@ -221,33 +227,36 @@ export default function Arena(props) {
     <main className="main_container">
       <div className="game_board">
        <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
-        <div className="arena">{renderArena()}</div>
-
-        {botsArr.length === 1 ? (
-          <div>
-            <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
-          </div>
-        ) : (
-          
-          <button onClick={() => startGame()} className="btn">
-            {isGameRunning ? "STOP" : "BATTLE"}
-          </button>
-        )}
-      </div>
-      <aside className="status_info">
-        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
+        <div className="arenaWrapper">{renderArena()}</div>
+        <div className="GameClock">
         <GameClock
           isGameRunning={isGameRunning}
           timer={timer}
           setTimer={setTimer}
         />
+</div>
+    <div>
+        {botsArr.length === 1 ? (
+          <div>
+            <button onClick={()=>{playAgain()}} className="btn">Restart</button>
+          </div>
+        ) : (
+          
+          <button onClick={() => startGame()} className="btn">
+            {isGameRunning ? "PAUSE" : "BATTLE"}
+          </button>
+        )}
+        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
+        </div>
+      </div>
+      <aside className="status_info">
+<ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
         <BattleLog battleLog={battleLog} />
         <Leaderboard
           leaderboard={leaderboard}
           setLeaderboard={setLeaderboard}
           botsArr={botsArr}
         />
-        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
       </aside>
     </main>
   );

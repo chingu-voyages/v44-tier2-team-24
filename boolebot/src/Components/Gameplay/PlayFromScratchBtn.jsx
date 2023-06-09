@@ -16,7 +16,7 @@ export default function PlayFromScratchBtn({updateBotsArr}) {
             }}
           
           >
-            Play From Scratch
+            New Game
           </button>
         </div>
       </Link>
