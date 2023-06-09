@@ -39,8 +39,8 @@ export default function Arena(props) {
   } = props;
 
   const arenaStyles = {
-  gridTemplateColumns: `repeat(${tileNum}, 4em)`, /*changed grid size*/
-    gridTemplateRows: `repeat(${tileNum}, 4em)`,
+  gridTemplateColumns: `repeat(${tileNum}, 3.7em)`, /*changed grid size*/
+    gridTemplateRows: `repeat(${tileNum}, 3.7em)`,
   };
 
   const renderArena = () => {
