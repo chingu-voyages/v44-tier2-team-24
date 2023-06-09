@@ -50,6 +50,17 @@
     }
 
    }
+   .botInfo_page{
+    display: unset;
+    .bots_display{
+        display: unset;
+        width: auto;
+        margin: 0 auto;
+    }
+    form{
+        transform: scale(.7);
+    }
+}
 
    .main{
     .creator_section{
@@ -71,8 +82,17 @@
 
 
 @media (max-width: 428px) {
+    .arena-input-form{
+        display: flex;
+        justify-content: center;
+        height: auto;
+        width: 95vw;
+    }
+    
+
     form{
         margin: 0;
+
     }
     .nav-links {
         display: none;

@@ -108,7 +108,7 @@ function handleChange(e){
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: `* Each Bots should have unique names}`,
+        text: `* Each Bots should have unique names`,
         
       });
 
@@ -230,6 +230,7 @@ function handleChange(e){
             </label>
 
             <label htmlFor="icons">Bot Icon</label>
+
             <IconPalette
               id="icons"
               iconPalette={iconPalette}
@@ -239,6 +240,7 @@ function handleChange(e){
       
               updateIconSelected={updateIconSelected}
             />
+            
 
             <label htmlFor="direction">
               Bot Direction:

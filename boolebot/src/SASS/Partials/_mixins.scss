@@ -16,11 +16,10 @@
 }
 
 @mixin form{
-  border: 1px solid #061d41;
-    // width: fit-content;
+    border: 1px solid #061d41;
     text-align: left;
     margin: 2rem;
-    padding: 2%;
+    padding: .8em;
     font-family: $Roboto;
     background-color: $white;
         button {
@@ -39,6 +38,7 @@
         
         input[type="text"] {
             margin-left: 10px;
+            padding: .40em 0;
         }
         
         select {
@@ -52,6 +52,8 @@
             font-size: 1em;
             padding: 0.5em 1.5em;
             border-radius: 10px;
+            margin: 0 auto;
+            margin-top: 1em;
             margin-bottom: 1em;
             border: none;
             width: fit-content;

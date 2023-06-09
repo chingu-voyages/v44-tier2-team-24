@@ -6,6 +6,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: auto;
+    // border: 1px solid red;
+    
 .test {
     align-self: center;
     background-color: #d3f3ee;
@@ -28,7 +31,7 @@
 }
 
 h2 {
-    align-self: center;
+    align-self: flex-start;
     text-align: center;
     font-family: 'Roboto Mono', monospace;
 }
@@ -49,7 +52,7 @@ form {
     
 }
 .bots_display{
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     // margin-bottom: 2em;
     
