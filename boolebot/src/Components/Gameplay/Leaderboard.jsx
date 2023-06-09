@@ -5,7 +5,7 @@ import { Link, redirect } from "react-router-dom";
 export default function Leaderboard(props) {
   const {leaderboard, 
          botsArr, 
-         setBotsArr, 
+         updateBotsArray, 
          setBattleLog, 
          } = props
 

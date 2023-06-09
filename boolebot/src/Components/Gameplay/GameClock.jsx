@@ -1,18 +1,22 @@
-import { useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 
 export default function GameClock(props) {
 
   const { isGameRunning, timer, setTimer } = props
-
+  
   function incrementTime(){
+    
     setTimer(prev => {
-      let {sec, min } = prev
-      sec += 1
-      if(sec >= 60){
-        sec = 0,
-        min +=1
+      let timerCopy = {...prev}
+
+      timerCopy.sec += 1
+
+      if(timerCopy.sec >= 60){
+        timerCopy.sec = 0,
+        timerCopy.min +=1
       }
-      return {sec, min}
+
+      return timerCopy
     })
   }
 
@@ -23,11 +27,10 @@ export default function GameClock(props) {
     }
   }, [isGameRunning]);
 
-
   return (
     <div>
         <h4>Time Elapsed: </h4>
         <h2>{timer.min <= 9 ? `0${timer.min}` : timer.sec }:{timer.sec <= 9 ? `0${timer.sec}` : timer.sec }</h2>
     </div>
-  )
+  ) 
 }
