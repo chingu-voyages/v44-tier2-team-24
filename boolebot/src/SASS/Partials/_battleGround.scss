@@ -1,33 +1,47 @@
 @use "./variables" as *;
 
+
 .arenaSettings {
     background-color: white;
-    width: fit-content;
+   
     border: solid 2px $navy-blue;
+    height: auto;
+    
 }
 
 .battleLog {
     background-color: white;
-    width: 40%;
+    height: 100%;
     border: solid 2px $navy-blue;
 }
 
 .leaderBoard {
     background-color: white;
-    width: 40%;
+    height: 100%;
     border: solid 2px $navy-blue;
 }
 
-.gameClock {
+.GameClock {
     background-color: white;
     width: fit-content;
     border: solid 2px $navy-blue;
+    display: flex;
+    flex-direction: column;
+    
+    
+
+    h4 {
+        background-color: $navy-blue;
+        padding: 2%;
+        color: white;
+        text-align: center;
+    }
 }
 
 .arena {
     border: solid 2px black;
 
     .tile {
-        background-color: #D3D3D3;
+        background-color: white;
     }
 }

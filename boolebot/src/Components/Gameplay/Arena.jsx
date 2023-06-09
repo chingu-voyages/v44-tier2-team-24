@@ -40,8 +40,8 @@ export default function Arena(props) {
   } = props;
 
   const arenaStyles = {
-  gridTemplateColumns: `repeat(${tileNum}, 4em)`, /*changed grid size*/
-    gridTemplateRows: `repeat(${tileNum}, 4em)`,
+  gridTemplateColumns: `repeat(${tileNum}, 3.7em)`, /*changed grid size*/
+    gridTemplateRows: `repeat(${tileNum}, 3.7em)`,
   };
 
   const renderArena = () => {
@@ -75,9 +75,7 @@ export default function Arena(props) {
     }
   } else if (tilePosition === collisionLocation) {
     text = message;
-  } else if (robot) {
-    text = robot.name;
-  }
+  } 
     // else if (robot) {
     //   text = robot.name;
     // } else {
@@ -237,7 +235,7 @@ export default function Arena(props) {
           setTimer={setTimer}
         />
 </div>
-    <div>
+    <div className="buttons">
         {botsArr.length === 1 ? (
           <div>
             <button onClick={()=>{playAgain()}} className="btn">Restart</button>
