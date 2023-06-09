@@ -61,21 +61,27 @@ export default function Arena(props) {
   };
 
   const renderTile = (tilePosition, robotIndex) => {
-    const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
+  const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
-    let tileClass = { backgroundColor: "" };
+  let tileClass = { backgroundColor: "" };
 
-    let text = "";
+  let text = "";
 
-    if (botsArr.length === 1) {
+  if (botsArr.length === 1) {
+    if (robot && robot.wins > 0) {
+      tileClass.backgroundColor = "green"; // Change background color of the winning robot's tile
       text = "WINNER!";
-    } else if (tilePosition === collisionLocation) {
-      text = message;
-    } else if (robot) {
-      text = robot.name;
-    } else {
-      text = tilePosition;
     }
+  } else if (tilePosition === collisionLocation) {
+    text = message;
+  } else if (robot) {
+    text = robot.name;
+  }
+    // else if (robot) {
+    //   text = robot.name;
+    // } else {
+    //   text = tilePosition;
+    // }
 
     return (
       <div
@@ -232,14 +238,15 @@ export default function Arena(props) {
     <div>
         {botsArr.length === 1 ? (
           <div>
-            <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
+            <button onClick={()=>{playAgain()}} className="btn">Restart</button>
           </div>
         ) : (
           
           <button onClick={() => startGame()} className="btn">
-            {isGameRunning ? "STOP" : "BATTLE"}
+            {isGameRunning ? "PAUSE" : "BATTLE"}
           </button>
         )}
+        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
         </div>
       </div>
       <aside className="status_info">
@@ -250,7 +257,6 @@ export default function Arena(props) {
           setLeaderboard={setLeaderboard}
           botsArr={botsArr}
         />
-        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
       </aside>
     </main>
   );
