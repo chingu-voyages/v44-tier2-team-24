@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 
-export default function BotRoaster({ botsArr, handleDeleteBot, currentLocation }) {
+export default function BotRoaster({ botsArr, deleteBotFromArray, currentLocation, iconPalette, updateIconPalette }) {
   const handleDelete = (botName) => {
-    handleDeleteBot(botName);
+  
+    const iconPaletteCopy = [...iconPalette]
+    
+    let index = botsArr.findIndex(bot => bot.name === botName)
+    let iconPaletteIndex = iconPalette.findIndex( icon => icon.url === botsArr[index].botIcon)
+    iconPaletteCopy[iconPaletteIndex].isSelected = false
+
+    updateIconPalette(iconPaletteCopy)
+    deleteBotFromArray(botName);
   };
 
   const [expandedBots, setExpandedBots] = useState([]);
@@ -55,7 +63,7 @@ export default function BotRoaster({ botsArr, handleDeleteBot, currentLocation }
               <p>Value: {bot.value}</p>
               </React.Fragment>
               )}
-              <div class="botsInfoButtons">
+              <div className="botsInfoButtons">
               <button onClick={() => toggleBotExpansion(index)}>
               {expandedBots[index] ? 'Collapse' : 'Expand'}
             </button>

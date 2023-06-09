@@ -33,9 +33,26 @@ const [botsData, setBotsData] = useState({
   botIcon: bot1
 });
 
+
+const saveInitialGameState = (currentGameState) =>{
+    setSavedState(currentGameState)
+}
+
 // handler function to get arena info
 const getArenaInfo = (newArenaInfo)=>{
   setArenaData(newArenaInfo);
+}
+
+const updateBotsArr = (newBotsArr)=>{
+    setBotsArr(newBotsArr)
+}
+
+const updateBotsData = (newState)=>{
+  setBotsData(newState);
+}
+
+const updateArenaData = newState => {
+  setArenaData(newState)
 }
 
 
@@ -43,35 +60,23 @@ const getArenaInfo = (newArenaInfo)=>{
 const routeLocation = ['/createArena', '/createBot'];
 
 // Handler function to delete bots from the array
-const deleteBotFromArray = (index)=>{
+const deleteBotFromArray = (name)=>{
   setBotsArr((prevBotsArr)=>
-  prevBotsArr.filter((_,i)=> i !== index)
+  prevBotsArr.filter((bot,i)=> bot.name !== name)
   )
 }
-
-//Creating an object to hold board control info
-const [boardControl, setBoardControl] = useState({});
-
-
-//control handler changed the state of the object and is called on form submit event form ArenaInfo page
-function boardDataSubmission(newObj){
-  setBoardControl((prevObj)=> { return {...prevObj,newObj}})
-  console.log(boardControl)
-}
-
-
   const router = createBrowserRouter([
     //the following path is for the wrapper
     {
       path: "/",
-      errorElement:<ErrorPage/>,
+      errorElement: <ErrorPage />,
       element: <RootLayout />,
       children: [
         { path: "/", element: <Homepage /> },
         {
           path: "/createArena",
           element: (
-            <CreateArena arenaData={arenaData} setArenaData={setArenaData} />
+            <CreateArena arenaData={arenaData} updateArenaData={updateArenaData} />
           ),
         },
         {
@@ -79,20 +84,26 @@ function boardDataSubmission(newObj){
           element: (
             <BotsInfo
               botsData={botsData}
-              setBotsData={setBotsData}
-              
+              updateBotsData={updateBotsData}
               arenaData={arenaData}
               deleteBotFromArray={deleteBotFromArray}
               botsArr={botsArr}
-                setBotsArr={setBotsArr}
+              updateBotsArr={updateBotsArr}
             />
           ),
         },
-        { path: "/arenaSettings", element: <ArenaInfoPage boardDataSubmission={boardDataSubmission}/> },
         { path: "/about", element: <AboutUs /> },
         {
           path: "/arena",
-          element: <Arena savedState={savedState} setSavedState={setSavedState} botsArr={botsArr} setBotsArr={setBotsArr} arenaData={arenaData}  />,
+          element: (
+            <Arena
+              savedState={savedState}
+              botsArr={botsArr}
+              updateBotsArr={updateBotsArr}
+              saveInitialGameState={saveInitialGameState}
+              arenaData={arenaData}
+            />
+          ),
         },
       ],
     },

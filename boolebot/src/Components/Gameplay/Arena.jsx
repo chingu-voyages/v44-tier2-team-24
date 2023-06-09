@@ -9,10 +9,10 @@ import BotRoaster from "./BotRoaster";
 import ArenaSetting from "./ArenaSetting";
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
-import singleBot from "../../assets/bot.png"
-import GameClock from "../GameClock";
+import singleBot from "../../assets/bot.png";
+import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
-
+import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
@@ -20,20 +20,23 @@ export default function Arena(props) {
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [leaderboard, setLeaderboard] = useState({});
   const [currBot, setCurrBot] = useState(0);
-  const [collisionLocation, setCollisionLocation] = useState(null)
-  const [isCollision, setIsCollision] = useState(false)
-  const [battleLog, setBattleLog] = useState([])
-  const [message, setMessage] = useState(null)
+  const [collisionLocation, setCollisionLocation] = useState(null);
+  const [isCollision, setIsCollision] = useState(false);
+  const [battleLog, setBattleLog] = useState([]);
+  const [message, setMessage] = useState(null);
 
   const [timer, setTimer] = useState({
     min: 0,
     sec: 0,
     running: false,
   });
-
-  const { arenaData : {tileNum, speed, operator}, botsArr, setBotsArr, setSavedState ,savedState } = props
-
-
+  const {
+    arenaData: { tileNum, speed, operator },
+    botsArr,
+    savedState,
+    updateBotsArr,
+    saveInitialGameState,
+  } = props;
 
   const arenaStyles = {
   gridTemplateColumns: `repeat(${tileNum}, 4em)`, /*changed grid size*/
@@ -41,8 +44,6 @@ export default function Arena(props) {
   };
 
   const renderArena = () => {
-    
-
     const positions = Array.from(
       { length: tileNum * tileNum },
       (_, i) => i + 1
@@ -54,7 +55,7 @@ export default function Arena(props) {
             (bot) => bot.position === tilePosition
           );
           return renderTile(tilePosition, robotIndex);
-        })}
+        })} 
       </div>
     );
   };
@@ -63,9 +64,7 @@ export default function Arena(props) {
     const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
     const isBotPosition = robot && robot.position === tilePosition;
 
-    let tileClass = {backgroundColor : ''};
-    
-    let text = ''
+    let tileClass = { backgroundColor: "" };
 
     if(botsArr.length === 1 && isBotPosition){
       text = "WINNER!"
@@ -114,31 +113,13 @@ export default function Arena(props) {
   useEffect(() => {
     if (botsArr.length === 1) {
       setIsGameRunning(false);
-
     }
   }, [botsArr]);
 
   function startGame() {
-    setSavedState(prev => createCopyBot() )
+    saveInitialGameState(() => makeCopyBotsArr(botsArr));
 
     setIsGameRunning((prev) => (prev ? false : true));
-    
-  }
-
-  function createCopyBot() {
-    const newBotsArr = botsArr.map(
-      (bot) =>
-        new BotClass(
-          bot.position,
-          bot.direction,
-          bot.name,
-          bot.value,
-          bot.botIcon,
-          bot.wins,
-          bot.loses,
-        )
-    );
-    return newBotsArr;
   }
 
   ///ChatGPT suggestion
@@ -150,11 +131,7 @@ export default function Arena(props) {
       intervalId = setInterval(
         () => {
           setCollisionLocation(() => null);
-          // console.log("CURRENT BOTS", botsArr)
-
-          const newBotsArr = createCopyBot();
-
-          // console.log("COPY OF BOTS ARRAY", newBotsArr)
+          const newBotsArr = makeCopyBotsArr(botsArr);
 
           newBotsArr[currBot].calcNextMove(tileNum);
 
@@ -170,26 +147,23 @@ export default function Arena(props) {
               setMessage
             );
 
-            // console.log("Collided bots with updated score", collidedBotsArr);
             if (collidedBotsArr) {
-              setBattleLog((prev)=> ([...prev, 
+              setBattleLog((prev) => [
+                ...prev,
                 <div>
-                 {`${collidedBotsArr[0].name} (👑) vs. ${collidedBotsArr[1].name} (😭)`}
-                 
-                </div>
-              ]) )
+                  {`${collidedBotsArr[0].name} (👑) vs. ${collidedBotsArr[1].name} (😭)`}
+                </div>,
+              ]);
               setLeaderboard((prev) => {
                 return {
                   ...prev,
                   [collidedBotsArr[0].name]: {
                     wins: collidedBotsArr[0].wins,
                     loses: collidedBotsArr[0].loses,
-                    
                   },
                   [collidedBotsArr[1].name]: {
                     wins: collidedBotsArr[1].wins,
                     loses: collidedBotsArr[1].loses,
-                    
                   },
                 };
               });
@@ -204,9 +178,8 @@ export default function Arena(props) {
               );
               newBotsArr.splice(loserIndex, 1);
             }
-          }
-          else{
-            setMessage(null)
+          } else {
+            setMessage(null);
           }
 
           if (newBotsArr.length < botsArr.length) {
@@ -222,19 +195,17 @@ export default function Arena(props) {
             );
           }
 
-          setBotsArr(() => newBotsArr);
+          updateBotsArr(newBotsArr);
         },
-        collisionLocation ? (speed + 1000) : speed
+        collisionLocation ? speed + 1000 : speed
       );
     }
 
     return () => clearInterval(intervalId);
   }, [isGameRunning, currBot, botsArr, operator]);
 
-
-  
   function playAgain() {
-    setBotsArr((prev) => savedState);
+    updateBotsArr(savedState);
     setBattleLog([]);
     setLeaderboard({});
     setTimer((prev) => {
@@ -244,9 +215,8 @@ export default function Arena(props) {
         running: false,
       };
     });
-    setCollisionLocation(null)
+    setCollisionLocation(null);
   }
-  
 
   return (
     <main className="main_container">
@@ -258,7 +228,6 @@ export default function Arena(props) {
           <div>
             <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
           </div>
-          
         ) : (
           
           <button onClick={() => startGame()} className="btn">
@@ -276,12 +245,10 @@ export default function Arena(props) {
         <BattleLog battleLog={battleLog} />
         <Leaderboard
           leaderboard={leaderboard}
-          setTimer={setTimer}
           setLeaderboard={setLeaderboard}
-          setBotsArr={setBotsArr}
           botsArr={botsArr}
         />
-       <PlayFromScratchBtn setBotsArr={setBotsArr}/>
+        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
       </aside>
     </main>
   );
