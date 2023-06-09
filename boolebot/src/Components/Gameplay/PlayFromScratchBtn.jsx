@@ -10,7 +10,7 @@ export default function PlayFromScratchBtn({updateBotsArr}) {
     <div>
       <Link to="/">
         <div>
-          <button
+          <button className="btn"
             onClick={() => {
               restartGame();
             }}

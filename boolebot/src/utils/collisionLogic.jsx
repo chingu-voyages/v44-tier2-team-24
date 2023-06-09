@@ -123,7 +123,7 @@ const updateScore = (result, botOne, botTwo, setMessage) => {
     setMessage("COLLISION!!!")
     return [botOneClone, botTwoClone];
   } else {
-    setMessage("TIE!!!")
+    setMessage("TIE!")
     return;
   }
 };
