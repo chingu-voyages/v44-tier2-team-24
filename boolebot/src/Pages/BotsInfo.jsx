@@ -42,7 +42,6 @@ export default function BotsInfo(props) {
     "6": "NW",
     "7": "SE",
     "8": "SW"
-
   })
   const inputAutoFocus = useAutoFocus(botsArr);
   const [iconPalette, setIconPalette] = useState([

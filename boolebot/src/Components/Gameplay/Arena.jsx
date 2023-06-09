@@ -196,7 +196,7 @@ export default function Arena(props) {
 
           updateBotsArr(newBotsArr);
         },
-        collisionLocation ? speed + 1000 : speed
+        collisionLocation ? (4000 - speed) + 1000 : 4000 - speed
       );
     }
 
