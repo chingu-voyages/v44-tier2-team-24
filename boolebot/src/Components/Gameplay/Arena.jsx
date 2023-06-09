@@ -221,8 +221,15 @@ export default function Arena(props) {
     <main className="main_container">
       <div className="game_board">
        <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
-        <div className="arena">{renderArena()}</div>
-
+        <div className="arenaWrapper">{renderArena()}</div>
+        <div className="GameClock">
+        <GameClock
+          isGameRunning={isGameRunning}
+          timer={timer}
+          setTimer={setTimer}
+        />
+</div>
+    <div>
         {botsArr.length === 1 ? (
           <div>
             <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
@@ -233,14 +240,10 @@ export default function Arena(props) {
             {isGameRunning ? "STOP" : "BATTLE"}
           </button>
         )}
+        </div>
       </div>
       <aside className="status_info">
-        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
-        <GameClock
-          isGameRunning={isGameRunning}
-          timer={timer}
-          setTimer={setTimer}
-        />
+<ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
         <BattleLog battleLog={battleLog} />
         <Leaderboard
           leaderboard={leaderboard}
