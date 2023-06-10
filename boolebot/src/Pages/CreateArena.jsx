@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import singleBot from "../assets/bot.png";
 import { Link } from "react-router-dom";
-
+import Container from "../Components/Layout/Container"
 export default function BotsInfo(props) {
   const {arenaData, updateArenaData} = props
+  const width = window.innerWidth;
+
+  
   
   // Generic change handler
   function handleChange(e) {
@@ -49,9 +52,10 @@ export default function BotsInfo(props) {
   return (
 
   <div className="createArena">
+    <Container>
     <h2>Board Controls</h2>
 
-    <div className="arenaControls">
+    
 
       <div className="arena-input-form">
         
@@ -73,6 +77,40 @@ export default function BotsInfo(props) {
               <span>{` ${4 - arenaData.speed/1000}sec`}</span>
             </label>
           </div>
+          {width <= 768 && width > 428? <div>
+            <label htmlFor="Arena Size">
+              Arena Size:
+              <input
+                id="tileNum"
+                type="range"
+                min={3}
+                max={5}
+                step={1}
+                value={arenaData.tileNum}
+                name="tileNum"
+                onChange={handleChange}
+                required
+              />
+              <span>{` ${arenaData.tileNum}x${arenaData.tileNum}`}</span>
+            </label>
+          </div> : width <= 428? 
+          <div>
+          <label htmlFor="Arena Size">
+            Arena Size:
+            <input
+              id="tileNum"
+              type="range"
+              min={3}
+              max={4}
+              step={1}
+              value={arenaData.tileNum}
+              name="tileNum"
+              onChange={handleChange}
+              required
+            />
+            <span>{` ${arenaData.tileNum}x${arenaData.tileNum}`}</span>
+          </label>
+        </div>:
           <div>
             <label htmlFor="Arena Size">
               Arena Size:
@@ -89,7 +127,8 @@ export default function BotsInfo(props) {
               />
               <span>{` ${arenaData.tileNum}x${arenaData.tileNum}`}</span>
             </label>
-          </div>
+          </div> }
+          
           <div>
             <label htmlFor="operator">
               Boolean operator:
@@ -114,7 +153,7 @@ export default function BotsInfo(props) {
         </form>
         
       </div>
-    </div>
+      </Container>
     </div>
   )
 }

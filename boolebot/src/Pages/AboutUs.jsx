@@ -16,25 +16,32 @@ export default function AboutUs() {
           <p>
           Jack is a self-taught full-stack Developer. Ex-Fukuoka JET (CIR - ALT) turned Web Dev. After being fascinated by Japan, teaching himself Japanese, and working in Japan for the past decade, Jack found an new direction in Web Dev, so he's now teaching himself programming languages. 
           </p>
-          <div className="icons">
-            <a
-          className='footer_link'
-          href="https://www.linkedin.com/in/jackli0707/"
+        <div className="icons">
+              <a
+            className='footer_link'
+            href="https://www.linkedin.com/in/jackli0707/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="fa fa-linkedin"></i>
+          </a>
+              <a
+            className='footer_link'
+            href="https://jack-codes.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="fa fa-briefcase"></i>
+          </a>
+          <a
+          className="github_link_personal"
+          href="https://github.com/jackli921"
           target="_blank"
           rel="noreferrer"
         >
-          <i className="fa fa-linkedin"></i>
+          <i className="fa fa-github"></i>
         </a>
-            <a
-          className='footer_link'
-          href="https://jack-codes.netlify.app/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <i className="fa fa-briefcase"></i>
-        </a>
-          
-          </div>
+        </div>
         </div>
       </section>
       <section className="creator_section">
@@ -61,6 +68,14 @@ export default function AboutUs() {
         >
           <i className="fa fa-briefcase"></i>
         </a>
+        <a
+          className="github_link_personal"
+          href="https://github.com/libbyreeves"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-github"></i>
+        </a>
           
           </div>
          </div>      
@@ -83,7 +98,14 @@ export default function AboutUs() {
         >
           <i className="fa fa-linkedin"></i>
         </a>
-            
+        <a
+          className="github_link_personal"
+          href="https://github.com/hectorgarcia07"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-github"></i>
+        </a>
           
           </div>
         </div>        
@@ -111,7 +133,14 @@ export default function AboutUs() {
         >
           <i className="fa fa-briefcase"></i>
         </a>
-            
+        <a
+          className="github_link_personal"
+          href="https://github.com/sucheta90"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa fa-github"></i>
+        </a>
           
           </div>
         </div>      
