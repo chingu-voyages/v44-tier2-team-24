@@ -58,7 +58,7 @@ export default function BotsInfo(props) {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="speed">
-              Game Speed:
+              Movement Speed:
               <input
                 id="speed"
                 type="range"

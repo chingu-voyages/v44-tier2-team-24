@@ -1,11 +1,17 @@
 .error_main{
-    padding: 10em 0;
+    width:100vw;
+    height: 100vh;
+    background-color: rgb(151, 161, 171);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .error_content{
-        background-color: slategrey;
-        width: 50%;
-        margin: 0 auto;
-        padding: 5em 0;
+        text-align: center;
+        font-size: 2em;
+        // border: 1px solid blue;
+        width: 100%;
+        // line-height: 2;
     }
     .home_btn{
         color: white;

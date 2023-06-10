@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import sweetAlertMixin from "../Components/SweetAlertConfig";
+import Container from './Layout/Container';
 
 
 function Navigation() {
@@ -64,6 +65,7 @@ function Navigation() {
     return (
     
       <header>
+        
         <nav>
             <Link to="/"><h1>BooleBots</h1></Link>
            <ul className="nav-links">
@@ -82,6 +84,7 @@ function Navigation() {
           </ul>
           
         </nav>
+       
       </header>
      
     );

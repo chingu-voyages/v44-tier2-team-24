@@ -15,6 +15,7 @@ import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
 import Swal from "sweetalert2"; 
 import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch.mp3"
+import Container from "../Layout/Container";
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
@@ -43,7 +44,7 @@ export default function Arena(props) {
   const arenaStyles = {
   gridTemplateColumns: `repeat(${tileNum}, 3.5em)`, /*changed grid size*/
     gridTemplateRows: `repeat(${tileNum}, 3.5em)`,
-    gridGap:`1em`
+
   };
 
   const renderArena = () => {
@@ -75,7 +76,6 @@ export default function Arena(props) {
     } else if (tilePosition === collisionLocation) {
       text = message;
     }
-
 
     return (
       <div
@@ -260,11 +260,12 @@ export default function Arena(props) {
 
   return (
     <main className="main_container">
+ 
       <div className="game_board">
        <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
         <div className="arena">{renderArena()}</div>
 
-        {botsArr.length === 1 ? (
+        {/* {botsArr.length === 1 ? (
           <div>
             <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
           </div>
@@ -281,7 +282,25 @@ export default function Arena(props) {
           isGameRunning={isGameRunning}
           timer={timer}
           setTimer={setTimer}
-        />
+        /> */}
+
+
+    <div className="buttons">
+        {botsArr.length === 1 ? (
+          <div>
+            <button onClick={()=>{playAgain()}} className="btn">Restart</button>
+          </div>
+        ) : (
+          
+          <button onClick={() => startGame()} className="btn">
+            {isGameRunning ? "PAUSE" : "BATTLE"}
+          </button>
+        )}
+        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
+        </div>
+      </div>
+      <aside className="status_info">
+        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
         <BattleLog battleLog={battleLog} />
         <Leaderboard
           leaderboard={leaderboard}
@@ -290,6 +309,8 @@ export default function Arena(props) {
         />
         <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
       </aside>
+    
     </main>
+    
   );
 }

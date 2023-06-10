@@ -1,18 +1,29 @@
+@use './variables' as *;
 @use './mixins' as *;
 
 .main_container {
   display: flex;
+  
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: #d3f3ee;
-  height: 86vh;
+  width:100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  // 
 
   .game_board {
-    // border: 1px solid blue;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+     
+      /* Add other styles as needed */
+      
+      flex: 4;
+    }
+    
+    
     // height: 85vh;
     // width: 50vw;
 
@@ -37,10 +48,13 @@
           display: flex;
           align-items: center;
           flex-direction: column;
+          padding: 0.2em;
+          
 
 
           h3.title {
             text-align: center;
+            flex-wrap: wrap;
           }
 
           .botIcon_wrapper {
@@ -56,6 +70,9 @@
           .botIcon_details {
             width: fit-content;
             font-size: .8em;
+            display: flex;
+            flex-direction: column;
+            
           }
 
         }
@@ -84,11 +101,18 @@
 
   }
 
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    
+
+  }
+
   .status_info {
-    // border: 1px solid blue;
-    // width: 40vw;
-    // height: 85vh;
-    // padding-top: 2em;
+    height: 100%;
+    padding: 2em;
+    flex: 1;
+  
 
     button {
       background-color: #061d41;
@@ -105,7 +129,7 @@
     }
   }
 
-}
+
 
 img {
   max-width: 100%;
@@ -125,12 +149,28 @@ aside {
 
 
 aside>div {
+  h3 {
+    background-color: $navy-blue;
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  
   align-items: center;
   height: 100%;
+}
+.title {
+  width: 100%;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  p {
+    margin: 0 2%;
+  }
 }
 
 
@@ -148,12 +188,12 @@ aside>div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.8em;
+  gap: 0.2em;
   font-weight: bold;
 }
 
 .crashedText {
-  color: red;
+  color: $navy-blue;
 }
 
 .cell {
