@@ -55,10 +55,6 @@ class BotClass {
 
   updateBotPosition(newPosition) {
     this.position = newPosition;
-
-    // console.log(`New position now: ${this.printBotData()}`)
-
-    // console.log('#######################################################################################')
   }
 
   //will determine if the bots next movement is valid
@@ -85,8 +81,6 @@ class BotClass {
   }
 
   setNextDirection(tileNum) {
-    console.log("TINE NUM", tileNum)
-
     switch (this.direction) {
       case 1:
         if (this.position - tileNum < 1) {
@@ -150,7 +144,7 @@ class BotClass {
     // "8": "SW"
 
   calcNextMove(tileNum) {
-    console.log(`Moving Bot : ${this.printBotData()}`);
+
 
     this.setNextDirection(tileNum);
 

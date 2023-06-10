@@ -1,26 +1,27 @@
 import BotClass from "../Components/Gameplay/BotClass";
 
-const checkCollision = (botsArr) => {
+const checkCollision = (currBot, botsArr) => {
   // check over the current location of each robot
   //if two robots have the same location number
   //then collision occurred
   //write logic for collision
   const locationArr = botsArr.map((bot) => bot.position);
 
+  const index = botsArr.findIndex(bot => (bot.name !== botsArr[currBot].name) &&  (botsArr[currBot].position === bot.position))
 
-  for (let i = 0; i < locationArr.length; i++) {
-    for (let j = i + 1; j < locationArr.length; j++) {
-      if (locationArr[i] === locationArr[j]) {
-        return locationArr[i];
-        // return true; // if any two numbers are the same, return
-      }
+
+  /* for (let i = 0; i < locationArr.length; i++) {
+    if (locationArr[i] === locationArr[j]) {
+      return locationArr[i];
+      // return true; // if any two numbers are the same, return
     }
-  }
-  return null;
+  } */
+  
+  return index;
 };
 
 const handleCollision = (botsArr, operator, currBotName, setMessage) => {
-  console.log("COLLISION!!!!!!!!!!");
+
 
   const positionMap = new Map();
 
@@ -31,8 +32,6 @@ const handleCollision = (botsArr, operator, currBotName, setMessage) => {
       positionMap.set(bot.position, 1);
     }
   });
-
-  console.log("MAP ", positionMap);
 
   //will hold the positions that contain more than 1 bot
   let colidedPosition;
@@ -48,7 +47,6 @@ const handleCollision = (botsArr, operator, currBotName, setMessage) => {
     }
   }
 
-  console.log("CurrBotNAme ", currBotName);
 
   //find all bots with matching collision position
   for (let i = 0; i < botsArr.length; i++) {
@@ -68,7 +66,7 @@ const handleCollision = (botsArr, operator, currBotName, setMessage) => {
     }
   }
 
-  console.log("THESE ARE THE BOTS THAT SHOULD BATTLE ", colidedBots);
+
 
   // determine winer & loser
   // using AND
@@ -120,10 +118,10 @@ const updateScore = (result, botOne, botTwo, setMessage) => {
     );
 
     setMessage("COLLISION!!!")
-    return [botOneClone, botTwoClone];
+    return { isATie : false, bots: [botOneClone, botTwoClone]}
   } else {
     setMessage("TIE!")
-    return;
+    return { isATie : true, bots: [botOne, botTwo]}
   }
 };
 

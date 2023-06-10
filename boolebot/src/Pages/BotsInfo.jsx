@@ -147,6 +147,8 @@ function handleChange(e){
 
     }
     else{
+      setIsBotsArrayFull(false)
+      
       let botsArrCopy = makeCopyBotsArr(botsArr)
       const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
       const duplicateBot = botsArrCopy.some(
@@ -264,13 +266,13 @@ function handleChange(e){
                 <option value="8">↙</option>
               </select>
             </label>
-            <button disabled={isBotsArrayFull} type="submit">
+            <button type="submit" disabled={isBotsArrayFull}>
               Add Bot
             </button>
           </fieldset>
         </form>
         <Link to="/createArena">
-          <button>← Back</button>
+          <button >← Back</button>
         </Link>
         <Link to="/arena">
           <button disabled={botsArr.length <= 1}>Battle Ground →</button>
