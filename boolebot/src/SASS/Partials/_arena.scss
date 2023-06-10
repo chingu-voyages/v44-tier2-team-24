@@ -39,6 +39,8 @@
         align-items: center;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        gap: 1em;
+        
 
         // border: 1px solid #061d41;
         .showBot {
@@ -56,7 +58,7 @@
           }
 
           .botIcon_wrapper {
-            width: 2em;
+            width: 4em;
 
             img {
               align-self: center;
@@ -222,7 +224,4 @@ button {
   cursor: pointer;
 }
 
-.border {
-  border: 5px solid #d3f3ee;
-}
 

@@ -90,7 +90,7 @@ const handleCollision = (botsArr, operator, currBotName, setMessage) => {
       break;
     case "NOR":
       const NOR_Result = !(colidedBots[0].value || colidedBots[1].value);
-      return updateScore(NOR_Result, colidedBots[0], colidedBots[1],setMessage);
+      return updateScore(NOR_Result, colidedBots[0], colidedBots[1], setMessage);
       break;
   }
 };

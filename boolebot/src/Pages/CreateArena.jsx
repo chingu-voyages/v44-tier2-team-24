@@ -18,6 +18,12 @@ export default function BotsInfo(props) {
       })
 
     }
+    else if(changedField === "speed"){
+      updateArenaData({
+        ...arenaDataCopy, speed: Number(newValue)
+      })
+
+    }
     else{
       arenaDataCopy[changedField] = newValue;
       updateArenaData({...arenaDataCopy})
@@ -52,19 +58,19 @@ export default function BotsInfo(props) {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="speed">
-              Game Speed:
+              Movement Speed:
               <input
                 id="speed"
                 type="range"
                 min={500}
-                max={3000}
+                max={3500}
                 step={500}
                 value={arenaData.speed}
                 name="speed"
                 onChange={handleChange}
                 required
               />
-              <span>{` ${arenaData.speed/1000}sec`}</span>
+              <span>{` ${4 - arenaData.speed/1000}sec`}</span>
             </label>
           </div>
           <div>
