@@ -33,6 +33,7 @@ export default function Arena(props) {
     sec: 0,
     running: false,
   });
+  
   const {
     arenaData: { tileNum, speed, operator },
     botsArr,
@@ -143,8 +144,6 @@ export default function Arena(props) {
           text: `Reason: 1 NOR 1 will always produce a 0`,
         });
     }
-    
-    
   }
 
   useEffect(() => {
@@ -291,7 +290,6 @@ export default function Arena(props) {
             <button onClick={()=>{playAgain()}} className="btn">Restart</button>
           </div>
         ) : (
-          
           <button onClick={() => startGame()} className="btn">
             {isGameRunning ? "PAUSE" : "BATTLE"}
           </button>

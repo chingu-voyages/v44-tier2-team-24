@@ -7,7 +7,6 @@ const checkCollision = (botsArr) => {
   //write logic for collision
   const locationArr = botsArr.map((bot) => bot.position);
 
-  console.log("Location array", locationArr);
 
   for (let i = 0; i < locationArr.length; i++) {
     for (let j = i + 1; j < locationArr.length; j++) {
