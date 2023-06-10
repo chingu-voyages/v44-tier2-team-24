@@ -83,8 +83,7 @@ const Hamburger = () => {
     closeMenu();
   };
   return (
-    <div className="hamburger-nav">
-      
+    <nav className="hamburger-nav">      
       <div className="burger-container">
         <nav className="burger-nav">
           <button className="burger-menu" onClick={updateMenu}>
@@ -98,7 +97,7 @@ const Hamburger = () => {
           <Link className="menu-link" to={"/about"} element={<AboutUs />} onClick={closeMenu}>About Us</Link>
         </div>
       </div>
-    </div>
+    </nav>
   )
 }
 export default Hamburger;
