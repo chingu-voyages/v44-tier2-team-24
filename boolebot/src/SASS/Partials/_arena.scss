@@ -10,7 +10,43 @@
   width:100%;
   max-width: 1200px;
   margin: 0 auto;
-  // 
+
+  .buttons {
+    .btn {
+      margin-bottom: 2%;
+    }
+    .exand {
+      button:hover {
+          background-color: white;
+          color: $navy-blue;
+          transition: 0.7s;
+          border-radius: 10px;
+          border: 1px solid $navy-blue;
+          text-align: center;
+        }
+      
+        button:focus {
+          border: 3px solid white;
+      
+      
+        }
+    }
+    button:hover {
+        background-color: white;
+        color: $navy-blue;
+        transition: 0.7s;
+        border-radius: 10px;
+        border: 1px solid $navy-blue;
+        text-align: center;
+        
+      }
+    
+      button:focus {
+        border: 3px solid white;
+    
+    
+      }
+  }
 
   .game_board {
     height: 100%;
@@ -18,14 +54,13 @@
       flex-direction: column;
       align-items: center;
      
-      /* Add other styles as needed */
       
-      flex: 4;
+      
+      flex: 3;
     }
     
     
-    // height: 85vh;
-    // width: 50vw;
+   
 
 
     .bots_display {
@@ -34,7 +69,7 @@
 
       .createdBots {
 
-        // height:fit-content;
+        
         display: flex;
         align-items: center;
         flex-wrap: wrap;
@@ -42,13 +77,27 @@
         gap: 1em;
         
 
-        // border: 1px solid #061d41;
+        
         .showBot {
           width: 5em;
           display: flex;
           align-items: center;
           flex-direction: column;
           padding: 0.2em;
+          button:hover {
+              background-color: white;
+              color: $navy-blue;
+              transition: 0.7s;
+              border-radius: 10px;
+              border: 1px solid $navy-blue;
+              text-align: center;
+            }
+          
+            button:focus {
+              border: 3px solid white;
+          
+          
+            }
           
 
 
@@ -63,7 +112,7 @@
             img {
               align-self: center;
               max-width: 100%;
-              // margin-bottom: 10px;
+              
             }
           }
 
@@ -81,7 +130,7 @@
 
     .arena {
       display: grid;
-      margin-bottom: 1em;
+      margin-bottom: 0.2em;
       align-self: center;
     }
 
@@ -92,7 +141,7 @@
       font-size: 1em;
       padding: 0.5em 1.5em;
       border-radius: 10px;
-      // margin-bottom: 1em;
+      
       border: none;
       width: fit-content;
       align-self: center;
@@ -112,6 +161,7 @@
     height: 100%;
     padding: 2em;
     flex: 1;
+    justify-content: space-between;
   
 
     button {
@@ -135,10 +185,7 @@ img {
   max-width: 100%;
 }
 
-.GameClock {
-  flex-direction: row;
-  width: fit-content;
-}
+
 
 aside {
   display: flex;
@@ -175,15 +222,14 @@ aside>div {
 
 
 
-//copied from index.css
 
-/* arena */
 .arena {
   display: grid;
+  
 }
 
 .tile {
-  border: 1px solid black;
+  border: 1px solid $navy-blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -196,32 +242,63 @@ aside>div {
   color: $navy-blue;
 }
 
-.cell {
-  border: 1px solid black;
+.wrapper {
+  border: 2px solid $navy-blue;
 }
 
-.tan {
-  background-color: tan;
-}
-
-.orange {
-  background-color: orange;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.yellow {
-  background-color: yellow;
-}
-
-.green {
-  background-color: green;
-}
 
 button {
   cursor: pointer;
 }
 
+
+.arenaSettings {
+  background-color: white;
+
+  border: solid 2px $navy-blue;
+  height: auto;
+
+}
+
+.battleLog {
+  background-color: white;
+  height: 20em;
+  border: solid 2px $navy-blue;
+  overflow: scroll;
+}
+
+.leaderBoard {
+  background-color: white;
+  height: 100%;
+  height: 10em;
+  border: solid 2px $navy-blue;
+}
+
+.GameClock {
+  background-color: white;
+  width: 5em;
+  margin-bottom: 0.3em;
+  border: solid 2px $navy-blue;
+  display: flex;
+  flex-direction: column;
+    h2 {
+      text-align: center;
+    }
+
+
+
+  h4 {
+    background-color: $navy-blue;
+    padding: 2%;
+    
+    color: white;
+    text-align: center;
+  }
+}
+
+.arena {
+  .tile {
+    background-color: white;
+  }
+}
 

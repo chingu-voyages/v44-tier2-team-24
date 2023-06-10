@@ -270,10 +270,10 @@ function handleChange(e){
           </fieldset>
         </form>
         <Link to="/createArena">
-          <button>Back</button>
+          <button>← Back</button>
         </Link>
         <Link to="/arena">
-          <button disabled={botsArr.length <= 1}>Battle Ground</button>
+          <button disabled={botsArr.length <= 1}>Battle Ground →</button>
         </Link>
       </div>
       </Container>

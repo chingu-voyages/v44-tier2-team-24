@@ -1,11 +1,7 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  @use "./variables" as *;    
+  
   .footer {
     margin-top: auto;
-    // align-self: flex-end;
     background-color: #061d41;
     text-align: center;
     min-height: 5%;
@@ -14,13 +10,47 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+        a:hover {
+          background-color: white;
+          color: $navy-blue;
+          transition: 0.7s;
+          border-radius: 10px;
+          text-align: center;
+          padding: 1%;
+    
+    
+        }
+    
+        a:focus {
+          border: 3px solid white;
+    
+    
+        }
    
     .github_icon {
       color: white;
       text-decoration: none;
       font-size: 1.75em;
-      padding: .25em 0 0 0;
+      padding: .25em 0 0 0;      
     }
+
+        .github_icon:hover {
+          background-color: white;
+          color: $navy-blue;
+          transition: 0.7s;
+          border-radius: 50%;
+          text-align: center;
+          padding: 0.25%;
+    
+    
+        }
+    
+        
     .footer_ul{
       justify-content: center;
       width: 30%;

@@ -7,7 +7,7 @@ export default function ArenaSetting({ tileNum, speed, operator }) {
        <h3>Arena Setting</h3>
       </div>
         <div className="info">
-        <p>Gird Size: <strong>{tileNum}x{tileNum}</strong> </p>
+        <p>Grid Size: <strong>{tileNum}x{tileNum}</strong> </p>
         <p>Operator: <strong>{operator}</strong></p>
         <p>Speed: <strong>{4 - (speed / 1000)}s</strong></p>
       </div>

@@ -54,7 +54,7 @@ export default function Arena(props) {
       (_, i) => i + 1
     );
     return (
-      <div className="arena" style={arenaStyles}>
+      <div className="arena wrapper" style={arenaStyles}>
         {positions.map((tilePosition) => {
           const robotIndex = botsArr.findIndex(
             (bot) => bot.position === tilePosition
@@ -277,11 +277,14 @@ export default function Arena(props) {
       </div>
       <aside className="status_info">
         <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
+        */}
+        <div className="GameClock">
         <GameClock
           isGameRunning={isGameRunning}
           timer={timer}
           setTimer={setTimer}
-        /> */}
+        /> 
+        </div>
 
 
     <div className="buttons">
@@ -305,7 +308,7 @@ export default function Arena(props) {
           setLeaderboard={setLeaderboard}
           botsArr={botsArr}
         />
-        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
+        
       </aside>
     
     </main>

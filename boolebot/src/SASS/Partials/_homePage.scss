@@ -1,60 +1,50 @@
+@use "./variables" as *;
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 .main_body {
-    background-color: #d3f3ee;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: 1em 0;
-  
-  .imgWrapper {
-    width: auto;
-    margin: auto;
-    align-self: center;
-    display: flex;
-    align-items: center;
-    
+  background-color: $mint-green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    img{
-      max-width: 100%;
-    }
-  }
-
-  li{
-    text-align: left;
-  }
-  .homepageBtns {
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: .8%;
-    padding: 0;
-    
-    .startBtn,
-  .instructionBtn {
-    background-color: #061d41;
-    color: white;
-    font-weight: 600;
-    font-size: 1em;
-    padding: 0.5em 1.5em;
-    border-radius: 10px;
-    margin-bottom: .5em;
-    border: none;
-    width: fit-content;
-    
-  }
-    
-  }
-  
+.imgWrapper {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 4em;
 }
 
-
-
+.homepageBtns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  .startBtn,
+    .instructionBtn {
+      background-color: $navy-blue;
+      color: white;
+      font-weight: 600;
+      font-size: 1em;
+      padding: 0.25em 1.5em;
+      border-radius: 10px;
+      margin-bottom: 1em;
+      border: none;
+    }
+      button:hover {
+              background-color: white;
+                  color: $navy-blue;
+                  transition: 0.7s;
+                  border-radius: 10px;
+                  border: 1px solid $navy-blue;
+                  text-align: center;
+          }
+      
+          button:focus {
+              border: 3px solid white;
+                  
+                  
+          }
+  
+  
+}
+}
 
