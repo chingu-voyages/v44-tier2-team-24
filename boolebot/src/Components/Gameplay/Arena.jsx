@@ -93,54 +93,6 @@ export default function Arena(props) {
       );
     };
 
-  // const renderTile = (tilePosition, robotIndex) => {
-  //   const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
-
-  //   let tileClass = { backgroundColor: "" };
-
-  //   // console.log("Collsion location", collisionLocation)
-  //   // console.log("tilePos", tilePosition)
-  //   if(robot){
-  //     // console.log("robot", robot)
-  //   }
-  //   if(collisionLocation){
-  //     // console.log("collisionLocation", botsArr[collisionLocation])
-  //   }
-
-  //   let text = "";
-  //   if (botsArr.length === 1) {
-  //     text = "WIN!";
-  //   } 
-  //   if (robot && collisionLocation && (tilePosition == robot.position) && (tilePosition == botsArr[collisionLocation].position ) ) {
-  //     console.log(message, botsArr[collisionLocation].position);
-  //     text = message;
-  //   }
-
-  //   console.log('text', text)
-
-  //   return (
-  //     <div
-  //       style={tileClass}
-  //       key={tilePosition + 1}
-  //       data-position={tilePosition}
-  //       className={`tile  ${
-  //         collisionLocation && (tilePosition === botsArr[collisionLocation].position) ? "border crashedText" : ""
-  //       }`}
-  //     >
-  //       {robot ? (
-  //         <img
-  //           src={robot.botIcon}
-  //           alt="photo of a robot head"
-  //           style={{ width: "50%" }}
-  //         />
-  //       ) : (
-  //         ""
-  //       )}
-  //       { text }
-  //     </div>
-  //   );
-  // };
-
   //make scoreboard
   useEffect(() => {
     const arrayofObj = botsArr.map((prev) => {
@@ -232,8 +184,6 @@ export default function Arena(props) {
               setMessage
             );
 
-            console.log("COlided bots arry", collidedBotsArr)
-
             if (!collidedBotsArr.isATie) {
               callSound(IndianaJonesPunch);
               setBattleLog((prev) => [
@@ -260,7 +210,6 @@ export default function Arena(props) {
                 (bot) => bot.name === collidedBotsArr.bots[0].name
               );
 
-              console.log("WINNER INDEX", winnerIndex)
               newBotsArr[winnerIndex].wins = collidedBotsArr.bots[0].wins;
 
 
@@ -270,7 +219,6 @@ export default function Arena(props) {
               );
               newBotsArr.splice(loserIndex, 1);
             } else {
-              console.log(collidedBotsArr)
               setBattleLog((prev) => [
                 ...prev,
                 <div>
@@ -323,21 +271,6 @@ export default function Arena(props) {
       <div className="game_board">
        <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
         <div className="arena">{renderArena()}</div>
-
-        {/* {botsArr.length === 1 ? (
-          <div>
-            <button onClick={()=>{playAgain()}} className="btn">Play Again</button>
-          </div>
-        ) : (
-          
-          <button onClick={() => startGame()} className="btn">
-            {isGameRunning ? "STOP" : "BATTLE"}
-          </button>
-        )}
-      </div>
-      <aside className="status_info">
-        <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
-        */}
         <div className="GameClock">
         <GameClock
           isGameRunning={isGameRunning}

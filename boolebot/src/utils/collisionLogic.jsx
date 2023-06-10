@@ -1,22 +1,8 @@
 import BotClass from "../Components/Gameplay/BotClass";
 
 const checkCollision = (currBot, botsArr) => {
-  // check over the current location of each robot
-  //if two robots have the same location number
-  //then collision occurred
-  //write logic for collision
   const locationArr = botsArr.map((bot) => bot.position);
-
   const index = botsArr.findIndex(bot => (bot.name !== botsArr[currBot].name) &&  (botsArr[currBot].position === bot.position))
-
-
-  /* for (let i = 0; i < locationArr.length; i++) {
-    if (locationArr[i] === locationArr[j]) {
-      return locationArr[i];
-      // return true; // if any two numbers are the same, return
-    }
-  } */
-
   return index == -1 ? index : botsArr[index].position;
 };
 
@@ -53,12 +39,6 @@ const handleCollision = (botsArr,
   //find all bots with matching collision position
   for (let i = 0; i < botsArr.length; i++) {
     if (botsArr[i].position == colidedPosition) {
-      console.log(
-        "CurrBotNAme ",
-        currBotName,
-        "BotBeing looked at",
-        botsArr[i].name
-      );
 
       if (currBotName === botsArr[i].name) {
         colidedBots[0] = botsArr[i];
@@ -67,12 +47,6 @@ const handleCollision = (botsArr,
       }
     }
   }
-
-  console.log("colided bots", colidedBots)
-
-
-  // determine winer & loser
-  // using AND
 
   switch (operator) {
     case "AND":

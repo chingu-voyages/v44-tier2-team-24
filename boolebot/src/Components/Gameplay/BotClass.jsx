@@ -84,8 +84,6 @@ class BotClass {
     switch (this.direction) {
       case 1:
         if (this.position - tileNum < 1) {
-          //find new direction and stop new direction is valid
-          //once new direction s valid update the new bots direction
           this.getNewDirection(tileNum);
         }
         break;
@@ -133,15 +131,6 @@ class BotClass {
         break;
     }
   }
-
-      // "1": "North",
-    // "2": "South",
-    // "3": "West",
-    // "4": "East",
-    // "5": "NE",
-    // "6": "NW",
-    // "7": "SE",
-    // "8": "SW"
 
   calcNextMove(tileNum) {
 
