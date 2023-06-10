@@ -16,11 +16,14 @@ const checkCollision = (currBot, botsArr) => {
       // return true; // if any two numbers are the same, return
     }
   } */
-  
-  return index;
+
+  return index == -1 ? index : botsArr[index].position;
 };
 
-const handleCollision = (botsArr, operator, currBotName, setMessage) => {
+const handleCollision = (botsArr,
+              operator,
+              currBotName,
+              setMessage) => {
 
 
   const positionMap = new Map();
@@ -47,7 +50,6 @@ const handleCollision = (botsArr, operator, currBotName, setMessage) => {
     }
   }
 
-
   //find all bots with matching collision position
   for (let i = 0; i < botsArr.length; i++) {
     if (botsArr[i].position == colidedPosition) {
@@ -66,6 +68,7 @@ const handleCollision = (botsArr, operator, currBotName, setMessage) => {
     }
   }
 
+  console.log("colided bots", colidedBots)
 
 
   // determine winer & loser

@@ -65,33 +65,81 @@ export default function Arena(props) {
     );
   };
 
-  const renderTile = (tilePosition, robotIndex) => {
-    const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
+    const renderTile = (tilePosition, robotIndex) => {
+      const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
 
-    let tileClass = { backgroundColor: "" };
+      let tileClass = { backgroundColor: "" };
 
-    let text = "";
+      let text = "";
 
-    if (botsArr.length === 1) {
-      text = "WINNER!";
-    } else if (tilePosition === collisionLocation) {
-      text = message;
-    }
+      if (botsArr.length === 1) {
+        text = "WINNER!";
+      } else if (tilePosition === collisionLocation) {
+        text = message;
+      }
 
-    return (
-      <div
-        style={tileClass}
-        key={tilePosition + 1}
-        data-position={tilePosition}
-        className={`tile  ${
-          tilePosition === collisionLocation ? "border crashedText" : ""
-        }`}
-      >
-        {robot ? <img src={robot.botIcon} alt="photo of a robot head" style={{width:"50%"}} />: ""}
-        {text}
-      </div>
-    );
-  };
+      return (
+        <div
+          style={tileClass}
+          key={tilePosition + 1}
+          data-position={tilePosition}
+          className={`tile  ${
+            tilePosition === collisionLocation ? "border crashedText" : ""
+          }`}
+        >
+          {robot ? <img src={robot.botIcon} alt="photo of a robot head" style={{width:"50%"}} />: ""}
+          {text}
+        </div>
+      );
+    };
+
+  // const renderTile = (tilePosition, robotIndex) => {
+  //   const robot = robotIndex >= 0 ? botsArr[robotIndex] : null;
+
+  //   let tileClass = { backgroundColor: "" };
+
+  //   // console.log("Collsion location", collisionLocation)
+  //   // console.log("tilePos", tilePosition)
+  //   if(robot){
+  //     // console.log("robot", robot)
+  //   }
+  //   if(collisionLocation){
+  //     // console.log("collisionLocation", botsArr[collisionLocation])
+  //   }
+
+  //   let text = "";
+  //   if (botsArr.length === 1) {
+  //     text = "WIN!";
+  //   } 
+  //   if (robot && collisionLocation && (tilePosition == robot.position) && (tilePosition == botsArr[collisionLocation].position ) ) {
+  //     console.log(message, botsArr[collisionLocation].position);
+  //     text = message;
+  //   }
+
+  //   console.log('text', text)
+
+  //   return (
+  //     <div
+  //       style={tileClass}
+  //       key={tilePosition + 1}
+  //       data-position={tilePosition}
+  //       className={`tile  ${
+  //         collisionLocation && (tilePosition === botsArr[collisionLocation].position) ? "border crashedText" : ""
+  //       }`}
+  //     >
+  //       {robot ? (
+  //         <img
+  //           src={robot.botIcon}
+  //           alt="photo of a robot head"
+  //           style={{ width: "50%" }}
+  //         />
+  //       ) : (
+  //         ""
+  //       )}
+  //       { text }
+  //     </div>
+  //   );
+  // };
 
   //make scoreboard
   useEffect(() => {
@@ -172,10 +220,10 @@ export default function Arena(props) {
 
           newBotsArr[currBot].calcNextMove(tileNum);
 
-          const collisionLocation = checkCollision(currBot, newBotsArr);
+          const collisionTileIndex = checkCollision(currBot, newBotsArr);
 
-          if (collisionLocation !== -1) {
-            setCollisionLocation(() => collisionLocation);
+          if (collisionTileIndex !== -1) {
+            setCollisionLocation(() => collisionTileIndex);
 
             const collidedBotsArr = handleCollision(
               newBotsArr,
@@ -183,6 +231,8 @@ export default function Arena(props) {
               newBotsArr[currBot].name,
               setMessage
             );
+
+            console.log("COlided bots arry", collidedBotsArr)
 
             if (!collidedBotsArr.isATie) {
               callSound(IndianaJonesPunch);
@@ -209,7 +259,11 @@ export default function Arena(props) {
               let winnerIndex = newBotsArr.findIndex(
                 (bot) => bot.name === collidedBotsArr.bots[0].name
               );
+
+              console.log("WINNER INDEX", winnerIndex)
               newBotsArr[winnerIndex].wins = collidedBotsArr.bots[0].wins;
+
+
 
               let loserIndex = newBotsArr.findIndex(
                 (bot) => bot.name === collidedBotsArr.bots[1].name
@@ -220,10 +274,10 @@ export default function Arena(props) {
               setBattleLog((prev) => [
                 ...prev,
                 <div>
-                  {`${collidedBotsArr.bots[0].name} 🎀 ${collidedBotsArr.bots[1].name}`}
+                  {`${collidedBotsArr.bots[0].name} (🎀) vs. ${collidedBotsArr.bots[1].name} (🎀)`}
                 </div>,
               ]);
-              setMessage(null);
+             
             }
           }
 
