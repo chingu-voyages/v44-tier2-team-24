@@ -267,7 +267,8 @@ export default function Arena(props) {
 
   return (
     <main className="main_container">
- 
+
+     
       <div className="game_board">
        <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
         <div className="arena">{renderArena()}</div>
@@ -303,7 +304,7 @@ export default function Arena(props) {
         />
         
       </aside>
-    
+      
     </main>
     
   );

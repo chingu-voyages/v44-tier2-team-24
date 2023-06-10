@@ -3,7 +3,6 @@
 
 .main_container {
   display: flex;
-  
   align-items: center;
   justify-content: space-between;
   background-color: #d3f3ee;
@@ -107,7 +106,8 @@
           }
 
           .botIcon_wrapper {
-            width: 4em;
+            width: 3em;
+            height:3em;
 
             img {
               align-self: center;
@@ -213,10 +213,12 @@ aside>div {
   width: 100%;
 }
 .info {
+  min-width: fit-content;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   p {
-    margin: 0 2%;
+    margin: 2%;
   }
 }
 
@@ -254,23 +256,23 @@ button {
 
 .arenaSettings {
   background-color: white;
-
   border: solid 2px $navy-blue;
   height: auto;
+
 
 }
 
 .battleLog {
   background-color: white;
-  height: 20em;
+  height: 15em;
   border: solid 2px $navy-blue;
   overflow: scroll;
+  color: #061d41;
 }
 
 .leaderBoard {
   background-color: white;
-  height: 100%;
-  height: 10em;
+  height: auto;
   border: solid 2px $navy-blue;
 }
 
