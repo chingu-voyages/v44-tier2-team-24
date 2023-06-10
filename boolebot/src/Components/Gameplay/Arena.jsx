@@ -33,6 +33,7 @@ export default function Arena(props) {
     sec: 0,
     running: false,
   });
+  
   const {
     arenaData: { tileNum, speed, operator },
     botsArr,
@@ -143,8 +144,6 @@ export default function Arena(props) {
           text: `Reason: 1 NOR 1 will always produce a 0`,
         });
     }
-    
-    
   }
 
   useEffect(() => {
@@ -173,13 +172,11 @@ export default function Arena(props) {
 
           newBotsArr[currBot].calcNextMove(tileNum);
 
-          const collisionLocation = checkCollision(newBotsArr);
+          const collisionLocation = checkCollision(currBot, newBotsArr);
 
-          if (collisionLocation) {
-            callSound(IndianaJonesPunch);
-            
+          if (collisionLocation !== -1) {
             setCollisionLocation(() => collisionLocation);
-            
+
             const collidedBotsArr = handleCollision(
               newBotsArr,
               operator,
@@ -187,39 +184,47 @@ export default function Arena(props) {
               setMessage
             );
 
-            if (collidedBotsArr) {
+            if (!collidedBotsArr.isATie) {
+              callSound(IndianaJonesPunch);
               setBattleLog((prev) => [
                 ...prev,
                 <div>
-                  {`${collidedBotsArr[0].name} (👑) vs. ${collidedBotsArr[1].name} (😭)`}
+                  {`${collidedBotsArr.bots[0].name} (👑) vs. ${collidedBotsArr.bots[1].name} (😭)`}
                 </div>,
               ]);
               setLeaderboard((prev) => {
                 return {
                   ...prev,
-                  [collidedBotsArr[0].name]: {
-                    wins: collidedBotsArr[0].wins,
-                    loses: collidedBotsArr[0].loses,
+                  [collidedBotsArr.bots[0].name]: {
+                    wins: collidedBotsArr.bots[0].wins,
+                    loses: collidedBotsArr.bots[0].loses,
                   },
-                  [collidedBotsArr[1].name]: {
-                    wins: collidedBotsArr[1].wins,
-                    loses: collidedBotsArr[1].loses,
+                  [collidedBotsArr.bots[1].name]: {
+                    wins: collidedBotsArr.bots[1].wins,
+                    loses: collidedBotsArr.bots[1].loses,
                   },
                 };
               });
 
               let winnerIndex = newBotsArr.findIndex(
-                (bot) => bot.name === collidedBotsArr[0].name
+                (bot) => bot.name === collidedBotsArr.bots[0].name
               );
-              newBotsArr[winnerIndex].wins = collidedBotsArr[0].wins;
+              newBotsArr[winnerIndex].wins = collidedBotsArr.bots[0].wins;
 
               let loserIndex = newBotsArr.findIndex(
-                (bot) => bot.name === collidedBotsArr[1].name
+                (bot) => bot.name === collidedBotsArr.bots[1].name
               );
               newBotsArr.splice(loserIndex, 1);
+            } else {
+              console.log(collidedBotsArr)
+              setBattleLog((prev) => [
+                ...prev,
+                <div>
+                  {`${collidedBotsArr.bots[0].name} 🎀 ${collidedBotsArr.bots[1].name}`}
+                </div>,
+              ]);
+              setMessage(null);
             }
-          } else {
-            setMessage(null);
           }
 
           if (newBotsArr.length < botsArr.length) {
@@ -295,7 +300,6 @@ export default function Arena(props) {
             <button onClick={()=>{playAgain()}} className="btn">Restart</button>
           </div>
         ) : (
-          
           <button onClick={() => startGame()} className="btn">
             {isGameRunning ? "PAUSE" : "BATTLE"}
           </button>
