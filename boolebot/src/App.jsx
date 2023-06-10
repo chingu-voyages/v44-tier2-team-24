@@ -13,6 +13,7 @@ import bot1 from './assets/bot1.svg'
 import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
+
 //creating botsArray to be passed on as props to child components
 const [arenaData, setArenaData] = useState({
   tileNum: 3,
@@ -56,6 +57,12 @@ const updateArenaData = newState => {
   setArenaData(newState)
 }
 
+//Calculating innerWidth
+// const [width, setWidth]= useState('');
+
+// useEffect(()=>{
+//   setWidth(()=>window.innerWidth)
+// },[width])
 
 // This is an array of the current route/location
 const routeLocation = ['/createArena', '/createBot'];

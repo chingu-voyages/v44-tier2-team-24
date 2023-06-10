@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Container from "../Components/Layout/Container"
 export default function BotsInfo(props) {
   const {arenaData, updateArenaData} = props
-  const width = window.innerWidth;
+  
+  let width = window.innerWidth;
 
   
   

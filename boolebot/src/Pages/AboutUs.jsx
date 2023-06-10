@@ -10,7 +10,7 @@ export default function AboutUs() {
       
       <section className="creator_section">
         {/* Jack's Info*/}
-       <div className="imgContainer"><img src="/images/Jack.jpeg"/></div> 
+       <div className="imgContainer"><img src="/images/Jack.jpeg" alt="profile picture"/></div> 
         <div className="content">
           <h4>Run Qi (Jack) Li</h4>
           <p>
@@ -46,7 +46,7 @@ export default function AboutUs() {
       </section>
       <section className="creator_section">
         {/* Libby's Info*/}
-      <div className="imgContainer"><img src="/images/Elizabeth.jpg"/></div>
+      <div className="imgContainer"><img src="/images/Elizabeth.jpg" alt="profile picture"/></div>
 
       <div className="content">
           <h4>Elizabeth Reeves</h4>
@@ -82,7 +82,7 @@ export default function AboutUs() {
       </section>
       <section className="creator_section">
         {/* Hector's Info*/}
-      <div className="imgContainer"><img src="/images/Hector.jpeg"/></div> 
+      <div className="imgContainer"><img src="/images/Hector.jpeg" alt="profile picture"/></div> 
 
       <div className="content">
         <h4>Hector Garcia</h4>
@@ -112,7 +112,7 @@ export default function AboutUs() {
         </section>
       <section className="creator_section">
         {/* Sucheta's Info*/}
-      <div className="imgContainer"><img src="/images/Sucheta.jpg"/></div>
+      <div className="imgContainer"><img src="/images/Sucheta.jpg" alt="profile picture"/></div>
       <div className="content">
           <h4>Sucheta Mukherjee</h4>
           <p>Sucheta is an enthusiastic self-taught Frontend Developer with a strong passion for designing user-friendly, scalable, and easily maintainable websites. Having recently made the decision to transition her career into the technology field, she has been actively expanding her skill set, constantly evolving and staying up to date with the latest techniques in the industry.</p>
