@@ -11,8 +11,9 @@
 
 .battleLog {
     background-color: white;
-    height: 100%;
+    height: 20em;
     border: solid 2px $navy-blue;
+    overflow: scroll;
 }
 
 .leaderBoard {

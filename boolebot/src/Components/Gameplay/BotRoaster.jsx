@@ -43,13 +43,13 @@ export default function BotRoaster({ botsArr, deleteBotFromArray, currentLocatio
               <p>
                 Direction:{' '}
                 {bot.direction === 1
-                  ? '↑'
+                  ? '⬆️'
                   : bot.direction === 2
-                  ? '↓'
+                  ? '⬇️'
                   : bot.direction === 3
-                  ? '←'
+                  ? '⬅️'
                   : bot.direction === 4
-                  ? '→'
+                  ? '➡️'
                   : bot.direction === 5
                   ? '↗️'
                   : bot.direction === 6
@@ -64,7 +64,7 @@ export default function BotRoaster({ botsArr, deleteBotFromArray, currentLocatio
               </React.Fragment>
               )}
               <div className="botsInfoButtons">
-              <button onClick={() => toggleBotExpansion(index)}>
+              <button className="expand" onClick={() => toggleBotExpansion(index)}>
               {expandedBots[index] ? 'Collapse' : 'Expand'}
             </button>
              {currentLocation === '/createBot'? <button onClick={() => handleDelete(bot.name)}>Delete</button> : null }

@@ -1,19 +1,9 @@
 @use "./variables" as *;
 
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
 
 header {
-  // align-self: flex-start;
+  
   margin: 0 auto;
   margin-bottom: auto;
   background-color: #061d41;
@@ -31,13 +21,40 @@ header {
     width:100%;
     margin:0 auto;
     max-width: 1200px;
+      a {
+        text-decoration: none;
+          color: white;
+        display: inline-block;
+        white-space: nowrap;
+          
+          
+      }
+
+            a:hover {
+              background-color: white;
+              color: $navy-blue;
+              transition: 0.7s;
+              border-radius: 10px;
+              text-align: center;
+              padding: 1%;
+              
+              
+            }
+
+                        
+      
+            a:focus {
+              border: 3px solid white;
+      
+      
+            }
     
 
     h1 {
       font-family: "Bungee Shade", cursive;
       font-size: 30px;
       text-align: left;
-      padding-left: 1em;
+      
       
     }
 

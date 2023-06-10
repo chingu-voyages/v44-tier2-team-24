@@ -45,7 +45,7 @@
     justify-content: space-between;
     cursor: pointer;
     z-index: 3;
-    border: 2px solid $white;
+    border: 2px solid white;
 
     &:hover,
     &:focus {
@@ -59,7 +59,7 @@
     position: relative;
     width: 2.3em;
     height: 0.5em;
-    background-color: $white;
+    background-color: white;
     border-radius: 0.5em;
         
 }
@@ -67,7 +67,7 @@
 .menu {
     width: 240px;
     height: 290px;
-    background-color: $white;
+    background-color: white;
     position: absolute;
     top: 0;
     z-index: 2;

@@ -1,6 +1,7 @@
 @use './SASS/Partials/setup';
 @use './SASS/Partials/variables';
 @use './SASS/Partials/mixins';
+@use './SASS/Partials/styles';
 @use './SASS/Partials/nav';
 @use './SASS/Partials/hamburger';
 @use './SASS/Partials/sweetAlerts.scss';
@@ -13,9 +14,7 @@
 @use './SASS/Partials/arenaInfoPage';
 @use './SASS/Partials/battleGround';
 @use './SASS/Partials/battleLog';
-@use './SASS/Partials/button';
 @use './SASS/Partials/container';
-@use './SASS/Partials/createArena';
 @use "./SASS/Partials/errorPage";
 @use './SASS/Partials/leaderBoard';
 @use './SASS/Partials/mediaQueries';
