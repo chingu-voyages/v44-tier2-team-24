@@ -130,7 +130,7 @@
 
     .arena {
       display: grid;
-      margin-bottom: 1em;
+      margin-bottom: 0.2em;
       align-self: center;
     }
 
@@ -185,10 +185,7 @@ img {
   max-width: 100%;
 }
 
-.GameClock {
-  flex-direction: row;
-  width: fit-content;
-}
+
 
 aside {
   display: flex;
@@ -254,4 +251,54 @@ button {
   cursor: pointer;
 }
 
+
+.arenaSettings {
+  background-color: white;
+
+  border: solid 2px $navy-blue;
+  height: auto;
+
+}
+
+.battleLog {
+  background-color: white;
+  height: 20em;
+  border: solid 2px $navy-blue;
+  overflow: scroll;
+}
+
+.leaderBoard {
+  background-color: white;
+  height: 100%;
+  height: 10em;
+  border: solid 2px $navy-blue;
+}
+
+.GameClock {
+  background-color: white;
+  width: 5em;
+  margin-bottom: 0.3em;
+  border: solid 2px $navy-blue;
+  display: flex;
+  flex-direction: column;
+    h2 {
+      text-align: center;
+    }
+
+
+
+  h4 {
+    background-color: $navy-blue;
+    padding: 2%;
+    
+    color: white;
+    text-align: center;
+  }
+}
+
+.arena {
+  .tile {
+    background-color: white;
+  }
+}
 

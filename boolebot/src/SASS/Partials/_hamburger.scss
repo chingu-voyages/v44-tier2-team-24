@@ -1,24 +1,25 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
 
 .menu-link-ham {
     display: none;
-    
+
 }
 
 .hamburger-nav {
     display: flex;
     justify-content: right;
+    position: absolute;
+    top: 30px;
+    right: 20px;
 
     h1 {
         width: 80%;
     }
 }
+
+
 
 .burger-container {
     width: 20%;
@@ -61,7 +62,7 @@
     height: 0.5em;
     background-color: white;
     border-radius: 0.5em;
-        
+
 }
 
 .menu {
@@ -103,7 +104,7 @@
 .burger-bar.clicked:nth-child(1) {
     transform: rotate(45deg) translate(0.3em, -0.1em);
     transition: transform 0.5s ease-out;
-    
+
 }
 
 .burger-bar.clicked:nth-child(2) {
