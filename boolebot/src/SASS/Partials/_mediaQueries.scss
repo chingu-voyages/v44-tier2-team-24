@@ -1,3 +1,23 @@
+@media(min-width:1100px){
+
+    .container{
+        min-width: 1000px;
+
+
+    }
+    .main_body{
+
+        .imgWrapper{
+            min-width:550px;
+         }  
+
+        .homepageBtns {
+            margin-top: 10em;
+        }
+    }
+
+}
+
 @media (max-width: 980px) {
     .main_body{
         .imgWrapper{
@@ -6,9 +26,9 @@
             
 
         }
-        .homepageBtns{
-            transform: scale(.8);
-        }
+        // .homepageBtns{
+        //     transform: scale(.8);
+        // }
     
     }
     .createArena {
@@ -20,13 +40,15 @@
         
 
         button{
-            transform: scale(.8);
+            // transform: scale(.8);
             margin-bottom: .2em;
         }
         form{
             transform: scale(.8);
             margin-bottom: 0;
             margin-top: 0;
+
+
         }
         .showBot{
             transform: scale(.8);
@@ -34,22 +56,24 @@
     }
 
 
+
 } 
-
-
-
-
 
 //Landscape phone to portrait tablet 
 @media (max-width: 768px) {
+    .container{
+        display: unset;
+    }
    .main_body{
+
     .imgWrapper{
         width:20em;
         height: 20em;
     }
+
     .homepageBtns{
-        transform: scale(.8);
         .startBtn,
+
      .instructionBtn {
         width: 100%;
      }
@@ -66,39 +90,60 @@
         margin: 0 auto; 
     }
     form{
-        transform: scale(.7);
-    }
-}
+        // transform: scale(.7);
+        
+        button[type=submit]{
+            padding: 0.8em 1.5em;
+    
+            
+        }
 
-.nav-links{
+    }
+    }
+
+    .createArena{
+        .arena-input-form {
+            .next_btn {
+                button {
+                    padding: 0.8em 1.5em;
+                    width: 100%;
+                    margin: 0;
+                }
+                }
+            }
+
+    }
+
+
+    .nav-links{
     #instructions_icon{
-        display: unset;
+            display: unset;
+            
+        }
         
-    }
-    
-    .about_us, .instructions{
-        display: none;
-    }
-    
-   
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    li{
-        padding: 0;
-    }
-    #instructions_icon {
-        width: 1.5em;
-        height:1.5em;
+        .about_us, .instructions{
+            display: none;
+        }
         
+    
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        li{
+            padding: 0;
+        }
+        #instructions_icon {
+            width: 1.5em;
+            height:1.5em;
+            
     }
     
 }
-.footer{
-    .about_us{
-        display: unset;
+    .footer{
+        .about_us{
+            display: unset;
+        }
     }
-}
 
 
    .main{
@@ -135,6 +180,11 @@
     //     display: none;
     // }
 
+    // .container {
+    //     max-width: 1200px;
+    //     height: auto;
+    //     padding: 0 1em;
+    // }
 
     .burger-bar {
         z-index: 3;
@@ -144,7 +194,6 @@
     .burger-nav {
         display: block;
         padding: 0;
-
     }
     
     .main_container{
@@ -161,10 +210,18 @@
 }
 
 
+@media(min-width:500px){
+    .homepageBtns{
+        margin: 0 auto;
+        width: 500px;
+    }
+}
+
 @media (max-width: 428px) {
     .project{
         margin: 0 auto;
         width: 100%;
+
     }
     nav{
         display: flex;
@@ -177,9 +234,10 @@
     }
     .main_body{
         .imgWrapper{
-            width:15em;
-            height: 15em;
-            margin: 0 auto;
+
+            width:100%;
+            margin: 1.5em auto;
+        
             img{
                 width: auto;
                 height: auto;
@@ -190,15 +248,34 @@
         display: flex;
         justify-content: center;
         height: auto;
+    
        
     }
 
     form{
         margin: 0;
-        transform: scale(.8);
+        transform: scale(.8); .arena-input-form{
+            display: flex;
+            justify-content: center;
+            height: auto;
+        
+           
+        }
     }
 
      
          
 
     };
+
+
+@media (min-width:412px){
+    .main_body {
+        .imgWrapper {
+            width: 24em;
+            height: 24em;
+            margin:4em auto;
+        }
+
+    }
+}

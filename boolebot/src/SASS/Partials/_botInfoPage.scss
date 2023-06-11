@@ -17,6 +17,10 @@
     justify-content: center;
     align-items: center;
         
+        .navigate-btn{
+            min-width: 200px;
+        }
+
         button{
             background-color: #061d41;
             color: white;
@@ -26,11 +30,19 @@
             border-radius: 10px;
             margin-bottom: .8em;
             border: none;
-            width: fit-content;
+            
+            // width: fit-content;
         }
+        button[type="submit"]{
+            font-size: 1.05em;
+            min-width: 200px;
+
+        }
+
             button[disabled]:hover {
                 background-color: #061d41;
                 color: white;
+                
             }
                 button:hover {
                     background-color: white;
