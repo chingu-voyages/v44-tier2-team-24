@@ -49,10 +49,10 @@ Boole Bots is a game that is not only fun, but also an aid in helping to underst
 - [web-vitals](https://www.npmjs.com/package/web-vitals)
 
 
-## Image Asset Credits
-- [icon8] (https://icons8.com/)
-- [iconscout] (https://iconscout.com/icons/transformers?price=free)
-- [fontawesome] (https://fontawesome.com/icons/android?f=brands&s=solid)
+## Attributions
+- [icon8](https://icons8.com/)
+- [iconscout](https://iconscout.com/icons/transformers?price=free)
+- [fontawesome](https://fontawesome.com/icons/android?f=brands&s=solid)
 
 ## Improvements
 - Use Redux for state management
