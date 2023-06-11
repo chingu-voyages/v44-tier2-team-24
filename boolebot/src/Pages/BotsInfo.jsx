@@ -194,101 +194,108 @@ function handleChange(e){
   return (
     <div className="botInfo_page">
       <Container>
-      <h2>Create Bot</h2>
+        <h2>Create Bot</h2>
 
-     <div className='bots_display'><BotRoaster botsArr={botsArr} deleteBotFromArray={deleteBotFromArray} currentLocation = {location.pathname} iconPalette={iconPalette} updateIconPalette={updateIconPalette} /></div>
+        <div className="bots_display">
+          <BotRoaster
+            botsArr={botsArr}
+            deleteBotFromArray={deleteBotFromArray}
+            currentLocation={location.pathname}
+            iconPalette={iconPalette}
+            updateIconPalette={updateIconPalette}
+            setIsBotsArrayFull={setIsBotsArrayFull}
+          />
+        </div>
 
-      <div className="test">
-        <form onSubmit={handleSubmit}>
-          <fieldset>
-            <label htmlFor="name">
-              Name your bot:
-              <input
-                placeholder=" Name your robot"
-                ref={inputAutoFocus}
-                type="text"
-                id="name"
-                name="name"
-                value={botsData.name}
-                onChange={handleChange}
-                maxLength={9}
-                required
+        <div className="test">
+          <form onSubmit={handleSubmit}>
+            <fieldset>
+              <label htmlFor="name">
+                Name your bot:
+                <input
+                  placeholder=" Name your robot"
+                  ref={inputAutoFocus}
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={botsData.name}
+                  onChange={handleChange}
+                  maxLength={9}
+                  required
+                />
+              </label>
+              {isValid.name ? (
+                <p style={{ color: "red" }}>
+                  {" "}
+                  * Each Bots should have a unique name
+                </p>
+              ) : (
+                ""
+              )}
+
+              <div></div>
+              <label htmlFor="value">
+                Choose a Boolean Value:
+                <select
+                  id="value"
+                  name="value"
+                  value={botsData.value}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a Value
+                  </option>
+                  <option value="1">1</option>
+                  <option value="0">0</option>
+                </select>
+              </label>
+
+              <label htmlFor="icons">Bot Icon</label>
+
+              <IconPalette
+                id="icons"
+                iconPalette={iconPalette}
+                botsData={botsData}
+                updateBotsData={updateBotsData}
+                iconSelected={iconSelected}
+                updateIconSelected={updateIconSelected}
               />
-            </label>
-            {isValid.name ? (
-              <p style={{ color: "red" }}>
-                {" "}
-                * Each Bots should have a unique name
-              </p>
-            ) : (
-              ""
-            )}
 
-            <div></div>
-            <label htmlFor="value">
-              Choose a Boolean Value:
-              <select
-                id="value"
-                name="value"
-                value={botsData.value}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Select a Value
-                </option>
-                <option value="1">1</option>
-                <option value="0">0</option>
-              </select>
-            </label>
-
-            <label htmlFor="icons">Bot Icon</label>
-
-            <IconPalette
-              id="icons"
-              iconPalette={iconPalette}
-              botsData={botsData}
-              updateBotsData={updateBotsData}
-              iconSelected={iconSelected}
-      
-              updateIconSelected={updateIconSelected}
-            />
-            
-
-            <label htmlFor="direction">
-              Bot Direction:
-              <select
-                id="direction"
-                name="direction"
-                value={botsData.direction}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Select a Direction
-                </option>
-                <option value="1">↑</option>
-                <option value="2">↓</option>
-                <option value="3">←</option>
-                <option value="4">→</option>
-                <option value="5">↗</option>
-                <option value="6">↖</option>
-                <option value="7">↘</option>
-                <option value="8">↙</option>
-              </select>
-            </label>
-            <button type="submit" disabled={isBotsArrayFull}>
-              Add Bot
-            </button>
-          </fieldset>
-        </form>
-        <Link to="/createArena">
-          <button >← Back</button>
-        </Link>
-        <Link to="/arena">
-          <button disabled={botsArr.length <= 1}>Battle Ground →</button>
-        </Link>
-      </div>
+              <label htmlFor="direction">
+                Bot Direction:
+                <select
+                  id="direction"
+                  name="direction"
+                  value={botsData.direction}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a Direction
+                  </option>
+                  <option value="1">↑</option>
+                  <option value="2">↓</option>
+                  <option value="3">←</option>
+                  <option value="4">→</option>
+                  <option value="5">↗</option>
+                  <option value="6">↖</option>
+                  <option value="7">↘</option>
+                  <option value="8">↙</option>
+                </select>
+              </label>
+              <button type="submit" disabled={isBotsArrayFull}>
+                Add Bot
+              </button>
+            </fieldset>
+          </form>
+          <Link to="/createArena">
+            <button>← Back</button>
+          </Link>
+          <Link to="/arena">
+            <button disabled={botsArr.length <= 1}>Battle Ground →</button>
+          </Link>
+        </div>
       </Container>
     </div>
   );
