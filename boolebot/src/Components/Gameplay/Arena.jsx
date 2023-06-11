@@ -16,6 +16,7 @@ import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
 import Swal from "sweetalert2"; 
 import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch_down.mp3"
 import Container from "../Layout/Container";
+import MuteButton from "../../utils/MuteButton"
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
@@ -27,6 +28,7 @@ export default function Arena(props) {
   const [isCollision, setIsCollision] = useState(false);
   const [battleLog, setBattleLog] = useState([]);
   const [message, setMessage] = useState(null);
+  const [isMuted, setIsMuted] = useState(true)
 
   const [timer, setTimer] = useState({
     min: 0,
@@ -157,9 +159,10 @@ export default function Arena(props) {
 
   ///ChatGPT suggestion
 
-  function callSound(sound){
-    return new Audio(sound).play()
+  function callSound(sound) {
+    if (!isMuted) return new Audio(sound).play();
   }
+
 
   useEffect(() => {
     let intervalId;
@@ -272,32 +275,41 @@ export default function Arena(props) {
 
   return (
     <main className="main_container">
-
-     
       <div className="game_board">
-       <div className="bots_display"><BotRoaster botsArr={botsArr} /></div>
+        <div className="bots_display">
+          <BotRoaster botsArr={botsArr} />
+        </div>
         <div className="arena">{renderArena()}</div>
-        <div className="GameClock">
-        <GameClock
-          isGameRunning={isGameRunning}
-          timer={timer}
-          setTimer={setTimer}
-        /> 
-        </div>
 
-
-    <div className="buttons">
-        {botsArr.length === 1 ? (
-          <div>
-            <button onClick={()=>{playAgain()}} className="btn">Restart</button>
+        <div className="mute-clock-start-container">
+          <MuteButton isMuted={isMuted} setIsMuted={setIsMuted} />
+          <div className="GameClock">
+            <GameClock
+              isGameRunning={isGameRunning}
+              timer={timer}
+              setTimer={setTimer}
+            />
           </div>
-        ) : (
-          <button onClick={() => startGame()} className="btn">
-            {isGameRunning ? "PAUSE" : "BATTLE"}
-          </button>
-        )}
-        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
+          <div className="buttons">
+            {botsArr.length === 1 ? (
+              <div>
+                <button
+                  onClick={() => {
+                    playAgain();
+                  }}
+                  className="btn"
+                >
+                  Restart
+                </button>
+              </div>
+            ) : (
+              <button onClick={() => startGame()} className="btn">
+                {isGameRunning ? "PAUSE" : "BATTLE"}
+              </button>
+            )}
+          </div>
         </div>
+        <PlayFromScratchBtn updateBotsArr={updateBotsArr} />
       </div>
       <aside className="status_info">
         <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
@@ -307,10 +319,7 @@ export default function Arena(props) {
           setLeaderboard={setLeaderboard}
           botsArr={botsArr}
         />
-        
       </aside>
-      
     </main>
-    
   );
 }
