@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import InfoIcon from "../assets/info-circle-svgrepo-com.svg"
 import sweetAlertMixin from "../Components/SweetAlertConfig";
 
 
@@ -67,23 +68,32 @@ function Navigation() {
           <Link to="/">
             <h1>BooleBots</h1>
           </Link>
+         
           <ul className="nav-links">
-            {/* <li>
-              <Link to="/createArena">Game Config</Link>
-            </li> */}
+          <li><Link
+                to="#"
+                onClick={() => {
+                  showInstructions();
+                }}
+                id='instructions_icon'
+              >
+             
+             <img src={InfoIcon} style={{width:"2em", height:"2em"}}/>
+              </Link></li>
             <li>
               <Link
                 to="#"
                 onClick={() => {
                   showInstructions();
                 }}
+                className='instructions'
               >
-                {" "}
+             
                 Game Instructions
               </Link>
             </li>
             <li>
-              <Link to="/about">About Us</Link>
+              <Link to="/about" className='about_us'>About Us</Link>
             </li>
           </ul>
         </nav>
