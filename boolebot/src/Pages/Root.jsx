@@ -7,13 +7,8 @@ function RootLayout() {
     return (
         
         <div className='project'>
-        <Navigation />
-
-        <Hamburger />
-            
-                <Outlet />
-            
-
+        <Navigation />            
+        <Outlet />
         <Footer />
         </div>
         

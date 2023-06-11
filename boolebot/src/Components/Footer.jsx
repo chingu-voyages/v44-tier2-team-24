@@ -6,8 +6,9 @@ import Container from "./Layout/Container";
 export default function Footer() {
   return (
     <div className='footer'>
-   
         <a
+          aria-label="Github Icon"
+          name="github_icon"
           className='github_icon'
           href="https://github.com/chingu-voyages/v44-tier2-team-24/"
           target="_blank"
