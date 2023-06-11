@@ -25,18 +25,22 @@
       color: white;
       font-weight: 600;
       font-size: 1em;
-      padding: 0.25em 1.5em;
+      padding: 0.5em 1.5em;
       border-radius: 10px;
       margin-bottom: 1em;
+      width: 100%;
       border: none;
+    }
+    a{
+      width: 100%;
     }
       button:hover {
               background-color: white;
-                  color: $navy-blue;
-                  transition: 0.7s;
-                  border-radius: 10px;
-                  border: 1px solid $navy-blue;
-                  text-align: center;
+              color: $navy-blue;
+              transition: 0.7s;
+              border-radius: 10px;
+              border: 1px solid $navy-blue;
+              text-align: center;
           }
       
           button:focus {

@@ -84,7 +84,7 @@ export default function Arena(props) {
           key={tilePosition + 1}
           data-position={tilePosition}
           className={`tile  ${
-            tilePosition === collisionLocation ? "border crashedText" : ""
+            tilePosition === collisionLocation ? "crashedText" : ""
           }`}
         >
           {robot ? <img src={robot.botIcon} alt="photo of a robot head" style={{width:"50%"}} />: ""}
@@ -190,7 +190,7 @@ export default function Arena(props) {
             console.log("COLIDEDBOTSARR",collidedBotsArr)
 
             if (!collidedBotsArr.isATie) {
-              setMessage("COLLISION")
+              setMessage("💥💥💥");
               callSound(IndianaJonesPunch);
               setBattleLog((prev) => [
                 ...prev,
