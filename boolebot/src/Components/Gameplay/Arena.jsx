@@ -1,22 +1,15 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import { Link } from "react-router-dom";
-import BotClass from "./BotClass";
 import { checkCollision, handleCollision } from "../../utils/collisionLogic";
-import useInterval from "../hooks/useInterval";
-import useTimeout from "../hooks/useTimeout";
 import BotRoaster from "./BotRoaster";
 import ArenaSetting from "./ArenaSetting";
 import BattleLog from "./BattleLog";
 import Leaderboard from "./Leaderboard";
-import singleBot from "../../assets/bot.png";
 import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
-import Swal from "sweetalert2"; 
 import sweetAlertMixin from "../SweetAlertConfig";
 import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch_down.mp3"
-import Container from "../Layout/Container";
 import MuteButton from "../../utils/MuteButton"
 
 export default function Arena(props) {

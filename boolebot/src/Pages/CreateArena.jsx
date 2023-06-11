@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import singleBot from "../assets/bot.png";
 import { Link } from "react-router-dom";
 import Container from "../Components/Layout/Container"
-import Swal from "sweetalert2";
 import sweetAlertMixin from "../Components/SweetAlertConfig";
 
 
