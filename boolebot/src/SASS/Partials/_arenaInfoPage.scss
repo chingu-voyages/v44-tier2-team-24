@@ -38,6 +38,9 @@
             display: flex;
             justify-content: center;
             text-decoration: none;
+            font-family: $ff;
+            
+            
             button:hover {
                     background-color: white;
                     color: $navy-blue;

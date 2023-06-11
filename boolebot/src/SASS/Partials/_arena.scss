@@ -320,3 +320,25 @@ button {
   }
 }
 
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.play-symbol,
+.pause-symbol {
+  font-size: 1.5rem;
+}
+
+.pause-symbol {
+  display: none;
+}
+
+.btn.playing .play-symbol {
+  display: none;
+}
+
+.btn.playing .pause-symbol {
+  display: inline;
+}
