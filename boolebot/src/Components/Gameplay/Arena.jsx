@@ -9,8 +9,11 @@ import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
 import sweetAlertMixin from "../SweetAlertConfig";
-import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch_down.mp3"
-import MuteButton from "../../utils/MuteButton"
+import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch_down.mp3";
+import MuteButton from "../../utils/MuteButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function Arena(props) {
   const [isValidPosition, setIsValidPosition] = useState(false);
@@ -297,7 +300,7 @@ export default function Arena(props) {
               </div>
             ) : (
               <button onClick={() => startGame()} className="btn">
-                {isGameRunning ? "PAUSE" : "BATTLE"}
+                {isGameRunning ? <FontAwesomeIcon icon={faPause} style={{ color: "#ffffff" }} /> : <FontAwesomeIcon icon={faPlay} style={{ color: "#ffffff" }} />}
               </button>
             )}
           </div>
