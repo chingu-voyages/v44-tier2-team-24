@@ -12,7 +12,5 @@
     font-size: 1em;
     padding: 0 0.5em;
     font-weight: bold;
-    background: linear-gradient(to right, red, orange);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: linear-gradient(to right, red, orange);
 }

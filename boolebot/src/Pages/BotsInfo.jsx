@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import singleBot from "../assets/bot.png";
 import Swal from "sweetalert2"; 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
 import IconPalette from './IconPalette'
@@ -11,6 +11,7 @@ import useAutoFocus from '../Components/hooks/useAutoFocus';
 import makeCopyBotsArr from '../utils/makeCopyBotsArr';
 import getOccupiedPos from '../utils/getOccupiedPos';
 import generateUniquePos from '../utils/generateUniquePos';
+import { Navigate, useNavigate } from "react-router-dom";
 
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
@@ -21,8 +22,10 @@ import bot6 from '../assets/bot6.svg'
 import bot7 from '../assets/bot7.svg'
 import bot8 from '../assets/bot8.svg'
 import Container from '../Components/Layout/Container';
+  
 
 export default function BotsInfo(props) {
+  const navigate = useNavigate();
   const location = useLocation();
   const [isBotsArrayFull, setIsBotsArrayFull] = useState(false)
   const {
@@ -120,15 +123,6 @@ function handleChange(e){
   //form event- submit
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    updateBotsData({
-      name: "",
-      value: 0,
-      wins: 0,
-      loses: 0,
-      direction: 1,
-      botIcon: bot1
-    })
     
     let occupiedPositions = getOccupiedPos(botsArr, tileNum)
     let pos = occupiedPositions.length
@@ -147,137 +141,164 @@ function handleChange(e){
 
     }
     else{
-      setIsBotsArrayFull(false)
-      
-      let botsArrCopy = makeCopyBotsArr(botsArr)
-      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
-      const duplicateBot = botsArrCopy.some(
-        (bot) =>
-          bot.name === newBot.name
+      setIsBotsArrayFull(false);
+      console.log(iconSelected);
+      let botsArrCopy = makeCopyBotsArr(botsArr);
+      const newBot = new BotClass(
+        pos,
+        Number(botsData.direction),
+        botsData.name,
+        Number(botsData.value),
+        botsData.botIcon
       );
+      const duplicateBot = botsArrCopy.some((bot) => bot.name === newBot.name);
 
       if (!duplicateBot) {
-        setIconPalette(prev => {
-          const newIconPallet = [...prev]
 
-          newIconPallet[iconSelected].isSelected = true
-          return newIconPallet
-        })
+        const newIconPallet = [...iconPalette]
+        newIconPallet[iconSelected].isSelected = true;
 
-        setIconSelected( prev => {
-          const newIndex = iconPalette.findIndex( icon => !icon.isSelected )
-  
-          if(newIndex !== -1){
-            let botsDataCopy = {...botsData}
-            updateBotsData({...botsDataCopy, botIcon: iconPalette[newIndex].url})
-          }
+        const newIndex = newIconPallet.findIndex((icon) => !icon.isSelected);
+        setIconSelected((prev) => newIndex);
+        setIconPalette((prev) => {
+          return newIconPallet;
+        });
+        console.log(iconSelected);
+        const isAllIconSelected = newIndex !== -1;
 
-          return newIndex
-        })
-
-        updateBotsArr([...botsArrCopy, newBot])
+        if (isAllIconSelected) {
+          let botsDataCopy = { ...botsData };
+          updateBotsData({
+            name: "",
+            value: 0,
+            wins: 0,
+            loses: 0,
+            direction: 1,
+            botIcon: iconPalette[newIndex].url,
+          });
+        }
+        updateBotsArr([...botsArrCopy, newBot]);
       }
-    }
+    }    
   };
+
+  function handleEnterArena(){
+    if(botsArr.length === 1){
+      Swal.fire({
+        icon: "error",
+        title: "Not enough bot in the arena",
+        text: `You must start the game with at least two robots`,
+      });
+    }else{
+      return navigate("/arena");
+    }
+  }
 
   return (
     <div className="botInfo_page">
       <Container>
-      <h2>Create Bot</h2>
+        <h2>Create Bot</h2>
 
-     <div className='bots_display'><BotRoaster botsArr={botsArr} deleteBotFromArray={deleteBotFromArray} currentLocation = {location.pathname} iconPalette={iconPalette} updateIconPalette={updateIconPalette} /></div>
+        <div className="bots_display">
+          <BotRoaster
+            botsArr={botsArr}
+            deleteBotFromArray={deleteBotFromArray}
+            currentLocation={location.pathname}
+            iconPalette={iconPalette}
+            updateIconPalette={updateIconPalette}
+            setIsBotsArrayFull={setIsBotsArrayFull}
+          />
+        </div>
 
-      <div className="test">
-        <form onSubmit={handleSubmit}>
-          <fieldset>
-            <label htmlFor="name">
-              Name your bot:
-              <input
-                placeholder=" Name your robot"
-                ref={inputAutoFocus}
-                type="text"
-                id="name"
-                name="name"
-                value={botsData.name}
-                onChange={handleChange}
-                maxLength={9}
-                required
+        <div className="test">
+          <form onSubmit={handleSubmit}>
+            <fieldset>
+              <label htmlFor="name">
+                Name your bot:
+                <input
+                  placeholder=" Name your robot"
+                  ref={inputAutoFocus}
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={botsData.name}
+                  onChange={handleChange}
+                  maxLength={9}
+                  required
+                />
+              </label>
+              {isValid.name ? (
+                <p style={{ color: "red" }}>
+                  {" "}
+                  * Each Bots should have a unique name
+                </p>
+              ) : (
+                ""
+              )}
+
+              <div></div>
+              <label htmlFor="value">
+                Choose a Boolean Value:
+                <select
+                  id="value"
+                  name="value"
+                  value={botsData.value}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a Value
+                  </option>
+                  <option value="1">1</option>
+                  <option value="0">0</option>
+                </select>
+              </label>
+
+              <label htmlFor="icons">Bot Icon</label>
+
+              <IconPalette
+                id="icons"
+                iconPalette={iconPalette}
+                botsData={botsData}
+                updateBotsData={updateBotsData}
+                iconSelected={iconSelected}
+                updateIconSelected={updateIconSelected}
               />
-            </label>
-            {isValid.name ? (
-              <p style={{ color: "red" }}>
-                {" "}
-                * Each Bots should have a unique name
-              </p>
-            ) : (
-              ""
-            )}
 
-            <div></div>
-            <label htmlFor="value">
-              Choose a Boolean Value:
-              <select
-                id="value"
-                name="value"
-                value={botsData.value}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Select a Value
-                </option>
-                <option value="1">1</option>
-                <option value="0">0</option>
-              </select>
-            </label>
-
-            <label htmlFor="icons">Bot Icon</label>
-
-            <IconPalette
-              id="icons"
-              iconPalette={iconPalette}
-              botsData={botsData}
-              updateBotsData={updateBotsData}
-              iconSelected={iconSelected}
-      
-              updateIconSelected={updateIconSelected}
-            />
-            
-
-            <label htmlFor="direction">
-              Bot Direction:
-              <select
-                id="direction"
-                name="direction"
-                value={botsData.direction}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Select a Direction
-                </option>
-                <option value="1">↑</option>
-                <option value="2">↓</option>
-                <option value="3">←</option>
-                <option value="4">→</option>
-                <option value="5">↗</option>
-                <option value="6">↖</option>
-                <option value="7">↘</option>
-                <option value="8">↙</option>
-              </select>
-            </label>
-            <button type="submit" disabled={isBotsArrayFull}>
-              Add Bot
-            </button>
-          </fieldset>
-        </form>
-        <Link to="/createArena">
-          <button >← Back</button>
-        </Link>
-        <Link to="/arena">
-          <button disabled={botsArr.length <= 1}>Battle Ground →</button>
-        </Link>
-      </div>
+              <label htmlFor="direction">
+                Bot Direction:
+                <select
+                  id="direction"
+                  name="direction"
+                  value={botsData.direction}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a Direction
+                  </option>
+                  <option value="1">↑</option>
+                  <option value="2">↓</option>
+                  <option value="3">←</option>
+                  <option value="4">→</option>
+                  <option value="5">↗</option>
+                  <option value="6">↖</option>
+                  <option value="7">↘</option>
+                  <option value="8">↙</option>
+                </select>
+              </label>
+              <button type="submit" disabled={isBotsArrayFull}>
+                Add Bot
+              </button>
+            </fieldset>
+          </form>
+          <Link to="/createArena">
+            <button>← Back</button>
+          </Link>
+          
+            <button onClick={handleEnterArena}>Battle Ground →</button>
+          
+        </div>
       </Container>
     </div>
   );

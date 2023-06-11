@@ -6,10 +6,10 @@ BooleBots is an engaging app that combines gameplay with basic Boolean logic.
 [Live Site](https://boolebots-dev.netlify.app/)
 
 A collaborative app built remotely by:
-- Run Qi (Jack) Li | [Github](https://github.com/jackli921) | [Portfolio](https://freemark.dev/)
+- Run Qi (Jack) Li | [Github](https://github.com/jackli921) | [Portfolio](https://jack-codes.netlify.app/)
 - Elizabeth Reeves | [Github](https://github.com/libbyreeves) | [Portfolio](https://elizabeth-reeves.ca/)
 - Hector Garcia | [Github](https://github.com/hectorgarcia07) | [LinkedIn](https://www.linkedin.com/in/hectorgarcia01/)
-- Sucheta Mukherjee| [Github](https://github.com/sucheta90) | [Portfolio](https://www.linkedin.com/in/sucheta-mukherjee-07347b88/)
+- Sucheta Mukherjee| [Github](https://github.com/sucheta90) | [LinkedIn](https://www.linkedin.com/in/sucheta-mukherjee-07347b88/)
 
 
 ## Overview
@@ -49,11 +49,10 @@ Boole Bots is a game that is not only fun, but also an aid in helping to underst
 - [web-vitals](https://www.npmjs.com/package/web-vitals)
 
 
-## Image Asset Credits
-- [Undraw](https://undraw.co/)
-- [SVG Repo](https://www.svgrepo.com/svg/427580/approved-aproved-confirm-2)
-- [React Icons](https://react-icons.github.io/react-icons/)
-- [Freepik](https://www.freepik.com/)
+## Attributions
+- [icon8](https://icons8.com/)
+- [iconscout](https://iconscout.com/icons/transformers?price=free)
+- [fontawesome](https://fontawesome.com/icons/android?f=brands&s=solid)
 
 ## Improvements
 - Use Redux for state management
@@ -70,10 +69,11 @@ To run this project locally:
 ## Screenshots
 <table>
   <tr>
-     <td><img src="https://user-images.githubusercontent.com/40412421/220480959-a1ee2e75-28e7-43c8-8133-a0a44a0c6087.png" alt="Screenshot of home page of app with a voting image and buttons to participate in or create a poll" /></td>
-    <td><img src="https://user-images.githubusercontent.com/40412421/220480955-003052c9-705e-4716-b706-cbf191671e1a.png" alt="Screenshot of working app with empty form fields to create functioning poll"/></td>
-    <td><img src="https://user-images.githubusercontent.com/40412421/220480958-7f491d42-94cf-4872-bb86-d3bea6c63e59.png" alt="Screenshot of a page containing multiple poll tiles to choose from" /></td>
-    <td><img src="https://user-images.githubusercontent.com/40412421/220480960-9c4136bf-dcf2-42a1-804d-16aac32ceb76.png" alt="Screenshot of voting booth where you can vote on a poll option and submit your answer"/></td>
-    <td><img src="https://user-images.githubusercontent.com/40412421/220480962-4c3bda6b-6423-4988-9092-b1bc195e3853.png" alt="Screenshot of a results page showing the results from an existing poll"/></td>
+     <td><img src="boolebot/src/assets/screenshots/landing.png" alt="Screenshot of the app's landing page" /></td>
+     <td><img src="boolebot/src/assets/screenshots/arena_controls.png" alt="Screenshot of the arena control settings" /></td>
+     <td><img src="boolebot/src/assets/screenshots/create_bot.png" alt="Screenshot of the bot creations page showing various inputs and selection to create a robot" /></td>
+     <td><img src="boolebot/src/assets/screenshots/create_bot_2.png" alt="Screenshot of the bot creations page with 5 bots created" /></td>
+     <td><img src="boolebot/src/assets/screenshots/arena_1.png" alt="Screenshot of the game arena before battle begins" /></td>
+     <td><img src="boolebot/src/assets/screenshots/arena_2.png" alt="Screenshot of the game arena during battle" /></td>
   </tr>
 </table>

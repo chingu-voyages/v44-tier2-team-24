@@ -14,7 +14,7 @@ import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
 import Swal from "sweetalert2"; 
-import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch.mp3"
+import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch_down.mp3"
 import Container from "../Layout/Container";
 
 export default function Arena(props) {
@@ -84,7 +84,7 @@ export default function Arena(props) {
           key={tilePosition + 1}
           data-position={tilePosition}
           className={`tile  ${
-            tilePosition === collisionLocation ? "border crashedText" : ""
+            tilePosition === collisionLocation ? "crashedText" : ""
           }`}
         >
           {robot ? <img src={robot.botIcon} alt="photo of a robot head" style={{width:"50%"}} />: ""}
@@ -173,18 +173,24 @@ export default function Arena(props) {
           newBotsArr[currBot].calcNextMove(tileNum);
 
           const collisionTileIndex = checkCollision(currBot, newBotsArr);
+          console.log(collisionTileIndex)
+        
 
-          if (collisionTileIndex !== -1) {
+          const didCollide = collisionTileIndex !== -1;
+          
+          if (didCollide) {
             setCollisionLocation(() => collisionTileIndex);
 
             const collidedBotsArr = handleCollision(
               newBotsArr,
               operator,
               newBotsArr[currBot].name,
-              setMessage
             );
 
+            console.log("COLIDEDBOTSARR",collidedBotsArr)
+
             if (!collidedBotsArr.isATie) {
+              setMessage("💥💥💥");
               callSound(IndianaJonesPunch);
               setBattleLog((prev) => [
                 ...prev,
@@ -212,22 +218,21 @@ export default function Arena(props) {
 
               newBotsArr[winnerIndex].wins = collidedBotsArr.bots[0].wins;
 
-
-
               let loserIndex = newBotsArr.findIndex(
                 (bot) => bot.name === collidedBotsArr.bots[1].name
               );
               newBotsArr.splice(loserIndex, 1);
-            } else {
+            }
+            else {
+              setMessage("TIE!")
               setBattleLog((prev) => [
                 ...prev,
                 <div>
                   {`${collidedBotsArr.bots[0].name} (🎀) vs. ${collidedBotsArr.bots[1].name} (🎀)`}
                 </div>,
               ]);
-             
             }
-          }
+          } 
 
           if (newBotsArr.length < botsArr.length) {
             setCurrBot((prev) => {

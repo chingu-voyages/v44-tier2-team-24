@@ -26,15 +26,12 @@ const [botsArr, setBotsArr] = useState([]);
 
 const [botsData, setBotsData] = useState({
   name: "",
-  // colorClass: "#FFFFF",
   value: 0,
   wins: 0,
   loses: 0,
   direction: 1,
   botIcon: bot1
 });
-
-
 
 const saveInitialGameState = (currentGameState) =>{
     setSavedState(currentGameState)
@@ -57,12 +54,30 @@ const updateArenaData = newState => {
   setArenaData(newState)
 }
 
-//Calculating innerWidth
-// const [width, setWidth]= useState('');
+const globalReset = () => {
+  setBotsArr([])
+  setArenaData({
+    tileNum: 3,
+    speed: 500,
+    operator: "AND",
+  })
+  setSavedState([])
+  setBotsData({
+    name: "",
+    value: 0,
+    wins: 0,
+    loses: 0,
+    direction: 1,
+    botIcon: bot1,
+  });
+}
 
-// useEffect(()=>{
-//   setWidth(()=>window.innerWidth)
-// },[width])
+
+useEffect(()=>{
+    setBotsArr([])
+    setSavedState([])
+},[arenaData.tileNum])
+
 
 // This is an array of the current route/location
 const routeLocation = ['/createArena', '/createBot'];
@@ -80,11 +95,14 @@ const deleteBotFromArray = (name)=>{
       errorElement: <ErrorPage />,
       element: <RootLayout />,
       children: [
-        { path: "/", element: <Homepage /> },
+        { path: "/", element: <Homepage globalReset={globalReset} /> },
         {
           path: "/createArena",
           element: (
-            <CreateArena arenaData={arenaData} updateArenaData={updateArenaData} />
+            <CreateArena
+              arenaData={arenaData}
+              updateArenaData={updateArenaData}
+            />
           ),
         },
         {
