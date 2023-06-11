@@ -12,6 +12,12 @@
   width:30em;
   height:30em;
   margin: 0 auto;
+  img{
+    min-width: 250px;
+    min-height: 250px;
+    width: 100%;
+    max-width: 480px;
+  }
 }
 
 .homepageBtns {
