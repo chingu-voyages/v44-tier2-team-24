@@ -77,13 +77,14 @@ function Navigation() {
                 onClick={() => {
                   showInstructions();
                 }}
+                className='instructions'
               >
-                {" "}
+             
                 Game Instructions
               </Link>
             </li>
             <li>
-              <Link to="/about">About Us</Link>
+              <Link to="/about" className='about_us'>About Us</Link>
             </li>
           </ul>
         </nav>
