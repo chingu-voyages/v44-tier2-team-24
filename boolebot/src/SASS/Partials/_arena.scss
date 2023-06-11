@@ -11,6 +11,7 @@
   margin: 0 auto;
 
   .buttons {
+    
     .btn {
       margin-bottom: 2%;
     }
@@ -175,6 +176,9 @@
       width: fit-content;
       align-self: center;
       justify-self: flex-end;
+      .question-button {
+        color: red;
+      }
 
     }
   }

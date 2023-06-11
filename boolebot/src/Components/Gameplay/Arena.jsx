@@ -14,6 +14,7 @@ import GameClock from "./GameClock";
 import PlayFromScratchBtn from "./PlayFromScratchBtn";
 import makeCopyBotsArr from "../../utils/makeCopyBotsArr";
 import Swal from "sweetalert2"; 
+import sweetAlertMixin from "../SweetAlertConfig";
 import IndianaJonesPunch from "../../assets/sfx/indiana-jones-punch_down.mp3"
 import Container from "../Layout/Container";
 import MuteButton from "../../utils/MuteButton"
@@ -132,14 +133,14 @@ export default function Arena(props) {
 
     if((tieOperators && containAllZeros )){
         const message = ""
-        Swal.fire({
+        sweetAlertMixin.fire({
           icon: "info",
           title: "The current setup will result in an infinite tie ",
           text: `Reason: 0 ${operator} 0 will always produce a 0`
         });
     }
     else if (containAllOnes && (operator==="NOR")) {
-        Swal.fire({
+        sweetAlertMixin.fire({
           icon: "info",
           title:
             "The current bot values and boolean operator will result in an infinite tie",
@@ -190,8 +191,7 @@ export default function Arena(props) {
               newBotsArr[currBot].name,
             );
 
-            console.log("COLIDEDBOTSARR",collidedBotsArr)
-
+            
             if (!collidedBotsArr.isATie) {
               setMessage("💥💥💥");
               callSound(IndianaJonesPunch);

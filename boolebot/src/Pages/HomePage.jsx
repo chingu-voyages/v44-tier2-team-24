@@ -19,6 +19,7 @@ export default function Homepage({ globalReset }) {
       <li>3. Name your bots, set the starting direction, and <strong>boolean value</strong></li>
       <li>4. Go to battlegrounds, click <strong>BATTLE</strong> to see which bot will win!</li> 
       </ol>
+      <p className="alert">The winner is determined by the <strong>boolean operator</strong> applied to the board, the starting <strong>boolean values</strong>, and which bot <strong>moved first</strong> into the collision</p>
       
       
       `,

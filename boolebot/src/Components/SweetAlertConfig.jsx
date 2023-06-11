@@ -5,6 +5,7 @@ const sweetAlertMixin = Swal.mixin({
     width: 600,
   padding: '2em',
   color: '#061d41',
+  icon: 'swal2-icon',
   confirmButtonColor: '#061d41',
   customClass: {
     confirmButton: 'swal2-confirm',
@@ -13,5 +14,6 @@ const sweetAlertMixin = Swal.mixin({
   },
   
 });
+
 
 export default sweetAlertMixin;

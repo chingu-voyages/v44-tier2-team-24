@@ -20,14 +20,18 @@
     
         form {
             @include form;
-            width: 25em;
+            width: 27em;
             label{
                 padding: .25em 0;
+                align-items: center;
                 input{
                     margin:0 .25em;
                 }
-            }
 
+            }
+            
+            span {margin-right: 0.3em;
+            }
         }
         .next_btn{
             margin: 0 auto;
