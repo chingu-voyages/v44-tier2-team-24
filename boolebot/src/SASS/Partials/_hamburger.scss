@@ -4,7 +4,7 @@
 
 .menu-link-ham {
     display: none;
-
+   
 }
 
 .hamburger-nav {
@@ -13,8 +13,7 @@
     position: absolute;
     top: 1.5em;
     right: 1.8em;
-    // top: 30px;
-    // right: 20px;
+
 
     h1 {
         width: 80%;
@@ -72,7 +71,8 @@
     height: 290px;
     background-color: white;
     position: absolute;
-    top: 0;
+    top: -20%;
+    right: -40%;
     z-index: 2;
     display: flex;
     border: solid $navy-blue 2px;
