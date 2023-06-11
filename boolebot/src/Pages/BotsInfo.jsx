@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import singleBot from "../assets/bot.png";
 import Swal from "sweetalert2"; 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
 import IconPalette from './IconPalette'
@@ -11,6 +11,7 @@ import useAutoFocus from '../Components/hooks/useAutoFocus';
 import makeCopyBotsArr from '../utils/makeCopyBotsArr';
 import getOccupiedPos from '../utils/getOccupiedPos';
 import generateUniquePos from '../utils/generateUniquePos';
+import { Navigate, useNavigate } from "react-router-dom";
 
 import bot1 from '../assets/bot1.svg'
 import bot2 from '../assets/bot2.svg'
@@ -21,8 +22,10 @@ import bot6 from '../assets/bot6.svg'
 import bot7 from '../assets/bot7.svg'
 import bot8 from '../assets/bot8.svg'
 import Container from '../Components/Layout/Container';
+  
 
 export default function BotsInfo(props) {
+  const navigate = useNavigate();
   const location = useLocation();
   const [isBotsArrayFull, setIsBotsArrayFull] = useState(false)
   const {
@@ -191,6 +194,18 @@ function handleChange(e){
     }    
   };
 
+  function handleEnterArena(){
+    if(botsArr.length === 1){
+      Swal.fire({
+        icon: "error",
+        title: "Not enough bot in the arena",
+        text: `You must start the game with at least two robots`,
+      });
+    }else{
+      return navigate("/arena");
+    }
+  }
+
   return (
     <div className="botInfo_page">
       <Container>
@@ -292,9 +307,9 @@ function handleChange(e){
           <Link to="/createArena">
             <button>← Back</button>
           </Link>
-          <Link to="/arena">
-            <button disabled={botsArr.length <= 1}>Battle Ground →</button>
-          </Link>
+          
+            <button onClick={handleEnterArena}>Battle Ground →</button>
+          
         </div>
       </Container>
     </div>

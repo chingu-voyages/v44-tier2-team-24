@@ -6,6 +6,7 @@ export default function PlayFromScratchBtn({updateBotsArr}) {
   function restartGame() {
     updateBotsArr([])
   }
+  
     return (
     <div>
       <Link to="/">
