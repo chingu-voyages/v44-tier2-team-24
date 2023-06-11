@@ -45,6 +45,20 @@ return (
                 <option value="nor">NOR</option>
               </select>
             </label>
+              <button
+              className="question-button"
+              onClick={(e) => {
+                e.preventDefault();
+                Swal.fire({
+                  title: 'Boolean Operator',
+                  text: 'Here is some information about the Boolean Operator.',
+                  icon: 'info',
+                  confirmButtonText: 'OK'
+                });
+              }}
+            >
+              ?
+            </button>
             <label>
               Board Size
               <select id='board' name='boardSize' value={boardData.boardSize} onChange={handleChange} required>
@@ -58,6 +72,20 @@ return (
 
               </select>
             </label>
+              <button
+              className="question-button"
+              onClick={(e) => {
+                e.preventDefault();
+                Swal.fire({
+                  title: 'Board Size',
+                  text: 'Here is some information about the Board Size.',
+                  icon: 'info',
+                  confirmButtonText: 'OK'
+                });
+              }}
+            >
+              ?
+            </button>
             
            
             <button type="submit">Submit</button>

@@ -11,14 +11,15 @@ export default function Homepage({ globalReset }) {
   const showInstructions = () => {
     sweetAlertMixin.fire({
       title: "BOOLEBOTS",
-      html: `<p className="alert">Explore the fascinating world of boolean values through an entertaining game called Boolebots
+      html: `<p className="alert">Explore the fascinating world of boolean values through our game <strong>Boolebots</strong>!
       </p>
       <ol>
-      <li>1. Select a board size</li>
-      <li>2. Assemble your own army of bots</li>
-      <li>3. Witness the magic of boolean operators in action.</li> 
+      <li>1. Click <strong>start</strong> to begin the game</li>
+      <li>2. Select your board size, speed and <strong>boolean operator</strong></li>
+      <li>3. Name your bots, set the starting direction, and <strong>boolean value</strong></li>
+      <li>4. Go to battlegrounds, click <strong>BATTLE</strong> to see which bot will win!</li> 
       </ol>
-      <p className="alert">Let's dive in and unravel the mysteries of these operators together!<p>
+      
       
       `,
     });

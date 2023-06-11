@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const sweetAlertMixin = Swal.mixin({
     width: 600,
-  padding: '3em',
+  padding: '2em',
   color: '#061d41',
   confirmButtonColor: '#061d41',
   customClass: {

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import singleBot from "../assets/bot.png";
 import { Link } from "react-router-dom";
 import Container from "../Components/Layout/Container"
+import Swal from "sweetalert2";
+
+
 export default function BotsInfo(props) {
   const {arenaData, updateArenaData} = props
   
@@ -76,6 +79,20 @@ export default function BotsInfo(props) {
                 required
               />
               <span>{` ${4 - arenaData.speed/1000}sec`}</span>
+              <button
+                  className="question-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    Swal.fire({
+                      title: 'Movement Speed',
+                      text: 'Here is some information about the Movement Speed.',
+                      icon: 'info',
+                      confirmButtonText: 'OK'
+                    });
+                  }}
+                >
+                  ?
+                </button>
             </label>
           </div>
           <div>
@@ -93,6 +110,20 @@ export default function BotsInfo(props) {
                 required
               />
               <span>{` ${arenaData.tileNum}x${arenaData.tileNum}`}</span>
+              <button
+                  className="question-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    Swal.fire({
+                      title: 'Arena Size',
+                      text: 'Here is some information about the Arena Size.',
+                      icon: 'info',
+                      confirmButtonText: 'OK'
+                    });
+                  }}
+                >
+                  ?
+                </button>
             </label>
           </div>
           <div>
@@ -110,6 +141,20 @@ export default function BotsInfo(props) {
                 <option value="NOR">NOR</option>
                 <option value="XOR">XOR</option>
               </select>
+              <button
+                  className="question-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    Swal.fire({
+                      title: 'Boolean Operator',
+                      text: 'Here is some information about the Boolean Operator.',
+                      icon: 'info',
+                      confirmButtonText: 'OK'
+                    });
+                  }}
+                >
+                  ?
+                </button>
             </label>
           </div>
           
