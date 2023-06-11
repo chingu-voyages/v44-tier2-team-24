@@ -41,11 +41,7 @@
                     text-align: center;
                 }
         
-                button:focus {
-                    border: 3px solid white;
-        
-        
-                }
+                
                 button:disabled {
                     cursor: not-allowed;
                 }
@@ -85,17 +81,20 @@ form {
 .bots_display{
     width: 80%;
     margin: 0 auto;
-    // margin-bottom: 2em;
+    display: flex;
+    
     
     .createdBots {
+        width:100%;
         align-self: center;
         height:fit-content;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
     
         // border: 1px solid #061d41;
         .showBot {
-            width: 6em;
+            width: 5em;
             margin: 0 0.2em;
             height: fit-content;
             display:flex;

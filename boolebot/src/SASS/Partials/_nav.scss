@@ -19,36 +19,31 @@ header {
   nav {
     display: flex;
     width:90vw;
-    margin:0 auto;
+    margin:1em auto;
     max-width: 1200px;
       a {
         text-decoration: none;
-          color: white;
+        color: white;
         display: inline-block;
         white-space: nowrap;
-          
-          
+        padding: 0.5em 1em;
+        a:focus{
+          outline: none;
+        }
+        h1{
+          margin: 0;
+        }
+    
       }
 
-            a:hover {
-              background-color: white;
-              color: $navy-blue;
-              transition: 0.7s;
-              border-radius: 10px;
-              text-align: center;
-              padding: 1%;
-              
-              
-            }
+        a:hover {
+          background-color: white;
+          color: $navy-blue;
+          transition: 1s;
+          border-radius: 5px;
+          text-align: center;
+          }
 
-                        
-      
-            a:focus {
-              border: 3px solid white;
-      
-      
-            }
-    
 
     h1 {
       font-family: "Bungee Shade", cursive;

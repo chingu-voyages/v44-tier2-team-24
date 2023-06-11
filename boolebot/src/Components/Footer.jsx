@@ -15,7 +15,7 @@ export default function Footer() {
         target="_blank"
         rel="noreferrer"
       >
-        <img src={githubIcon} alt="github-icon" />
+        <img src={githubIcon} alt="github-icon" style={{width: '28px'}}  />
       </a>
       <ul className="footer_ul">
         <li className="github_link_personal">

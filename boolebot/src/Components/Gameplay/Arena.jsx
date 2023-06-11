@@ -313,12 +313,13 @@ export default function Arena(props) {
       </div>
       <aside className="status_info">
         <ArenaSetting tileNum={tileNum} speed={speed} operator={operator} />
-        <BattleLog battleLog={battleLog} />
         <Leaderboard
           leaderboard={leaderboard}
           setLeaderboard={setLeaderboard}
           botsArr={botsArr}
         />
+        <BattleLog battleLog={battleLog} />
+        
       </aside>
     </main>
   );

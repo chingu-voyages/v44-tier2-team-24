@@ -61,10 +61,9 @@
    }
    .botInfo_page{
     display: unset;
-    .bots_display{
-        display: unset;
-        width: auto;
-        margin: 0 auto;
+    .test{
+        width: 100%;
+        margin: 0 auto; 
     }
     form{
         transform: scale(.7);
