@@ -21,6 +21,10 @@ header {
     width:90vw;
     margin:1em auto;
     max-width: 1200px;
+    
+    #instructions_icon{
+      display: none;
+    }
       a {
         text-decoration: none;
         color: white;

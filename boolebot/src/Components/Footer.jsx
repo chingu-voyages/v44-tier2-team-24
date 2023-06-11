@@ -1,10 +1,10 @@
 import React from "react";
-// import styles from "./Footer.module.css";
 import { Link } from "react-router-dom";
 import Container from "./Layout/Container";
 import githubIcon from "../assets/github.svg"
 
 export default function Footer() {
+  
   return (
     <div className="footer">
       <a
@@ -17,6 +17,8 @@ export default function Footer() {
       >
         <img src={githubIcon} alt="github-icon" style={{width: '28px'}}  />
       </a>
+      <Link to="/about" className='about_us'>About Us</Link>
+      
       <ul className="footer_ul">
         <li className="github_link_personal">
           <Link
