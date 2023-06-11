@@ -6,6 +6,7 @@
     text-align: center;
     min-height: 5%;
     width: 100%;
+    gap: 0.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,8 +49,8 @@
       .github_link_personal> a:hover{
         background-color: white;
         color:#061d41;
-        padding: 0.2em 0.5em;
-        transition: 0.3s;
+        padding: 0.1em 0.2em;
+        transition: 1s;
         border-radius: 5px;
 
       }
