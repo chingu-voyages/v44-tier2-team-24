@@ -28,6 +28,10 @@
             border: none;
             width: fit-content;
         }
+            button[disabled]:hover {
+                background-color: #061d41;
+                color: white;
+            }
                 button:hover {
                     background-color: white;
                     color: $navy-blue;
@@ -42,6 +46,12 @@
         
         
                 }
+                button:disabled {
+                    cursor: not-allowed;
+                }
+                
+                
+
 }
 
 h2 {

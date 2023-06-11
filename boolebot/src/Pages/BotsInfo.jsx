@@ -123,18 +123,6 @@ function handleChange(e){
   //form event- submit
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // updateBotsData((prev) => {
-    //   console.log("PREV", stuff)
-    //   return {
-    //     name: "",
-    //     value: 0,
-    //     wins: 0,
-    //     loses: 0,
-    //     direction: 1,
-    //     botIcon: bot1
-    //   }
-    // })
     
     let occupiedPositions = getOccupiedPos(botsArr, tileNum)
     let pos = occupiedPositions.length
@@ -154,7 +142,7 @@ function handleChange(e){
     }
     else{
       setIsBotsArrayFull(false);
-
+      console.log(iconSelected);
       let botsArrCopy = makeCopyBotsArr(botsArr);
       const newBot = new BotClass(
         pos,
@@ -166,16 +154,16 @@ function handleChange(e){
       const duplicateBot = botsArrCopy.some((bot) => bot.name === newBot.name);
 
       if (!duplicateBot) {
-        setIconPalette((prev) => {
-          const newIconPallet = [...prev];
 
-          newIconPallet[iconSelected].isSelected = true;
+        const newIconPallet = [...iconPalette]
+        newIconPallet[iconSelected].isSelected = true;
+
+        const newIndex = newIconPallet.findIndex((icon) => !icon.isSelected);
+        setIconSelected((prev) => newIndex);
+        setIconPalette((prev) => {
           return newIconPallet;
         });
-
-        const newIndex = iconPalette.findIndex((icon) => !icon.isSelected);
-        setIconSelected((prev) => newIndex);
-        
+        console.log(iconSelected);
         const isAllIconSelected = newIndex !== -1;
 
         if (isAllIconSelected) {
