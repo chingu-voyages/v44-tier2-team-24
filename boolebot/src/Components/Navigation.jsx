@@ -62,13 +62,32 @@ function Navigation() {
   };
   
     return (
-    
       <header>
         <nav>
-            <Link to="/"><h1>BooleBots</h1></Link>
+          <Link to="/">
+            <h1>BooleBots</h1>
+          </Link>
+          <ul className="nav-links">
+            {/* <li>
+              <Link to="/createArena">Game Config</Link>
+            </li> */}
+            <li>
+              <Link
+                to="#"
+                onClick={() => {
+                  showInstructions();
+                }}
+              >
+                {" "}
+                Game Instructions
+              </Link>
+            </li>
+            <li>
+              <Link to="/about">About Us</Link>
+            </li>
+          </ul>
         </nav>
       </header>
-     
     );
 
 }

@@ -31,6 +31,7 @@ export default function Homepage({ globalReset }) {
   return (
     <div className="main_body">
       <Container>
+        
         {/* Below this line is the bot image*/}
         <div className="imgWrapper">
           <img src={botImage} alt="Bot" className="bot_image" />
