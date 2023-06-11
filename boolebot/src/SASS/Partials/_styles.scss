@@ -5,6 +5,9 @@
     margin: 0;
     padding: 0;
     font-family: $ff;
+    button {
+        font-family: $ff;
+    }
 }
 
 button.question-button {
@@ -13,4 +16,18 @@ button.question-button {
     border-radius: 50% !important;
     margin: 0 !important;
    
+}
+
+.github_icon {
+    :hover {
+            
+            border: 1px solid white;
+            
+        }
+    
+        :focus {
+            border: 3px solid white;
+    
+    
+        }
 }
