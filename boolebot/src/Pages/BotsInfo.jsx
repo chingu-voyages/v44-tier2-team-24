@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import singleBot from "../assets/bot.png";
 import Swal from "sweetalert2"; 
+import sweetAlertMixin from '../Components/SweetAlertConfig';
 import { Link } from "react-router-dom";
 import generateRandomNumber from '../utils/randomNum';
 import BotClass from '../Components/Gameplay/BotClass';
@@ -107,7 +108,7 @@ function handleChange(e){
       })
 
       // Display an error message or perform necessary actions
-      Swal.fire({
+      sweetAlertMixin.fire({
         icon: "error",
         title: "Oops...",
         text: `* Each Bots should have unique names`,
@@ -133,7 +134,7 @@ function handleChange(e){
     if(pos === -1){
       setIsBotsArrayFull(true)
 
-      Swal.fire({
+      sweetAlertMixin.fire({
         icon: "error",
         title: "Reached full arena capacity ",
         text: `Can't add more bots to the arena`,
@@ -184,7 +185,7 @@ function handleChange(e){
 
   function handleEnterArena(){
     if(botsArr.length === 1){
-      Swal.fire({
+      sweetAlertMixin.fire({
         icon: "error",
         title: "Not enough bot in the arena",
         text: `You must start the game with at least two robots`,
@@ -237,8 +238,21 @@ function handleChange(e){
               )}
 
               <div></div>
+              
               <label htmlFor="value">
-                Choose a Boolean Value:
+                <span className="question-space">Choose a Boolean Value</span> <button
+                  className="question-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    sweetAlertMixin.fire({
+                      title: 'Boolean Operator',
+                      text: 'Pick either 0 or 1 and this will determine the outcome of a collision between two bots. When two bots collide, the boolean values are evaluated using the boolean operation that was chosen on the Arena Settings page',
+                      confirmButtonText: 'OK'
+                    });
+                  }}
+                >
+                  ?
+                </button>
                 <select
                   id="value"
                   name="value"

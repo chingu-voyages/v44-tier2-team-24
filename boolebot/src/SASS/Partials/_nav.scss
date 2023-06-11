@@ -31,13 +31,13 @@ header {
         display: inline-block;
         white-space: nowrap;
         padding: 0.5em 1em;
-      a:focus{
-        outline: none;
-      }
-      h1{
-        margin: 0;
-      }
-          
+        a:focus{
+          outline: none;
+        }
+        h1{
+          margin: 0;
+        }
+    
       }
 
         a:hover {
@@ -46,17 +46,8 @@ header {
           transition: 1s;
           border-radius: 5px;
           text-align: center;
-    
-        }
+          }
 
-                    
-  
-        a:focus {
-          border: 3px solid white;
-  
-  
-        }
-    
 
     h1 {
       font-family: "Bungee Shade", cursive;

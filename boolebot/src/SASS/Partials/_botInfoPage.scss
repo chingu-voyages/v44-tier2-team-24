@@ -41,11 +41,7 @@
                     text-align: center;
                 }
         
-                button:focus {
-                    border: 3px solid white;
-        
-        
-                }
+                
                 button:disabled {
                     cursor: not-allowed;
                 }
@@ -76,6 +72,9 @@ form {
     border: 2px solid $navy-blue;
     label {
         align-items: center;
+    }
+    span {
+        margin-right: 0.3em;
     }
     
 }
