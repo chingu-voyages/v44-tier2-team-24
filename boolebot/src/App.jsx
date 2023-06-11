@@ -3,7 +3,6 @@ import "./App.scss";
 import Homepage from "./Pages/HomePage";
 import AboutUs from "./Pages/AboutUs";
 import RootLayout from "./Pages/Root";
-import ArenaInfoPage from "./Pages/ArenaInfoPage";
 import BotsInfo from "./Pages/BotsInfo";
 import Arena from "./Components/Gameplay/Arena"
 import CreateArena from './Pages/CreateArena';

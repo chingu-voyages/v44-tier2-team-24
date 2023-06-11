@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 .swal2-confirm {
     border: none !important;
     box-shadow: none !important;
@@ -13,6 +15,11 @@
     /* Add any other custom styles you want */
 }
 
+.swal2-icon {
+    color: $navy-blue !important;
+    border-color: $navy-blue !important;
+}
+
 p {
     margin-bottom: 5px;
 }
@@ -22,5 +29,15 @@ p {
 
 .swal2-title {
     background-color: white;
+}
+
+.swal2-popup {
+    ol {
+        margin: 5% 0;
+    }
+    
+    li {
+        text-align: left;
+    }
 }
 
