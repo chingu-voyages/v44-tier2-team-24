@@ -49,6 +49,13 @@
     }
     .homepageBtns{
         transform: scale(.8);
+        .startBtn,
+     .instructionBtn {
+        width: 100%;
+     }
+     a{
+        width:100%;
+     }
     }
 
    }
