@@ -30,9 +30,11 @@
     .footer_ul{
       justify-content: center;
       width: 30%;
-      padding-bottom: .25em;
+      padding: .5em;
       display: flex;
+      min-width: 300px;
       justify-content: space-evenly;
+      margin-bottom: 0.5em;
       // border: 1px solid white;
       
       .github_link_personal{
@@ -40,14 +42,16 @@
         color: white;
         text-decoration: none;
         font-weight: 600;
-        padding: .25em 0;
         // background-color: black;
-        border-radius: 100%;
+        
+        
+      }
+      a{
+        padding: 0.2em 0.5em;
       }
       .github_link_personal> a:hover{
         background-color: white;
         color:#061d41;
-        padding: 0.1em 0.2em;
         transition: 1s;
         border-radius: 5px;
 
