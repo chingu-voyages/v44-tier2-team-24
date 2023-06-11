@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import singleBot from "../assets/bot.png";
-import Swal from "sweetalert2"; 
 import sweetAlertMixin from '../Components/SweetAlertConfig';
 import { Link } from "react-router-dom";
 import generateRandomNumber from '../utils/randomNum';

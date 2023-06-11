@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import Swal from "sweetalert2";
 import Container from "../Components/Layout/Container"
 import sweetAlertMixin from "../Components/SweetAlertConfig";
 import { Link } from "react-router-dom";
@@ -7,7 +6,6 @@ import botImage from "../assets/booleBotsHome.png";
 
 
 export default function Homepage({ globalReset }) {
-  // const [isLoading, setIsLoading] = useState(true);
   const showInstructions = () => {
     sweetAlertMixin.fire({
       title: "BOOLEBOTS",
@@ -19,9 +17,7 @@ export default function Homepage({ globalReset }) {
       <li>3. Name your bots, set the starting direction, and <strong>boolean value</strong></li>
       <li>4. Go to battlegrounds, click <strong>BATTLE</strong> to see which bot will win!</li> 
       </ol>
-      <p className="alert">The winner is determined by the <strong>boolean operator</strong> applied to the board, the starting <strong>boolean values</strong>, and which bot <strong>moved first</strong> into the collision</p>
-      
-      
+      <p className="alert">The winner is determined by the <strong>boolean operator</strong> applied to the board, the starting <strong>boolean values</strong>, and which bot <strong>moved first</strong> into the collision</p>    
       `,
     });
   };
@@ -32,18 +28,15 @@ export default function Homepage({ globalReset }) {
 
   return (
     <div className="main_body">
-      <Container>
-        
+      <Container>        
         {/* Below this line is the bot image*/}
         <div className="imgWrapper">
           <img src={botImage} alt="Bot" className="bot_image" />
         </div>
-
         <section className="homepageBtns">
           <Link to="/createArena">
             <button className="startBtn">Start</button>
           </Link>
-
           {/* Use the showInstructions function as the click event handler */}
           <button className="instructionBtn" onClick={showInstructions}>
             How to play

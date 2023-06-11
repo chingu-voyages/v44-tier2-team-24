@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Container from "./Layout/Container";
 import githubIcon from "../assets/github.svg"
 
 export default function Footer() {

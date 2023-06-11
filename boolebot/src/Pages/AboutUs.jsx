@@ -1,6 +1,5 @@
 import React from "react";
 import Container from "../Components/Layout/Container";
-import { Link } from "react-router-dom";
 
 export default function AboutUs() {
   return (
