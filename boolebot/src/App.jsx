@@ -79,13 +79,6 @@ useEffect(()=>{
 },[arenaData.tileNum])
 
 
-//Calculating innerWidth
-// const [width, setWidth]= useState('');
-
-// useEffect(()=>{
-//   setWidth(()=>window.innerWidth)
-// },[width])
-
 // This is an array of the current route/location
 const routeLocation = ['/createArena', '/createBot'];
 

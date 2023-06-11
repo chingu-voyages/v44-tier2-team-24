@@ -5,8 +5,8 @@ import Container from "../Components/Layout/Container"
 export default function BotsInfo(props) {
   const {arenaData, updateArenaData} = props
   
+  // Checks windows width
   let width = window.innerWidth;
-
   
   
   // Generic change handler
@@ -78,14 +78,14 @@ export default function BotsInfo(props) {
               <span>{` ${4 - arenaData.speed/1000}sec`}</span>
             </label>
           </div>
-          {width <= 768 && width > 428? <div>
+          <div>
             <label htmlFor="Arena Size">
               Arena Size:
               <input
                 id="tileNum"
                 type="range"
                 min={3}
-                max={5}
+                max={width <= 768 && width > 428? 5 : width <= 428 ? 4 : 8}
                 step={1}
                 value={arenaData.tileNum}
                 name="tileNum"
@@ -94,42 +94,7 @@ export default function BotsInfo(props) {
               />
               <span>{` ${arenaData.tileNum}x${arenaData.tileNum}`}</span>
             </label>
-          </div> : width <= 428? 
-          <div>
-          <label htmlFor="Arena Size">
-            Arena Size:
-            <input
-              id="tileNum"
-              type="range"
-              min={3}
-              max={4}
-              step={1}
-              value={arenaData.tileNum}
-              name="tileNum"
-              onChange={handleChange}
-              required
-            />
-            <span>{` ${arenaData.tileNum}x${arenaData.tileNum}`}</span>
-          </label>
-        </div>:
-          <div>
-            <label htmlFor="Arena Size">
-              Arena Size:
-              <input
-                id="tileNum"
-                type="range"
-                min={3}
-                max={8}
-                step={1}
-                value={arenaData.tileNum}
-                name="tileNum"
-                onChange={handleChange}
-                required
-              />
-              <span>{` ${arenaData.tileNum}x${arenaData.tileNum}`}</span>
-            </label>
-          </div> }
-          
+          </div>
           <div>
             <label htmlFor="operator">
               Boolean operator:
