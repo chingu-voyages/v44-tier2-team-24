@@ -307,10 +307,10 @@ function handleChange(e){
             </fieldset>
           </form>
           <Link to="/createArena">
-            <button>← Back</button>
+            <button className='navigate-btn'>← Back</button>
           </Link>
           
-            <button onClick={handleEnterArena}>Battle Ground →</button>
+            <button className='navigate-btn' onClick={handleEnterArena}>Battle Ground →</button>
           
         </div>
       </Container>
