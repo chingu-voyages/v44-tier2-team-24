@@ -2,14 +2,25 @@ import BotClass from "../Components/Gameplay/BotClass";
 
 const checkCollision = (currBot, botsArr) => {
   const locationArr = botsArr.map((bot) => bot.position);
-  const index = botsArr.findIndex(bot => (bot.name !== botsArr[currBot].name) &&  (botsArr[currBot].position === bot.position))
-  return index == -1 ? index : botsArr[index].position;
+
+  const index = botsArr.findIndex(bot => {
+    const notCurrentBot = bot.name !== botsArr[currBot].name; 
+
+    return notCurrentBot && (botsArr[currBot].position === bot.position);
+  })
+  
+  if(index !== -1){
+    console.log("Collided bot ", botsArr[index]);
+    console.log("CURR BOT", currBot)
+    return botsArr[index].position
+  }
+  return -1
 };
 
 const handleCollision = (botsArr,
               operator,
               currBotName,
-              setMessage) => {
+            ) => {
 
 
   const positionMap = new Map();
@@ -51,29 +62,29 @@ const handleCollision = (botsArr,
   switch (operator) {
     case "AND":
       const AND_Result = colidedBots[0].value && colidedBots[1].value;
-      return updateScore(AND_Result, colidedBots[0], colidedBots[1], setMessage);
-      // refactor the score-updating logic to use setter function instead of mutating array by reference
+      return updateScore(AND_Result, colidedBots[0], colidedBots[1]);
       break;
     case "OR":
       const OR_Result = colidedBots[0].value || colidedBots[1].value;
-      return updateScore(OR_Result, colidedBots[0], colidedBots[1], setMessage);
+      return updateScore(OR_Result, colidedBots[0], colidedBots[1]);
       break;
     case "XOR":
-      const XOR_Result = colidedBots[0].value ^ colidedBots[1].value;
-      return updateScore(XOR_Result, colidedBots[0], colidedBots[1]), setMessage;
+      // (a && !b) || (!a && b)
+      const XOR_Result = colidedBots[0].value === colidedBots[1].value ? true : false
+
+      console.log("XOR RESUT", XOR_Result)
+      return updateScore(!XOR_Result, colidedBots[0], colidedBots[1]);
       break;
     case "NOR":
       const NOR_Result = !(colidedBots[0].value || colidedBots[1].value);
-      return updateScore(NOR_Result, colidedBots[0], colidedBots[1], setMessage);
+      return updateScore(NOR_Result, colidedBots[0], colidedBots[1]);
       break;
   }
 };
 
-const updateScore = (result, botOne, botTwo, setMessage) => {
+const updateScore = (result, botOne, botTwo) => {
+  console.log("SET MESSAGE UP", result, botOne, botTwo)
   if (result) {
-    // botOne.wins = botOne.wins + 1
-    // botTwo.loses = botTwo.loses + 1
-
     const botOneClone = new BotClass(
       botOne.position,
       botOne.direction,
@@ -92,12 +103,9 @@ const updateScore = (result, botOne, botTwo, setMessage) => {
       botTwo.value,
       botTwo.wins,
       botTwo.loses + 1,
-    );
-
-    setMessage("COLLISION!!!")
+    );    
     return { isATie : false, bots: [botOneClone, botTwoClone]}
   } else {
-    setMessage("TIE!")
     return { isATie : true, bots: [botOne, botTwo]}
   }
 };

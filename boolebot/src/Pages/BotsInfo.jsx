@@ -121,14 +121,17 @@ function handleChange(e){
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    updateBotsData({
-      name: "",
-      value: 0,
-      wins: 0,
-      loses: 0,
-      direction: 1,
-      botIcon: bot1
-    })
+    // updateBotsData((prev) => {
+    //   console.log("PREV", stuff)
+    //   return {
+    //     name: "",
+    //     value: 0,
+    //     wins: 0,
+    //     loses: 0,
+    //     direction: 1,
+    //     botIcon: bot1
+    //   }
+    // })
     
     let occupiedPositions = getOccupiedPos(botsArr, tileNum)
     let pos = occupiedPositions.length
@@ -147,37 +150,45 @@ function handleChange(e){
 
     }
     else{
-      setIsBotsArrayFull(false)
-      
-      let botsArrCopy = makeCopyBotsArr(botsArr)
-      const newBot =  new BotClass(pos, Number(botsData.direction), botsData.name, Number(botsData.value), botsData.botIcon )
-      const duplicateBot = botsArrCopy.some(
-        (bot) =>
-          bot.name === newBot.name
+      setIsBotsArrayFull(false);
+
+      let botsArrCopy = makeCopyBotsArr(botsArr);
+      const newBot = new BotClass(
+        pos,
+        Number(botsData.direction),
+        botsData.name,
+        Number(botsData.value),
+        botsData.botIcon
       );
+      const duplicateBot = botsArrCopy.some((bot) => bot.name === newBot.name);
 
       if (!duplicateBot) {
-        setIconPalette(prev => {
-          const newIconPallet = [...prev]
+        setIconPalette((prev) => {
+          const newIconPallet = [...prev];
 
-          newIconPallet[iconSelected].isSelected = true
-          return newIconPallet
-        })
+          newIconPallet[iconSelected].isSelected = true;
+          return newIconPallet;
+        });
 
-        setIconSelected( prev => {
-          const newIndex = iconPalette.findIndex( icon => !icon.isSelected )
-  
-          if(newIndex !== -1){
-            let botsDataCopy = {...botsData}
-            updateBotsData({...botsDataCopy, botIcon: iconPalette[newIndex].url})
-          }
+        const newIndex = iconPalette.findIndex((icon) => !icon.isSelected);
+        setIconSelected((prev) => newIndex);
+        
+        const isAllIconSelected = newIndex !== -1;
 
-          return newIndex
-        })
-
-        updateBotsArr([...botsArrCopy, newBot])
+        if (isAllIconSelected) {
+          let botsDataCopy = { ...botsData };
+          updateBotsData({
+            name: "",
+            value: 0,
+            wins: 0,
+            loses: 0,
+            direction: 1,
+            botIcon: iconPalette[newIndex].url,
+          });
+        }
+        updateBotsArr([...botsArrCopy, newBot]);
       }
-    }
+    }    
   };
 
   return (
