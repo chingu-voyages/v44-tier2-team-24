@@ -70,6 +70,35 @@
     }
 }
 
+.nav-links{
+    #instructions_icon{
+        display: unset;
+        
+    }
+    
+    .about_us, .instructions{
+        display: none;
+    }
+    
+   
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    li{
+        padding: 0;
+    }
+    #instructions_icon {
+        width: 1.5em;
+        height:1.5em;
+        
+    }
+    
+}
+.footer{
+    .about_us{
+        display: unset;
+    }
+}
 
 
    .main{
@@ -102,9 +131,9 @@
 }
 
 @media (max-width: 590px){
-    .nav-links {
-        display: none;
-    }
+    // .nav-links {
+    //     display: none;
+    // }
 
 
     .burger-bar {
@@ -135,13 +164,26 @@
 @media (max-width: 428px) {
     .project{
         margin: 0 auto;
-        // width: 100vw;
+        width: 100%;
+    }
+    nav{
+        display: flex;
+    
+        h1{
+            transform: scale(.8);
+            justify-self: flex-start;
+        }
+       
     }
     .main_body{
         .imgWrapper{
             width:15em;
             height: 15em;
             margin: 0 auto;
+            img{
+                width: auto;
+                height: auto;
+            }
         }
     }
     .arena-input-form{
@@ -156,48 +198,7 @@
         transform: scale(.8);
     }
 
-        @media (max-width: 428px) {
-            .nav-links {
-                display: none;
-            }
-            @media (max-width: 428px) {
-                .nav-links {
-                    display: none;
-                }
-        
-        
-        
-                .burger-bar {
-                    z-index: 3;
-                    color: white;
-                }
-        
-                .burger-nav {
-                    display: block;
-                    padding: 0;
-        
-                }
-    
-    
-            .burger-bar {
-                z-index: 3;
-                color: white;
-            }
-    
-            .burger-nav {
-                display: block;
-                padding: 0;
-    
-            }
-    
-            
-    
-            //poll-creation
-    
-    
-    
-    
-    
-        };
-        }
+     
+         
+
     };
