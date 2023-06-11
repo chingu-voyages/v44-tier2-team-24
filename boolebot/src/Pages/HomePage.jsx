@@ -6,13 +6,12 @@ import { Link } from "react-router-dom";
 import botImage from "../assets/booleBotsHome.png";
 
 
-export default function Homepage() {
+export default function Homepage({ globalReset }) {
   // const [isLoading, setIsLoading] = useState(true);
   const showInstructions = () => {
     sweetAlertMixin.fire({
-      title: 'BOOLEBOTS',
-      html: 
-      `<p className="alert">Explore the fascinating world of boolean values through an entertaining game called Boolebots
+      title: "BOOLEBOTS",
+      html: `<p className="alert">Explore the fascinating world of boolean values through an entertaining game called Boolebots
       </p>
       <ol>
       <li>1. Select a board size</li>
@@ -21,33 +20,32 @@ export default function Homepage() {
       </ol>
       <p className="alert">Let's dive in and unravel the mysteries of these operators together!<p>
       
-      `
-      
+      `,
     });
   };
-  // useEffect(()=>{
-  //   showInstructions();
-  // }, [])
-  
+
+  useEffect(() => {
+    globalReset();
+  }, []);
 
   return (
     <div className="main_body">
       <Container>
-      {/* Below this line is the bot image*/}
-      <div className="imgWrapper">
-        <img src={botImage} alt="Bot" className="bot_image" />
-      </div>
+        {/* Below this line is the bot image*/}
+        <div className="imgWrapper">
+          <img src={botImage} alt="Bot" className="bot_image" />
+        </div>
 
-      <section className="homepageBtns">
-        <Link to="/createArena">
-          <button className="startBtn">Start</button>
-        </Link>
+        <section className="homepageBtns">
+          <Link to="/createArena">
+            <button className="startBtn">Start</button>
+          </Link>
 
-        {/* Use the showInstructions function as the click event handler */}
-        <button className="instructionBtn" onClick={showInstructions}>
-          How to play
-        </button>
-      </section>
+          {/* Use the showInstructions function as the click event handler */}
+          <button className="instructionBtn" onClick={showInstructions}>
+            How to play
+          </button>
+        </section>
       </Container>
     </div>
   );
