@@ -31,7 +31,7 @@ export default function Homepage({ globalReset }) {
       <Container>        
         {/* Below this line is the bot image*/}
         <div className="imgWrapper">
-          <img src={botImage} alt="Bot" className="bot_image" />
+          <img src={botImage} alt="Image of a robot head with the title Boolebots infront." className="bot_image" />
         </div>
         <section className="homepageBtns">
           <Link to="/createArena">

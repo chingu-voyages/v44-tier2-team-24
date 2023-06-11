@@ -78,7 +78,7 @@ function Navigation() {
                 id='instructions_icon'
               >
              
-             <img src={InfoIcon} style={{width:"2em", height:"2em"}}/>
+             <img src={InfoIcon} alt="instruction icon" style={{width:"2em", height:"2em"}}/>
               </Link></li>
             <li>
               <Link
