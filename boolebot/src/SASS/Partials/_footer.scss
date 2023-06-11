@@ -14,22 +14,9 @@
       text-decoration: none;
       color: white;
     }
-
-        a:hover {
-          background-color: white;
-          color: $navy-blue;
-          transition: 0.7s;
-          border-radius: 10px;
-          text-align: center;
-          padding: 1%;
-    
-    
-        }
     
         a:focus {
-          border: 3px solid white;
-    
-    
+          outline: none;
         }
    
     .github_icon {
@@ -39,16 +26,6 @@
       padding: .25em 0 0 0;      
     }
 
-        .github_icon:hover {
-          background-color: white;
-          color: $navy-blue;
-          transition: 0.7s;
-          border-radius: 50%;
-          text-align: center;
-          padding: 0.25%;
-    
-    
-        }
     
         
     .footer_ul{
@@ -67,6 +44,14 @@
         padding: .25em 0;
         // background-color: black;
         border-radius: 100%;
+      }
+      .github_link_personal> a:hover{
+        background-color: white;
+        color:#061d41;
+        padding: 0.2em 0.5em;
+        transition: 0.3s;
+        border-radius: 5px;
+
       }
     }
   }
