@@ -57,9 +57,9 @@ export default function AboutUs() {
           </div>
 
           <div className="content">
-            <h4>Elizabeth Reeves</h4>
+            <h4>Libby Reeves</h4>
             <p>
-              Elizabeth is a Toronto-based front-end web developer. After taking
+              Libby is a Toronto-based front-end web developer. After taking
               an introductory course to web development, she made the switch
               into tech from her previous profession in science education. From
               there, she discovered a passion for web accessibility and creating
