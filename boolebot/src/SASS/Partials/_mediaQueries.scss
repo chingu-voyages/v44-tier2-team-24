@@ -1,12 +1,10 @@
 @media(min-width:1100px){
-
     .container{
         min-width: 1000px;
-
-
     }
-    .main_body{
 
+    
+    .main_body{
         .imgWrapper{
             min-width:550px;
          }  
@@ -15,7 +13,13 @@
             margin-top: 10em;
         }
     }
+}
 
+@media(min-width: 1000px){
+
+    .main_container {
+            margin: 2em auto;
+        }
 }
 
 @media (max-width: 980px) {
@@ -23,19 +27,13 @@
         .imgWrapper{
             width:20em;
             height: 20em;
-            
-
         }
         // .homepageBtns{
         //     transform: scale(.8);
         // }
     
     }
-    .createArena {
-        padding: 1.2em 0;
-        background-color: #d3f3ee;
-        
-    }
+
     .botInfo_page{
         
 
@@ -58,6 +56,7 @@
 
 
 } 
+
 
 //Landscape phone to portrait tablet 
 @media (max-width: 768px) {
@@ -94,7 +93,6 @@
         
         button[type=submit]{
             padding: 0.8em 1.5em;
-    
             
         }
 
@@ -111,7 +109,6 @@
                 }
                 }
             }
-
     }
 
 
@@ -175,6 +172,29 @@
    
 }
 
+@media (min-width:769px) {
+    .arena-input-form {
+        .next_btn {
+            button[type="submit"] {
+                max-width: 200px;
+                min-height: 49px;
+                width: 100%;
+                font-size: 1.2em;
+
+            }
+        }
+    }
+
+    .bot-submission-btn {
+        max-width: 200px;
+        min-height: 49px;
+        width: 100%;
+        font-size: 1.2em;
+    }
+
+}
+
+
 @media (max-width: 590px){
     // .nav-links {
     //     display: none;
@@ -185,7 +205,21 @@
     //     height: auto;
     //     padding: 0 1em;
     // }
+    button[class="navigate-btn"]{
+        min-height: 49px;
+        max-width: 215px;
+        font-size: 1.2em;        
+        width: 100% !important;
+    }
 
+    .test{
+        a[href="/createArena"]{
+            button{
+                width: 100%;
+                
+            }
+        }
+    }
     .burger-bar {
         z-index: 3;
         color: white;
@@ -210,11 +244,16 @@
 }
 
 
-@media(min-width:500px){
+@media(min-width:591px){
     .homepageBtns{
         margin: 0 auto;
         width: 500px;
     }
+    .navigate-btn {
+        min-height: 49px;
+        font-size: 1.2em;
+    }
+
 }
 
 @media (max-width: 428px) {
@@ -276,6 +315,11 @@
             height: 24em;
             margin:4em auto;
         }
+    }
+
+    .createArena {
+        padding: 1.5em 0;
+        background-color: #d3f3ee;
 
     }
 }

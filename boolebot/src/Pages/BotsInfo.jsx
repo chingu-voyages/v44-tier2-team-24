@@ -299,7 +299,7 @@ function handleChange(e){
                   <option value="8">↙</option>
                 </select>
               </label>
-              <button type="submit" disabled={isBotsArrayFull}>
+              <button type="submit" className="bot-submission-btn" disabled={isBotsArrayFull}>
                 Add Bot
               </button>
             </fieldset>

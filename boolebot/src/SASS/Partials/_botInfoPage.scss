@@ -16,10 +16,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-        
-        .navigate-btn{
-            min-width: 200px;
-        }
+
 
         button{
             background-color: #061d41;
@@ -34,7 +31,7 @@
             // width: fit-content;
         }
         button[type="submit"]{
-            font-size: 1.05em;
+            font-size: 1.25rem;
             min-width: 200px;
 
         }
@@ -214,17 +211,17 @@ form {
     padding: 2%;
     button {
         
-                background-color: #061d41;
-                color: white;
-                font-weight: 600;
-                font-size: 1em;
-                padding: 0.6em;
-                border-radius: 10px;
-                border: none;
-                width: fit-content;
-                align-self: center;
-                justify-self: flex-end;
-        
-            }
+        background-color: #061d41;
+        color: white;
+        font-weight: 600;
+        font-size: 1em;
+        padding: 0.6em;
+        border-radius: 10px;
+        border: none;
+        width: fit-content;
+        align-self: center;
+        justify-self: flex-end;
+
+    }
     
 }
