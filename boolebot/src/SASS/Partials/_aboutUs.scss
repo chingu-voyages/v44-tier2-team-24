@@ -43,8 +43,8 @@
         }
 
         .icons {
-          i {
-            color: $navy-blue;
+          svg {
+            color: $navy-blue !important;
             padding: .5em;
             font-size: 1.2em;
           }
