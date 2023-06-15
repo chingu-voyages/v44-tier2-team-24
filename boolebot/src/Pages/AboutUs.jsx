@@ -160,7 +160,7 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <i className="fa fa-github"></i>
+                <i className="fa fa-briefcase"></i>
               </a>
               <a
                 className="github_link_personal"
