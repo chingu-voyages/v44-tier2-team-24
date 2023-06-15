@@ -88,7 +88,7 @@ export default function AboutUs() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <i className="fa fa-linkedin"></i>
+                <i className="fa fa-github"></i>
               </a>
             </div>
           </div>
